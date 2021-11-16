@@ -7,7 +7,7 @@
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" ",
+    "format": "prettier \"src/**/*.ts\" ",
     "lint": "tslint -p tsconfig.json",
     "prepare": "yarn run build",
     "prepublishOnly": "yarn test && yarn run lint",
