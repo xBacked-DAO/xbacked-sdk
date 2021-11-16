@@ -105,3 +105,6 @@ dist
 
 # Lib Folder
 /lib
+/.yarn
+
+
