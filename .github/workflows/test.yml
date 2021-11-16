@@ -3,7 +3,7 @@ name: Xbacked-SDK-Test
 on: [push]
 
 jobs:
-  build:
+  test-lint-format:
 
     runs-on: ubuntu-latest
 
