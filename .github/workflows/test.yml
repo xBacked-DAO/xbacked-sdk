@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-          cache-dependency-path: 'contracts/yarn.lock'
-      - run: yarn config set cacheFolder $(pwd)/contracts/.yarn/cache
+          cache-dependency-path: '/yarn.lock'
+      - run: yarn config set cacheFolder $(pwd)/.yarn/cache
       - run: yarn install --immutable
         working-directory: contracts
       - name: Test files
