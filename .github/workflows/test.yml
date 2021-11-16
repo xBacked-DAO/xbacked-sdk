@@ -8,6 +8,7 @@ jobs:
         node-version: [14.x]
     steps:
       - run: echo "🎉 The job was automatically triggered by a push."
+      - uses: actions/checkout@v2
       - name: Install Yarn
         run: |
            npm install -g yarn
