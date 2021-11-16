@@ -3,6 +3,9 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
       - run: echo "🎉 The job was automatically triggered by a push."
       - name: Install Yarn
