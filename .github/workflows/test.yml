@@ -1,0 +1,14 @@
+name: Xbacked SDK Test
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a push."
+      - name: Install Yarn
+        run: |
+           npm install -g yarn
+           yarn set version 3.1.0
+           yarn install
+      -name: Test files
+       run: yarn test
