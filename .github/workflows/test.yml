@@ -9,7 +9,7 @@ jobs:
         run: |
            npm install -g yarn
            yarn set version 3.1.0
-      -name: install dependencies
-       run: yarn install
-      -name: Test files
-       run: yarn test
+      - name: install dependencies
+        run: yarn install
+      - name: Test files
+        run: yarn test
