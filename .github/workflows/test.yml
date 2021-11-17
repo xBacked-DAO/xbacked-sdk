@@ -23,7 +23,6 @@ jobs:
       with:
         node-version: '14'
         cache: 'yarn'
-        cache-dependency-path: '/yarn.lock'
     - run: yarn config set cacheFolder $(pwd)/.yarn/cache
     - run: yarn install --immutable
     - name: Lint JS
