@@ -12,6 +12,7 @@ jobs:
         node-version: [14.x]
 
     steps:
+    - run:  echo "directory name:$(pwd)" 
     - uses: actions/checkout@v2
     - name: Install Yarn
       run: |
@@ -22,10 +23,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-        cache-dependency-path: 'contracts/yarn.lock'
-    - run: yarn config set cacheFolder $(pwd)/contracts/.yarn/cache
+        cache-dependency-path: '/yarn.lock'
+    - run: yarn config set cacheFolder $(pwd)/.yarn/cache
     - run: yarn install --immutable
-      working-directory: contracts
     - name: Lint JS
       run: |
         echo "::remove-matcher owner=eslint-compact::"
