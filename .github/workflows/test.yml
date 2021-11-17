@@ -25,10 +25,12 @@ jobs:
         cache: 'yarn'
     - run: yarn config set cacheFolder $(pwd)/.yarn/cache
     - run: YARN_CHECKSUM_BEHAVIOR=ignore yarn install --immutable
-    - name: Lint JS
+    - name: Test TS
       run: |
         echo "::remove-matcher owner=eslint-compact::"
         echo "::remove-matcher owner=eslint-stylish::"
     - run: yarn test
+    - name: Lint Ts
     - run: yarn lint
+    - name: Format Ts
     - run: yarn format
