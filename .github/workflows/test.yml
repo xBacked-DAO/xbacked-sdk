@@ -1,0 +1,36 @@
+name: Xbacked-SDK-Test
+
+on: [push]
+
+jobs:
+  test-lint-format:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+    - run:  echo directory name:$(pwd)
+    - uses: actions/checkout@v2
+    - name: Install Yarn
+      run: |
+        npm install -g yarn
+        yarn set version 3.1.0
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        cache: 'yarn'
+    - run: yarn config set cacheFolder $(pwd)/.yarn/cache
+    - run: YARN_CHECKSUM_BEHAVIOR=ignore yarn install --immutable
+    - name: Test TS
+      run: |
+        echo "::remove-matcher owner=eslint-compact::"
+        echo "::remove-matcher owner=eslint-stylish::"
+    - run: yarn test
+    - name: Lint Ts
+      run: yarn lint
+    - name: Format Ts
+      run: yarn format
