@@ -12,7 +12,7 @@ jobs:
         node-version: [14.x]
 
     steps:
-    - run:  echo "directory name:$(pwd)" 
+    - run:  echo directory name:$(pwd)
     - uses: actions/checkout@v2
     - name: Install Yarn
       run: |
