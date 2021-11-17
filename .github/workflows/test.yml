@@ -31,6 +31,6 @@ jobs:
         echo "::remove-matcher owner=eslint-stylish::"
     - run: yarn test
     - name: Lint Ts
-    - run: yarn lint
+      run: yarn lint
     - name: Format Ts
-    - run: yarn format
+      run: yarn format
