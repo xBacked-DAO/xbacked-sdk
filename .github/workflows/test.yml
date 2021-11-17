@@ -24,7 +24,7 @@ jobs:
         node-version: '14'
         cache: 'yarn'
     - run: yarn config set cacheFolder $(pwd)/.yarn/cache
-    - run: yarn install --immutable
+    - run: yarn install
     - name: Lint JS
       run: |
         echo "::remove-matcher owner=eslint-compact::"
