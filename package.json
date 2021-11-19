@@ -37,6 +37,8 @@
     "lib/**/*"
   ],
   "dependencies": {
-    "@reach-sh/stdlib": "^0.1.6-rc.9"
+    "@babel/types": "^7.16.0",
+    "@reach-sh/stdlib": "^0.1.6-rc.9",
+    "@types/node": "^16.11.9"
   }
 }

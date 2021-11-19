@@ -17,7 +17,7 @@ class Minter extends Api {
     return false;
   }
 
-  returnXusd(param: { amount: number }): boolean {
+  returnVaultDebt(param: { amount: number }): boolean {
     return false;
   }
 }

@@ -2,6 +2,8 @@
 import { loadStdlib } from '@reach-sh/stdlib';
 import Api from './apis/Api';
 import Interact from './interacts/Interact';
+// @ts-ignore
+import * as backend from './build/vault.main.mjs';
 
 interface AccountInterface {
   mnemonic?: string;
@@ -19,6 +21,7 @@ class Account {
   interact?: Interact;
   api?: Api;
   currentVault?: string;
+  reachAccount: any;
 
   constructor(params: AccountInterface) {
     this.mnemonic = params.mnemonic;
@@ -27,6 +30,10 @@ class Account {
     this.interact = params.interact;
     this.api = params.api;
     this.currentVault = this.currentVault;
+    const reachStdLib = loadStdlib('ALGO');
+    if (this.mnemonic != null) {
+      this.reachAccount = reachStdLib.newAccountFromMnemonic(this.mnemonic);
+    }
   }
 
   deployVault(): Vault {
@@ -37,3 +44,5 @@ class Account {
     return new Vault({ id: params.id });
   }
 }
+
+export = Account;

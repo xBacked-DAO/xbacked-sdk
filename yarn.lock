@@ -1239,6 +1239,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^16.11.9":
+  version: 16.11.9
+  resolution: "@types/node@npm:16.11.9"
+  checksum: baec2e6471ee58fd1e9874e6f47ab95a918a0f46b42424392e4c13e3e07f078f8b72b6b48073b0b14f710ed66c5f1b2e497df43f28151000f11f5f299382cfe2
+  languageName: node
+  linkType: hard
+
 "@types/prettier@npm:^2.1.5":
   version: 2.4.2
   resolution: "@types/prettier@npm:2.4.2"
@@ -6275,8 +6282,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "xbacked-sdk@workspace:."
   dependencies:
+    "@babel/types": ^7.16.0
     "@reach-sh/stdlib": ^0.1.6-rc.9
     "@types/jest": ^27.0.2
+    "@types/node": ^16.11.9
     jest: ^27.3.1
     prettier: ^2.4.1
     ts-jest: ^27.0.7

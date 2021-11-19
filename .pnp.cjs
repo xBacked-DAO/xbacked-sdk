@@ -35,8 +35,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
+            ["@babel/types", "npm:7.16.0"],
             ["@reach-sh/stdlib", "npm:0.1.6-rc.9"],
             ["@types/jest", "npm:27.0.2"],
+            ["@types/node", "npm:16.11.9"],
             ["jest", "virtual:0ef2aa1cc4e521843a5286d31f37f028b2e7438fec88700f798a9275f3954375ec98ab294a26e9df5c81b3f8b528b8e78e503b8b2bcff5babbdf43b3cc7ecdd0#npm:27.3.1"],
             ["prettier", "npm:2.4.1"],
             ["ts-jest", "virtual:0ef2aa1cc4e521843a5286d31f37f028b2e7438fec88700f798a9275f3954375ec98ab294a26e9df5c81b3f8b528b8e78e503b8b2bcff5babbdf43b3cc7ecdd0#npm:27.0.7"],
@@ -1731,6 +1733,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-16.11.7-1799a0a435-2706403e6e.zip/node_modules/@types/node/",
           "packageDependencies": [
             ["@types/node", "npm:16.11.7"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:16.11.9", {
+          "packageLocation": "./.yarn/cache/@types-node-npm-16.11.9-fd7b539464-baec2e6471.zip/node_modules/@types/node/",
+          "packageDependencies": [
+            ["@types/node", "npm:16.11.9"]
           ],
           "linkType": "HARD",
         }]
@@ -7527,8 +7536,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["xbacked-sdk", "workspace:."],
+            ["@babel/types", "npm:7.16.0"],
             ["@reach-sh/stdlib", "npm:0.1.6-rc.9"],
             ["@types/jest", "npm:27.0.2"],
+            ["@types/node", "npm:16.11.9"],
             ["jest", "virtual:0ef2aa1cc4e521843a5286d31f37f028b2e7438fec88700f798a9275f3954375ec98ab294a26e9df5c81b3f8b528b8e78e503b8b2bcff5babbdf43b3cc7ecdd0#npm:27.3.1"],
             ["prettier", "npm:2.4.1"],
             ["ts-jest", "virtual:0ef2aa1cc4e521843a5286d31f37f028b2e7438fec88700f798a9275f3954375ec98ab294a26e9df5c81b3f8b528b8e78e503b8b2bcff5babbdf43b3cc7ecdd0#npm:27.0.7"],

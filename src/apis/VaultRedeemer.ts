@@ -5,7 +5,7 @@ class VaultRedeemer extends Api {
     super({ name: 'VaultRedeemer' });
   }
 
-  redeemVault(param: { amount: number }): boolean {
+  redeemVault(param: { amount: number; vault: Vault }): boolean {
     return false;
   }
 }
