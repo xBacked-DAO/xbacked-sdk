@@ -4,11 +4,14 @@
   "description": "Official SDK for the xBacked Protocol",
   "main": "lib/index.js",
   "packageManager": "yarn@3.1.0",
+  
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier \"src/**/*.ts\" ",
     "lint": "tslint -p tsconfig.json",
+    "devnet": "REACH_CONNECTOR_MODE=ALGO ./src/reach devnet --await-background",
+    "reach:down": "./src/reach down",
     "prepare": "yarn run build",
     "prepublishOnly": "yarn test && yarn run lint",
     "preversion": "yarn run lint"
@@ -38,7 +41,7 @@
   ],
   "dependencies": {
     "@babel/types": "^7.16.0",
-    "@reach-sh/stdlib": "^0.1.6-rc.9",
+    "@reach-sh/stdlib": "^0.1.7-rc.0",
     "@types/node": "^16.11.9"
   }
 }

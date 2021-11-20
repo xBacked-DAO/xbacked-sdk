@@ -6,8 +6,11 @@
       "outDir": "./lib",  
       "strict": true,
       "noImplicitAny":true,
-      "strictNullChecks": true
+      "strictNullChecks": true,
+      "esModuleInterop": true,
+      "allowJs": true,
+      "lib": [ "es2015","DOM" ]
     },
-    "include": ["src"],
+    "include": ["src/**/*", "src/build/vault.main.js"],
     "exclude": ["node_modules", "**/__tests__/*"]
   }
