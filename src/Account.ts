@@ -46,7 +46,7 @@ class Account {
         }
       }
       const ctc = this.reachAccount.contract(backend);
-      ctc.getInfo().then((info: number) => {});
+      // ctc.getInfo().then((info: number) => {});
       await backend.Minter(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
     } catch (error) {
       throw new Error(JSON.stringify(error));
