@@ -38,22 +38,17 @@ class Account {
   }
 
   async deployVault() {
-    try{
+    try {
       if (this.mnemonic != null) {
         this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
-        if (await this.reachStdLib .canFundFromFaucet()) {
-          await this.reachStdLib .fundFromFaucet(this.reachAccount, this.reachStdLib .parseCurrency(100));
+        if (await this.reachStdLib.canFundFromFaucet()) {
+          await this.reachStdLib.fundFromFaucet(this.reachAccount, this.reachStdLib.parseCurrency(100));
         }
       }
-      let ctc = this.reachAccount.contract(backend);
-      console.log(ctc.getInfo())
-      ctc.getInfo().then( (info: number) => {
-       console.log(info);
-      });
-      console.log({...this.interact},"interact")
-      await backend.Minter(ctc, {...this.interact, ...this.reachStdLib.hasConsoleLogger});
-    }catch(error){
-      console.error(error)
+      const ctc = this.reachAccount.contract(backend);
+      ctc.getInfo().then((info: number) => {});
+      await backend.Minter(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
+    } catch (error) {
       throw new Error(JSON.stringify(error));
     }
   }
@@ -62,15 +57,12 @@ class Account {
     return new Vault({ id: params.id });
   }
 
- async setListener(callBack: any){
-    this.interact?.addListener('createVault', async ({resolve,params}) =>{
-      var returnValues = callBack();
+  async setListener(callBack: any) {
+    this.interact?.addListener('createVault', async ({ resolve, params }) => {
+      const returnValues = callBack();
       resolve(returnValues);
-    })
+    });
   }
 }
 
-
-
 export = Account;
-

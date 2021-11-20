@@ -1,7 +1,6 @@
-import EventEmitter from "events";
+import EventEmitter from 'events';
 
-
-class Interact extends EventEmitter{
+class Interact extends EventEmitter {
   name: string;
   acc?: any;
 

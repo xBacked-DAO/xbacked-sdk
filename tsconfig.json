@@ -11,6 +11,6 @@
       "allowJs": true,
       "lib": [ "es2015","DOM" ]
     },
-    "include": ["src/**/*", "src/build/vault.main.js"],
-    "exclude": ["node_modules", "**/__tests__/*"]
+    "exclude": ["node_modules", "**/__tests__/*", "src/build/*"]
+    // "include": ["src/**/*"],
   }
