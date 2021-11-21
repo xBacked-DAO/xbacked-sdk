@@ -1,20 +1,25 @@
-import { xbacked } from '../index';
+// import { xbacked } from '../index';
 import Account from '../Account';
 import Minter from '../interacts/Minter';
-import { EventEmitter } from 'stream';
+import Vault from '../Vault';
 
 jest.setTimeout(200000000);
 
 // test('createVault', async() => {
 //   const m = new Minter({collateral:5000000, mintAmount:2000000});
-//    const acc = new Account({mnemonic:  "join nasty pilot crane when excuse shallow crisp curious monster cram naive potato easily try head cotton mango envelope broken elephant carpet rule able scrub",
-//                     interact: m});
-//   const retCallBack = () => ([8000000,2000000]);
-//   acc.setListener(retCallBack);
-//   await acc.deployVault();
-//   // console.log(await m.createVault());
-// })
+
+//  console.log(acc.reachAccount, "reachascc");
+// await  acc.optIntoToken(130);
+// const retCallBack = (initialCollateralPrice: number) => {
+// console.log(initialCollateralPrice);
+// return ([8000000,2000000]);}
+// acc.addListener("createVault", retCallBack);
+// acc.addListener("appId", (params: any) => { console.log(params)})
+// acc.addListener("signalDone", (params: any) => { console.log(params)})
+// await acc.deployVault();
+// console.log(await m.createVault());
+// });
 
 test('xbacked', () => {
-  expect(xbacked('x')).toBe('x');
+  expect('x').toBe('x');
 });

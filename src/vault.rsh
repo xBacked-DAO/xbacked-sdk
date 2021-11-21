@@ -15,6 +15,10 @@ import {
   calculateRedemptionFee
 } from './utils.rsh';
 
+// Enum to list all available signals that are sent to the frontend using
+// the minter's signalDone() interact function.
+const [isSignal, SIGNAL_MINTER_FINISHED] = makeEnum(1);
+
 // Collateral is the amount of coins deposited by the Minter exchangeRate is
 // the rate of stable asset to collateral loanValue, the number of stablecoin
 // to send to the the minter.
@@ -33,7 +37,8 @@ const ReserveInteract = {
 
 const MinterInteract = {
   ...hasConsoleLogger,
-  createVault: Fun([UInt], Tuple(UInt, UInt))
+  createVault: Fun([UInt], Tuple(UInt, UInt)),
+  signalDone: Fun([UInt], Null)
 };
 
 // This is not actually stored; it acts as a template for an object that describes
@@ -92,6 +97,10 @@ export const main = Reach.App(() => {
   // Minter Contract
   Minter.publish();
   commit();
+
+  Minter.only(() => {
+    interact.signalDone(SIGNAL_MINTER_FINISHED);
+  });
 
   // In reality, the Reserve will end up not existing
   // Oracle data will be pulled out of the blockchain using application calls
@@ -250,7 +259,6 @@ export const main = Reach.App(() => {
           Reserve.pay([[newVaultDebt, stablecoin]]);
           transfer(minterVaultDebt, stablecoin).to(vaultOwner);
           transfer(newMintFee, stablecoin).to(FeeCollector);
-
           return [vaultDebt + minterVaultDebt, collateralPrice, recoveryMode];
         } else {
           return [vaultDebt, collateralPrice, recoveryMode];

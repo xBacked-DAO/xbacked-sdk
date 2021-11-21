@@ -10,6 +10,7 @@ class Minter extends Interact {
     super({ name: 'VaultOwner' });
     this.params = params;
     this.createVault = this.createVault;
+    this.signalDone = this.signalDone;
     this.parent = this;
   }
 
@@ -34,6 +35,12 @@ class Minter extends Interact {
       }
     } else {
       return [0, 0];
+    }
+  }
+
+  async signalDone(SIGNAL_MINTER_FINISHED: number) {
+    if (this.parent.listeners('signalDone').length !== 0) {
+      this.parent.emit('signalDone', { params: { signalDone: SIGNAL_MINTER_FINISHED } });
     }
   }
 }

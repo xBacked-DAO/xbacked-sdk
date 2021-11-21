@@ -13,3 +13,5 @@ class Vault {
     }
   }
 }
+
+export = Vault;
