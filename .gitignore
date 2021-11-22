@@ -108,3 +108,5 @@ dist
 /.yarn
 
 .reach
+
+/build
