@@ -1,12 +1,12 @@
 import Interact from './Interact';
-interface CreateVaulParams {
+interface CreateVaultParams {
   collateral: number;
   mintAmount: number;
 }
 class Minter extends Interact {
-  params: CreateVaulParams;
+  params: CreateVaultParams;
   parent: Minter;
-  constructor(params: CreateVaulParams) {
+  constructor(params: CreateVaultParams) {
     super({ name: 'VaultOwner' });
     this.params = params;
     this.createVault = this.createVault;
