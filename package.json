@@ -12,7 +12,7 @@
     "prepare": "yarn run build",
     "prepublishOnly": "yarn test && yarn run lint",
     "preversion": "yarn run lint",
-    "check-format": "npx prettier --check \"src/**/*.ts\" "
+    "check-format": "prettier --check \"src/**/*.ts\" "
   },
   "repository": {
     "type": "git",
