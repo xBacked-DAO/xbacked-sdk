@@ -76,8 +76,8 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
-    const xUsdBal = await this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
-    const res = await put.liquidateVault(xUsdBal);
+    const liquidationTokenBalance = await this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
+    const res = await put.liquidateVault(liquidationTokenBalance);
     return res;
   }
   updatePrice(params: { price: number; vault: Vault }): boolean {
