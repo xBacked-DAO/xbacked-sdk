@@ -78,7 +78,7 @@ class Account {
     const put = ctc.a.Liquidator;
     const xUsdBal = await this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
     const res = await put.liquidateVault(xUsdBal);
-    return true;
+    return res;
   }
   updatePrice(params: { price: number; vault: Vault }): boolean {
     return false;

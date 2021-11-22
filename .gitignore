@@ -110,3 +110,5 @@ dist
 .reach
 
 /src/build
+
+.DS_Store

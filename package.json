@@ -9,11 +9,10 @@
     "build": "tsc",
     "format": "prettier \"src/**/*.ts\" ",
     "lint": "tslint -p tsconfig.json",
-    "devnet": "REACH_CONNECTOR_MODE=ALGO ./src/reach devnet --await-background",
-    "reach:down": "./src/reach down",
     "prepare": "yarn run build",
     "prepublishOnly": "yarn test && yarn run lint",
-    "preversion": "yarn run lint"
+    "preversion": "yarn run lint",
+    "check-format": "npx prettier --check \"src/**/*.ts\" "
   },
   "repository": {
     "type": "git",
