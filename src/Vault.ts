@@ -1,3 +1,4 @@
+import Account from './Account';
 interface VaultPatameters {
   id: number;
   acc?: any;
@@ -12,6 +13,11 @@ class Vault {
       this.acc = params.acc;
     }
   }
+
+  async  getState(params:{account: Account}): Promise<any> {
+     return {}
+  }
+
 }
 
 export = Vault;
