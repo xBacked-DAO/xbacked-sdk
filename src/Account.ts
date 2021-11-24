@@ -54,21 +54,21 @@ class Account {
     }
   }
 
-  async connectAsReserveToVault(params: { vault: Vault}): Promise<Vault> {
+  async connectAsReserveToVault(params: { vault: Vault }): Promise<Vault> {
     const ctc = this.reachAccount.contract(backend, params.vault.id);
-    await backend.Reserve(ctc, {...this.interact, ...this.reachStdLib.hasConsoleLogger } );
+    await backend.Reserve(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
     return params.vault;
   }
 
-  async connectAsFeeCollectorToVault(params: { vault: Vault}): Promise<Vault> {
+  async connectAsFeeCollectorToVault(params: { vault: Vault }): Promise<Vault> {
     const ctc = this.reachAccount.contract(backend, params.vault.id);
-    await backend.FeeCollector(ctc, {...this.interact, ...this.reachStdLib.hasConsoleLogger } );
+    await backend.FeeCollector(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
     return params.vault;
   }
 
   async addListener(name: string, callBack: any) {
     this.interact?.addListener(name, async ({ resolve, params }) => {
-      const returnValues = params == null || params == undefined ? await callBack(): await callBack(params);
+      const returnValues = params === null || params === undefined ? await callBack() : await callBack(params);
       if (resolve !== undefined && resolve !== null) {
         resolve(returnValues);
       }

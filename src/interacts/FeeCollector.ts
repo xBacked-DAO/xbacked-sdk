@@ -1,5 +1,3 @@
-import Interact from "./Interact";
+import Interact from './Interact';
 
-class FeeCollector extends Interact{
-    
-}
+class FeeCollector extends Interact {}
