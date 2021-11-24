@@ -55,12 +55,14 @@ class Account {
   }
 
   async connectAsReserveToVault(params: { vault: Vault }): Promise<Vault> {
+    await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     await backend.Reserve(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
     return params.vault;
   }
 
   async connectAsFeeCollectorToVault(params: { vault: Vault }): Promise<Vault> {
+    await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     await backend.FeeCollector(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
     return params.vault;

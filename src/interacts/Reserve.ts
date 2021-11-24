@@ -11,12 +11,13 @@ class Reserve extends Interact {
     super({ name: 'Reserve' });
     this.price = params.price;
     this.getCollateralPrice = this.getCollateralPrice;
+    this.getToken = this.getToken;
     this.parent = this;
   }
 
   async getCollateralPrice(): Promise<number> {
     const price = await new Promise((resolve, reject) => {
-      if (this.listeners('getCollateralPrice').length === 0) {
+      if (this.parent.listeners('getCollateralPrice').length === 0) {
         resolve(this.price);
       }
       this.parent.emit('getCollateralPrice', { resolve });
@@ -27,4 +28,10 @@ class Reserve extends Interact {
       return 0;
     }
   }
+
+  async getToken(): Promise<number> {
+    return 8;
+  }
 }
+
+export = Reserve;
