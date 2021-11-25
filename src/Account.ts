@@ -90,31 +90,59 @@ class Account {
     const res = await put.liquidateVault(liquidationTokenBalance);
     return res;
   }
-  updatePrice(params: { price: number; vault: Vault }): boolean {
-    return false;
+  async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.Oracle;
+    const res = await put.updatePrice((params.price));
+    return res;
   }
 
-  toggleRecoveryMode(param: { vault: Vault; mode: boolean }): boolean {
-    return false;
+  async toggleRecoveryMode(params: { vault: Vault; mode: boolean }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.RecoveryToggler;
+    const res = await put.toggleRecoveryMode(params.mode);
+    return res;
   }
-  mintToken(params: { amount: number; vault: Vault }): boolean {
-    return false;
-  }
-
-  depositToken(param: { amount: number }): boolean {
-    return false;
-  }
-
-  withdrawCollateral(param: { amount: number }): boolean {
-    return false;
-  }
-
-  returnVaultDebt(param: { amount: number }): boolean {
-    return false;
+  async mintToken(params: { amount: number; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultOwner;
+    const res = await put.mintToken(params.amount);
+    return res;
   }
 
-  redeemVault(param: { amount: number; vault: Vault }): boolean {
-    return false;
+  async depositToken(params: { amount: number, vault: Vault}): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultOwner;
+    const res = await put.depositCollateral(params.amount);
+    return res;
+  }
+
+  async withdrawCollateral(params: { amount: number, vault: Vault}): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultOwner;
+    const res = await put.withdrawCollateral(params.amount);
+    return res;
+  }
+
+  async returnVaultDebt(params: { amount: number, vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultOwner;
+    const res = await put.returnVaultDebt(params.amount);
+    return res;
+  }
+
+  async redeemVault(params: { amount: number; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultRedeemer;
+    const res = await await put.redeemVault(params.amount);
+    return res;
   }
 }
 
