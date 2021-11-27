@@ -13,6 +13,7 @@
     "prepublishOnly": "yarn test && yarn run lint",
     "preversion": "yarn run lint",
     "check-format": "prettier --check \"src/**/*.ts\" "
+
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,6 @@
   ],
   "dependencies": {
     "@babel/types": "^7.16.0",
-    "@reach-sh/stdlib": "^0.1.7-rc.0"
+    "@reach-sh/stdlib": "^0.1.7-rc.1"
   }
 }

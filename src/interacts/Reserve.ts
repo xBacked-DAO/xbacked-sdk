@@ -30,7 +30,7 @@ class Reserve extends Interact {
   }
 
   async getToken(): Promise<number> {
-    return 8;
+    return 34;
   }
 }
 

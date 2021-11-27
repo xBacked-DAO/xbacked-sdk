@@ -58,8 +58,24 @@ jest.setTimeout(200000000);
 //   if (await acc.reachStdLib.canFundFromFaucet()) {
 //     await acc.reachStdLib.fundFromFaucet(acc.reachAccount, acc.reachStdLib.parseCurrency(100));
 //     }
-//   await acc.connectAsFeeCollectorToVault({vault: new Vault({id: 43})});
+//   await acc.connectAsFeeCollectorToVault({vault: new Vault({id: 186})});
 //   console.log("opt in successful");
+// });
+
+// test('deployVault', async() => {
+//   const m = new Minter({collateral:5000000, mintAmount:2000000});
+//   const acc = new Account({mnemonic:   "obtain exit ritual table pipe project kind junk avoid title reform awake refuse enact prosper police trash dumb trigger shallow wreck fiscal congress above dolphin",
+//                       interact: m});
+//   await acc.initialiseReachAccount();
+//   if (await acc.reachStdLib.canFundFromFaucet()) {
+//     await acc.reachStdLib.fundFromFaucet(acc.reachAccount, acc.reachStdLib.parseCurrency(100));
+//     }
+//   const retCallBack = async (initialCollateralPrice: any) => {
+//     console.log(initialCollateralPrice.toNumber());
+//     return ([8000000,2000000]);}
+//     acc.addListener("appId", (params: any) => { console.log(params)})
+//     acc.addListener("createVault", retCallBack);
+//     await acc.deployVault();
 // });
 
 test('xbacked', () => {

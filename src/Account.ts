@@ -33,7 +33,9 @@ class Account {
     this.reachStdLib.setProviderByName('LocalHost');
   }
   async initialiseReachAccount() {
-    this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
+    if (this.mnemonic != null) {
+      this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
+    }
   }
 
   async deployVault() {
@@ -64,7 +66,7 @@ class Account {
   async connectAsFeeCollectorToVault(params: { vault: Vault }): Promise<Vault> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
-    await backend.FeeCollector(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
+    await backend.FeeCollector(ctc, { ...this.reachStdLib.hasConsoleLogger });
     return params.vault;
   }
 
@@ -94,7 +96,7 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Oracle;
-    const res = await put.updatePrice((params.price));
+    const res = await put.updatePrice(params.price);
     return res;
   }
 
@@ -113,7 +115,7 @@ class Account {
     return res;
   }
 
-  async depositToken(params: { amount: number, vault: Vault}): Promise<boolean> {
+  async depositToken(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
@@ -121,7 +123,7 @@ class Account {
     return res;
   }
 
-  async withdrawCollateral(params: { amount: number, vault: Vault}): Promise<boolean> {
+  async withdrawCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
@@ -129,7 +131,7 @@ class Account {
     return res;
   }
 
-  async returnVaultDebt(params: { amount: number, vault: Vault }): Promise<boolean> {
+  async returnVaultDebt(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
