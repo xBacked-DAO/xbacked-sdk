@@ -33,7 +33,6 @@ class Account {
     this.currentVault = this.currentVault;
     this.reachStdLib = loadStdlib('ALGO');
     this.reachStdLib.setProviderByName('LocalHost');
-    // this.reachStdLib.setSignStrategy('MyAlgoConnect');
     console.log(MyAlgoConnect)
   }
   async initialiseReachAccount() {
