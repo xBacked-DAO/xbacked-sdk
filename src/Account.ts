@@ -1,9 +1,11 @@
 // @ts-ignore
 import { loadStdlib } from '@reach-sh/stdlib';
+import MyAlgoConnect from '@reach-sh/stdlib/ALGO_MyAlgoConnect';
 import Interact from './interacts/Interact';
 // @ts-ignore
 import * as backend from './build/vault.main.js';
 import Vault from './Vault';
+
 interface AccountInterface {
   mnemonic?: string;
   secretKey?: string;
@@ -31,6 +33,8 @@ class Account {
     this.currentVault = this.currentVault;
     this.reachStdLib = loadStdlib('ALGO');
     this.reachStdLib.setProviderByName('LocalHost');
+    // this.reachStdLib.setSignStrategy('MyAlgoConnect');
+    console.log(MyAlgoConnect)
   }
   async initialiseReachAccount() {
     if (this.mnemonic != null) {
