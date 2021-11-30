@@ -1101,7 +1101,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:^0.1.7-rc.1":
+"@reach-sh/stdlib@npm:^0.1.7-rc.0":
   version: 0.1.7-rc.1
   resolution: "@reach-sh/stdlib@npm:0.1.7-rc.1"
   dependencies:
@@ -6283,7 +6283,7 @@ __metadata:
   resolution: "xbacked-sdk@workspace:."
   dependencies:
     "@babel/types": ^7.16.0
-    "@reach-sh/stdlib": ^0.1.7-rc.1
+    "@reach-sh/stdlib": ^0.1.7-rc.0
     "@types/jest": ^27.0.2
     "@types/node": ^16.11.9
     jest: ^27.3.1

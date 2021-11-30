@@ -1,4 +1,14 @@
 import Account from './Account';
+import * as backend from './build/vault.main.js';
+
+interface VaultReturnParams {
+  collateralRatio: number;
+  collateral: number;
+  vaultDebt: number;
+  healthFactor: number;
+  collateralValue: number;
+}
+
 interface VaultParameters {
   id: number;
   acc?: any;
@@ -14,8 +24,18 @@ class Vault {
     }
   }
 
-  async getState(params: { account: Account }): Promise<any> {
-    return {};
+  async getState(params: { account: Account }): Promise<VaultReturnParams> {
+    const ctc = params.account.reachAccount.contract(backend, this.id);
+    const get = ctc.v.State;
+    const stateViewBefore = await get.read();
+    const vaultStateBefore = stateViewBefore[1];
+    return {
+      collateralRatio: vaultStateBefore.collateralRatio.toNumber(),
+      collateral: vaultStateBefore.collateral.toNumber(),
+      vaultDebt: vaultStateBefore.vaultDebt.toNumber(),
+      healthFactor: vaultStateBefore.hf.toNumber(),
+      collateralValue: vaultStateBefore.collateralValue.toNumber(),
+    };
   }
 }
 

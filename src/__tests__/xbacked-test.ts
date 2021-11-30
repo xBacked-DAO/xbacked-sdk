@@ -78,7 +78,7 @@ jest.setTimeout(200000000);
 //     await acc.deployVault();
 // });
 
-test("walletFback", () => {
+test('walletFback', () => {
   var a = new Account({});
 });
 
