@@ -1,10 +1,13 @@
 // @ts-ignore
 import { loadStdlib } from '@reach-sh/stdlib';
-import MyAlgoConnect from '@reach-sh/stdlib/ALGO_MyAlgoConnect';
+// import MyAlgoConnect from '@reach-sh/stdlib/ALGO_MyAlgoConnect';
+// import MyAlgoConnect from '@randlabs/myalgo-connect';
+
 import Interact from './interacts/Interact';
 // @ts-ignore
 import * as backend from './build/vault.main.js';
 import Vault from './Vault';
+import { access } from 'fs';
 
 interface AccountInterface {
   mnemonic?: string;
@@ -36,22 +39,23 @@ class Account {
     if (this.network == null) {
       this.network = 'LocalHost';
     }
-    this.reachStdLib.setProviderByName(this.network);
-    console.log(MyAlgoConnect);
+    if (this.signer == null) {
+      this.reachStdLib.setProviderByName(this.network);
+    }
   }
   async initialiseReachAccount() {
     if (this.mnemonic != null) {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
     } else if (this.secretKey != null) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    } else if (this.signer != null) {
-      this.reachStdLib.setWalletFallback(
-        this.reachStdLib.walletFallback({
+    } else if (this.signer != null && this.reachAccount == null) {
+      await this.reachStdLib.setWalletFallback(
+        await this.reachStdLib.walletFallback({
           providerEnv: this.network,
           MyAlgoConnect: this.signer,
         }),
       );
-      this.reachAccount = this.reachStdLib.getDefaultAccount();
+      this.reachAccount = await this.reachStdLib.getDefaultAccount();
     }
   }
 
@@ -163,8 +167,6 @@ class Account {
     const res = await await put.redeemVault(params.amount);
     return res;
   }
-
-  as;
 }
 
 export = Account;

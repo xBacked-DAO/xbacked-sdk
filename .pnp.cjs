@@ -36,6 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@babel/types", "npm:7.16.0"],
+            ["@randlabs/myalgo-connect", "npm:1.1.1"],
             ["@reach-sh/stdlib", "npm:0.1.7-rc.1"],
             ["@types/jest", "npm:27.0.2"],
             ["@types/node", "npm:16.11.9"],
@@ -7537,6 +7538,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["xbacked-sdk", "workspace:."],
             ["@babel/types", "npm:7.16.0"],
+            ["@randlabs/myalgo-connect", "npm:1.1.1"],
             ["@reach-sh/stdlib", "npm:0.1.7-rc.1"],
             ["@types/jest", "npm:27.0.2"],
             ["@types/node", "npm:16.11.9"],

@@ -4,15 +4,11 @@
   "description": "Official SDK for the xBacked Protocol",
   "main": "lib/index.js",
   "packageManager": "yarn@3.1.0",
-  "type": "module",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier \"src/**/*.ts\" ",
     "lint": "tslint -p tsconfig.json",
-    "prepare": "yarn run build",
-    "prepublishOnly": "yarn test && yarn run lint",
-    "preversion": "yarn run lint",
     "check-format": "prettier --check \"src/**/*.ts\" "
   },
   "repository": {
@@ -41,6 +37,7 @@
   ],
   "dependencies": {
     "@babel/types": "^7.16.0",
+    "@randlabs/myalgo-connect": "^1.1.1",
     "@reach-sh/stdlib": "^0.1.7-rc.0"
   }
 }
