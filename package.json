@@ -9,6 +9,10 @@
     "build": "tsc",
     "format": "prettier \"src/**/*.ts\" ",
     "lint": "tslint -p tsconfig.json",
+    "check-format": "prettier --check \"src/**/*.ts\" ",
+    "prepare": "yarn run build",
+    "prepublishOnly": "yarn test && yarn run lint",
+    "preversion": "yarn run lint",
     "check-format": "prettier --check \"src/**/*.ts\" "
   },
   "repository": {
