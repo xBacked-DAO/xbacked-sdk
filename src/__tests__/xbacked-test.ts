@@ -78,10 +78,10 @@ jest.setTimeout(200000000);
 //     await acc.deployVault();
 // });
 
-test('walletFback', () => {
-  var a = new Account({});
-});
+// test('walletFback', () => {
+//   var a = new Account({});
+// });
 
-test('xbacked', () => {
-  expect('x').toBe('x');
-});
+// test('xbacked', () => {
+//   expect('x').toBe('x');
+// });
