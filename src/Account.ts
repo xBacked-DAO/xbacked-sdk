@@ -16,6 +16,7 @@ interface AccountInterface {
   interact?: Interact;
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   currentVault?: string;
+  provider?: any;
 }
 
 class Account {
@@ -27,6 +28,7 @@ class Account {
   reachAccount: any;
   reachStdLib: any;
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
+  provider?: any
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -35,24 +37,25 @@ class Account {
     this.signer = params.signer;
     this.interact = params.interact;
     this.currentVault = params.currentVault;
+    this.provider = params.provider;
     this.reachStdLib = loadStdlib('ALGO');
     if (this.network == null) {
-      this.network = 'LocalHost';
+      this.network = 'LocalHost';``
     }
     if (this.signer == null) {
       this.reachStdLib.setProviderByName(this.network);
     }
   }
   async initialiseReachAccount() {
-    if (this.mnemonic != null) {
+    if (this.mnemonic != null && this.reachAccount == null) {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
-    } else if (this.secretKey != null) {
+    } else if (this.secretKey != null && this.reachAccount == null) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    } else if (this.signer != null && this.reachAccount == null) {
+    } else if (this.signer != null && this.reachAccount == null && this.provider !=null) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.network,
-          MyAlgoConnect: this.signer,
+          [this.signer]: this.provider,
         }),
       );
       this.reachAccount = await this.reachStdLib.getDefaultAccount();
@@ -166,6 +169,32 @@ class Account {
     const put = ctc.a.VaultRedeemer;
     const res = await await put.redeemVault(params.amount);
     return res;
+  }
+
+  async getBalance(params:{tokenId: number}): Promise<number>{
+    if(this.reachAccount !== null && params.tokenId !=0 && params.tokenId !=null){ 
+      return await this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
+    }else{
+      return await this.reachStdLib.balanceOf(this.reachAccount); 
+    }
+  }
+
+
+  async fundFromFaucet(): Promise<Boolean>{
+    if (await this.reachStdLib.canFundFromFaucet() && this.reachAccount != null) {
+      await this.reachStdLib.fundFromFaucet(this.reachAccount, this.reachStdLib.parseCurrency(100));
+      return true;
+      }else{
+        return false;
+      }
+  }
+
+   getAddress(): any{
+    if(this.reachAccount != null){
+      return this.reachStdLib.formatAddress(this.reachAccount);
+    }else{
+      return false
+    }
   }
 }
 
