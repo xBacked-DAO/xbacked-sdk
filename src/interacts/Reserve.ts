@@ -1,15 +1,19 @@
-import { num } from '@reach-sh/stdlib/dist/types/shared_backend';
+import { convertToMicroUnits } from '../utils';
 import Interact from './Interact';
 
 interface PriceParams {
   price: number;
+  tokenId: number;
 }
 class Reserve extends Interact {
   price: number;
+  tokenId: number;
   parent: Reserve;
+
   constructor(params: PriceParams) {
     super({ name: 'Reserve' });
-    this.price = params.price;
+    this.price = convertToMicroUnits(params.price);
+    this.tokenId = params.tokenId;
     this.getCollateralPrice = this.getCollateralPrice;
     this.getToken = this.getToken;
     this.parent = this;
@@ -30,7 +34,7 @@ class Reserve extends Interact {
   }
 
   async getToken(): Promise<number> {
-    return 34;
+    return this.tokenId;
   }
 }
 

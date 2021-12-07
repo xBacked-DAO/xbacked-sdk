@@ -84,4 +84,10 @@ jest.setTimeout(200000000);
 
 test('xbacked', () => {
   expect('x').toBe('x');
+  let a = 0;
+  if (!a) {
+    console.log('a is undefined');
+  } else {
+    console.log('a is defined');
+  }
 });

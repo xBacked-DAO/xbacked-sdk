@@ -1,13 +1,13 @@
 // @ts-ignore
 import { loadStdlib } from '@reach-sh/stdlib';
-// import MyAlgoConnect from '@reach-sh/stdlib/ALGO_MyAlgoConnect';
-// import MyAlgoConnect from '@randlabs/myalgo-connect';
 
 import Interact from './interacts/Interact';
 // @ts-ignore
 import * as backend from './build/vault.main.js';
 import Vault from './Vault';
-import { access } from 'fs';
+import Reserve from './interacts/Reserve';
+import FeeCollector from './interacts/FeeCollector';
+import { convertToMicroUnits, convertFromMicroUnits } from './utils';
 
 interface AccountInterface {
   mnemonic?: string;
@@ -94,6 +94,17 @@ class Account {
     return params.vault;
   }
 
+  async connectToVault(params: { vault: Vault }): Promise<Vault> {
+    if (!this.interact) {
+      throw Error('An interact has not yet been defined');
+    }
+    if (this.interact instanceof Reserve) {
+      return await this.connectAsReserveToVault(params);
+    } else {
+      return await this.connectAsFeeCollectorToVault(params);
+    }
+  }
+
   async addListener(name: string, callBack: any) {
     this.interact?.addListener(name, async ({ resolve, params }) => {
       const returnValues = params === null || params === undefined ? await callBack() : await callBack(params);
@@ -120,7 +131,7 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Oracle;
-    const res = await put.updatePrice(params.price);
+    const res = await put.updatePrice(convertToMicroUnits(params.price));
     return res;
   }
 
@@ -135,7 +146,7 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.mintToken(params.amount);
+    const res = await put.mintToken(convertToMicroUnits(params.amount));
     return res;
   }
 
@@ -143,7 +154,7 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.depositCollateral(params.amount);
+    const res = await put.depositCollateral(convertToMicroUnits(params.amount));
     return res;
   }
 
@@ -151,7 +162,7 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.withdrawCollateral(params.amount);
+    const res = await put.withdrawCollateral(convertToMicroUnits(params.amount));
     return res;
   }
 
@@ -159,7 +170,7 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.returnVaultDebt(params.amount);
+    const res = await put.returnVaultDebt(convertToMicroUnits(params.amount));
     return res;
   }
 
@@ -167,12 +178,12 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
-    const res = await await put.redeemVault(params.amount);
+    const res = await await put.redeemVault(convertToMicroUnits(params.amount));
     return res;
   }
 
   async getBalance(params: { tokenId: number }): Promise<number> {
-    if (this.reachAccount !== null && params.tokenId !== 0 && params.tokenId !== null) {
+    if (this.reachAccount && params.tokenId !== 0 && params.tokenId !== null) {
       return await this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
     } else {
       return await this.reachStdLib.balanceOf(this.reachAccount);

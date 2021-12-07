@@ -1,4 +1,5 @@
 import Interact from './Interact';
+import { convertToMicroUnits, convertFromMicroUnits } from '../utils';
 interface CreateVaultParams {
   collateral: number;
   mintAmount: number;
@@ -8,18 +9,21 @@ class Minter extends Interact {
   parent: Minter;
   constructor(params: CreateVaultParams) {
     super({ name: 'VaultOwner' });
-    this.params = params;
+    this.params = {
+      collateral: convertToMicroUnits(params.collateral),
+      mintAmount: convertToMicroUnits(params.mintAmount),
+    };
     this.createVault = this.createVault;
     this.signalDone = this.signalDone;
     this.parent = this;
   }
 
-  async createVault(initialCollateralPrice: number): Promise<number[]> {
+  async createVault(initialCollateralPrice: any): Promise<number[]> {
     const returnValues = await new Promise((resolve, reject) => {
       if (this.parent.listeners('createVault').length === 0) {
         resolve([this.parent.params.collateral, this.parent.params.mintAmount]);
       }
-      this.parent.emit('createVault', { resolve, params: initialCollateralPrice });
+      this.parent.emit('createVault', { resolve, params: convertFromMicroUnits(initialCollateralPrice.toNumber()) });
     });
     if (Array.isArray(returnValues)) {
       let valueIsNotNumber = false;

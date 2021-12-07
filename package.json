@@ -8,11 +8,7 @@
     "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier \"src/**/*.ts\" ",
-    "lint": "tslint -p tsconfig.json",
-    "prepare": "yarn run build",
-    "prepublishOnly": "yarn test && yarn run lint",
-    "preversion": "yarn run lint",
-    "check-format": "prettier --check \"src/**/*.ts\" "
+    "lint": "tslint -p tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -28,6 +24,8 @@
   "devDependencies": {
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.9",
+    "eslint": "^8.4.1",
+    "eslint-config-google": "^0.14.0",
     "jest": "^27.3.1",
     "prettier": "^2.4.1",
     "ts-jest": "^27.0.7",
@@ -40,7 +38,6 @@
   ],
   "dependencies": {
     "@babel/types": "^7.16.0",
-    "@randlabs/myalgo-connect": "^1.1.1",
     "@reach-sh/stdlib": "^0.1.7-rc.0"
   }
 }
