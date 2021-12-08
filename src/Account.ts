@@ -3,7 +3,7 @@ import { loadStdlib } from '@reach-sh/stdlib';
 
 import Interact from './interacts/Interact';
 // @ts-ignore
-import * as backend from './build/vault.main.js';
+import { vault as backend } from '@xbacked-dao/xbacked-contracts';
 import Vault from './Vault';
 import Reserve from './interacts/Reserve';
 import FeeCollector from './interacts/FeeCollector';
@@ -66,9 +66,6 @@ class Account {
     try {
       if (this.mnemonic != null) {
         await this.initialiseReachAccount();
-        if (await this.reachStdLib.canFundFromFaucet()) {
-          await this.reachStdLib.fundFromFaucet(this.reachAccount, this.reachStdLib.parseCurrency(100));
-        }
       }
       const ctc = this.reachAccount.contract(backend);
       ctc.getInfo().then((info: number) => {
@@ -184,9 +181,11 @@ class Account {
 
   async getBalance(params: { tokenId: number }): Promise<number> {
     if (this.reachAccount && params.tokenId !== 0 && params.tokenId !== null) {
-      return await this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
+      const balance = this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
+      return balance;
     } else {
-      return await this.reachStdLib.balanceOf(this.reachAccount);
+      const balance = await this.reachStdLib.balanceOf(this.reachAccount);
+      return balance.toNumber();
     }
   }
 

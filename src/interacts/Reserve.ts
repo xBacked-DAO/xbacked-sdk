@@ -12,7 +12,7 @@ class Reserve extends Interact {
 
   constructor(params: PriceParams) {
     super({ name: 'Reserve' });
-    this.price = convertToMicroUnits(params.price);
+    this.price = params.price;
     this.tokenId = params.tokenId;
     this.getCollateralPrice = this.getCollateralPrice;
     this.getToken = this.getToken;
@@ -27,7 +27,7 @@ class Reserve extends Interact {
       this.parent.emit('getCollateralPrice', { resolve });
     });
     if (typeof price === 'number') {
-      return price;
+      return convertToMicroUnits(price);
     } else {
       return 0;
     }

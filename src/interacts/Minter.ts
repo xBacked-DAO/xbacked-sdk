@@ -18,7 +18,7 @@ class Minter extends Interact {
     this.parent = this;
   }
 
-  async createVault(initialCollateralPrice: any): Promise<number[]> {
+  async createVault(initialCollateralPrice: any, stableCoin: any): Promise<number[]> {
     const returnValues = await new Promise((resolve, reject) => {
       if (this.parent.listeners('createVault').length === 0) {
         resolve([this.parent.params.collateral, this.parent.params.mintAmount]);
@@ -35,7 +35,9 @@ class Minter extends Interact {
       if (valueIsNotNumber) {
         return [this.parent.params.collateral, this.parent.params.mintAmount];
       } else {
-        return returnValues;
+        return returnValues.map((value) => {
+          return convertToMicroUnits(value);
+        });
       }
     } else {
       return [0, 0];
