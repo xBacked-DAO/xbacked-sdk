@@ -39,7 +39,6 @@
   "dependencies": {
     "@babel/types": "^7.16.0",
     "@randlabs/myalgo-connect": "^1.1.1",
-    "@reach-sh/stdlib": "^0.1.7-rc.0",
-    "@xbacked-dao/xbacked-contracts": "0.0.3"
+    "@reach-sh/stdlib": "^0.1.7-rc.0"
   }
 }
