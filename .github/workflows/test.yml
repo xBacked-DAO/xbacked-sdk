@@ -24,7 +24,7 @@ jobs:
         node-version: '14'
         cache: 'yarn'
     - run: yarn config set cacheFolder $(pwd)/.yarn/cache
-    - run: YARN_CHECKSUM_BEHAVIOR=ignore yarn install --immutable
+    - run: YARN_CHECKSUM_BEHAVIOR=ignore yarn install 
     - name: Test TS
       run: |
         echo "::remove-matcher owner=eslint-compact::"
