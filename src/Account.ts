@@ -6,7 +6,6 @@ import Interact from './interacts/Interact';
 import { vault as backend } from '@xbacked-dao/xbacked-contracts';
 import Vault from './Vault';
 import Reserve from './interacts/Reserve';
-import FeeCollector from './interacts/FeeCollector';
 import { convertToMicroUnits, convertFromMicroUnits } from './utils';
 import MyAlgoConnect from '@randlabs/myalgo-connect';
 
@@ -64,7 +63,7 @@ class Account {
         }),
       );
       this.reachAccount = await this.reachStdLib.getDefaultAccount();
-    } else if (this.signer === 'MyAlgoConnect' && this.reachAccount === null && !this.provider) {
+    } else if (this.signer === 'MyAlgoConnect' && !this.reachAccount && !this.provider) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.network,

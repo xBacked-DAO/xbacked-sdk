@@ -1,6 +1,5 @@
 import Account from './Account';
-import * as backend from './build/vault.main.js';
-
+import { vault as backend } from '@xbacked-dao/xbacked-contracts';
 interface VaultReturnParams {
   collateralRatio: number;
   collateral: number;
