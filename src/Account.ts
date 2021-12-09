@@ -195,6 +195,7 @@ class Account {
   }
 
   async getBalance(params: { tokenId: number }): Promise<number> {
+    await this.initialiseReachAccount();
     if (this.reachAccount && params.tokenId !== 0 && params.tokenId !== null) {
       const balance = this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
       return balance;
@@ -205,6 +206,7 @@ class Account {
   }
 
   async fundFromFaucet(): Promise<boolean> {
+    await this.initialiseReachAccount();
     if ((await this.reachStdLib.canFundFromFaucet()) && this.reachAccount != null) {
       await this.reachStdLib.fundFromFaucet(this.reachAccount, this.reachStdLib.parseCurrency(100));
       return true;
@@ -213,7 +215,8 @@ class Account {
     }
   }
 
-  getAddress(): any {
+  async getAddress(): Promise<any> {
+    await this.initialiseReachAccount();
     if (this.reachAccount != null) {
       return this.reachStdLib.formatAddress(this.reachAccount);
     } else {
