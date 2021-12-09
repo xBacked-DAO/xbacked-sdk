@@ -3,16 +3,18 @@ import { loadStdlib } from '@reach-sh/stdlib';
 
 import Interact from './interacts/Interact';
 // @ts-ignore
-import { vault as backend } from '@xbacked-dao/xbacked-contracts';
+// import { vault as backend } from '@xbacked-dao/xbacked-contracts';
+import * as backend from './build/vault.main';
 import Vault from './Vault';
 import Reserve from './interacts/Reserve';
 import FeeCollector from './interacts/FeeCollector';
 import { convertToMicroUnits, convertFromMicroUnits } from './utils';
+import MyAlgoConnect from '@randlabs/myalgo-connect';
 
 interface AccountInterface {
   mnemonic?: string;
   secretKey?: string;
-  signer?: string;
+  signer?: string | 'MyAlgoConnect';
   interact?: Interact;
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   currentVault?: string;
@@ -39,9 +41,13 @@ class Account {
     this.currentVault = params.currentVault;
     this.provider = params.provider;
     this.reachStdLib = loadStdlib('ALGO');
-    if (this.network == null) {
+
+    if (params.network) {
+      this.network = params.network;
+    } else {
       this.network = 'LocalHost';
     }
+
     if (this.signer == null) {
       this.reachStdLib.setProviderByName(this.network);
     }
@@ -59,22 +65,28 @@ class Account {
         }),
       );
       this.reachAccount = await this.reachStdLib.getDefaultAccount();
+    } else if (this.signer === 'MyAlgoConnect' && this.reachAccount === null && !this.provider) {
+      await this.reachStdLib.setWalletFallback(
+        await this.reachStdLib.walletFallback({
+          providerEnv: this.network,
+          [this.signer]: MyAlgoConnect,
+        }),
+      );
+      this.reachAccount = await this.reachStdLib.getDefaultAccount();
+    } else {
+      throw Error('Provide  a signer, a mnemonic or a secretKey');
     }
   }
 
   async deployVault() {
-    try {
-      if (this.mnemonic != null) {
-        await this.initialiseReachAccount();
-      }
-      const ctc = this.reachAccount.contract(backend);
-      ctc.getInfo().then((info: number) => {
-        this.interact?.emit('appId', { params: { appId: info } });
-      });
-      await backend.Minter(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
-    } catch (error) {
-      throw new Error(JSON.stringify(error));
+    if (this.mnemonic != null) {
+      await this.initialiseReachAccount();
     }
+    const ctc = this.reachAccount.contract(backend);
+    ctc.getInfo().then((info: number) => {
+      this.interact?.emit('appId', { params: { appId: info } });
+    });
+    await backend.Minter(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
   }
 
   async connectAsReserveToVault(params: { vault: Vault }): Promise<Vault> {
@@ -104,8 +116,13 @@ class Account {
 
   async addListener(name: string, callBack: any) {
     this.interact?.addListener(name, async ({ resolve, params }) => {
-      const returnValues = params === null || params === undefined ? await callBack() : await callBack(params);
-      if (resolve !== undefined && resolve !== null) {
+      let returnValues;
+      if (params === null || params === undefined) {
+        returnValues = await callBack();
+      } else {
+        returnValues = await callBack(params);
+      }
+      if (resolve) {
         resolve(returnValues);
       }
     });
