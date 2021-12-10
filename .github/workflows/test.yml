@@ -27,6 +27,8 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     - run: YARN_CHECKSUM_BEHAVIOR=ignore yarn install --immutable
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     - name: Test TS
       run: |
         echo "::remove-matcher owner=eslint-compact::"
