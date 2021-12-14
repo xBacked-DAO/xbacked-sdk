@@ -1157,27 +1157,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:^0.1.7-rc.1":
-  version: 0.1.7-rc.3
-  resolution: "@reach-sh/stdlib@npm:0.1.7-rc.3"
-  dependencies:
-    "@msgpack/msgpack": ^2.5.1
-    "@randlabs/myalgo-connect": ^1.1.1
-    "@walletconnect/client": ^1.6.5
-    algorand-walletconnect-qrcode-modal: ^1.6.1
-    algosdk: ^1.12.0
-    await-timeout: ^0.6.0
-    ethers: ^5.4.7
-    express: ^4.17.1
-    hi-base32: ^0.5.0
-    js-conflux-sdk: "git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber"
-    jsbi: ^3.1.6
-    node-fetch: ^2.6.1
-    wait-port: ^0.2.9
-  checksum: 578544267a3cb39eac2f034271e33c055929197b5f5b6e686d17f82668eb8862deb38a0b4c10398eed29a7a35d31d1b9600e21cfeeee2d64a610dcd51cded935
-  languageName: node
-  linkType: hard
-
 "@sinonjs/commons@npm:^1.7.0":
   version: 1.8.3
   resolution: "@sinonjs/commons@npm:1.8.3"
@@ -1288,6 +1267,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/jsdom@npm:^16.2.13":
+  version: 16.2.13
+  resolution: "@types/jsdom@npm:16.2.13"
+  dependencies:
+    "@types/node": "*"
+    "@types/parse5": "*"
+    "@types/tough-cookie": "*"
+  checksum: 2575d020e345f556a28208dad4d495e317e7364f1de222322c100841f49a815c73c0aa32d32d7a72a05fd7cd33551f4c0effc108fbaaf194ec42ed0f04d877b9
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:*":
   version: 16.11.7
   resolution: "@types/node@npm:16.11.7"
@@ -1302,6 +1292,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/parse5@npm:*":
+  version: 6.0.3
+  resolution: "@types/parse5@npm:6.0.3"
+  checksum: ddb59ee4144af5dfcc508a8dcf32f37879d11e12559561e65788756b95b33e6f03ea027d88e1f5408f9b7bfb656bf630ace31a2169edf44151daaf8dd58df1b7
+  languageName: node
+  linkType: hard
+
 "@types/prettier@npm:^2.1.5":
   version: 2.4.2
   resolution: "@types/prettier@npm:2.4.2"
@@ -1313,6 +1310,13 @@ __metadata:
   version: 2.0.1
   resolution: "@types/stack-utils@npm:2.0.1"
   checksum: 205fdbe3326b7046d7eaf5e494d8084f2659086a266f3f9cf00bccc549c8e36e407f88168ad4383c8b07099957ad669f75f2532ed4bc70be2b037330f7bae019
+  languageName: node
+  linkType: hard
+
+"@types/tough-cookie@npm:*":
+  version: 4.0.1
+  resolution: "@types/tough-cookie@npm:4.0.1"
+  checksum: 7570c1c2d74201f4ead3512cf8e4c99e97d92ab8a02ae2fb987fd720ced0ca1a2baf250c98a861a170b86762606c9bf6d32207675f13dffc5ab75c08c96578d2
   languageName: node
   linkType: hard
 
@@ -1499,21 +1503,6 @@ __metadata:
   dependencies:
     "@walletconnect/window-getters": ^1.0.0
   checksum: eec506ff6d35ae6e88db1e38b6f514f6cbf1a45b979878e5e50819d229b616fc645a2b0816145b61acda2701042160a4e0685f080927b87461853a62a887a9e9
-  languageName: node
-  linkType: hard
-
-"@xbacked-dao/xbacked-contracts@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.3"
-  dependencies:
-    "@reach-sh/stdlib": ^0.1.7-rc.1
-    await-timeout: ^1.1.1
-    bignumber.js: ^9.0.1
-    dotenv: ^10.0.0
-    es-main: ^1.0.2
-  peerDependencies:
-    "@reach-sh/stdlib": ^0.1.7-rc.1
-  checksum: 5ae2c9ebd2077dc07f12183c4f51962b1b3f577ec30b0c74ae9038f2d64fd72d817496f6990a5a478e9053761faaf4d158971c58ebcc220ec0b9ce3c0e0666cb
   languageName: node
   linkType: hard
 
@@ -1815,13 +1804,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"await-timeout@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "await-timeout@npm:1.1.1"
-  checksum: 5013714477ed0691f17de468dca2ceb82534e1d089d45a79f9c2c97b5bcfafa81441b78da829462f71885e2989ab05b4f28eef37502a0d998af51d45e8ffa9e7
-  languageName: node
-  linkType: hard
-
 "babel-jest@npm:^27.3.1":
   version: 27.3.1
   resolution: "babel-jest@npm:27.3.1"
@@ -1938,7 +1920,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bignumber.js@npm:^9.0.0, bignumber.js@npm:^9.0.1":
+"bignumber.js@npm:^9.0.0":
   version: 9.0.1
   resolution: "bignumber.js@npm:9.0.1"
   checksum: 6e72f6069d9db32fc8d27561164de9f811b15f9144be61f323d8b36150a239eea50c92e20ba38af2ba5e717af10b8ef12db8f9948fe2ff02bf17ede5239d15d3
@@ -2724,13 +2706,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "dotenv@npm:10.0.0"
-  checksum: f412c5fe8c24fbe313d302d2500e247ba8a1946492db405a4de4d30dd0eb186a88a43f13c958c5a7de303938949c4231c56994f97d05c4bc1f22478d631b4005
-  languageName: node
-  linkType: hard
-
 "drbg.js@npm:^1.0.1":
   version: 1.0.1
   resolution: "drbg.js@npm:1.0.1"
@@ -2828,13 +2803,6 @@ __metadata:
   version: 2.0.3
   resolution: "err-code@npm:2.0.3"
   checksum: 8b7b1be20d2de12d2255c0bc2ca638b7af5171142693299416e6a9339bd7d88fc8d7707d913d78e0993176005405a236b066b45666b27b797252c771156ace54
-  languageName: node
-  linkType: hard
-
-"es-main@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "es-main@npm:1.0.2"
-  checksum: 92bad76e3cf76355d7ce178abfe3e9323c48f554efd4a56c3e5346bee158427f75d593b4ac791618d0df4901e15210c51e4fdbae47057b4cfdef53942a579cc1
   languageName: node
   linkType: hard
 
@@ -6810,8 +6778,8 @@ __metadata:
     "@randlabs/myalgo-connect": ^1.1.1
     "@reach-sh/stdlib": ^0.1.7-rc.0
     "@types/jest": ^27.0.2
+    "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 0.0.3
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
     jest: ^27.3.1

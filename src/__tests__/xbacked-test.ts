@@ -7,6 +7,10 @@ import Vault from '../Vault';
 
 jest.setTimeout(200000000);
 
+/**
+ * @jest-environment jsdom
+ */
+
 // test('createVault', async() => {
 //   const acc = new Account({mnemonic:  "lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch"});
 //   const isLiquidated = await acc.liquidateVault({vault: new Vault({id: 3}), tokenId: 8});
@@ -91,3 +95,22 @@ test('xbacked', () => {
     console.log('a is defined');
   }
 });
+
+//things to test for
+/**
+ * Different ways to crete an account
+ * Vault deployment
+ * connection by reserve and FeeCollector to vault
+ * Vault Price Update
+ * Vault Liquidation
+ * //Toggling recoverymode
+ *
+ */
+
+// describe("Account Creation", async function(){
+//   it("Create Account with mnemonic", async function(){
+//     let account = new Account({mnemonic: "obtain exit ritual table pipe project kind junk avoid title reform awake refuse enact prosper police trash dumb trigger shallow wreck fiscal congress above dolphin"});
+//     await account.initialiseReachAccount();
+//     expect(!account.reachAccount).toBe(false);
+//   });
+// });
