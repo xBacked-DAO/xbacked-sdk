@@ -5,6 +5,7 @@ import Minter from '../interacts/Minter';
 import FeeCollector from '../interacts/FeeCollector';
 import Vault from '../Vault';
 
+
 jest.setTimeout(200000000);
 
 /**
@@ -12,9 +13,18 @@ jest.setTimeout(200000000);
  */
 
 // test('createVault', async() => {
-//   const acc = new Account({mnemonic:  "lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch"});
-//   const isLiquidated = await acc.liquidateVault({vault: new Vault({id: 3}), tokenId: 8});
-//   console.log("isLiquidated",isLiquidated)
+//   const minter = new Minter({collateral: 5, mintAmount: 2});
+//   const acc = new Account({mnemonic:  "lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch",
+//      interact: minter,});
+//   // await acc.fundFromFaucet()
+//   const retCallBack = async (initialCollateralPrice: number) => {
+//     return ([8, 2]);
+//   };
+//   acc.addListener('appId', (params: any) => {
+//     console.log(params);
+//   });
+//   acc.addListener('createVault', retCallBack);
+//   await acc.deployVault();
 // });
 
 // test("reserveOptIn", async() => {
@@ -98,7 +108,7 @@ test('xbacked', () => {
 
 //things to test for
 /**
- * Different ways to crete an account
+ * Different ways to create an account
  * Vault deployment
  * connection by reserve and FeeCollector to vault
  * Vault Price Update
@@ -107,10 +117,21 @@ test('xbacked', () => {
  *
  */
 
-// describe("Account Creation", async function(){
+
+
+// describe("Account Creation", () => {
 //   it("Create Account with mnemonic", async function(){
 //     let account = new Account({mnemonic: "obtain exit ritual table pipe project kind junk avoid title reform awake refuse enact prosper police trash dumb trigger shallow wreck fiscal congress above dolphin"});
 //     await account.initialiseReachAccount();
+//     console.log(account.reachAccount);
+//     console.log(account.reachAccount.secret);
 //     expect(!account.reachAccount).toBe(false);
 //   });
+
+  // it("Create Account From SecretKey", async function(){
+  //   let account = new Account({secretKey: `` });
+  //   await account.initialiseReachAccount();
+  //   console.log(account.reachAccount);
+  //   expect(!account.reachAccount).toBe(false);
+  // });
 // });

@@ -71,7 +71,7 @@ class Account {
         }),
       );
       this.reachAccount = await this.reachStdLib.getDefaultAccount();
-    } else {
+    } else if(!this.reachAccount) {
       throw Error('Provide  a signer, a mnemonic or a secretKey');
     }
   }
