@@ -7,7 +7,6 @@ import { vault as backend } from '@xbacked-dao/xbacked-contracts';
 import Vault from './Vault';
 import Reserve from './interacts/Reserve';
 import { convertToMicroUnits, convertFromMicroUnits } from './utils';
-import MyAlgoConnect from '@randlabs/myalgo-connect';
 
 interface AccountInterface {
   mnemonic?: string;
@@ -63,28 +62,24 @@ class Account {
         }),
       );
       this.reachAccount = await this.reachStdLib.getDefaultAccount();
-    } else if (this.signer === 'MyAlgoConnect' && !this.reachAccount && !this.provider) {
-      await this.reachStdLib.setWalletFallback(
-        await this.reachStdLib.walletFallback({
-          providerEnv: this.network,
-          [this.signer]: MyAlgoConnect,
-        }),
-      );
-      this.reachAccount = await this.reachStdLib.getDefaultAccount();
-    } else if(!this.reachAccount) {
+    } else if (!this.reachAccount) {
       throw Error('Provide  a signer, a mnemonic or a secretKey');
     }
   }
 
-  async deployVault() {
+  async deployVault(): Promise<Vault> {
     if (this.mnemonic != null) {
       await this.initialiseReachAccount();
     }
     const ctc = this.reachAccount.contract(backend);
+    let appId = 0;
     ctc.getInfo().then((info: number) => {
+      appId = info;
       this.interact?.emit('appId', { params: { appId: info } });
     });
     await backend.Minter(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
+
+    return new Vault({ id: appId });
   }
 
   async connectAsReserveToVault(params: { vault: Vault }): Promise<Vault> {
