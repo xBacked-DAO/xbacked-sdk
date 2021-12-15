@@ -38,7 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/types", "npm:7.16.0"],
             ["@randlabs/myalgo-connect", "npm:1.1.1"],
             ["@reach-sh/stdlib", "npm:0.1.7-rc.1"],
-            ["@types/jest", "npm:27.0.2"],
+            ["@types/jest", "npm:27.0.3"],
             ["@types/jsdom", "npm:16.2.13"],
             ["@types/node", "npm:16.11.9"],
             ["@xbacked-dao/xbacked-contracts", "virtual:0ef2aa1cc4e521843a5286d31f37f028b2e7438fec88700f798a9275f3954375ec98ab294a26e9df5c81b3f8b528b8e78e503b8b2bcff5babbdf43b3cc7ecdd0#npm:0.0.3"],
@@ -1844,10 +1844,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@types/jest", [
-        ["npm:27.0.2", {
-          "packageLocation": "./.yarn/cache/@types-jest-npm-27.0.2-f9ba43c7f9-814ad5f5d2.zip/node_modules/@types/jest/",
+        ["npm:27.0.3", {
+          "packageLocation": "./.yarn/cache/@types-jest-npm-27.0.3-c4c49cbce2-3683a99458.zip/node_modules/@types/jest/",
           "packageDependencies": [
-            ["@types/jest", "npm:27.0.2"],
+            ["@types/jest", "npm:27.0.3"],
             ["jest-diff", "npm:27.3.1"],
             ["pretty-format", "npm:27.3.1"]
           ],
@@ -9268,7 +9268,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", null],
             ["@types/babel-jest", null],
             ["@types/babel__core", null],
-            ["@types/jest", "npm:27.0.2"],
+            ["@types/jest", "npm:27.0.3"],
             ["@types/typescript", null],
             ["babel-jest", null],
             ["bs-logger", "npm:0.2.6"],
@@ -10101,7 +10101,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/types", "npm:7.16.0"],
             ["@randlabs/myalgo-connect", "npm:1.1.1"],
             ["@reach-sh/stdlib", "npm:0.1.7-rc.1"],
-            ["@types/jest", "npm:27.0.2"],
+            ["@types/jest", "npm:27.0.3"],
             ["@types/jsdom", "npm:16.2.13"],
             ["@types/node", "npm:16.11.9"],
             ["@xbacked-dao/xbacked-contracts", "virtual:0ef2aa1cc4e521843a5286d31f37f028b2e7438fec88700f798a9275f3954375ec98ab294a26e9df5c81b3f8b528b8e78e503b8b2bcff5babbdf43b3cc7ecdd0#npm:0.0.3"],
