@@ -63,7 +63,7 @@ class Account {
       );
       this.reachAccount = await this.reachStdLib.getDefaultAccount();
     } else if (!this.reachAccount) {
-      throw Error('Provide  a signer, a mnemonic or a secretKey');
+      this.reachAccount = await this.reachStdLib.createAccount();
     }
   }
 
@@ -198,6 +198,11 @@ class Account {
       const balance = await this.reachStdLib.balanceOf(this.reachAccount);
       return balance.toNumber();
     }
+  }
+
+  async getSecret(): Promise<any> {
+    await this.initialiseReachAccount();
+    return this.reachAccount.networkAccount.sk;
   }
 
   async fundFromFaucet(): Promise<boolean> {
