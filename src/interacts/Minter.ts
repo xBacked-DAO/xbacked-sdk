@@ -23,7 +23,10 @@ class Minter extends Interact {
       if (this.parent.listeners('createVault').length === 0) {
         resolve([this.parent.params.collateral, this.parent.params.mintAmount]);
       }
-      this.parent.emit('createVault', { resolve, params: convertFromMicroUnits(initialCollateralPrice.toNumber()) });
+      this.parent.emit('createVault', {
+        resolve,
+        params: { price: convertFromMicroUnits(initialCollateralPrice.toNumber()), token: stableCoin },
+      });
     });
     if (Array.isArray(returnValues)) {
       let valueIsNotNumber = false;
