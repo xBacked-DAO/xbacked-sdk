@@ -157,7 +157,7 @@ class Account {
     return res;
   }
 
-  async depositToken(params: { amount: number; vault: Vault }): Promise<boolean> {
+  async depositCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
