@@ -115,3 +115,10 @@ dist
 .DS_Store
 
 /examples/react-demo
+
+lib-esm/
+
+.pnp.cjs
+.pnp.loader.mjs
+
+yarn.lock
