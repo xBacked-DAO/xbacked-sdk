@@ -223,6 +223,10 @@ class Account {
       return false;
     }
   }
+
+  async getVaultState(params: {vault: Vault}): Promise<any> {
+    return await params.vault.getState({account: this});
+  }
 }
 
 export = Account;
