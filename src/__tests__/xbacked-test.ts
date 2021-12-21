@@ -7,6 +7,10 @@ import Vault from '../Vault';
 
 jest.setTimeout(200000000);
 
+beforeAll(() => {
+  jest.clearAllMocks();
+});
+
 const VAULT_ID = 1;
 const MINT_AMOUNT = 2;
 const COLLATERAL_AMOUNT = 3;
@@ -18,11 +22,10 @@ const account = new Account({
 });
 it('Create Account with mnemonic', async function () {
   await account.initialiseReachAccount();
-  expect(!account.reachAccount).toBe(false);
+  expect(account.reachAccount).toBeDefined();
 });
 
 it('Vault Deployment', async function () {
-  jest.clearAllMocks();
   const minter = new Minter({ collateral: COLLATERAL_AMOUNT, mintAmount: MINT_AMOUNT });
   account.interact = minter;
   let vault = await account.deployVault();
@@ -30,7 +33,6 @@ it('Vault Deployment', async function () {
 });
 
 it('Connect reserve to vault', async function () {
-  jest.clearAllMocks();
   const reserve = new Reserve({ price: COLLATERAL_PRICE, tokenId: TOKEN_ID });
   account.interact = reserve;
   let vault = await account.connectToVault({ vault: new Vault({ id: VAULT_ID }) });

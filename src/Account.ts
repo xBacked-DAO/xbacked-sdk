@@ -63,7 +63,7 @@ class Account {
       );
       this.reachAccount = await this.reachStdLib.getDefaultAccount();
     } else if (!this.reachAccount) {
-      this.reachAccount = await this.reachStdLib.createAccount();
+     throw new Error("Pass a mnemonic, a secret key or a provider to create an acccount")
     }
   }
 
