@@ -54,4 +54,4 @@ class Minter extends Interact {
   }
 }
 
-export = Minter;
+export default Minter;

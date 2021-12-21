@@ -33,4 +33,4 @@ class MockAccount extends Account {
     return true;
   }
 }
-export = MockAccount;
+export default MockAccount;

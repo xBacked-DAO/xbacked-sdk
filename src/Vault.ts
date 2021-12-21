@@ -41,4 +41,4 @@ class Vault {
   }
 }
 
-export = Vault;
+export default Vault;

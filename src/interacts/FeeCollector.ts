@@ -6,4 +6,4 @@ class FeeCollector extends Interact {
   }
 }
 
-export = FeeCollector;
+export default FeeCollector;

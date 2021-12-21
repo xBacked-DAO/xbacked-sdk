@@ -63,7 +63,7 @@ class Account {
       );
       this.reachAccount = await this.reachStdLib.getDefaultAccount();
     } else if (!this.reachAccount) {
-     throw new Error("Pass a mnemonic, a secret key or a provider to create an acccount")
+      throw new Error('Pass a mnemonic, a secret key or a provider to create an acccount');
     }
   }
 
@@ -224,9 +224,9 @@ class Account {
     }
   }
 
-  async getVaultState(params: {vault: Vault}): Promise<any> {
-    return await params.vault.getState({account: this});
+  async getVaultState(params: { vault: Vault }): Promise<any> {
+    return await params.vault.getState({ account: this });
   }
 }
 
-export = Account;
+export default Account;
