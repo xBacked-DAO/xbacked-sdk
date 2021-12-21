@@ -1,5 +1,4 @@
-import pkg from 'xbacked-sdk';
-const {Account, Reserve, Vault} = pkg;
+import {Account, Reserve, Vault}  from 'xbacked-sdk';
 (async () => {
   const reserve = new Reserve({price: 9});
   const acc = new Account({signer: 'MyAlgoConnect',

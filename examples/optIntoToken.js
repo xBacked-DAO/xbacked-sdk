@@ -1,6 +1,5 @@
-import pkg from 'xbacked-sdk';
+import {Account}  from 'xbacked-sdk';
 (async () => {
-  const {Account} = pkg;
   const acc = new Account({signer: 'MyAlgoConnect',
     network: 'TestNet'});
   await acc.optIntoToken(TOKEN_ID);

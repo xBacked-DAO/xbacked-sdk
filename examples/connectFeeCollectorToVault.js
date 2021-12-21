@@ -1,6 +1,5 @@
-import pkg from 'xbacked-sdk';
+import {FeeCollector, Account} from 'xbacked-sdk';
 (async () => {
-  const {FeeCollector, Account} = pkg;
   const feeCollector = new FeeCollector();
   const acc = new Account({signer: 'MyAlgoConnect',
     network: 'TestNet', interact: feeCollector});
