@@ -26,16 +26,19 @@ class Vault {
   async getState(params: { account: Account }): Promise<VaultReturnParams> {
     const ctc = params.account.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
-    const stateViewBefore = await get.read();
-    const vaultStateBefore = stateViewBefore[1];
+    const stateView = await get.read();
+    if (stateView[0] === 'None') {
+      throw new Error('the view returned none');
+    }
+    const vaultState = stateView[1];
     return {
-      collateralRatio: vaultStateBefore.collateralRatio.toNumber(),
-      collateral: vaultStateBefore.collateral.toNumber(),
-      vaultDebt: vaultStateBefore.vaultDebt.toNumber(),
-      healthFactor: vaultStateBefore.hf.toNumber(),
-      collateralValue: vaultStateBefore.collateralValue.toNumber(),
+      collateralRatio: vaultState.collateralRatio.toNumber(),
+      collateral: vaultState.collateral.toNumber(),
+      vaultDebt: vaultState.vaultDebt.toNumber(),
+      healthFactor: vaultState.hf.toNumber(),
+      collateralValue: vaultState.collateralValue.toNumber(),
     };
   }
 }
 
-export = Vault;
+export default Vault;

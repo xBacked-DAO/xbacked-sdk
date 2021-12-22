@@ -1,6 +1,5 @@
-import pkg from 'xbacked-sdk';
+import {Account, Vault} from 'xbacked-sdk';
 (async () =>{
-  const {Account, Vault} = pkg;
   const acc = new Account({signer: 'MyAlgoConnect',
     network: 'TestNet'});
   // eslint-disable-next-line max-len

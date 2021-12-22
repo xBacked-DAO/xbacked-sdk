@@ -38,4 +38,4 @@ class Reserve extends Interact {
   }
 }
 
-export = Reserve;
+export default Reserve;
