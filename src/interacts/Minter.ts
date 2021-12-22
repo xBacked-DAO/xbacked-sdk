@@ -1,4 +1,5 @@
 import Interact from './Interact';
+import { convertToMicroUnits, convertFromMicroUnits } from '../utils';
 interface CreateVaultParams {
   collateral: number;
   mintAmount: number;
@@ -8,18 +9,24 @@ class Minter extends Interact {
   parent: Minter;
   constructor(params: CreateVaultParams) {
     super({ name: 'VaultOwner' });
-    this.params = params;
+    this.params = {
+      collateral: convertToMicroUnits(params.collateral),
+      mintAmount: convertToMicroUnits(params.mintAmount),
+    };
     this.createVault = this.createVault;
     this.signalDone = this.signalDone;
     this.parent = this;
   }
 
-  async createVault(initialCollateralPrice: number): Promise<number[]> {
+  async createVault(initialCollateralPrice: any, stableCoin: any): Promise<number[]> {
     const returnValues = await new Promise((resolve, reject) => {
       if (this.parent.listeners('createVault').length === 0) {
         resolve([this.parent.params.collateral, this.parent.params.mintAmount]);
       }
-      this.parent.emit('createVault', { resolve, params: initialCollateralPrice });
+      this.parent.emit('createVault', {
+        resolve,
+        params: { price: convertFromMicroUnits(initialCollateralPrice.toNumber()), token: stableCoin },
+      });
     });
     if (Array.isArray(returnValues)) {
       let valueIsNotNumber = false;
@@ -31,7 +38,9 @@ class Minter extends Interact {
       if (valueIsNotNumber) {
         return [this.parent.params.collateral, this.parent.params.mintAmount];
       } else {
-        return returnValues;
+        return returnValues.map((value) => {
+          return convertToMicroUnits(value);
+        });
       }
     } else {
       return [0, 0];
@@ -45,4 +54,4 @@ class Minter extends Interact {
   }
 }
 
-export = Minter;
+export default Minter;

@@ -1,4 +1,13 @@
 import Account from './Account';
+import { vault as backend } from '@xbacked-dao/xbacked-contracts';
+interface VaultReturnParams {
+  collateralRatio: number;
+  collateral: number;
+  vaultDebt: number;
+  healthFactor: number;
+  collateralValue: number;
+}
+
 interface VaultParameters {
   id: number;
   acc?: any;
@@ -14,9 +23,22 @@ class Vault {
     }
   }
 
-  async getState(params: { account: Account }): Promise<any> {
-    return {};
+  async getState(params: { account: Account }): Promise<VaultReturnParams> {
+    const ctc = params.account.reachAccount.contract(backend, this.id);
+    const get = ctc.v.State;
+    const stateView = await get.read();
+    if (stateView[0] === 'None') {
+      throw new Error('the view returned none');
+    }
+    const vaultState = stateView[1];
+    return {
+      collateralRatio: vaultState.collateralRatio.toNumber(),
+      collateral: vaultState.collateral.toNumber(),
+      vaultDebt: vaultState.vaultDebt.toNumber(),
+      healthFactor: vaultState.hf.toNumber(),
+      collateralValue: vaultState.collateralValue.toNumber(),
+    };
   }
 }
 
-export = Vault;
+export default Vault;

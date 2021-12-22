@@ -106,9 +106,17 @@ dist
 # Lib Folder
 /lib
 /.yarn
+/_bundles
 
 .reach
 
 /src/build
 
 .DS_Store
+
+/examples/react-demo
+
+lib-esm/
+
+.pnp.cjs
+.pnp.loader.mjs

@@ -23,8 +23,14 @@ jobs:
       with:
         node-version: '14'
         cache: 'yarn'
-    - run: yarn config set cacheFolder $(pwd)/.yarn/cache
+    - run: |
+       yarn config set cacheFolder $(pwd)/.yarn/cache
+       yarn config set npmScopes.xbacked-dao.npmAuthToken $NODE_AUTH_TOKEN
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     - run: YARN_CHECKSUM_BEHAVIOR=ignore yarn install --immutable
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     - name: Test TS
       run: |
         echo "::remove-matcher owner=eslint-compact::"
