@@ -1,0 +1,13 @@
+.eslintrc
+jestconfig.json
+lib
+node_modules
+package.json
+.prettierrc
+README.md
+src
+tsconfig-cjs.json
+tsconfig.json
+.vscode
+webpack.config.js
+yarn.lock

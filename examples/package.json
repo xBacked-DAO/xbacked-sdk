@@ -1,0 +1,19 @@
+{
+  "name": "xbacked-sdk-examples",
+  "version": "1.0.0",
+  "description": "Runnable example usage scenarios of the xBacked-SDK",
+  "main": "index.ts",
+  "author": "xBacked",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@xbacked-dao/xbacked-sdk": "../"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.3",
+    "tsc": "^2.0.3",
+    "typescript": "^4.5.4"
+  }
+}

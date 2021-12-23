@@ -17,19 +17,31 @@ class MockAccount extends Account {
     return true;
   }
 
-  async toggleRecoveryMode(params: { vault: Vault; mode: boolean }): Promise<boolean> {
+  async toggleRecoveryMode(params: {
+    vault: Vault;
+    mode: boolean;
+  }): Promise<boolean> {
     return true;
   }
 
-  async redeemVault(params: { vault: Vault; amount: number }): Promise<boolean> {
+  async redeemVault(params: {
+    vault: Vault;
+    amount: number;
+  }): Promise<boolean> {
     return true;
   }
 
-  async returnVaultDebt(params: { amount: number; vault: Vault }): Promise<boolean> {
+  async returnVaultDebt(params: {
+    amount: number;
+    vault: Vault;
+  }): Promise<boolean> {
     return true;
   }
 
-  async withdrawCollateral(params: { vault: Vault; amount: number }): Promise<boolean> {
+  async withdrawCollateral(params: {
+    vault: Vault;
+    amount: number;
+  }): Promise<boolean> {
     return true;
   }
 }

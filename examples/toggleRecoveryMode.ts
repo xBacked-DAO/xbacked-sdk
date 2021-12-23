@@ -1,4 +1,6 @@
-import {Account, Vault}  from 'xbacked-sdk';
+import {Account, Vault}  from '@xbacked-dao/xbacked-sdk';
+import { VAULT_ID } from './constants';
+
 (async () =>{
   const acc = new Account({signer: 'MyAlgoConnect',
     network: 'TestNet'});

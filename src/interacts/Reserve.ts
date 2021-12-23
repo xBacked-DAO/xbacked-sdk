@@ -14,8 +14,6 @@ class Reserve extends Interact {
     super({ name: 'Reserve' });
     this.price = params.price;
     this.tokenId = params.tokenId;
-    this.getCollateralPrice = this.getCollateralPrice;
-    this.getToken = this.getToken;
     this.parent = this;
   }
 

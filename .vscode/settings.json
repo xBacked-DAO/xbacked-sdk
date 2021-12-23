@@ -1,1 +1,7 @@
-{"files.associations":{"*.rsh":"javascript"}}
+{
+  "files.associations": { "*.rsh": "javascript" },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": ["typescript", "javascript", "json"]
+}

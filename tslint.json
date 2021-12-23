@@ -1,9 +1,0 @@
-{
-    "extends": ["tslint:recommended", "tslint-config-prettier"],
-    "linterOptions": {
-        "exclude": [
-            "src/build/*",
-            "node_modules", "**/__tests__/*", "src/build/*"
-        ]
-    }
- }

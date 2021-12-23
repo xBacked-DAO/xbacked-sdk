@@ -1,12 +1,11 @@
-// @ts-ignore
 import { loadStdlib } from '@reach-sh/stdlib';
+import { Stdlib_User } from '@reach-sh/stdlib/interfaces';
 
-import Interact from './interacts/Interact';
-// @ts-ignore
 import { vault as backend } from '@xbacked-dao/xbacked-contracts';
+import Interact from './interacts/Interact';
 import Vault from './Vault';
 import Reserve from './interacts/Reserve';
-import { convertToMicroUnits, convertFromMicroUnits } from './utils';
+import { convertToMicroUnits } from './utils';
 
 interface AccountInterface {
   mnemonic?: string;
@@ -25,7 +24,7 @@ class Account {
   interact?: Interact;
   currentVault?: string;
   reachAccount: any;
-  reachStdLib: any;
+  reachStdLib: Stdlib_User<any>;
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   provider?: any;
 
@@ -49,12 +48,20 @@ class Account {
       this.reachStdLib.setProviderByName(this.network);
     }
   }
-  async initialiseReachAccount() {
+  async initializeReachAccount() {
     if (this.mnemonic != null && this.reachAccount == null) {
-      this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
+      this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(
+        this.mnemonic,
+      );
     } else if (this.secretKey != null && this.reachAccount == null) {
-      this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
+      this.reachAccount = await this.reachStdLib.newAccountFromSecret(
+        this.secretKey,
+      );
+    } else if (
+      this.signer != null &&
+      this.reachAccount == null &&
+      this.provider != null
+    ) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.network,
@@ -63,13 +70,15 @@ class Account {
       );
       this.reachAccount = await this.reachStdLib.getDefaultAccount();
     } else if (!this.reachAccount) {
-      throw new Error('Pass a mnemonic, a secret key or a provider to create an acccount');
+      throw new Error(
+        'Pass a mnemonic, a secret key or a provider to create an account',
+      );
     }
   }
 
   async deployVault(): Promise<Vault> {
     if (this.mnemonic != null) {
-      await this.initialiseReachAccount();
+      await this.initializeReachAccount();
     }
     const ctc = this.reachAccount.contract(backend);
     let appId = 0;
@@ -77,20 +86,26 @@ class Account {
       appId = info;
       this.interact?.emit('appId', { params: { appId: info } });
     });
-    await backend.Minter(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
+    await backend.Minter(ctc, {
+      ...this.interact,
+      ...this.reachStdLib.hasConsoleLogger,
+    });
 
     return new Vault({ id: appId });
   }
 
   async connectAsReserveToVault(params: { vault: Vault }): Promise<Vault> {
-    await this.initialiseReachAccount();
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
-    await backend.Reserve(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
+    await backend.Reserve(ctc, {
+      ...this.interact,
+      ...this.reachStdLib.hasConsoleLogger,
+    });
     return params.vault;
   }
 
   async connectAsFeeCollectorToVault(params: { vault: Vault }): Promise<Vault> {
-    await this.initialiseReachAccount();
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     await backend.FeeCollector(ctc, { ...this.reachStdLib.hasConsoleLogger });
     return params.vault;
@@ -122,67 +137,90 @@ class Account {
   }
 
   async optIntoToken(tokenID: number) {
-    await this.initialiseReachAccount();
+    await this.initializeReachAccount();
     await this.reachAccount.tokenAccept(tokenID);
   }
 
-  async liquidateVault(params: { vault: Vault; tokenId: number }): Promise<boolean> {
-    await this.initialiseReachAccount();
+  async liquidateVault(params: {
+    vault: Vault;
+    tokenId: number;
+  }): Promise<boolean> {
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
-    const liquidationTokenBalance = await this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
+    const liquidationTokenBalance = await this.reachStdLib.balanceOf(
+      this.reachAccount,
+      params.tokenId,
+    );
     const res = await put.liquidateVault(liquidationTokenBalance);
     return res;
   }
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
-    await this.initialiseReachAccount();
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Oracle;
     const res = await put.updatePrice(convertToMicroUnits(params.price));
     return res;
   }
 
-  async toggleRecoveryMode(params: { vault: Vault; mode: boolean }): Promise<boolean> {
-    await this.initialiseReachAccount();
+  async toggleRecoveryMode(params: {
+    vault: Vault;
+    mode: boolean;
+  }): Promise<boolean> {
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.RecoveryToggler;
     const res = await put.toggleRecoveryMode(params.mode);
     return res;
   }
   async mintToken(params: { amount: number; vault: Vault }): Promise<boolean> {
-    await this.initialiseReachAccount();
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.mintToken(convertToMicroUnits(params.amount));
     return res;
   }
 
-  async depositCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
-    await this.initialiseReachAccount();
+  async depositCollateral(params: {
+    amount: number;
+    vault: Vault;
+  }): Promise<boolean> {
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.depositCollateral(convertToMicroUnits(params.amount));
     return res;
   }
 
-  async withdrawCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
-    await this.initialiseReachAccount();
+  async withdrawCollateral(params: {
+    amount: number;
+    vault: Vault;
+  }): Promise<boolean> {
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.withdrawCollateral(convertToMicroUnits(params.amount));
+    const res = await put.withdrawCollateral(
+      convertToMicroUnits(params.amount),
+    );
     return res;
   }
 
-  async returnVaultDebt(params: { amount: number; vault: Vault }): Promise<boolean> {
-    await this.initialiseReachAccount();
+  async returnVaultDebt(params: {
+    amount: number;
+    vault: Vault;
+  }): Promise<boolean> {
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.returnVaultDebt(convertToMicroUnits(params.amount));
     return res;
   }
 
-  async redeemVault(params: { amount: number; vault: Vault }): Promise<boolean> {
-    await this.initialiseReachAccount();
+  async redeemVault(params: {
+    amount: number;
+    vault: Vault;
+  }): Promise<boolean> {
+    await this.initializeReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
     const res = await await put.redeemVault(convertToMicroUnits(params.amount));
@@ -190,10 +228,13 @@ class Account {
   }
 
   async getBalance(params: { tokenId: number }): Promise<number> {
-    await this.initialiseReachAccount();
+    await this.initializeReachAccount();
     if (this.reachAccount && params.tokenId !== 0 && params.tokenId !== null) {
-      const balance = this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
-      return balance;
+      const balance = this.reachStdLib.balanceOf(
+        this.reachAccount,
+        params.tokenId,
+      );
+      return (await balance).toNumber();
     } else {
       const balance = await this.reachStdLib.balanceOf(this.reachAccount);
       return balance.toNumber();
@@ -201,14 +242,20 @@ class Account {
   }
 
   async getSecret(): Promise<any> {
-    await this.initialiseReachAccount();
+    await this.initializeReachAccount();
     return this.reachAccount.networkAccount.sk;
   }
 
   async fundFromFaucet(): Promise<boolean> {
-    await this.initialiseReachAccount();
-    if ((await this.reachStdLib.canFundFromFaucet()) && this.reachAccount != null) {
-      await this.reachStdLib.fundFromFaucet(this.reachAccount, this.reachStdLib.parseCurrency(100));
+    await this.initializeReachAccount();
+    if (
+      (await this.reachStdLib.canFundFromFaucet()) &&
+      this.reachAccount != null
+    ) {
+      await this.reachStdLib.fundFromFaucet(
+        this.reachAccount,
+        this.reachStdLib.parseCurrency(100),
+      );
       return true;
     } else {
       return false;
@@ -216,7 +263,7 @@ class Account {
   }
 
   async getAddress(): Promise<any> {
-    await this.initialiseReachAccount();
+    await this.initializeReachAccount();
     if (this.reachAccount != null) {
       return this.reachStdLib.formatAddress(this.reachAccount);
     } else {

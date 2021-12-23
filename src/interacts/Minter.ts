@@ -1,9 +1,11 @@
 import Interact from './Interact';
 import { convertToMicroUnits, convertFromMicroUnits } from '../utils';
+
 interface CreateVaultParams {
   collateral: number;
   mintAmount: number;
 }
+
 class Minter extends Interact {
   params: CreateVaultParams;
   parent: Minter;
@@ -13,19 +15,23 @@ class Minter extends Interact {
       collateral: convertToMicroUnits(params.collateral),
       mintAmount: convertToMicroUnits(params.mintAmount),
     };
-    this.createVault = this.createVault;
-    this.signalDone = this.signalDone;
     this.parent = this;
   }
 
-  async createVault(initialCollateralPrice: any, stableCoin: any): Promise<number[]> {
+  async createVault(
+    initialCollateralPrice: any,
+    stableCoin: any,
+  ): Promise<number[]> {
     const returnValues = await new Promise((resolve, reject) => {
       if (this.parent.listeners('createVault').length === 0) {
         resolve([this.parent.params.collateral, this.parent.params.mintAmount]);
       }
       this.parent.emit('createVault', {
         resolve,
-        params: { price: convertFromMicroUnits(initialCollateralPrice.toNumber()), token: stableCoin },
+        params: {
+          price: convertFromMicroUnits(initialCollateralPrice.toNumber()),
+          token: stableCoin,
+        },
       });
     });
     if (Array.isArray(returnValues)) {
@@ -49,7 +55,9 @@ class Minter extends Interact {
 
   async signalDone(SIGNAL_MINTER_FINISHED: number) {
     if (this.parent.listeners('signalDone').length !== 0) {
-      this.parent.emit('signalDone', { params: { signalDone: SIGNAL_MINTER_FINISHED } });
+      this.parent.emit('signalDone', {
+        params: { signalDone: SIGNAL_MINTER_FINISHED },
+      });
     }
   }
 }
