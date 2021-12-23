@@ -1,16 +1,44 @@
-name: Xbacked-SDK-Test
-
+name: xBacked-SDK-CI
 on: [push]
-
 jobs:
-  test-lint-format:
-
+  test-build:
+    test-lint-format:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [14.x]
-
+    steps:
+    - run:  echo directory name:$(pwd)
+    - uses: actions/checkout@v2
+    - name: Install Yarn
+      run: |
+        npm install -g yarn
+        yarn set version 3.1.0
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        cache: 'yarn'
+    - run: |
+       yarn config set cacheFolder $(pwd)/.yarn/cache
+       yarn config set npmScopes.xbacked-dao.npmAuthToken $NODE_AUTH_TOKEN
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    - run: YARN_CHECKSUM_BEHAVIOR=ignore yarn install --immutable
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    - name: Test TS
+      run: |
+        echo "::remove-matcher owner=eslint-compact::"
+        echo "::remove-matcher owner=eslint-stylish::"
+    - run: yarn test
+    - name: Build for distribution
+      run: yarn build
+  test-lint-format:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
     steps:
     - run:  echo directory name:$(pwd)
     - uses: actions/checkout@v2
@@ -39,4 +67,4 @@ jobs:
     - name: Lint Ts
       run: yarn lint
     - name: Format Ts
-      run: yarn format
+      run: yarn lint:fix
