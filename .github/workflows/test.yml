@@ -2,7 +2,6 @@ name: xBacked-SDK-CI
 on: [push]
 jobs:
   test-build:
-    test-lint-format:
     runs-on: ubuntu-latest
     strategy:
       matrix:
