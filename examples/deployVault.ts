@@ -6,10 +6,10 @@ const acc = new Account({
   network: 'TestNet',
   interact: minter,
 });
-const retCallBack = async (initialCollateralPrice: any) => {
-  return [8, 2];
+const retCallBack = async (initialCollateralPrice: number) => {
+  return [8 * initialCollateralPrice, 2];
 };
-acc.addListener('appId', (params: any) => {
+acc.addListener('appId', (params: { appId: number }) => {
   console.log(params);
 });
 acc.addListener('createVault', retCallBack);

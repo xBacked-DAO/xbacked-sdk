@@ -22,7 +22,7 @@ class Minter extends Interact {
     initialCollateralPrice: any,
     stableCoin: any,
   ): Promise<number[]> {
-    const returnValues = await new Promise((resolve, reject) => {
+    const returnValues = await new Promise((resolve) => {
       if (this.parent.listeners('createVault').length === 0) {
         resolve([this.parent.params.collateral, this.parent.params.mintAmount]);
       }

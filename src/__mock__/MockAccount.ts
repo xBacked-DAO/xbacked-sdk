@@ -1,3 +1,4 @@
+/*@typescript-eslint/no-unused-vars no-unused-vars: ["error", { "args": "none" }]*/
 import Account from '../Account';
 import Vault from '../Vault';
 class MockAccount extends Account {

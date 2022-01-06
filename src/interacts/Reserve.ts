@@ -18,7 +18,7 @@ class Reserve extends Interact {
   }
 
   async getCollateralPrice(): Promise<number> {
-    const price = await new Promise((resolve, reject) => {
+    const price = await new Promise((resolve) => {
       if (this.parent.listeners('getCollateralPrice').length === 0) {
         resolve(this.price);
       }
