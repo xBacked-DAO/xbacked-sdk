@@ -5,7 +5,6 @@ interface VaultReturnParams {
   collateral: number;
   vaultDebt: number;
   healthFactor: number;
-  collateralValue: number;
 }
 
 interface VaultParameters {
@@ -23,6 +22,8 @@ class Vault {
     }
   }
 
+
+  //TODO
   async getState(params: { account: Account }): Promise<VaultReturnParams> {
     const ctc = params.account.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
@@ -36,7 +37,6 @@ class Vault {
       collateral: vaultState.collateral.toNumber(),
       vaultDebt: vaultState.vaultDebt.toNumber(),
       healthFactor: vaultState.hf.toNumber(),
-      collateralValue: vaultState.collateralValue.toNumber(),
     };
   }
 }

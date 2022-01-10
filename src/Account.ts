@@ -126,7 +126,7 @@ class Account {
     await this.reachAccount.tokenAccept(tokenID);
   }
 
-  async liquidateVault(params: { vault: Vault; tokenId: number }): Promise<boolean> {
+  async liquidateVault(params: {keys: [string], vault: Vault; tokenId: number }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
@@ -181,7 +181,8 @@ class Account {
     return res;
   }
 
-  async redeemVault(params: { amount: number; vault: Vault }): Promise<boolean> {
+  //TODO
+  async redeemVault(params: { address: string, amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
@@ -226,6 +227,25 @@ class Account {
 
   async getVaultState(params: { vault: Vault }): Promise<any> {
     return await params.vault.getState({ account: this });
+  }
+
+  //TODO
+  async createVault(params: {collateral: number, initialDebt: number}): Promise<number>{
+    return 0;
+  }
+  //TODO
+  async collectFees(): Promise<boolean>{
+    return false;
+  }
+
+  //TODO
+  async replenishSupply(param: number): Promise<boolean>{
+    return false;
+  }
+
+  //TODO
+  async deprecateVault(param: boolean): Promise<boolean>{
+    return false;
   }
 }
 
