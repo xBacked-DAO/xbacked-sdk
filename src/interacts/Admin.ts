@@ -1,4 +1,5 @@
 import Interact from './Interact';
+import {setOracleAddress, setDaoAddress, setGovStakersAddress, setCollateralType, setStablecoin, depositInitialSupply} from "../listeners"
 interface AdminParams {
     oracleAddress?: string,
     daoAddress?: string,
@@ -13,7 +14,8 @@ class Admin extends Interact {
     govStakersAddress?: string;
     collateralType?: number;
     stableCoin?: number;
-    initialSuply?: number
+    initialSuply?: number;
+    parent: Admin;
     constructor(params: AdminParams) {
       super({ name: 'Admin' });
       this.oracleAddress = params.oracleAddress;
@@ -28,32 +30,83 @@ class Admin extends Interact {
       this.setGovStakersAddress = this.setGovStakersAddress;
       this.setCollateralType = this.setCollateralType;
       this.setStablecoin = this.setStablecoin
+      this.parent = this;
     }
 
-    //TODO 
     async setOracleAddress(): Promise<string>{
-        return this.oracleAddress? this.oracleAddress: "";
+        const returnValue = await new Promise((resolve, reject) => {
+            if(this.parent.listeners(setOracleAddress).length === 0){
+               resolve(this.parent.oracleAddress)
+            };
+            this.parent.emit(setOracleAddress, {resolve})
+        });
+        if(typeof returnValue == 'string'  ){
+            return returnValue;
+        }
+        return this.parent.oracleAddress? this.parent.oracleAddress: "";
     }
 
-    //TODO 
     async setDaoAddress(): Promise<string>{
-        return this.daoAddress? this.daoAddress: "";
+        const returnValue = await new Promise((resolve, reject) => {
+            if(this.parent.listeners(setDaoAddress).length === 0){
+               resolve(this.parent.daoAddress)
+            };
+            this.parent.emit(setDaoAddress, {resolve})
+        });
+        if(typeof returnValue == 'string'  ){
+            return returnValue;
+        }
+        return this.parent.daoAddress? this.parent.daoAddress: "";
     }
-    //TODO 
     async setGovStakersAddress(): Promise<string>{
-        return this.govStakersAddress? this.govStakersAddress: ""
+        const returnValue = await new Promise((resolve, reject) => {
+            if(this.parent.listeners(setGovStakersAddress).length === 0){
+               resolve(this.parent.govStakersAddress);
+            };
+            this.parent.emit(setGovStakersAddress, {resolve})
+        });
+        if(typeof returnValue == 'string'  ){
+            return returnValue;
+        }
+        return this.parent.govStakersAddress? this.parent.govStakersAddress: ""
     }
-    //TODO 
     async setCollateralType(): Promise<number>{
-        return this.collateralType? this.collateralType: 0;
+        const returnValue = await new Promise((resolve, reject) => {
+            if(this.parent.listeners(setCollateralType).length === 0){
+               resolve(this.parent.collateralType);
+            };
+            this.parent.emit(setCollateralType, {resolve})
+        });
+        if(typeof returnValue == 'number'  ){
+            return returnValue;
+        }
+        return this.parent.collateralType? this.parent.collateralType: 0
     }
-    //TODO 
+ 
     async setStablecoin(): Promise<number>{
+        const returnValue = await new Promise((resolve, reject) => {
+            if(this.parent.listeners(setCollateralType).length === 0){
+               resolve(this.parent.collateralType);
+            };
+            this.parent.emit(setCollateralType, {resolve})
+        });
+        if(typeof returnValue == 'number'  ){
+            return returnValue;
+        }
         return this.stableCoin? this.stableCoin: 0;
     }
-    //TODO 
+ 
     async depositInitialSupply(): Promise<number>{
-        return this.initialSuply? this.initialSuply: 0;
+        const returnValue = await new Promise((resolve, reject) => {
+            if(this.parent.listeners(depositInitialSupply).length === 0){
+               resolve(this.parent.initialSuply);
+            };
+            this.parent.emit(depositInitialSupply, {resolve})
+        });
+        if(typeof returnValue == 'number'  ){
+            return returnValue;
+        }
+        return this.parent.initialSuply? this.parent.initialSuply: 0;
     }
 
   }

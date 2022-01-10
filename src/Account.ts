@@ -10,7 +10,7 @@ import { convertToMicroUnits, convertFromMicroUnits } from './utils';
 
 interface AccountInterface {
   mnemonic?: string;
-  secretKey?: string;
+  secretKey?: Array<number>;
   signer?: string | 'MyAlgoConnect';
   interact?: Interact;
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
@@ -20,7 +20,7 @@ interface AccountInterface {
 
 class Account {
   mnemonic?: string;
-  secretKey?: string;
+  secretKey?: Array<number>;
   signer?: string;
   interact?: Interact;
   currentVault?: string;
@@ -77,7 +77,7 @@ class Account {
       appId = info;
       this.interact?.emit('appId', { params: { appId: info } });
     });
-    await backend.Minter(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
+    await backend.Admin(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
 
     return new Vault({ id: appId });
   }
@@ -247,6 +247,8 @@ class Account {
   async deprecateVault(param: boolean): Promise<boolean>{
     return false;
   }
+
+  //TODO: ADD listeners for events
 }
 
 export default Account;

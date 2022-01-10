@@ -1,9 +1,13 @@
-// import { xbacked } from '../index';
+import { xbacked } from '../index';
 import Account from '../__mock__/MockAccount';
 import Reserve from '../interacts/Reserve';
 import Minter from '../interacts/Minter';
 import FeeCollector from '../interacts/FeeCollector';
 import Vault from '../Vault';
+
+import { xbacked } from '../index';
+
+
 
 jest.setTimeout(200000000);
 
@@ -81,3 +85,4 @@ it('Minter redeems vault', async function () {
   });
   expect(isCollateralWithdrawn).toBe(true);
 });
+

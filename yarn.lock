@@ -1203,9 +1203,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:^0.1.7-rc.1":
-  version: 0.1.7-rc.3
-  resolution: "@reach-sh/stdlib@npm:0.1.7-rc.3"
+"@reach-sh/stdlib@npm:^0.1.8-rc.1":
+  version: 0.1.8-rc.1
+  resolution: "@reach-sh/stdlib@npm:0.1.8-rc.1"
   dependencies:
     "@msgpack/msgpack": ^2.5.1
     "@randlabs/myalgo-connect": ^1.1.1
@@ -1220,7 +1220,7 @@ __metadata:
     jsbi: ^3.1.6
     node-fetch: ^2.6.1
     wait-port: ^0.2.9
-  checksum: 578544267a3cb39eac2f034271e33c055929197b5f5b6e686d17f82668eb8862deb38a0b4c10398eed29a7a35d31d1b9600e21cfeeee2d64a610dcd51cded935
+  checksum: af47ff41d3aeac30c6f987626c3893efa26196bfedda76a4f1111be830fd6b7208aa192fb62bfc3c784184338619a3eac9284b5cc3c363aaf54269444d7b61ac
   languageName: node
   linkType: hard
 
@@ -1791,18 +1791,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:0.0.3":
-  version: 0.0.3
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.3"
+"@xbacked-dao/xbacked-contracts@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.6"
   dependencies:
-    "@reach-sh/stdlib": ^0.1.7-rc.1
+    "@reach-sh/stdlib": ^0.1.8-rc.1
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
     dotenv: ^10.0.0
     es-main: ^1.0.2
   peerDependencies:
-    "@reach-sh/stdlib": ^0.1.7-rc.1
-  checksum: 5ae2c9ebd2077dc07f12183c4f51962b1b3f577ec30b0c74ae9038f2d64fd72d817496f6990a5a478e9053761faaf4d158971c58ebcc220ec0b9ce3c0e0666cb
+    "@reach-sh/stdlib": ^0.1.8-rc.1
+  checksum: 4567194f0a9fcb435f725f3a69d8143c10736487832fe62e07e5ba5e45c30f4b8d2678f928a7b64c796aa867ff0c41733a5d81cfffee1738c1ad9f93bb9dfd3f
   languageName: node
   linkType: hard
 
@@ -1816,7 +1816,7 @@ __metadata:
     "@types/jest": ^27.0.3
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 0.0.3
+    "@xbacked-dao/xbacked-contracts": ^0.0.6
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0

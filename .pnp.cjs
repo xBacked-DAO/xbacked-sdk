@@ -41,7 +41,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/jsdom", "npm:16.2.13"],
             ["@types/node", "npm:16.11.9"],
-            ["@xbacked-dao/xbacked-contracts", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.0.3"],
+            ["@xbacked-dao/xbacked-contracts", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.0.6"],
             ["awesome-typescript-loader", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:5.2.1"],
             ["eslint", "npm:8.4.1"],
             ["eslint-config-google", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.14.0"],
@@ -2386,17 +2386,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@xbacked-dao/xbacked-contracts", [
-        ["npm:0.0.3", {
-          "packageLocation": "./.yarn/cache/@xbacked-dao-xbacked-contracts-npm-0.0.3-2116583dab-5ae2c9ebd2.zip/node_modules/@xbacked-dao/xbacked-contracts/",
+        ["npm:0.0.6", {
+          "packageLocation": "./.yarn/cache/@xbacked-dao-xbacked-contracts-npm-0.0.6-a630af1967-4567194f0a.zip/node_modules/@xbacked-dao/xbacked-contracts/",
           "packageDependencies": [
-            ["@xbacked-dao/xbacked-contracts", "npm:0.0.3"]
+            ["@xbacked-dao/xbacked-contracts", "npm:0.0.6"]
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.0.3", {
-          "packageLocation": "./.yarn/__virtual__/@xbacked-dao-xbacked-contracts-virtual-fe6937cfa0/0/cache/@xbacked-dao-xbacked-contracts-npm-0.0.3-2116583dab-5ae2c9ebd2.zip/node_modules/@xbacked-dao/xbacked-contracts/",
+        ["virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.0.6", {
+          "packageLocation": "./.yarn/__virtual__/@xbacked-dao-xbacked-contracts-virtual-dfc9dbb1bb/0/cache/@xbacked-dao-xbacked-contracts-npm-0.0.6-a630af1967-4567194f0a.zip/node_modules/@xbacked-dao/xbacked-contracts/",
           "packageDependencies": [
-            ["@xbacked-dao/xbacked-contracts", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.0.3"],
+            ["@xbacked-dao/xbacked-contracts", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.0.6"],
             ["@reach-sh/stdlib", "npm:0.1.7-rc.1"],
             ["@types/reach-sh__stdlib", null],
             ["await-timeout", "npm:1.1.1"],
@@ -2422,7 +2422,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.0.3"],
             ["@types/jsdom", "npm:16.2.13"],
             ["@types/node", "npm:16.11.9"],
-            ["@xbacked-dao/xbacked-contracts", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.0.3"],
+            ["@xbacked-dao/xbacked-contracts", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.0.6"],
             ["awesome-typescript-loader", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:5.2.1"],
             ["eslint", "npm:8.4.1"],
             ["eslint-config-google", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.14.0"],
