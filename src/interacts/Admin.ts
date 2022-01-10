@@ -25,6 +25,7 @@ class Admin extends Interact {
       this.stableCoin = params.stableCoin;
       this.initialSuply = params.initialSuply;
 
+      this.setDaoAddress = this.setDaoAddress;
       this.depositInitialSupply = this.depositInitialSupply;
       this.setOracleAddress = this.setOracleAddress;
       this.setGovStakersAddress = this.setGovStakersAddress;
@@ -86,9 +87,9 @@ class Admin extends Interact {
     async setStablecoin(): Promise<number>{
         const returnValue = await new Promise((resolve, reject) => {
             if(this.parent.listeners(setCollateralType).length === 0){
-               resolve(this.parent.collateralType);
+               resolve(this.parent.stableCoin);
             };
-            this.parent.emit(setCollateralType, {resolve})
+            this.parent.emit(setStablecoin, {resolve})
         });
         if(typeof returnValue == 'number'  ){
             return returnValue;

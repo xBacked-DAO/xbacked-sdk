@@ -3,7 +3,7 @@ import { loadStdlib } from '@reach-sh/stdlib';
 
 import Interact from './interacts/Interact';
 // @ts-ignore
-import { vault as backend } from '@xbacked-dao/xbacked-contracts';
+import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import Vault from './Vault';
 import Reserve from './interacts/Reserve';
 import { convertToMicroUnits, convertFromMicroUnits } from './utils';

@@ -37,7 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@babel/types", "npm:7.16.0"],
             ["@randlabs/myalgo-connect", "npm:1.1.1"],
-            ["@reach-sh/stdlib", "npm:0.1.7-rc.1"],
+            ["@reach-sh/stdlib", "npm:0.1.8-rc.1"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/jsdom", "npm:16.2.13"],
             ["@types/node", "npm:16.11.9"],
@@ -1679,10 +1679,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@reach-sh/stdlib", [
-        ["npm:0.1.7-rc.1", {
-          "packageLocation": "./.yarn/cache/@reach-sh-stdlib-npm-0.1.7-rc.1-96d898acb0-d665e1d24c.zip/node_modules/@reach-sh/stdlib/",
+        ["npm:0.1.8-rc.1", {
+          "packageLocation": "./.yarn/cache/@reach-sh-stdlib-npm-0.1.8-rc.1-9eb46be4f9-af47ff41d3.zip/node_modules/@reach-sh/stdlib/",
           "packageDependencies": [
-            ["@reach-sh/stdlib", "npm:0.1.7-rc.1"],
+            ["@reach-sh/stdlib", "npm:0.1.8-rc.1"],
             ["@msgpack/msgpack", "npm:2.7.1"],
             ["@randlabs/myalgo-connect", "npm:1.1.1"],
             ["@walletconnect/client", "npm:1.6.6"],
@@ -2397,7 +2397,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/@xbacked-dao-xbacked-contracts-virtual-dfc9dbb1bb/0/cache/@xbacked-dao-xbacked-contracts-npm-0.0.6-a630af1967-4567194f0a.zip/node_modules/@xbacked-dao/xbacked-contracts/",
           "packageDependencies": [
             ["@xbacked-dao/xbacked-contracts", "virtual:e4e85d445c0386765193a4eb877b0538d03a83f406c49afe2f4523b1a7d2ead06008f2f3363adbb69ad239dc7f3bbc900c29b5560d1af5d798c9f20e3d61f1ce#npm:0.0.6"],
-            ["@reach-sh/stdlib", "npm:0.1.7-rc.1"],
+            ["@reach-sh/stdlib", "npm:0.1.8-rc.1"],
             ["@types/reach-sh__stdlib", null],
             ["await-timeout", "npm:1.1.1"],
             ["bignumber.js", "npm:9.0.2"],
@@ -2418,7 +2418,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@xbacked-dao/xbacked-sdk", "workspace:."],
             ["@babel/types", "npm:7.16.0"],
             ["@randlabs/myalgo-connect", "npm:1.1.1"],
-            ["@reach-sh/stdlib", "npm:0.1.7-rc.1"],
+            ["@reach-sh/stdlib", "npm:0.1.8-rc.1"],
             ["@types/jest", "npm:27.0.3"],
             ["@types/jsdom", "npm:16.2.13"],
             ["@types/node", "npm:16.11.9"],

@@ -1182,27 +1182,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:^0.1.7-rc.0":
-  version: 0.1.7-rc.1
-  resolution: "@reach-sh/stdlib@npm:0.1.7-rc.1"
-  dependencies:
-    "@msgpack/msgpack": ^2.5.1
-    "@randlabs/myalgo-connect": ^1.1.1
-    "@walletconnect/client": ^1.6.5
-    algorand-walletconnect-qrcode-modal: ^1.6.1
-    algosdk: ^1.12.0
-    await-timeout: ^0.6.0
-    ethers: ^5.4.7
-    express: ^4.17.1
-    hi-base32: ^0.5.0
-    js-conflux-sdk: "git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber"
-    jsbi: ^3.1.6
-    node-fetch: ^2.6.1
-    wait-port: ^0.2.9
-  checksum: d665e1d24c2e52c24e72d430cc086170c4b7733282a497dd307f4d4198f604071521cae23ddaf3c6c580e0243c06ef15f2507b8352e0b48590716526c4aa663a
-  languageName: node
-  linkType: hard
-
 "@reach-sh/stdlib@npm:^0.1.8-rc.1":
   version: 0.1.8-rc.1
   resolution: "@reach-sh/stdlib@npm:0.1.8-rc.1"
@@ -1812,7 +1791,7 @@ __metadata:
   dependencies:
     "@babel/types": ^7.16.0
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": ^0.1.7-rc.0
+    "@reach-sh/stdlib": ^0.1.8-rc.1
     "@types/jest": ^27.0.3
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
