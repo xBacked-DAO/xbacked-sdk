@@ -126,12 +126,11 @@ class Account {
     await this.reachAccount.tokenAccept(tokenID);
   }
 
-  async liquidateVault(params: {keys: [string], vault: Vault; tokenId: number }): Promise<boolean> {
+  async liquidateVault(params: {address: string, vault: Vault}): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
-    const liquidationTokenBalance = await this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
-    const res = await put.liquidateVault(liquidationTokenBalance);
+    const res = await put.liquidateVault(params.address);
     return res;
   }
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
@@ -186,7 +185,7 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
-    const res = await await put.redeemVault(convertToMicroUnits(params.amount));
+    const res =  await put.redeemVault(params.address, convertToMicroUnits(params.amount));
     return res;
   }
 
@@ -226,26 +225,50 @@ class Account {
   }
 
   async getVaultState(params: { vault: Vault }): Promise<any> {
+    await this.initialiseReachAccount();
     return await params.vault.getState({ account: this });
   }
 
-  //TODO
-  async createVault(params: {collateral: number, initialDebt: number}): Promise<number>{
-    return 0;
+
+  async createVault(params: {collateral: number, mintAmount: number, vault: Vault}): Promise<number>{
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultOwner;
+    const res =  await put.createVault(convertToMicroUnits(params.collateral), convertToMicroUnits(params.mintAmount));
+    return res;
   }
+
+
   //TODO
-  async collectFees(): Promise<boolean>{
-    return false;
+  async collectFees(params: {vault: Vault}): Promise<boolean>{
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.FeeCollector;
+    const res =  await put.collectFees();
+    return res;
   }
 
   //TODO
-  async replenishSupply(param: number): Promise<boolean>{
-    return false;
+  async replenishSupply(params :{vault: Vault,  supply: number}): Promise<boolean>{
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.AdminAPI;
+    const res =  await put.replenishSupply(params.supply);
+    return res;
   }
 
   //TODO
-  async deprecateVault(param: boolean): Promise<boolean>{
-    return false;
+  async deprecateVault(params: {shouldDeprecateVault: boolean, vault: Vault}): Promise<boolean>{
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.AdminAPI;
+    const res =  await put.deprecateVault(params.shouldDeprecateVault);
+    return res;
+  }
+
+  async getUserInfo(params: {address: string, vault: Vault}): Promise<any>{
+    await this.initialiseReachAccount();
+    return await params.vault.getUserInfo({ account: this, address: params.address});
   }
 
   //TODO: ADD listeners for events
