@@ -1270,7 +1270,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^27.0.3":
+"@types/jest@npm:^27.4.0":
   version: 27.4.0
   resolution: "@types/jest@npm:27.4.0"
   dependencies:
@@ -1732,14 +1732,14 @@ __metadata:
     "@babel/types": ^7.16.0
     "@randlabs/myalgo-connect": ^1.1.1
     "@reach-sh/stdlib": ^0.1.8-rc.1
-    "@types/jest": ^27.0.3
+    "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
     "@xbacked-dao/xbacked-contracts": ^0.0.6
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
-    jest: ^27.3.1
+    jest: ^27.4.7
     jest-environment-jsdom: ^27.0.6
     lodash: ^4.17.21
     prettier: ^2.4.1
@@ -5153,7 +5153,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:^27.3.1":
+"jest@npm:^27.4.7":
   version: 27.4.7
   resolution: "jest@npm:27.4.7"
   dependencies:

@@ -53,7 +53,7 @@ it('Oracle update price', async function () {
 });
 
 it('Liquidator Liquidate Vault', async function () {
-  const isLiquidated = await account.liquidateVault({ vault: new Vault({ id: VAULT_ID }) });
+  const isLiquidated = await account.liquidateVault({ vault: new Vault({ id: VAULT_ID }), address: "" });
   expect(isLiquidated).toBe(true);
 });
 
