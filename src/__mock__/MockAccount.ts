@@ -13,7 +13,7 @@ class MockAccount extends Account {
     return true;
   }
 
-  async liquidateVault(params: { vault: Vault }): Promise<boolean> {
+  async liquidateVault(params: { vault: Vault, address: string }): Promise<boolean> {
     return true;
   }
 
