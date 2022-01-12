@@ -10,7 +10,7 @@
       "esModuleInterop": true,
       "allowJs": true,
       "lib": [ "es2015","DOM" ],
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "**/__tests__/*", "src/build/*"],

@@ -5,7 +5,6 @@ import Minter from '../interacts/Minter';
 import FeeCollector from '../interacts/FeeCollector';
 import Vault from '../Vault';
 
-
 jest.setTimeout(200000000);
 
 beforeAll(() => {
