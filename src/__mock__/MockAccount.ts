@@ -5,9 +5,7 @@ class MockAccount extends Account {
     return new Vault({ id: 1 });
   }
 
-  async connectToVault(params: { vault: Vault }): Promise<Vault> {
-    return params.vault;
-  }
+ 
 
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
     return true;

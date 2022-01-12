@@ -11,6 +11,7 @@
       "allowJs": true,
       "lib": [ "es2015","DOM" ],
       "allowSyntheticDefaultImports": true,
+      // "types": ["jest", "@types/node","reflect-metadata"]
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "**/__tests__/*", "src/build/*"],

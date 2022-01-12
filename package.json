@@ -32,11 +32,11 @@
   },
   "homepage": "https://github.com/xBacked-DAO/xbacked-sdk#readme",
   "devDependencies": {
-    "@types/jest": "^27.0.3",
+    "@types/jest": "^27.3.0",
     "@types/node": "^16.11.9",
     "eslint": "^8.4.1",
     "eslint-config-google": "^0.14.0",
-    "jest": "^27.3.1",
+    "jest": "27.3.1",
     "jest-environment-jsdom": "^27.0.6",
     "lodash": "^4.17.21",
     "prettier": "^2.4.1",
@@ -55,6 +55,7 @@
     "@reach-sh/stdlib": "^0.1.8-rc.1",
     "@types/jsdom": "^16.2.13",
     "@xbacked-dao/xbacked-contracts": "^0.0.6",
-    "awesome-typescript-loader": "^5.2.1"
+    "awesome-typescript-loader": "^5.2.1",
+    "jest": "^27.3.1"
   }
 }

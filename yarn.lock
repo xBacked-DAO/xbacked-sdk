@@ -892,7 +892,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jest/core@npm:^27.4.7":
+"@jest/core@npm:^27.3.1, @jest/core@npm:^27.4.7":
   version: 27.4.7
   resolution: "@jest/core@npm:27.4.7"
   dependencies:
@@ -1270,7 +1270,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^27.0.3":
+"@types/jest@npm:^27.3.0":
   version: 27.4.0
   resolution: "@types/jest@npm:27.4.0"
   dependencies:
@@ -1732,14 +1732,14 @@ __metadata:
     "@babel/types": ^7.16.0
     "@randlabs/myalgo-connect": ^1.1.1
     "@reach-sh/stdlib": ^0.1.8-rc.1
-    "@types/jest": ^27.0.3
+    "@types/jest": ^27.3.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
     "@xbacked-dao/xbacked-contracts": ^0.0.6
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
-    jest: ^27.3.1
+    jest: 27.3.1
     jest-environment-jsdom: ^27.0.6
     lodash: ^4.17.21
     prettier: ^2.4.1
@@ -4721,7 +4721,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-cli@npm:^27.4.7":
+"jest-cli@npm:^27.3.1":
   version: 27.4.7
   resolution: "jest-cli@npm:27.4.7"
   dependencies:
@@ -5153,13 +5153,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:^27.3.1":
-  version: 27.4.7
-  resolution: "jest@npm:27.4.7"
+"jest@npm:27.3.1":
+  version: 27.3.1
+  resolution: "jest@npm:27.3.1"
   dependencies:
-    "@jest/core": ^27.4.7
+    "@jest/core": ^27.3.1
     import-local: ^3.0.2
-    jest-cli: ^27.4.7
+    jest-cli: ^27.3.1
   peerDependencies:
     node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
   peerDependenciesMeta:
@@ -5167,7 +5167,7 @@ __metadata:
       optional: true
   bin:
     jest: bin/jest.js
-  checksum: 28ce948b30c074907393f37553acac4422d0f60190776e62b3403e4c742d33dd6012e3a20748254a43e38b5b4ce52d813b13a3a5be1d43d6d12429bd08ce1a23
+  checksum: ae4f0c83fb1c87d7a6f440a8d6288f06a2a2fb1e3539bc048918572cded3e1dc10497ce4362a9a4a91f986eb3438f481e733a65581c5d5b08c00f7b4760ff21d
   languageName: node
   linkType: hard
 
