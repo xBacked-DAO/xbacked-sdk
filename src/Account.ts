@@ -5,7 +5,6 @@ import Interact from './interacts/Interact';
 // @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import Vault from './Vault';
-import Reserve from './interacts/Reserve';
 import { convertToMicroUnits, convertFromMicroUnits } from './utils';
 
 interface AccountInterface {
@@ -82,31 +81,8 @@ class Account {
     return new Vault({ id: appId });
   }
 
-  async connectAsReserveToVault(params: { vault: Vault }): Promise<Vault> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
-    await backend.Reserve(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
-    return params.vault;
-  }
 
-  async connectAsFeeCollectorToVault(params: { vault: Vault }): Promise<Vault> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
-    await backend.FeeCollector(ctc, { ...this.reachStdLib.hasConsoleLogger });
-    return params.vault;
-  }
-
-  async connectToVault(params: { vault: Vault }): Promise<Vault> {
-    if (!this.interact) {
-      throw Error('An interact has not yet been defined');
-    }
-    if (this.interact instanceof Reserve) {
-      return await this.connectAsReserveToVault(params);
-    } else {
-      return await this.connectAsFeeCollectorToVault(params);
-    }
-  }
-
+ 
   async addListener(name: string, callBack: any) {
     this.interact?.addListener(name, async ({ resolve, params }) => {
       let returnValues;
@@ -180,7 +156,7 @@ class Account {
     return res;
   }
 
-  //TODO
+
   async redeemVault(params: { address: string, amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -239,7 +215,6 @@ class Account {
   }
 
 
-  //TODO
   async collectFees(params: {vault: Vault}): Promise<boolean>{
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -248,7 +223,7 @@ class Account {
     return res;
   }
 
-  //TODO
+
   async replenishSupply(params :{vault: Vault,  supply: number}): Promise<boolean>{
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -257,7 +232,7 @@ class Account {
     return res;
   }
 
-  //TODO
+
   async deprecateVault(params: {shouldDeprecateVault: boolean, vault: Vault}): Promise<boolean>{
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
