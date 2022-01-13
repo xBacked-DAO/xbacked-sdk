@@ -32,7 +32,7 @@ class Vault {
   }
 
 
-  //TODO
+
   async getState(params: { account: Account }): Promise<VaultReturnParams> {
     const ctc = params.account.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
@@ -53,7 +53,7 @@ class Vault {
   async getUserInfo(params: { account: Account, address: string }): Promise<UserVaultReturnParams>{
     const ctc = params.account.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
-    const stateView = await get.readVault('CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44');
+    const stateView = await get.readVault(params.address);
     if (stateView[0] === 'None') {
       throw new Error('the view returned none');
     }
