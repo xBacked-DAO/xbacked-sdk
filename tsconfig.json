@@ -13,6 +13,6 @@
       "allowSyntheticDefaultImports": true,
       // "types": ["jest", "@types/node","reflect-metadata"]
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "src/__tests__/t-tests.ts"],
     "exclude": ["node_modules", "**/__tests__/*", "src/build/*"],
   }

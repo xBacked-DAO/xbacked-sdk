@@ -1730,6 +1730,7 @@ __metadata:
   resolution: "@xbacked-dao/xbacked-sdk@workspace:."
   dependencies:
     "@babel/types": ^7.16.0
+    "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
     "@reach-sh/stdlib": ^0.1.8-rc.1
     "@types/jest": ^27.3.0

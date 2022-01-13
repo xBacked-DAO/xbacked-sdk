@@ -2,6 +2,7 @@
 import Account from '../__mock__/MockAccount';
 import Vault from '../Vault';
 
+import { test, beforeAll, expect, describe, afterAll , jest, it} from '@jest/globals';
 
 jest.setTimeout(200000000);
 
@@ -43,7 +44,7 @@ it('Recovery Toggler toggles recovery mode', async function () {
 });
 
 it('Redeemer redeems vault', async function () {
-  const isVaultRedeemed = await account.redeemVault({ vault: new Vault({ id: VAULT_ID }), amount: 1 });
+  const isVaultRedeemed = await account.redeemVault({ vault: new Vault({ id: VAULT_ID }), amount: 1, address: "" });
  expect(isVaultRedeemed).toBe(true);
 });
 
@@ -55,12 +56,55 @@ it('Minter returns vault debt', async function () {
  expect(isVaultDebtReturned).toBe(true);
 });
 
-it('Minter redeems vault', async function () {
+it('Minter withdraws collateral', async function () {
   const isCollateralWithdrawn = await account.withdrawCollateral({
     amount: MINT_AMOUNT,
     vault: new Vault({ id: VAULT_ID }),
   });
  expect(isCollateralWithdrawn).toBe(true);
 });
+
+it('Acount gets vault state', async function () {
+  const didGetVaultState = await account.getVaultState({
+    vault: new Vault({ id: VAULT_ID }),
+  });
+ expect(didGetVaultState).toBe(true);
+});
+
+it('Acount gets user info', async function () {
+  const didGetUserInfo = await account.getUserInfo({
+    vault: new Vault({ id: VAULT_ID }),
+    address: ""
+  });
+ expect(didGetUserInfo).toBe(true);
+});
+
+it('Minter deposit collateral', async function () {
+  const isCollateralDeposited = await account.depositCollateral({
+    vault: new Vault({ id: VAULT_ID }),
+    amount: 1000
+  });
+ expect(isCollateralDeposited).toBe(true);
+});
+
+it('Minter mints token', async function () {
+  const isTokenMinted = await account.mintToken({
+    vault: new Vault({ id: VAULT_ID }),
+    amount: 500
+  });
+ expect(isTokenMinted).toBe(true);
+});
+
+
+it('Minter creates vault', async function () {
+  const isVaultCreated = await account.createVault({
+    vault: new Vault({ id: VAULT_ID }),
+    collateral: 1000,
+    mintAmount: 500
+  });
+ expect(isVaultCreated).toBe(true);
+});
+
+
 
 
