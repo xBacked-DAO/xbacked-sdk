@@ -66,20 +66,6 @@ class Account {
     }
   }
 
-  async deployVault(): Promise<Vault> {
-    if (this.mnemonic != null) {
-      await this.initialiseReachAccount();
-    }
-    const ctc = this.reachAccount.contract(backend);
-    let appId = 0;
-    ctc.getInfo().then((info: number) => {
-      appId = info;
-      this.interact?.emit('appId', { params: { appId: info } });
-    });
-    await backend.Admin(ctc, { ...this.interact, ...this.reachStdLib.hasConsoleLogger });
-
-    return new Vault({ id: appId });
-  }
 
 
  
