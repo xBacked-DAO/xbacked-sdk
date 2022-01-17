@@ -103,13 +103,7 @@ class Account {
     return res;
   }
 
-  async toggleRecoveryMode(params: { vault: Vault; mode: boolean }): Promise<boolean> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
-    const put = ctc.a.RecoveryToggler;
-    const res = await put.toggleRecoveryMode(params.mode);
-    return res;
-  }
+
   async mintToken(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -152,10 +146,11 @@ class Account {
   }
 
   async getBalance(params: { tokenId: number }): Promise<number> {
+    // reach.formatCurrency(await reach.balanceOf(account), 4)
     await this.initialiseReachAccount();
     if (this.reachAccount && params.tokenId !== 0 && params.tokenId !== null) {
-      const balance = this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
-      return balance;
+      const balance = await this.reachStdLib.balanceOf(this.reachAccount, params.tokenId);
+      return balance.toNumber();
     } else {
       const balance = await this.reachStdLib.balanceOf(this.reachAccount);
       return balance.toNumber();
