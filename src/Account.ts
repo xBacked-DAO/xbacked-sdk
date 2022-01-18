@@ -9,7 +9,7 @@ import { convertToMicroUnits, convertFromMicroUnits } from './utils';
 
 interface AccountInterface {
   mnemonic?: string;
-  secretKey?: Array<number>;
+  secretKey?: number[];
   signer?: string | 'MyAlgoConnect';
   interact?: Interact;
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
@@ -19,7 +19,7 @@ interface AccountInterface {
 
 class Account {
   mnemonic?: string;
-  secretKey?: Array<number>;
+  secretKey?: number[];
   signer?: string;
   interact?: Interact;
   currentVault?: string;
@@ -227,7 +227,7 @@ class Account {
     return await params.vault.getUserInfo({ account: this, address: params.address});
   }
 
-  //TODO: ADD listeners for events
+  // TODO: ADD listeners for events
 }
 
 export default Account;
