@@ -2,7 +2,6 @@
 import Account from '../__mock__/MockAccount';
 import Vault from '../Vault';
 
-import { test, beforeAll, expect, describe, afterAll , jest, it} from '@jest/globals';
 
 jest.setTimeout(200000000);
 
@@ -102,7 +101,7 @@ it('Minter creates vault', async function () {
     collateral: 1000,
     mintAmount: 500
   });
- expect(isVaultCreated).toBe(true);
+ expect(isVaultCreated).toBe(1);
 });
 
 
