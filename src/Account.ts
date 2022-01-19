@@ -230,7 +230,7 @@ class Account {
   async getContractAddress(params: {vaultId: number}): Promise<string>{
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vaultId);
-    let contractAddress = await ctc.getContractAddress();
+    const contractAddress = await ctc.getContractAddress();
     return this.reachStdLib.formatAddress(contractAddress);
   }
 
