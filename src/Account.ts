@@ -227,6 +227,13 @@ class Account {
     return await params.vault.getUserInfo({ account: this, address: params.address});
   }
 
+  async getContractAddress(params: {vaultId: number}): Promise<string>{
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vaultId);
+    let contractAddress = await ctc.getContractAddress();
+    return this.reachStdLib.formatAddress(contractAddress);
+  }
+
   // TODO: ADD listeners for events
 }
 
