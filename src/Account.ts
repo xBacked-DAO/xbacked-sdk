@@ -227,8 +227,6 @@ class Account {
     return await params.vault.getUserInfo({ account: this, address: params.address});
   }
 
-<<<<<<< HEAD
-=======
   async getContractAddress(params: {vaultId: number}): Promise<string>{
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vaultId);
@@ -236,7 +234,6 @@ class Account {
     return this.reachStdLib.formatAddress(contractAddress);
   }
 
->>>>>>> fix/typescript-jest
   // TODO: ADD listeners for events
 }
 
