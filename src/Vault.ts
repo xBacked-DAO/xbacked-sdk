@@ -55,7 +55,7 @@ class Vault {
     const ctc = params.account.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
     const stateView = await get.readVault(params.address);
-    if (stateView[0] === 'None') {
+    if (stateView[1][0] === 'None') {
       return {
         collateralRatio: 0,
         collateral: 0,
