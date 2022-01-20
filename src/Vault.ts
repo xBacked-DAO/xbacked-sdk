@@ -14,6 +14,7 @@ interface UserVaultReturnParams{
   vaultDebt: number;
   hf: number;
   redeemable: boolean; 
+  vaultFound: boolean
 }
 
 interface VaultParameters {
@@ -55,7 +56,14 @@ class Vault {
     const get = ctc.v.State;
     const stateView = await get.readVault(params.address);
     if (stateView[0] === 'None') {
-      throw new Error('the view returned none');
+      return {
+        collateralRatio: 0,
+        collateral: 0,
+        vaultDebt: 0,
+        hf: 0,
+        redeemable: false,
+        vaultFound:false
+      };
     }
     const vaultState = stateView[1][1];
     return {
@@ -63,7 +71,8 @@ class Vault {
       collateral: vaultState.collateral.toNumber(),
       vaultDebt: vaultState.vaultDebt.toNumber(),
       hf: vaultState.hf.toNumber(),
-      redeemable: vaultState.redeemable
+      redeemable: vaultState.redeemable,
+      vaultFound: true
     };
   }
 }
