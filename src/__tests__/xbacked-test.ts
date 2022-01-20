@@ -42,11 +42,6 @@ it('Recovery Toggler toggles recovery mode', async function () {
  expect(isRecoveryModeChanged).toBe(true);
 });
 
-it('Redeemer redeems vault', async function () {
-  const isVaultRedeemed = await account.redeemVault({ vault: new Vault({ id: VAULT_ID }), amount: 1, address: "" });
- expect(isVaultRedeemed).toBe(true);
-});
-
 it('Minter returns vault debt', async function () {
   const isVaultDebtReturned = await account.returnVaultDebt({
     amount: MINT_AMOUNT,

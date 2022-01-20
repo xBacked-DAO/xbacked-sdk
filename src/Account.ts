@@ -137,13 +137,6 @@ class Account {
   }
 
 
-  async redeemVault(params: { address: string, amount: number; vault: Vault }): Promise<boolean> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
-    const put = ctc.a.VaultRedeemer;
-    const res =  await put.redeemVault(params.address, convertToMicroUnits(params.amount));
-    return res;
-  }
 
   async getBalance(params: { tokenId: number }): Promise<number> {
     // reach.formatCurrency(await reach.balanceOf(account), 4)

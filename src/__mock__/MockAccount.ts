@@ -14,10 +14,6 @@ class MockAccount extends Account {
     return true;
   }
 
-  async redeemVault(params: { address: string; amount: number; vault: Vault; }): Promise<boolean> {
-      return true;
-  }
-
   async returnVaultDebt(params: { amount: number; vault: Vault }): Promise<boolean> {
     return true;
   }
