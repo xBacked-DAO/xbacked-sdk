@@ -10,8 +10,9 @@
       "esModuleInterop": true,
       "allowJs": true,
       "lib": [ "es2015","DOM" ],
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      // "types": ["jest", "@types/node","reflect-metadata"]
     },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules", "**/__tests__/*", "src/build/*"]
+    "include": ["src/**/*", "src/__tests__/t-tests.ts"],
+    "exclude": ["node_modules", "**/__tests__/*", "src/build/*"],
   }

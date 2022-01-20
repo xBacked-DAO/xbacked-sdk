@@ -120,3 +120,5 @@ lib-esm/
 
 .pnp.cjs
 .pnp.loader.mjs
+/src/__tests__/t-tests.ts
+/package-lock.json

@@ -1,4 +1,4 @@
-import {Account}  from 'xbacked-sdk';
+import {Account} from 'xbacked-sdk';
 (async () => {
   const acc = new Account({signer: 'MyAlgoConnect',
     network: 'TestNet'});
