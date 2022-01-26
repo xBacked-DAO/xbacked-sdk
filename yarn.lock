@@ -1122,7 +1122,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:^0.1.8-rc.1, @reach-sh/stdlib@npm:^0.1.8-rc.5":
+"@reach-sh/stdlib@npm:^0.1.8-rc.5":
   version: 0.1.8-rc.5
   resolution: "@reach-sh/stdlib@npm:0.1.8-rc.5"
   dependencies:
@@ -1710,19 +1710,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:^0.0.7":
-  version: 0.0.7
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.7"
+"@xbacked-dao/xbacked-contracts@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.8"
   dependencies:
-    "@reach-sh/stdlib": ^0.1.8-rc.1
+    "@reach-sh/stdlib": ^0.1.8-rc.5
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
     dotenv: ^10.0.0
     es-main: ^1.0.2
+    yargs: ^17.3.1
   peerDependencies:
-    "@reach-sh/stdlib": ^0.1.8-rc.1
-  checksum: b93f381c7caeef2e22360d4892b378d3ac834aa1b6337d41481e72fa17eefd7a0289fc3b332afb1898512c4c1ecea261d1ea57edfbb1d806e1cee6605f880a05
+    "@reach-sh/stdlib": ^0.1.8-rc.5
+  checksum: 416fde48936fc5a205b89009c389692d260d3cf554ecc45605982ff6a74ee76ede28c1ecf84301e63d28cc5703f8e8e385dfa3ad2a8a7bc6f28cb2a840acfa56
   languageName: node
   linkType: hard
 
@@ -1737,7 +1738,7 @@ __metadata:
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": ^0.0.7
+    "@xbacked-dao/xbacked-contracts": ^0.0.8
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
@@ -8222,6 +8223,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"yargs-parser@npm:^21.0.0":
+  version: 21.0.0
+  resolution: "yargs-parser@npm:21.0.0"
+  checksum: 1e205fca1cb7a36a1585e2b94a64e641c12741b53627d338e12747f4dca3c3610cdd9bb235040621120548dd74c3ef03a8168d52a1eabfedccbe4a62462b6731
+  languageName: node
+  linkType: hard
+
 "yargs@npm:^13.2.4":
   version: 13.3.2
   resolution: "yargs@npm:13.3.2"
@@ -8252,5 +8260,20 @@ __metadata:
     y18n: ^5.0.5
     yargs-parser: ^20.2.2
   checksum: b14afbb51e3251a204d81937c86a7e9d4bdbf9a2bcee38226c900d00f522969ab675703bee2a6f99f8e20103f608382936034e64d921b74df82b63c07c5e8f59
+  languageName: node
+  linkType: hard
+
+"yargs@npm:^17.3.1":
+  version: 17.3.1
+  resolution: "yargs@npm:17.3.1"
+  dependencies:
+    cliui: ^7.0.2
+    escalade: ^3.1.1
+    get-caller-file: ^2.0.5
+    require-directory: ^2.1.1
+    string-width: ^4.2.3
+    y18n: ^5.0.5
+    yargs-parser: ^21.0.0
+  checksum: 64fc2e32c56739f1d14d2d24acd17a6944c3c8e3e3558f09fc1953ac112e868cc16013d282886b9d5be22187f8b9ed4f60741a6b1011f595ce2718805a656852
   languageName: node
   linkType: hard
