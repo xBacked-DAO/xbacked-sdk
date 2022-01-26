@@ -106,6 +106,7 @@ dist
 
 # Lib Folder
 /lib
+/.yarn
 /_bundles
 
 .reach
