@@ -5,4 +5,4 @@ const xbacked = (client: string) => {
   return client;
 };
 
-module.exports = { Account, Minter, Reserve, Vault, FeeCollector };
+module.exports = { Account, Vault };

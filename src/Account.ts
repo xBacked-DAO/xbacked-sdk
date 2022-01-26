@@ -1,7 +1,5 @@
 // @ts-ignore
 import { loadStdlib } from '@reach-sh/stdlib';
-
-import Interact from './interacts/Interact';
 // @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import Vault from './Vault';
@@ -11,7 +9,6 @@ interface AccountInterface {
   mnemonic?: string;
   secretKey?: number[];
   signer?: string | 'MyAlgoConnect';
-  interact?: Interact;
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   currentVault?: string;
   provider?: any;
@@ -21,7 +18,6 @@ class Account {
   mnemonic?: string;
   secretKey?: number[];
   signer?: string;
-  interact?: Interact;
   currentVault?: string;
   reachAccount: any;
   reachStdLib: any;
@@ -33,7 +29,6 @@ class Account {
     this.mnemonic = params.mnemonic;
     this.secretKey = params.secretKey;
     this.signer = params.signer;
-    this.interact = params.interact;
     this.currentVault = params.currentVault;
     this.provider = params.provider;
     this.reachStdLib = loadStdlib('ALGO');
@@ -64,20 +59,6 @@ class Account {
     } else if (!this.reachAccount) {
       throw new Error('Pass a mnemonic, a secret key or a provider to create an acccount');
     }
-  }
-
-  async addListener(name: string, callBack: any) {
-    this.interact?.addListener(name, async ({ resolve, params }) => {
-      let returnValues;
-      if (params === null || params === undefined) {
-        returnValues = await callBack();
-      } else {
-        returnValues = await callBack(params);
-      }
-      if (resolve) {
-        resolve(returnValues);
-      }
-    });
   }
 
   async optIntoToken(tokenID: number) {
