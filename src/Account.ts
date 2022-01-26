@@ -66,9 +66,6 @@ class Account {
     }
   }
 
-
-
- 
   async addListener(name: string, callBack: any) {
     this.interact?.addListener(name, async ({ resolve, params }) => {
       let returnValues;
@@ -88,11 +85,11 @@ class Account {
     await this.reachAccount.tokenAccept(tokenID);
   }
 
-  async liquidateVault(params: {address: string, vault: Vault}): Promise<boolean> {
+  async liquidateVault(params: { address: string; debtAmount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
-    const res = await put.liquidateVault(params.address);
+    const res = await put.liquidateVault(params.address, params.debtAmount);
     return res;
   }
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
@@ -102,7 +99,6 @@ class Account {
     const res = await put.updatePrice(convertToMicroUnits(params.price));
     return res;
   }
-
 
   async mintToken(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -135,8 +131,6 @@ class Account {
     const res = await put.returnVaultDebt(convertToMicroUnits(params.amount));
     return res;
   }
-
-
 
   async getBalance(params: { tokenId: number }): Promise<number> {
     // reach.formatCurrency(await reach.balanceOf(account), 4)
@@ -179,48 +173,44 @@ class Account {
     return await params.vault.getState({ account: this });
   }
 
-
-  async createVault(params: {collateral: number, mintAmount: number, vault: Vault}): Promise<number>{
+  async createVault(params: { collateral: number; mintAmount: number; vault: Vault }): Promise<number> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res =  await put.createVault(convertToMicroUnits(params.collateral), convertToMicroUnits(params.mintAmount));
+    const res = await put.createVault(convertToMicroUnits(params.collateral), convertToMicroUnits(params.mintAmount));
     return res;
   }
 
-
-  async collectFees(params: {vault: Vault}): Promise<boolean>{
+  async collectFees(params: { vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.FeeCollector;
-    const res =  await put.collectFees();
+    const res = await put.collectFees();
     return res;
   }
 
-
-  async replenishSupply(params :{vault: Vault,  supply: number}): Promise<boolean>{
+  async replenishSupply(params: { vault: Vault; supply: number }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.AdminAPI;
-    const res =  await put.replenishSupply(params.supply);
+    const res = await put.replenishSupply(params.supply);
     return res;
   }
 
-
-  async deprecateVault(params: {shouldDeprecateVault: boolean, vault: Vault}): Promise<boolean>{
+  async deprecateVault(params: { shouldDeprecateVault: boolean; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.AdminAPI;
-    const res =  await put.deprecateVault(params.shouldDeprecateVault);
+    const res = await put.deprecateVault(params.shouldDeprecateVault);
     return res;
   }
 
-  async getUserInfo(params: {address: string, vault: Vault}): Promise<any>{
+  async getUserInfo(params: { address: string; vault: Vault }): Promise<any> {
     await this.initialiseReachAccount();
-    return await params.vault.getUserInfo({ account: this, address: params.address});
+    return await params.vault.getUserInfo({ account: this, address: params.address });
   }
 
-  async getContractAddress(params: {vaultId: number}): Promise<string>{
+  async getContractAddress(params: { vaultId: number }): Promise<string> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vaultId);
     const contractAddress = await ctc.getContractAddress();
