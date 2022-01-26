@@ -1,3 +1,4 @@
+!.yarn/releases/*
 # Logs
 logs
 *.log

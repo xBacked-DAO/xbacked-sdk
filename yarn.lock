@@ -5164,7 +5164,7 @@ __metadata:
 
 "js-conflux-sdk@git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber":
   version: 1.6.0
-  resolution: "js-conflux-sdk@https://github.com/reach-sh/js-conflux-sdk.git#commit=6df5f0538c2077a7e29f0be08205b937499a1040"
+  resolution: "js-conflux-sdk@git+https://github.com/reach-sh/js-conflux-sdk.git#commit=6df5f0538c2077a7e29f0be08205b937499a1040"
   dependencies:
     "@babel/runtime": ^7.8.4
     "@conflux-dev/conflux-address-js": ^1.0.0
@@ -5175,7 +5175,7 @@ __metadata:
     secp256k1: ^3.7.1
     superagent: ^5.1.0
     websocket: ^1.0.31
-  checksum: d3a8689f50b256c6f1f9d90592db82d8b72f3c3e2cbe3c28b0a36eaf1b138a68a5502423ca7bb483324f3b97cdef54738538d628494fbff856ede33215fba5a4
+  checksum: 695882b59c231761a36e5e4802979a52c6f72b626c6b1eb24a7c7b80b90184c3fd8bc40131cac031cdc99befba8c2031842e59d367cf758364859696f07d3e2b
   languageName: node
   linkType: hard
 
