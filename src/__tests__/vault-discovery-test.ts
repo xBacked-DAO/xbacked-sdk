@@ -2,6 +2,8 @@ import EventFetcher from '../__mock__/MockFetcher';
 import Account from '../__mock__/MockAccount';
 import Vault from '../Vault';
 
+jest.setTimeout(200000000);
+
 const vault = new Vault({ id: 1 });
 const account = new Account({});
 
@@ -9,11 +11,7 @@ account.reachAccount = {};
 account.reachAccount.contract = jest.fn((x, y) => {
   return {
     events: {
-      Announcer: {
-        vaultCreated: null,
-        vaultClosed: null,
-        vaultTransaction: null,
-      },
+      Announcer: { },
     },
   };
 });
@@ -28,6 +26,102 @@ const eventFetcher = new EventFetcher({ vault, account });
 it('Creates the fetcher', async function () {
   expect(account.reachAccount.contract).toBeCalled();
   expect(eventFetcher).toBeDefined();
+});
+
+describe('Gets open vaults', () => {
+  beforeEach(() => {
+    const announcerMock = {
+      vaultCreated: {
+        seek: jest.fn((x) => null),
+        next: jest.fn(),
+      },
+      vaultClosed: {
+        seek: jest.fn((x) => null),
+        next: jest.fn(),
+      },
+    };
+    announcerMock.vaultCreated.next.mockReturnValueOnce(
+      Promise.resolve({
+        when: 0,
+        what: [
+          '0xbbbbbbbbbbbbbbbbbbbbbbbbbb',
+          {
+            collateralRatio: toNumberMock,
+            collateral: toNumberMock,
+            liquidating: false,
+            vaultDebt: toNumberMock,
+            redeemable: false,
+          },
+        ],
+      }),
+    );
+    announcerMock.vaultCreated.next.mockReturnValueOnce(
+      Promise.resolve({
+        when: 2,
+        what: [
+          '0xaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          {
+            collateralRatio: toNumberMock,
+            collateral: toNumberMock,
+            liquidating: false,
+            vaultDebt: toNumberMock,
+            redeemable: false,
+          },
+        ],
+      }),
+    );
+    announcerMock.vaultCreated.next.mockReturnValueOnce(
+      new Promise((resolve, reject) => {
+        setTimeout(reject, 200);
+      }),
+    );
+    announcerMock.vaultClosed.next.mockReturnValueOnce(
+      Promise.resolve({
+        when: 1,
+        what: [
+          '0xaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          {
+            collateralRatio: toNumberMock,
+            collateral: toNumberMock,
+            liquidating: false,
+            vaultDebt: toNumberMock,
+            redeemable: false,
+          },
+        ],
+      }),
+    );
+    announcerMock.vaultClosed.next.mockReturnValueOnce(
+      Promise.resolve({
+        when: 3,
+        what: [
+          '0xbbbbbbbbbbbbbbbbbbbbbbbbbb',
+          {
+            collateralRatio: toNumberMock,
+            collateral: toNumberMock,
+            liquidating: false,
+            vaultDebt: toNumberMock,
+            redeemable: false,
+          },
+        ],
+      }),
+    );
+    announcerMock.vaultClosed.next.mockReturnValueOnce(
+      new Promise((resolve, reject) => {
+        setTimeout(resolve, 300);
+      }),
+    );
+    eventFetcher.setAnnouncer(announcerMock);
+  });
+
+  it('Checks return only open vaults', async function () {
+    const results = await eventFetcher.getOpenVaults({ timeout: 100 });
+    expect(results.length).toBe(0);
+  });
+
+  it('Checks return only open vaults whithin interval', async function () {
+    const results = await eventFetcher.getOpenVaults({endRound:2, timeout: 100 });
+    expect(results.length).toBe(1);
+  });
 });
 
 describe('Gets vaults created', () => {
@@ -68,7 +162,7 @@ describe('Gets vaults created', () => {
       }),
     );
     announcerMock.vaultCreated.next.mockReturnValueOnce(
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         setTimeout(resolve, 200);
       }),
     );
@@ -107,7 +201,7 @@ describe('Gets vaults closed', () => {
       }),
     );
     announcerMock.vaultClosed.next.mockReturnValueOnce(
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         setTimeout(resolve, 200);
       }),
     );
@@ -166,7 +260,7 @@ describe('Gets vaults transactions', () => {
       }),
     );
     announcerMock.vaultTransaction.next.mockReturnValueOnce(
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         setTimeout(resolve, 200);
       }),
     );
