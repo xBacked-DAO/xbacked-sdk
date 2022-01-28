@@ -17,6 +17,54 @@ export default class EventFetcher {
     this.announcer = ctc.events.Announcer;
   }
 
+  // Compares created vaults with closed vaults and returns only the open vaults
+  // without duplicate records.
+  async getOpenVaults(params: {
+    startRound?: number;
+    endRound?: number;
+    timeout?: number;
+  }): Promise<string[]> {
+    const createdVaultsCount = new Map<string, number>();
+
+    const createdVaults = await this.getEvents<VaultCreatedEvent>({
+      reachEvent: this.announcer.vaultCreated,
+      parseEvent: VaultCreatedEvent.parseEvent,
+      ...params,
+    });
+
+    const closedVaults = await this.getEvents({
+      reachEvent: this.announcer.vaultClosed,
+      parseEvent: VaultClosedEvent.parseEvent,
+      ...params
+    });
+
+    createdVaults.map((event) => {
+      const vaultEvent = createdVaultsCount.get(event.owner);
+      if (vaultEvent) {
+        createdVaultsCount.set(event.owner, vaultEvent + 1);
+      }
+      else {
+        createdVaultsCount.set(event.owner, 1);
+      }
+    });
+
+    closedVaults.map((event) => {
+      const vaultEvent = createdVaultsCount.get(event.owner);
+      if (vaultEvent) {
+        createdVaultsCount.set(event.owner, vaultEvent - 1);
+      }
+    });
+
+    const openVaults:string[] = [];
+    createdVaultsCount.forEach((value: number, key: string) => {
+      if (value > 0) {
+        openVaults.push(key);
+      }
+    });
+
+    return Promise.resolve(openVaults);
+  }
+
   async getCreatedVaults(params: {
     startRound?: number;
     endRound?: number;
@@ -92,7 +140,6 @@ export default class EventFetcher {
     while (keepGoing) {
       await Promise.race([params.reachEvent.next(), newTimeoutPromise()])
         .then(async (event) => {
-          // console.log({data});
           const currentRound = reachStdLib.bigNumberToNumber(event.when);
           if (currentRound <= endRound) {
             eventArray.push(params.parseEvent(event, reachStdLib));
