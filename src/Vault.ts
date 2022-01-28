@@ -12,12 +12,15 @@ interface VaultReturnParams {
   totalVaultDebt: number;
 }
 
-interface UserVaultReturnParams {
-  collateralRatio: number;
+export interface ReachUserVault {
   collateral: number;
+  collateralRatio: number;
   liquidating: boolean;
-  vaultDebt: number;
   redeemable: boolean;
+  vaultDebt: number;
+}
+
+export interface UserVaultReturnParams extends ReachUserVault {
   vaultFound: boolean;
 }
 
@@ -35,7 +38,6 @@ class Vault {
       this.acc = params.acc;
     }
   }
-
 
   async getState(params: { account: Account }): Promise<VaultReturnParams> {
     const ctc = params.account.reachAccount.contract(backend, this.id);
@@ -73,13 +75,16 @@ class Vault {
       };
     }
     const vaultState = stateView[1][1];
+    return { ...Vault.parseVaultState(vaultState), vaultFound: true };
+  }
+
+  static parseVaultState(vaultState: any): ReachUserVault {
     return {
       collateralRatio: vaultState.collateralRatio.toNumber(),
       collateral: vaultState.collateral.toNumber(),
       liquidating: vaultState.liquidating,
       vaultDebt: vaultState.vaultDebt.toNumber(),
       redeemable: vaultState.redeemable,
-      vaultFound: true,
     };
   }
 }
