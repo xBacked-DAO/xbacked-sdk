@@ -1,4 +1,3 @@
-
 export default class VaultEvent {
   round: number;
   owner: string;

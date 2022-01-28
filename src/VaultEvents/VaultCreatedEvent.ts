@@ -1,7 +1,6 @@
 import Vault, { ReachUserVault } from '../Vault';
 import VaultEvent from './VaultEvent';
 
-
 export default class VaultCreatedEvent extends VaultEvent {
   vaultState: ReachUserVault;
 

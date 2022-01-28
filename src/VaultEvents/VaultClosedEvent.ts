@@ -1,6 +1,5 @@
 import VaultEvent from './VaultEvent';
 
-
 export default class VaultClosedEvent extends VaultEvent {
   constructor(round: number, owner: string) {
     super(round, owner);
