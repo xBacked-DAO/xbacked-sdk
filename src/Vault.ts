@@ -30,13 +30,9 @@ interface VaultParameters {
 }
 class Vault {
   readonly id: number | undefined;
-  acc?: any;
 
   constructor(params: VaultParameters) {
     this.id = params.id;
-    if (params.acc !== undefined) {
-      this.acc = params.acc;
-    }
   }
 
   async getState(params: { account: Account }): Promise<VaultReturnParams> {
