@@ -114,10 +114,19 @@ export default class EventFetcher {
     const endRound: number = params.endRound || reachStdLib.bigNumberToNumber(await reachStdLib.getNetworkTime());
     const timeout: number = params.timeout || 5000;
 
-    const newTimeoutPromise = () =>
-      new Promise((resolve, reject) => {
-        setTimeout(reject, timeout);
+    const timeoutReachFetch = (timeout:number) => {
+      return new Promise((resolve, reject) => {
+        const timeOut = setTimeout(() => {
+          reject();
+        }, timeout);
+
+        params.reachEvent.next().then((event:any) => {
+          clearTimeout(timeOut);
+          resolve(event);
+        });
       });
+    }
+
     let keepGoing = true;
 
     // Note: Events always start scanning from the time "0" unless seek
@@ -138,22 +147,21 @@ export default class EventFetcher {
     // Retrieve events from startRound until endRound or the next event takes longer
     // than MAX_EVENT_TIMEOUT
     while (keepGoing) {
-      await Promise.race([params.reachEvent.next(), newTimeoutPromise()])
-        .then(async (event) => {
-          const currentRound = reachStdLib.bigNumberToNumber(event.when);
-          if (currentRound <= endRound) {
-            eventArray.push(params.parseEvent(event, reachStdLib));
-          } else {
-            keepGoing = false;
-          }
-        })
-        .catch((e) => {
-          // This catches the timeout or any error inside the 'then' block
-          if (e) {
-            throw e;
-          }
+      try {
+        const event:any = await timeoutReachFetch(timeout)
+        const currentRound = reachStdLib.bigNumberToNumber(event.when);
+        if (currentRound <= endRound) {
+          eventArray.push(params.parseEvent(event, reachStdLib));
+        } else {
           keepGoing = false;
-        });
+        }
+      } catch(e) {
+        // This catches the timeout or any error inside the 'then' block
+        if (e) {
+          throw e;
+        }
+        keepGoing = false;
+      }
     }
     return eventArray;
   }
