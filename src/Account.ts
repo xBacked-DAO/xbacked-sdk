@@ -5,23 +5,34 @@ import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import Vault from './Vault';
 import { convertToMicroUnits, convertFromMicroUnits } from './utils';
 
-interface AccountInterface {
+
+/**
+ * this is passed as an argument to the [[Account]] constructor
+ */
+export interface AccountInterface {
   mnemonic?: string;
   secretKey?: number[];
   signer?: string | 'MyAlgoConnect';
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
-  currentVault?: string;
   provider?: any;
 }
-
+/**
+ * An abstraction of an account on the Algorand
+ */
 class Account {
+  /** @property a string of 25 words seperated by spaces that can be used to recover an algorand account */
   mnemonic?: string;
+  /** @property an array of numbers that can be used to recover an algorand account */
   secretKey?: number[];
+  /** @property the name of a signer or wallet provider that can be used to sign transactions */
   signer?: string;
-  currentVault?: string;
+   /** @property An account created from the reach sdk */
   reachAccount: any;
+   /** @property An instance of the reach standard library */
   reachStdLib: any;
+   /** @property The desired network to connect to */
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
+  /** An instance of the provider object for the signer specified */
   provider?: any;
 
   constructor(params: AccountInterface) {
@@ -29,7 +40,6 @@ class Account {
     this.mnemonic = params.mnemonic;
     this.secretKey = params.secretKey;
     this.signer = params.signer;
-    this.currentVault = params.currentVault;
     this.provider = params.provider;
     this.reachStdLib = loadStdlib('ALGO');
 
