@@ -1,4 +1,4 @@
-import { getOpenVaults, getCreatedVaults, getClosedVaults, getTransactions } from '../EventFetcher';
+import { getOpenVaults, getCreatedVaults, getClosedVaults, getTransactions } from '../vaultDiscovery';
 import Account from '../__mock__/MockAccount';
 import Vault from '../Vault';
 
