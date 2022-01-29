@@ -1,4 +1,4 @@
-import EventFetcher from '../__mock__/MockFetcher';
+import { getOpenVaults, getCreatedVaults, getClosedVaults, getTransactions } from '../EventFetcher';
 import Account from '../__mock__/MockAccount';
 import Vault from '../Vault';
 
@@ -8,25 +8,11 @@ const vault = new Vault({ id: 1 });
 const account = new Account({});
 
 account.reachAccount = {};
-account.reachAccount.contract = jest.fn((x, y) => {
-  return {
-    events: {
-      Announcer: { },
-    },
-  };
-});
 account.reachStdLib.getNetworkTime = jest.fn(() => 100);
 
 const toNumberMock = {
   toNumber: jest.fn((x) => 0),
 };
-
-const eventFetcher = new EventFetcher({ vault, account });
-
-it('Creates the fetcher', async function () {
-  expect(account.reachAccount.contract).toBeCalled();
-  expect(eventFetcher).toBeDefined();
-});
 
 describe('Gets open vaults', () => {
   beforeEach(() => {
@@ -72,7 +58,7 @@ describe('Gets open vaults', () => {
     );
     announcerMock.vaultCreated.next.mockReturnValueOnce(
       new Promise((resolve, reject) => {
-        setTimeout(reject, 200);
+        setTimeout(resolve, 100);
       }),
     );
     announcerMock.vaultClosed.next.mockReturnValueOnce(
@@ -107,19 +93,25 @@ describe('Gets open vaults', () => {
     );
     announcerMock.vaultClosed.next.mockReturnValueOnce(
       new Promise((resolve, reject) => {
-        setTimeout(resolve, 300);
+        setTimeout(resolve, 150);
       }),
     );
-    eventFetcher.setAnnouncer(announcerMock);
+    account.reachAccount.contract = jest.fn((x, y) => {
+      return {
+        events: {
+          Announcer: announcerMock,
+        },
+      };
+    });
   });
 
   it('Checks return only open vaults', async function () {
-    const results = await eventFetcher.getOpenVaults({ timeout: 100 });
+    const results = await getOpenVaults({ account, vault, timeout: 50 });
     expect(results.length).toBe(0);
   });
 
   it('Checks return only open vaults whithin interval', async function () {
-    const results = await eventFetcher.getOpenVaults({endRound:2, timeout: 100 });
+    const results = await getOpenVaults({ account, vault, endRound: 2, timeout: 50 });
     expect(results.length).toBe(1);
   });
 });
@@ -163,19 +155,25 @@ describe('Gets vaults created', () => {
     );
     announcerMock.vaultCreated.next.mockReturnValueOnce(
       new Promise((resolve, reject) => {
-        setTimeout(resolve, 200);
+        setTimeout(resolve, 100);
       }),
     );
-    eventFetcher.setAnnouncer(announcerMock);
+    account.reachAccount.contract = jest.fn((x, y) => {
+      return {
+        events: {
+          Announcer: announcerMock,
+        },
+      };
+    });
   });
 
   it('Checks get all results when no interval', async function () {
-    const results = await eventFetcher.getCreatedVaults({ timeout: 100 });
+    const results = await getCreatedVaults({ account, vault, timeout: 50 });
     expect(results.length).toBe(2);
   });
 
   it('Checks ending round ignoring last', async function () {
-    const results = await eventFetcher.getCreatedVaults({ endRound: 1, timeout: 100 });
+    const results = await getCreatedVaults({ account, vault, endRound: 1, timeout: 50 });
     expect(results.length).toBe(1);
   });
 });
@@ -202,19 +200,25 @@ describe('Gets vaults closed', () => {
     );
     announcerMock.vaultClosed.next.mockReturnValueOnce(
       new Promise((resolve, reject) => {
-        setTimeout(resolve, 200);
+        setTimeout(resolve, 100);
       }),
     );
-    eventFetcher.setAnnouncer(announcerMock);
+    account.reachAccount.contract = jest.fn((x, y) => {
+      return {
+        events: {
+          Announcer: announcerMock,
+        },
+      };
+    });
   });
 
   it('Checks get all results when no interval', async function () {
-    const results = await eventFetcher.getClosedVaults({ timeout: 100 });
+    const results = await getClosedVaults({ account, vault, timeout: 50 });
     expect(results.length).toBe(2);
   });
 
   it('Checks ending round ignoring last', async function () {
-    const results = await eventFetcher.getClosedVaults({ endRound: 1, timeout: 100 });
+    const results = await getClosedVaults({ account, vault, endRound: 1, timeout: 50 });
     expect(results.length).toBe(1);
   });
 });
@@ -261,19 +265,25 @@ describe('Gets vaults transactions', () => {
     );
     announcerMock.vaultTransaction.next.mockReturnValueOnce(
       new Promise((resolve, reject) => {
-        setTimeout(resolve, 200);
+        setTimeout(resolve, 100);
       }),
     );
-    eventFetcher.setAnnouncer(announcerMock);
+    account.reachAccount.contract = jest.fn((x, y) => {
+      return {
+        events: {
+          Announcer: announcerMock,
+        },
+      };
+    });
   });
 
   it('Checks get all results when no interval', async function () {
-    const results = await eventFetcher.getTransactions({ timeout: 100 });
+    const results = await getTransactions({ account, vault, timeout: 50 });
     expect(results.length).toBe(2);
   });
 
   it('Checks ending round ignoring last', async function () {
-    const results = await eventFetcher.getTransactions({ endRound: 1, timeout: 100 });
+    const results = await getTransactions({ account, vault, endRound: 1, timeout: 50 });
     expect(results.length).toBe(1);
   });
 });
