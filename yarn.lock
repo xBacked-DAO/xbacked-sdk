@@ -1122,9 +1122,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:^0.1.8-rc.5":
-  version: 0.1.8-rc.5
-  resolution: "@reach-sh/stdlib@npm:0.1.8-rc.5"
+"@reach-sh/stdlib@npm:0.1.8-rc.6":
+  version: 0.1.8-rc.6
+  resolution: "@reach-sh/stdlib@npm:0.1.8-rc.6"
   dependencies:
     "@msgpack/msgpack": ^2.5.1
     "@randlabs/myalgo-connect": ^1.1.1
@@ -1139,7 +1139,7 @@ __metadata:
     jsbi: ^3.1.6
     node-fetch: ^2.6.1
     wait-port: ^0.2.9
-  checksum: a2bf52ed393897f08d3a6ac7d62dcaad8589bb0437c772a873acf3a2267dfc23629d1108f468c8a1875aa169994bacd74281d87e27d9a06283e2a31c64b7f23f
+  checksum: bf1842085b4db89c812bd087df204bdd5b7475275ac70aadfe678495707e0e0cd1cc08df91a64b957ee5b4a4719d53e3487efe23997522fbac03e584c619ae70
   languageName: node
   linkType: hard
 
@@ -1710,11 +1710,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:^0.0.8":
-  version: 0.0.8
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.8"
+"@xbacked-dao/xbacked-contracts@npm:^0.0.9":
+  version: 0.0.9
+  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.9"
   dependencies:
-    "@reach-sh/stdlib": ^0.1.8-rc.5
+    "@reach-sh/stdlib": 0.1.8-rc.6
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
@@ -1722,8 +1722,8 @@ __metadata:
     es-main: ^1.0.2
     yargs: ^17.3.1
   peerDependencies:
-    "@reach-sh/stdlib": ^0.1.8-rc.5
-  checksum: 416fde48936fc5a205b89009c389692d260d3cf554ecc45605982ff6a74ee76ede28c1ecf84301e63d28cc5703f8e8e385dfa3ad2a8a7bc6f28cb2a840acfa56
+    "@reach-sh/stdlib": 0.1.8-rc.6
+  checksum: 91fbf9979833c13b14825708953b4c2b6aec4963f4d17d9c79c2173af5b85ddb9cd5c17281162592b226f518039ad19d1a5961494d3d309e7b5823f84da478ea
   languageName: node
   linkType: hard
 
@@ -1734,11 +1734,11 @@ __metadata:
     "@babel/types": ^7.16.0
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": ^0.1.8-rc.5
+    "@reach-sh/stdlib": 0.1.8-rc.6
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": ^0.0.8
+    "@xbacked-dao/xbacked-contracts": ^0.0.9
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
