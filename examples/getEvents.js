@@ -1,4 +1,4 @@
-import {Account, Vault, EventFetcher} from '../lib/cjs/index.js';
+const { Account, Vault, getCreatedVaults } = require('..');
 
 (async () => {
 
@@ -13,9 +13,7 @@ import {Account, Vault, EventFetcher} from '../lib/cjs/index.js';
 
   console.log(await vault.getUserInfo({account, address: 'ZUEUFXKIOP4FZPGY4HEIWPZC7MZGOMHO22I2ESF3HLZM4H4IQK76IMCLJE'}));
 
-  const eventFetcher = new EventFetcher({ vault, account });
-
-  console.log((await eventFetcher.getCreatedVaults({timeout: 1000})));
+  console.log((await getCreatedVaults({account, vault, timeout: 1000})));
   // Output example:
   // [
   //   VaultCreatedEvent {
