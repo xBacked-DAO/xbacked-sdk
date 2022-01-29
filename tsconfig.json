@@ -5,6 +5,7 @@
       "moduleResolution": "node",
       "sourceMap": true,
       "declaration": true,
+      "declarationDir": "./lib/types",
       "outDir": "./lib/esm",
       "strict": true,
       "noImplicitAny":true,
