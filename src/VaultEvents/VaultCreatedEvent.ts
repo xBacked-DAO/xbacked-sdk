@@ -13,7 +13,7 @@ export default class VaultCreatedEvent extends VaultEvent {
     return new VaultCreatedEvent(
       reachStdLib.bigNumberToNumber(event.when),
       reachStdLib.addressFromHex(event.what[0]),
-      Vault.parseUserInfo(event.what[1])
+      Vault.parseUserInfo(event.what[1]),
     );
   }
 }
