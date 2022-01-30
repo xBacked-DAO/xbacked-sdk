@@ -71,10 +71,10 @@ class Vault {
       };
     }
     const vaultState = stateView[1][1];
-    return { ...Vault.parseVaultState(vaultState), vaultFound: true };
+    return { ...Vault.parseUserInfo(vaultState), vaultFound: true };
   }
 
-  static parseVaultState(vaultState: any): ReachUserVault {
+  static parseUserInfo(vaultState: any): ReachUserVault {
     return {
       collateralRatio: vaultState.collateralRatio.toNumber(),
       collateral: vaultState.collateral.toNumber(),
