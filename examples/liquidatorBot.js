@@ -12,14 +12,15 @@ const {
 } = require('..'); // Use require('@xbacked-dao/xbacked-sdk'); instead
 const yargs = require('yargs/yargs');
 
-const VAULT_ID = 50;
-const TOKEN_ID = 48;
-
 // Max. timeout between event queries.
 const MAX_EVENT_TIMEOUT = 2000;
 
 const argv = yargs(process.argv.slice(2))
   .usage('Usage: $0')
+  .number('vault-id')
+  .describe('vault-id', 'The master vault id to search for vaults')
+  .number('token-id')
+  .describe('token-id', 'The token id to use as payment')
   .number('d')
   .alias('d', 'debt-amount')
   .describe('d', 'Amount of debt tokens to use for liquidation')
@@ -36,7 +37,7 @@ const argv = yargs(process.argv.slice(2))
   .alias('v', 'verbose')
   .describe('v', 'Show all output')
   .default({u: 10, s: 0, v: false})
-  .demandOption(['debt-amount'])
+  .demandOption(['vault-id', 'token-id', 'debt-amount'])
   .version(false)
   .argv;
 
@@ -105,11 +106,11 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
     // mnemonic: 'lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch',
     network: 'LocalHost'
   });
-  await account.optIntoToken(TOKEN_ID);
+  await account.optIntoToken(yargs.tokenId);
 
   account.fundFromFaucet();
   const reachStdLib = account.reachStdLib;
-  const vault = new Vault({id: VAULT_ID});
+  const vault = new Vault({id: yargs.vaultID});
 
   let remainingDebtTokens = convertToMicroUnits(argv.debtAmount);
   let startRound = argv.startRound;
