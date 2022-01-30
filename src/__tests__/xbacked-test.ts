@@ -90,5 +90,5 @@ it('Minter creates vault', async function () {
     collateral: 1000,
     mintAmount: 500,
   });
-  expect(isVaultCreated).toBe(1);
+  expect(isVaultCreated).toBe(true);
 });

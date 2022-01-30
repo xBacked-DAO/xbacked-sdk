@@ -2,9 +2,8 @@
 import { loadStdlib } from '@reach-sh/stdlib';
 // @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
-import Vault from './Vault';
+import Vault, { UserVaultReturnParams, VaultReturnParams } from './Vault';
 import { convertToMicroUnits, convertFromMicroUnits } from './utils';
-
 
 /**
  * this is passed as an argument to the [[Account]] constructor
@@ -26,11 +25,11 @@ class Account {
   secretKey?: number[];
   /** @property the name of a signer or wallet provider that can be used to sign transactions */
   signer?: string;
-   /** @property An account created from the reach sdk */
+  /** @property An account created from the reach sdk */
   reachAccount: any;
-   /** @property An instance of the reach standard library */
+  /** @property An instance of the reach standard library */
   reachStdLib: any;
-   /** @property The desired network to connect to */
+  /** @property The desired network to connect to, the default value is LocalHost */
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   /** An instance of the provider object for the signer specified */
   provider?: any;
@@ -53,6 +52,10 @@ class Account {
       this.reachStdLib.setProviderByName(this.network);
     }
   }
+
+  /**
+   * initialises the reachAccount property
+   */
   async initialiseReachAccount() {
     if (this.mnemonic != null && this.reachAccount == null) {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
@@ -71,11 +74,20 @@ class Account {
     }
   }
 
+  /**
+   * allows an instance of the account class to opt into an Algorand standard Asset
+   * @param tokenID the asa id to opt into
+   */
   async optIntoToken(tokenID: number) {
     await this.initialiseReachAccount();
     await this.reachAccount.tokenAccept(tokenID);
   }
 
+  /**
+   *
+   * @param params contains keys address, debtAmount, vault that indicates the address of the vault, the debt to be repaid and the vault of type [[Vault]]
+   * @returns a boolean indicating if the vault was liquidated or not
+   */
   async liquidateVault(params: { address: string; debtAmount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -83,6 +95,12 @@ class Account {
     const res = await put.liquidateVault(params.address, params.debtAmount);
     return res;
   }
+
+  /**
+   *
+   * @param params contains the new price and the vault whose price should be updated
+   * @returns a boolean indicating if the price was successfully updated or not
+   */
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -91,6 +109,11 @@ class Account {
     return res;
   }
 
+  /**
+   *
+   * @param params contains the amount of xUsd tokens to be minted as well as the vault in which the token should be minted
+   * @returns a boolean indicating if the xUsd tokens were successfully minted or not
+   */
   async mintToken(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -99,6 +122,11 @@ class Account {
     return res;
   }
 
+  /**
+   *
+   * @param params contains the amount of tokens to be deposited as collateral as well as the vault
+   * @returns a boolean indicating if the collateral was deposited successfully
+   */
   async depositCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -107,6 +135,11 @@ class Account {
     return res;
   }
 
+  /**
+   *
+   * @param params contains amount of collateral to be withdrawn as well as the vault they should be withdrawn from
+   * @returns a boolean indicating if the collaterals were successfully withdrawn or not
+   */
   async withdrawCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -115,6 +148,11 @@ class Account {
     return res;
   }
 
+  /**
+   *
+   * @param params an object with key amount signifying the amount of debt tokens to return and key vault indicating the Contract
+   * @returns a boolean indicating if the vault debt was returned or not
+   */
   async returnVaultDebt(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -123,6 +161,11 @@ class Account {
     return res;
   }
 
+  /**
+   *
+   * @param params an object with key tokenId that indicates the ASA id whose balance this function must return, this key's value should be set to zero for the native token balance
+   * @returns the balance of the specified tokenId
+   */
   async getBalance(params: { tokenId: number }): Promise<number> {
     // reach.formatCurrency(await reach.balanceOf(account), 4)
     await this.initialiseReachAccount();
@@ -135,11 +178,19 @@ class Account {
     }
   }
 
+  /**
+   *
+   * @returns a UInt8 array which is the secretKey of this Reach account
+   */
   async getSecret(): Promise<any> {
     await this.initialiseReachAccount();
     return this.reachAccount.networkAccount.sk;
   }
 
+  /**
+   * Allows you to fund this account from the faucet when on devnet
+   * @returns a boolean indicating if this account was successfully funded or not
+   */
   async fundFromFaucet(): Promise<boolean> {
     await this.initialiseReachAccount();
     if ((await this.reachStdLib.canFundFromFaucet()) && this.reachAccount != null) {
@@ -150,6 +201,10 @@ class Account {
     }
   }
 
+  /**
+   *
+   * @returns the formatted adress of this account
+   */
   async getAddress(): Promise<any> {
     await this.initialiseReachAccount();
     if (this.reachAccount != null) {
@@ -159,12 +214,22 @@ class Account {
     }
   }
 
-  async getVaultState(params: { vault: Vault }): Promise<any> {
+  /**
+   * Used to get the state of the contract
+   * @param params an object with key vault that indicates the contract whose state is to be retrieved
+   * @returns the state of the vault of type [[VaultReturnParams]]
+   */
+  async getVaultState(params: { vault: Vault }): Promise<VaultReturnParams> {
     await this.initialiseReachAccount();
     return await params.vault.getState({ account: this });
   }
 
-  async createVault(params: { collateral: number; mintAmount: number; vault: Vault }): Promise<number> {
+  /**
+   * Used to create a vault in the contract
+   * @param params contains keys collateral that indicates the amount of collateral that will be used to create the vault, mintAmount that indicates the amount of xusd tokens to be minted and vault that indicates the contract we are communicating with
+   * @returns a boolean indicating if the vault was created or not
+   */
+  async createVault(params: { collateral: number; mintAmount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
@@ -172,6 +237,11 @@ class Account {
     return res;
   }
 
+  /**
+   * Used by an account to collect fees from the contract
+   * @param params contains key vault which indicates the contract this function should interact with
+   * @returns a boolean indicating of fees were collected or not
+   */
   async collectFees(params: { vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -180,27 +250,22 @@ class Account {
     return res;
   }
 
-  async replenishSupply(params: { vault: Vault; supply: number }): Promise<boolean> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
-    const put = ctc.a.AdminAPI;
-    const res = await put.replenishSupply(params.supply);
-    return res;
-  }
+  /**
+   *
+   * @param params contains key address which indicates the vault we want to retrieve the info of as well as key vault that indicates the contract we want to interact with
+   * @returns the information for the specified vault
+   */
 
-  async deprecateVault(params: { shouldDeprecateVault: boolean; vault: Vault }): Promise<boolean> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
-    const put = ctc.a.AdminAPI;
-    const res = await put.deprecateVault(params.shouldDeprecateVault);
-    return res;
-  }
-
-  async getUserInfo(params: { address: string; vault: Vault }): Promise<any> {
+  async getUserInfo(params: { address: string; vault: Vault }): Promise<UserVaultReturnParams> {
     await this.initialiseReachAccount();
     return await params.vault.getUserInfo({ account: this, address: params.address });
   }
 
+  /**
+   * Returns the contract address
+   * @param params an object with key vault that indicates the contract whose address is to be retrieved
+   * @returns a formatted address of the specified contract as a string
+   */
   async getContractAddress(params: { vaultId: number }): Promise<string> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vaultId);

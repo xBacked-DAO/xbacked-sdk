@@ -1,6 +1,9 @@
 import Account from './Account';
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
-interface VaultReturnParams {
+/**
+ * The Parameters returned from the staate of a contract
+ */
+export interface VaultReturnParams {
   accruedFees: number;
   collateralPrice: number;
   deprecated: boolean;
@@ -11,8 +14,8 @@ interface VaultReturnParams {
   mintingFee: number;
   totalVaultDebt: number;
 }
-
-interface UserVaultReturnParams {
+/** The parameters returned from a vault in a contract  */
+export interface UserVaultReturnParams {
   collateralRatio: number;
   collateral: number;
   liquidating: boolean;
@@ -20,8 +23,11 @@ interface UserVaultReturnParams {
   redeemable: boolean;
   vaultFound: boolean;
 }
-
-interface VaultParameters {
+/**
+ * parameters used to instantiate the Contract constructor
+ */
+export interface VaultParameters {
+  /** id of the contract */
   id: number;
   acc?: any;
 }
@@ -36,7 +42,11 @@ class Vault {
     }
   }
 
-
+  /**
+   * Used to get the state of the contract
+   * @param params contains key account of type [[Account]] that will be used to read state from the contract
+   * @returns state information of tyoe [[VaultReturnParams]]
+   */
   async getState(params: { account: Account }): Promise<VaultReturnParams> {
     const ctc = params.account.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
@@ -57,7 +67,11 @@ class Vault {
       totalVaultDebt: vaultState.totalVaultDebt.toNumber(),
     };
   }
-
+  /**
+   *
+   * @param params contains keys account that indicates the account that will be used to read the information from the contract and address that indicates the address of the contract to be read from
+   * @returns user information of type [[UserVaultReturnParams]]
+   */
   async getUserInfo(params: { account: Account; address: string }): Promise<UserVaultReturnParams> {
     const ctc = params.account.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
