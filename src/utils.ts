@@ -21,20 +21,30 @@ export const convertFromMicroUnits = (val: number): number => {
 // https://www.symbolab.com/solver/equation-calculator/solve%20for%20m%2C%20r%20%3D%20%5Cfrac%7B%5Cleft(%5Cleft(c%20-%5Cleft(%5Cfrac%7Bm%7D%7B%5Cleft(p%20-%20%5Cleft(p%5Ccdot0.035%5Cright)%5Cright)%7D%20%5Cright)%5Cright)%5Ccdot%20p%5Ccdot100%5Cright)%7D%7Bd%20-%20m%7D?or=input
 export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, vaultDebt: number): number => {
   const discountRateInv = 1 - DISCOUNT_RATE;
-  return Math.floor( ( ( discountRateInv * 100 * collateral * collateralPrice / MICRO_UNITS ) - ( discountRateInv * MINIMUM_COLLATERAL_RATIO * vaultDebt ) )
-    / ( -discountRateInv * MINIMUM_COLLATERAL_RATIO + 100 ) );
+  return Math.floor(
+    ((discountRateInv * 100 * collateral * collateralPrice) / MICRO_UNITS -
+      discountRateInv * MINIMUM_COLLATERAL_RATIO * vaultDebt) /
+      (-discountRateInv * MINIMUM_COLLATERAL_RATIO + 100),
+  );
 };
 
 export const calcCollateralRatio = (collateral: number, collateralPrice: number, vaultDebt: number): number => {
-  return (collateral * collateralPrice / MICRO_UNITS * 100) / vaultDebt;
-}
+  return (((collateral * collateralPrice) / MICRO_UNITS) * 100) / vaultDebt;
+};
 
-export const calcDiscountPrice = (collateralPrice: number):number => {
-  return collateralPrice - (collateralPrice * DISCOUNT_RATE);
-}
+export const calcDiscountPrice = (collateralPrice: number): number => {
+  return collateralPrice - collateralPrice * DISCOUNT_RATE;
+};
 
-export const calcCollateralRatioAfterLiquidation = (collateral: number, collateralPrice: number, debtPayout: number, vaultDebt: number): number => {
-  const discountPrice =  calcDiscountPrice(collateralPrice);
-  return ( ( collateral - convertToMicroUnits( debtPayout / discountPrice ) ) * collateralPrice / MICRO_UNITS * 100 )
-    / ( vaultDebt - debtPayout );
+export const calcCollateralRatioAfterLiquidation = (
+  collateral: number,
+  collateralPrice: number,
+  debtPayout: number,
+  vaultDebt: number,
+): number => {
+  const discountPrice = calcDiscountPrice(collateralPrice);
+  return (
+    ((((collateral - convertToMicroUnits(debtPayout / discountPrice)) * collateralPrice) / MICRO_UNITS) * 100) /
+    (vaultDebt - debtPayout)
+  );
 };
