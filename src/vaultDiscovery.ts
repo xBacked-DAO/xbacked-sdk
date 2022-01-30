@@ -30,15 +30,14 @@ export const getOpenVaults = async (params: {
     reachStdLib: params.account.reachStdLib,
     reachEvent: announcer.vaultClosed,
     parseEvent: VaultClosedEvent.parseEvent,
-    ...params
+    ...params,
   });
 
   createdVaults.map((event) => {
     const vaultEvent = createdVaultsCount.get(event.owner);
     if (vaultEvent) {
       createdVaultsCount.set(event.owner, vaultEvent + 1);
-    }
-    else {
+    } else {
       createdVaultsCount.set(event.owner, 1);
     }
   });
@@ -50,7 +49,7 @@ export const getOpenVaults = async (params: {
     }
   });
 
-  const openVaults:string[] = [];
+  const openVaults: string[] = [];
   createdVaultsCount.forEach((value: number, key: string) => {
     if (value > 0) {
       openVaults.push(key);
@@ -58,7 +57,7 @@ export const getOpenVaults = async (params: {
   });
 
   return Promise.resolve(openVaults);
-}
+};
 
 export const getCreatedVaults = async (params: {
   vault: Vault;
@@ -76,7 +75,7 @@ export const getCreatedVaults = async (params: {
     parseEvent: VaultCreatedEvent.parseEvent,
     ...params,
   });
-}
+};
 
 export const getClosedVaults = async (params: {
   vault: Vault;
@@ -94,7 +93,7 @@ export const getClosedVaults = async (params: {
     parseEvent: VaultClosedEvent.parseEvent,
     ...params,
   });
-}
+};
 
 export const getTransactions = async (params: {
   vault: Vault;
@@ -112,9 +111,9 @@ export const getTransactions = async (params: {
     parseEvent: VaultTransactionEvent.parseEvent,
     ...params,
   });
-}
+};
 
-const getEvents = async<T> (params: {
+const getEvents = async <T>(params: {
   reachStdLib: any;
   reachEvent: any;
   parseEvent: (event: any, reachStdLib: any) => T;
@@ -123,21 +122,22 @@ const getEvents = async<T> (params: {
   timeout?: number;
 }): Promise<T[]> => {
   const startRound: number = params.startRound || 0;
-  const endRound: number = params.endRound || params.reachStdLib.bigNumberToNumber(await params.reachStdLib.getNetworkTime());
+  const endRound: number =
+    params.endRound || params.reachStdLib.bigNumberToNumber(await params.reachStdLib.getNetworkTime());
   const timeout: number = params.timeout || 5000;
 
-  const timeoutReachFetch = (timeout:number) => {
+  const timeoutReachFetch = (ms: number) => {
     return new Promise((resolve, reject) => {
       const timeOut = setTimeout(() => {
         reject();
-      }, timeout);
+      }, ms);
 
-      params.reachEvent.next().then((event:any) => {
+      params.reachEvent.next().then((event: any) => {
         clearTimeout(timeOut);
         resolve(event);
       });
     });
-  }
+  };
 
   let keepGoing = true;
 
@@ -160,14 +160,14 @@ const getEvents = async<T> (params: {
   // than MAX_EVENT_TIMEOUT
   while (keepGoing) {
     try {
-      const event:any = await timeoutReachFetch(timeout)
+      const event: any = await timeoutReachFetch(timeout);
       const currentRound = params.reachStdLib.bigNumberToNumber(event.when);
       if (currentRound <= endRound) {
         eventArray.push(params.parseEvent(event, params.reachStdLib));
       } else {
         keepGoing = false;
       }
-    } catch(e) {
+    } catch (e) {
       // This catches the timeout or any error inside the 'then' block
       if (e) {
         throw e;
@@ -176,4 +176,4 @@ const getEvents = async<T> (params: {
     }
   }
   return eventArray;
-}
+};

@@ -24,7 +24,7 @@ export default class VaultTransactionEvent extends VaultEvent {
       reachStdLib.bigNumberToNumber(event.when),
       reachStdLib.addressFromHex(event.what[0]),
       TransactionType[reachStdLib.bigNumberToNumber(event.what[1])],
-      Vault.parseUserInfo(event.what[2])
+      Vault.parseUserInfo(event.what[2]),
     );
   }
 }
