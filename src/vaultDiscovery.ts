@@ -126,11 +126,11 @@ const getEvents = async<T> (params: {
   const endRound: number = params.endRound || params.reachStdLib.bigNumberToNumber(await params.reachStdLib.getNetworkTime());
   const timeout: number = params.timeout || 5000;
 
-  const timeoutReachFetch = (timeout:number) => {
+  const timeoutReachFetch = (ms:number) => {
     return new Promise((resolve, reject) => {
       const timeOut = setTimeout(() => {
         reject();
-      }, timeout);
+      }, ms);
 
       params.reachEvent.next().then((event:any) => {
         clearTimeout(timeOut);
