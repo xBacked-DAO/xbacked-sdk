@@ -30,7 +30,7 @@ describe('Gets open vaults', () => {
       Promise.resolve({
         when: 0,
         what: [
-          '0xbbbbbbbbbbbbbbbbbbbbbbbbbb',
+          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
           {
             collateralRatio: toNumberMock,
             collateral: toNumberMock,
@@ -45,7 +45,7 @@ describe('Gets open vaults', () => {
       Promise.resolve({
         when: 2,
         what: [
-          '0xaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          '0x1b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
           {
             collateralRatio: toNumberMock,
             collateral: toNumberMock,
@@ -65,7 +65,7 @@ describe('Gets open vaults', () => {
       Promise.resolve({
         when: 1,
         what: [
-          '0xaaaaaaaaaaaaaaaaaaaaaaaaaa',
+          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
           {
             collateralRatio: toNumberMock,
             collateral: toNumberMock,
@@ -80,7 +80,7 @@ describe('Gets open vaults', () => {
       Promise.resolve({
         when: 3,
         what: [
-          '0xbbbbbbbbbbbbbbbbbbbbbbbbbb',
+          '0x1b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
           {
             collateralRatio: toNumberMock,
             collateral: toNumberMock,
@@ -128,7 +128,7 @@ describe('Gets vaults created', () => {
       Promise.resolve({
         when: 0,
         what: [
-          'address',
+          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
           {
             collateralRatio: toNumberMock,
             collateral: toNumberMock,
@@ -142,7 +142,7 @@ describe('Gets vaults created', () => {
       Promise.resolve({
         when: 2,
         what: [
-          'address',
+          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
           {
             collateralRatio: toNumberMock,
             collateral: toNumberMock,
@@ -189,13 +189,13 @@ describe('Gets vaults closed', () => {
     announcerMock.vaultClosed.next.mockReturnValueOnce(
       Promise.resolve({
         when: 0,
-        what: ['address'],
+        what: ['0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd'],
       }),
     );
     announcerMock.vaultClosed.next.mockReturnValueOnce(
       Promise.resolve({
         when: 2,
-        what: ['address'],
+        what: ['0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd'],
       }),
     );
     announcerMock.vaultClosed.next.mockReturnValueOnce(
@@ -235,7 +235,7 @@ describe('Gets vaults transactions', () => {
       Promise.resolve({
         when: 0,
         what: [
-          'address',
+          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
           0,
           {
             collateralRatio: toNumberMock,
@@ -251,7 +251,7 @@ describe('Gets vaults transactions', () => {
       Promise.resolve({
         when: 2,
         what: [
-          'address',
+          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
           0,
           {
             collateralRatio: toNumberMock,

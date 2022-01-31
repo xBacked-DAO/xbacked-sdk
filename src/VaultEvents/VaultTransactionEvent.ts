@@ -22,7 +22,7 @@ export default class VaultTransactionEvent extends VaultEvent {
   static parseEvent(event: any, reachStdLib: any): VaultTransactionEvent {
     return new VaultTransactionEvent(
       reachStdLib.bigNumberToNumber(event.when),
-      reachStdLib.addressFromHex(event.what[0]),
+      reachStdLib.formatAddress(event.what[0]),
       TransactionType[reachStdLib.bigNumberToNumber(event.what[1])],
       Vault.parseUserInfo(event.what[2]),
     );
