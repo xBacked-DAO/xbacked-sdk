@@ -31,7 +31,7 @@ class Account {
     this.signer = params.signer;
     this.currentVault = params.currentVault;
     this.provider = params.provider;
-    this.reachStdLib = loadStdlib('ALGO');
+    this.reachStdLib = params.reachStdLib || loadStdlib('ALGO');
 
     if (params.network) {
       this.network = params.network;
@@ -39,25 +39,30 @@ class Account {
       this.network = 'LocalHost';
     }
 
-    if (this.signer == null) {
+    if (this.signer == null && !params.reachStdLib) {
       this.reachStdLib.setProviderByName(this.network);
     }
   }
   async initialiseReachAccount() {
-    if (this.mnemonic != null && this.reachAccount == null) {
-      this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
-    } else if (this.secretKey != null && this.reachAccount == null) {
-      this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
-      await this.reachStdLib.setWalletFallback(
-        await this.reachStdLib.walletFallback({
-          providerEnv: this.network,
-          [this.signer]: this.provider,
-        }),
-      );
-      this.reachAccount = await this.reachStdLib.getDefaultAccount();
-    } else if (!this.reachAccount) {
-      throw new Error('Pass a mnemonic, a secret key or a provider to create an acccount');
+    try {
+      if (this.mnemonic != null && this.reachAccount == null) {
+        this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
+      } else if (this.secretKey != null && this.reachAccount == null) {
+        this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
+      } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
+        await this.reachStdLib.setWalletFallback(
+          await this.reachStdLib.walletFallback({
+            providerEnv: this.network,
+            [this.signer]: this.provider,
+          }),
+        );
+        this.reachAccount = await this.reachStdLib.getDefaultAccount();
+      } else if (!this.reachAccount) {
+        throw new Error('Pass a mnemonic, a secret key or a provider to create an acccount');
+      }
+    } catch (error) {
+      // If any network calls fail, the function should throw an error
+      throw new Error(error);
     }
   }
 
