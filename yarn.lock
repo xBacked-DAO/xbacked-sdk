@@ -401,11 +401,11 @@ __metadata:
   linkType: hard
 
 "@conflux-dev/conflux-address-js@npm:^1.0.0":
-  version: 1.3.11
-  resolution: "@conflux-dev/conflux-address-js@npm:1.3.11"
+  version: 1.3.12
+  resolution: "@conflux-dev/conflux-address-js@npm:1.3.12"
   dependencies:
     jsbi: ^3.1.4
-  checksum: 52a86dd01197b43f9d00f34537d6e3b97f5fe01d84e69db0ef931a6ebaebe22169e259552bc6f019296bb1acdb1b2b7873fb9146b7f85907a7e9d33fb4539ed1
+  checksum: a518eceb2d44adb6adcffd6e04d36c85eaa235165af1c057d8860462c191ffc0fcd86df7e1d6da26f63864f63d2e82beed80b62591d8c23b2d880ed4b4e8d58f
   languageName: node
   linkType: hard
 
@@ -841,13 +841,13 @@ __metadata:
   linkType: hard
 
 "@humanwhocodes/config-array@npm:^0.9.2":
-  version: 0.9.2
-  resolution: "@humanwhocodes/config-array@npm:0.9.2"
+  version: 0.9.3
+  resolution: "@humanwhocodes/config-array@npm:0.9.3"
   dependencies:
     "@humanwhocodes/object-schema": ^1.2.1
     debug: ^4.1.1
     minimatch: ^3.0.4
-  checksum: 28a9e2974c50a86765cb6cc96e03d29187ea33fdaba62c4f35db89002e3cfbd340e64c9f6cf869e33e2e5cdcc06e78763458f4178d38a6f30aea1308787ca706
+  checksum: 6e5d7d274941c459bab0a14a87e372206d89fad3e4879d982edc942e8cc34da6510ea3644b8535a2a9edaa6527e91dccceabc6837ffa8ee506d66bca5d269ebc
   languageName: node
   linkType: hard
 
@@ -1299,9 +1299,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*":
-  version: 17.0.12
-  resolution: "@types/node@npm:17.0.12"
-  checksum: f7e4c384b72648550391c2c8bd42560dfccf5b7a0506fb5842f326f8b176286be279dd63f62af621fe6d409d474ea5d312855061f512132e999f4e902a22e4db
+  version: 17.0.13
+  resolution: "@types/node@npm:17.0.13"
+  checksum: 8b87c850c1604c65e3474bd03d122914464b7970caed20f65f4a7706ab429353b896a3916be4d2581164eccda9e3dd95c338fbccf686ff85a824c40d15e8f3fa
   languageName: node
   linkType: hard
 
@@ -1935,8 +1935,8 @@ __metadata:
   linkType: hard
 
 "algosdk@npm:^1.12.0, algosdk@npm:^1.13.0-beta.2":
-  version: 1.13.0
-  resolution: "algosdk@npm:1.13.0"
+  version: 1.13.1
+  resolution: "algosdk@npm:1.13.1"
   dependencies:
     algo-msgpack-with-bigint: ^2.1.1
     buffer: ^6.0.2
@@ -1948,7 +1948,7 @@ __metadata:
     superagent: ^6.1.0
     tweetnacl: ^1.0.3
     url-parse: ^1.5.1
-  checksum: 18f3ef7fe099edf54113efc77ae648584fd349221f1cf079e6d019320d81ee40c3a2f40585a9f94b7092ee2acc3a98380823243cbfee0ff55de6463d59bfad93
+  checksum: 45d7296b39c5a168bc37d11aa262d1bd7fc5e497788e31eef87378d398a29f4af23538aa39fd0726ba1f909e2841a1b7b9ec66509ff7bd38cf9700ee3a5e5a78
   languageName: node
   linkType: hard
 
@@ -2565,9 +2565,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001286":
-  version: 1.0.30001302
-  resolution: "caniuse-lite@npm:1.0.30001302"
-  checksum: 612689059f6a9aeebad43afeabac655308ddbad8e0f345030edf7656564cf9d0d5af10e3cbf61b64b09b06a97f82ba3788f5621d6526c7a3e7e068cae88d6782
+  version: 1.0.30001303
+  resolution: "caniuse-lite@npm:1.0.30001303"
+  checksum: fe77fb680c94c875be2fb78c9507a69d3ed6be8894832d3ee8a7d24e4c5c7599bf217f030fcdfd761ea211065042679bf697a57eefe114058a3208561e2fd042
   languageName: node
   linkType: hard
 
@@ -3170,9 +3170,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.17":
-  version: 1.4.53
-  resolution: "electron-to-chromium@npm:1.4.53"
-  checksum: 8c221a85b1941763803836044a8d8eaacb6e9661302fcdd36601a74f7123236aa52b0007d54320a1550cbbcf9dfdd4cf52ca92e677df3f71be0ee2ed68c738d7
+  version: 1.4.55
+  resolution: "electron-to-chromium@npm:1.4.55"
+  checksum: 0c9c9b886b47086959727e968c90007f43f60232b3b70051b4190bf4ca1a7a2037b6e2cf31d74b99dd32d8a579425a38bb72e880babad60348ccfc35970e5955
   languageName: node
   linkType: hard
 
@@ -3871,9 +3871,9 @@ __metadata:
   linkType: hard
 
 "flatted@npm:^3.1.0":
-  version: 3.2.4
-  resolution: "flatted@npm:3.2.4"
-  checksum: 7d33846428ab337ec81ef9b8b9103894c1c81f5f67feb32bd4ed106fbc47da60d56edb42efd36c9f1f30a010272aeccd34ec1ffacfe9dfdff19673b1d4df481b
+  version: 3.2.5
+  resolution: "flatted@npm:3.2.5"
+  checksum: 3c436e9695ccca29620b4be5671dd72e5dd0a7500e0856611b7ca9bd8169f177f408c3b9abfa78dfe1493ee2d873e2c119080a8a9bee4e1a186a9e60ca6c89f1
   languageName: node
   linkType: hard
 
@@ -5164,7 +5164,7 @@ __metadata:
 
 "js-conflux-sdk@git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber":
   version: 1.6.0
-  resolution: "js-conflux-sdk@git+https://github.com/reach-sh/js-conflux-sdk.git#commit=6df5f0538c2077a7e29f0be08205b937499a1040"
+  resolution: "js-conflux-sdk@https://github.com/reach-sh/js-conflux-sdk.git#commit=6df5f0538c2077a7e29f0be08205b937499a1040"
   dependencies:
     "@babel/runtime": ^7.8.4
     "@conflux-dev/conflux-address-js": ^1.0.0
@@ -5175,7 +5175,7 @@ __metadata:
     secp256k1: ^3.7.1
     superagent: ^5.1.0
     websocket: ^1.0.31
-  checksum: 695882b59c231761a36e5e4802979a52c6f72b626c6b1eb24a7c7b80b90184c3fd8bc40131cac031cdc99befba8c2031842e59d367cf758364859696f07d3e2b
+  checksum: d3a8689f50b256c6f1f9d90592db82d8b72f3c3e2cbe3c28b0a36eaf1b138a68a5502423ca7bb483324f3b97cdef54738538d628494fbff856ede33215fba5a4
   languageName: node
   linkType: hard
 
