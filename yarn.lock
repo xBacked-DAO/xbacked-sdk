@@ -1143,27 +1143,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:^0.1.8-rc.5":
-  version: 0.1.8-rc.6
-  resolution: "@reach-sh/stdlib@npm:0.1.8-rc.6"
-  dependencies:
-    "@msgpack/msgpack": ^2.5.1
-    "@randlabs/myalgo-connect": ^1.1.1
-    "@walletconnect/client": ^1.6.5
-    algorand-walletconnect-qrcode-modal: ^1.6.1
-    algosdk: ^1.13.0-beta.2
-    await-timeout: ^0.6.0
-    ethers: ^5.4.7
-    express: ^4.17.1
-    hi-base32: ^0.5.0
-    js-conflux-sdk: "git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber"
-    jsbi: ^3.1.6
-    node-fetch: ^2.6.1
-    wait-port: ^0.2.9
-  checksum: bf1842085b4db89c812bd087df204bdd5b7475275ac70aadfe678495707e0e0cd1cc08df91a64b957ee5b4a4719d53e3487efe23997522fbac03e584c619ae70
-  languageName: node
-  linkType: hard
-
 "@sinonjs/commons@npm:^1.7.0":
   version: 1.8.3
   resolution: "@sinonjs/commons@npm:1.8.3"
