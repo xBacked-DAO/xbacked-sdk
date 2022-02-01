@@ -12,7 +12,8 @@ interface AccountInterface {
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   currentVault?: string;
   provider?: any;
-  reachStdLib?: any
+  reachStdLib?: any,
+  networkAccount?: boolean
 }
 
 class Account {
@@ -24,6 +25,7 @@ class Account {
   reachStdLib: any;
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   provider?: any;
+  networkAccount?: boolean 
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -33,7 +35,7 @@ class Account {
     this.currentVault = params.currentVault;
     this.provider = params.provider;
     this.reachStdLib = params.reachStdLib || loadStdlib('ALGO');
-
+    this.networkAccount = params.networkAccount
     if (params.network) {
       this.network = params.network;
     } else {
@@ -49,6 +51,14 @@ class Account {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
     } else if (this.secretKey != null && this.reachAccount == null) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
+    }else if(this.networkAccount && this.signer != null && this.reachAccount == null && this.provider != null){
+      await this.reachStdLib.setWalletFallback(
+        await this.reachStdLib.walletFallback({
+          providerEnv: this.network,
+          [this.signer]: this.provider,
+        }),
+      );
+      this.reachAccount = await this.reachStdLib.connectAccount(this.networkAccount);
     } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
