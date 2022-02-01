@@ -12,6 +12,7 @@ interface AccountInterface {
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   currentVault?: string;
   provider?: any;
+  reachStdLib?: any
 }
 
 class Account {
