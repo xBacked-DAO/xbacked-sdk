@@ -44,25 +44,20 @@ class Account {
     }
   }
   async initialiseReachAccount() {
-    try {
-      if (this.mnemonic != null && this.reachAccount == null) {
-        this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
-      } else if (this.secretKey != null && this.reachAccount == null) {
-        this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-      } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
-        await this.reachStdLib.setWalletFallback(
-          await this.reachStdLib.walletFallback({
-            providerEnv: this.network,
-            [this.signer]: this.provider,
-          }),
-        );
-        this.reachAccount = await this.reachStdLib.getDefaultAccount();
-      } else if (!this.reachAccount) {
-        throw new Error('Pass a mnemonic, a secret key or a provider to create an acccount');
-      }
-    } catch (error) {
-      // If any network calls fail, the function should throw an error
-      throw new Error(error);
+    if (this.mnemonic != null && this.reachAccount == null) {
+      this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
+    } else if (this.secretKey != null && this.reachAccount == null) {
+      this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
+    } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
+      await this.reachStdLib.setWalletFallback(
+        await this.reachStdLib.walletFallback({
+          providerEnv: this.network,
+          [this.signer]: this.provider,
+        }),
+      );
+      this.reachAccount = await this.reachStdLib.getDefaultAccount();
+    } else if (!this.reachAccount) {
+      throw new Error('Pass a mnemonic, a secret key or a provider to create an acccount');
     }
   }
 
