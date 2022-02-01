@@ -1,10 +1,10 @@
 {
   "name": "@xbacked-dao/xbacked-sdk",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "Official SDK for the xBacked Protocol",
   "main": "lib/cjs/index.js",
   "module": "/lib/esm/index.js",
-  "types": "lib/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "packageManager": "yarn@3.1.0",
   "files": [
     "lib/**/*"
@@ -14,8 +14,10 @@
     "build": "yarn run build-esm & yarn run build-cjs",
     "build-esm": "tsc -p ./tsconfig.json",
     "build-cjs": "tsc -p ./tsconfig-cjs.json",
-    "format": "prettier --write \"src/**/*.ts\" ",
+    "format": "prettier \"src/**/*.ts\" ",
+    "format:write": "prettier --write \"src/**/*.ts\" ",
     "lint": "tslint -p tsconfig.json",
+    "lint:fix": "tslint -p tsconfig.json --fix",
     "prepare": "yarn run build",
     "prepublishOnly": "yarn test && yarn run lint",
     "preversion": "yarn run lint"
@@ -53,9 +55,9 @@
   "dependencies": {
     "@babel/types": "^7.16.0",
     "@randlabs/myalgo-connect": "^1.1.1",
-    "@reach-sh/stdlib": "0.1.8-rc.6",
+    "@reach-sh/stdlib": "0.1.8-rc.7",
     "@types/jsdom": "^16.2.13",
-    "@xbacked-dao/xbacked-contracts": "^0.0.9",
+    "@xbacked-dao/xbacked-contracts": "0.0.10",
     "awesome-typescript-loader": "^5.2.1",
     "jest": "^27.3.1"
   }

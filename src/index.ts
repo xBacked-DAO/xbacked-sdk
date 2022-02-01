@@ -1,8 +1,4 @@
-/* tslint:disable no-var-requires */
-const Account = require('./Account').default;
-const Vault = require('./Vault').default;
-const xbacked = (client: string) => {
-  return client;
-};
-
-module.exports = { Account, Vault };
+export { default as Account } from './Account';
+export { default as Vault } from './Vault';
+export * from './vaultDiscovery';
+export * from './utils';
