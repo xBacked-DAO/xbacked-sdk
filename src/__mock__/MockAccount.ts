@@ -1,4 +1,4 @@
-import Account from '../Account';
+import { Account } from '../Account';
 import Vault from '../Vault';
 class MockAccount extends Account {
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {

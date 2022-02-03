@@ -1,5 +1,5 @@
 /* tslint:disable no-var-requires */
-const Account = require('./Account').default;
+const { Account } = require('./Account');
 const Vault = require('./Vault').default;
 const xbacked = (client: string) => {
   return client;

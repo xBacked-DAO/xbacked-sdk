@@ -11,7 +11,7 @@
       "esModuleInterop": true,
       "allowJs": true,
       "lib": [ "es2015","DOM" ],
-      "allowSyntheticDefaultImports": true,
+      "allowSyntheticDefaultImports": true
       // "types": ["jest", "@types/node","reflect-metadata"]
     },
     "include": ["src/**/*", "src/__tests__/t-tests.ts"],

@@ -18,7 +18,7 @@ export interface AccountInterface {
 /**
  * An abstraction of an account on the Algorand
  */
-class Account {
+export class Account {
   /** @property a string of 25 words seperated by spaces that can be used to recover an algorand account */
   mnemonic?: string;
   /** @property an array of numbers that can be used to recover an algorand account */
@@ -275,5 +275,3 @@ class Account {
 
   // TODO: ADD listeners for events
 }
-
-export default Account;
