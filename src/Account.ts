@@ -81,7 +81,7 @@ class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
-    const res = await put.liquidateVault(params.address, params.debtAmount);
+    const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount));
     return res;
   }
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
