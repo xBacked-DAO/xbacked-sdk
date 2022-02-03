@@ -9,7 +9,8 @@ export const LIQUIDATION_FEE = 0.025;
 const MINIMUM_COLLATERAL_RATIO = 119;
 
 export const convertToMicroUnits = (val: number): number => {
-  return val * MICRO_UNITS;
+  if (Number.isNaN(val) || !val) throw Error('Invalid input given');
+  return Math.abs(Math.floor(val * MICRO_UNITS))
 };
 
 export const convertFromMicroUnits = (val: number): number => {
