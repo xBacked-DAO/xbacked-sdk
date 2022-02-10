@@ -1122,9 +1122,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:0.1.8-rc.7":
-  version: 0.1.8-rc.7
-  resolution: "@reach-sh/stdlib@npm:0.1.8-rc.7"
+"@reach-sh/stdlib@npm:0.1.8-rc.8":
+  version: 0.1.8-rc.8
+  resolution: "@reach-sh/stdlib@npm:0.1.8-rc.8"
   dependencies:
     "@msgpack/msgpack": ^2.5.1
     "@randlabs/myalgo-connect": ^1.1.1
@@ -1139,7 +1139,7 @@ __metadata:
     jsbi: ^3.1.6
     node-fetch: ^2.6.1
     wait-port: ^0.2.9
-  checksum: d2e9d9cd6bd3904664a645400315d19c21d3d9f802df4ceaf0d8b92ea13b563f128d3abf7c7e5f6fde2dcaa07dcce452d89ce75f2b9a5b1efc0dbb33a803c6db
+  checksum: b56cecbf53bddb46700b4b80a5381a521cdf3e22f68097ffddaf2044676e03a5e1586751907795124dff0ede5a6f32399e716751b52814741bb352e1b1d1ec18
   languageName: node
   linkType: hard
 
@@ -1710,11 +1710,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:0.0.10":
-  version: 0.0.10
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.10"
+"@xbacked-dao/xbacked-contracts@file:../xbacked-contracts/dist::locator=%40xbacked-dao%2Fxbacked-sdk%40workspace%3A.":
+  version: 0.0.11
+  resolution: "@xbacked-dao/xbacked-contracts@file:../xbacked-contracts/dist#../xbacked-contracts/dist::hash=73f442&locator=%40xbacked-dao%2Fxbacked-sdk%40workspace%3A."
   dependencies:
-    "@reach-sh/stdlib": 0.1.8-rc.7
+    "@reach-sh/stdlib": 0.1.8-rc.8
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
@@ -1723,7 +1723,7 @@ __metadata:
     yargs: ^17.3.1
   peerDependencies:
     "@reach-sh/stdlib": 0.1.8-rc.7
-  checksum: 6753a3778cd2eed78663ea3a1e0e3dae3736d918811e2da3f367babc0135094798ce60d1e5c062c3f9f15b463e6243d906763c89f878b090998202bef972d386
+  checksum: f5a3acf2bd2d4203892a4bf722ba9ee510fd37033f603a17f8d13d7dda71727e9b1277ed82b808937deec36d3c89a0f7b93f69ad1cb097d08971d6a8dcb04e7a
   languageName: node
   linkType: hard
 
@@ -1734,11 +1734,11 @@ __metadata:
     "@babel/types": ^7.16.0
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": 0.1.8-rc.7
+    "@reach-sh/stdlib": 0.1.8-rc.8
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 0.0.10
+    "@xbacked-dao/xbacked-contracts": "file:../xbacked-contracts/dist"
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
