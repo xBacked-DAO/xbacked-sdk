@@ -33,7 +33,7 @@ export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, v
 };
 
 export const calcCollateralRatio = (collateral: number, collateralPrice: number, vaultDebt: number): number => {
-  return (((collateral * collateralPrice) / MICRO_UNITS) * 100) / vaultDebt;
+  return (((collateral * collateralPrice) / MICRO_UNITS)) / vaultDebt;
 };
 
 export const calcDiscountPrice = (collateralPrice: number): number => {
