@@ -1122,27 +1122,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:0.1.8-rc.8":
-  version: 0.1.8-rc.8
-  resolution: "@reach-sh/stdlib@npm:0.1.8-rc.8"
-  dependencies:
-    "@msgpack/msgpack": ^2.5.1
-    "@randlabs/myalgo-connect": ^1.1.1
-    "@walletconnect/client": ^1.6.5
-    algorand-walletconnect-qrcode-modal: ^1.6.1
-    algosdk: ^1.13.0-beta.2
-    await-timeout: ^0.6.0
-    ethers: ^5.4.7
-    express: ^4.17.1
-    hi-base32: ^0.5.0
-    js-conflux-sdk: "git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber"
-    jsbi: ^3.1.6
-    node-fetch: ^2.6.1
-    wait-port: ^0.2.9
-  checksum: b56cecbf53bddb46700b4b80a5381a521cdf3e22f68097ffddaf2044676e03a5e1586751907795124dff0ede5a6f32399e716751b52814741bb352e1b1d1ec18
-  languageName: node
-  linkType: hard
-
 "@reach-sh/stdlib@npm:0.1.8-rc.9":
   version: 0.1.8-rc.9
   resolution: "@reach-sh/stdlib@npm:0.1.8-rc.9"
@@ -1731,11 +1710,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@file:../xbacked-contracts/dist::locator=%40xbacked-dao%2Fxbacked-sdk%40workspace%3A.":
+"@xbacked-dao/xbacked-contracts@npm:0.0.11":
   version: 0.0.11
-  resolution: "@xbacked-dao/xbacked-contracts@file:../xbacked-contracts/dist#../xbacked-contracts/dist::hash=73f442&locator=%40xbacked-dao%2Fxbacked-sdk%40workspace%3A."
+  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.11"
   dependencies:
-    "@reach-sh/stdlib": 0.1.8-rc.8
+    "@reach-sh/stdlib": 0.1.8-rc.9
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
@@ -1744,7 +1723,7 @@ __metadata:
     yargs: ^17.3.1
   peerDependencies:
     "@reach-sh/stdlib": 0.1.8-rc.7
-  checksum: f5a3acf2bd2d4203892a4bf722ba9ee510fd37033f603a17f8d13d7dda71727e9b1277ed82b808937deec36d3c89a0f7b93f69ad1cb097d08971d6a8dcb04e7a
+  checksum: f20a71834afa2f39cc84b7ea362e1fb171dd160c605f244729ed2f81aab85778a16d58b70116b21601459fa5fa9045737deec6a98c7d1cc7801f5a4807096cb3
   languageName: node
   linkType: hard
 
@@ -1759,7 +1738,7 @@ __metadata:
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": "file:../xbacked-contracts/dist"
+    "@xbacked-dao/xbacked-contracts": 0.0.11
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
