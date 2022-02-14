@@ -23,8 +23,8 @@ export interface VaultReturnParams {
   /**@property the total amount of debt in the contract */
   totalVaultDebt: number;
 }
-/** The parameters returned from a vault in a contract  */
-export interface UserVaultReturnParams {
+
+export interface ReachUserVault {
   /** @property the collateral ratio for a vault */
   collateralRatio: number;
   /** @property the amount of collateral in a vault*/
@@ -35,7 +35,10 @@ export interface UserVaultReturnParams {
   vaultDebt: number;
   /** inidicator that signifies if a vault can be redeemed*/
   redeemable: boolean;
-  /**indicator that signifies that a vault exists for a particular address */
+}
+
+export interface UserVaultReturnParams extends ReachUserVault {
+  /**indicator that signifies that a vault exists for a particular address */ 
   vaultFound: boolean;
 }
 /**
@@ -52,13 +55,9 @@ export interface VaultParameters {
 export class Vault {
   /** unique identifier for the contract */
   readonly id: number | undefined;
-  acc?: any;
 
   constructor(params: VaultParameters) {
     this.id = params.id;
-    if (params.acc !== undefined) {
-      this.acc = params.acc;
-    }
   }
 
   /**
@@ -106,13 +105,16 @@ export class Vault {
       };
     }
     const vaultState = stateView[1][1];
+    return { ...Vault.parseUserInfo(vaultState), vaultFound: true };
+  }
+
+  static parseUserInfo(vaultState: any): ReachUserVault {
     return {
       collateralRatio: vaultState.collateralRatio.toNumber(),
       collateral: vaultState.collateral.toNumber(),
       liquidating: vaultState.liquidating,
       vaultDebt: vaultState.vaultDebt.toNumber(),
       redeemable: vaultState.redeemable,
-      vaultFound: true,
     };
   }
 }

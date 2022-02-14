@@ -17,8 +17,12 @@ export interface AccountInterface {
   signer?: string | 'MyAlgoConnect';
   /** @property The desired network to connect to, the default value is LocalHost */
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
-  /** An instance of the provider object for the signer specified */
+  /** @property An optional instance of the provider object for the signer specified */
   provider?: any;
+  /** @property an optional instance of the reach standard library */
+  reachStdLib?: any,
+  /** @property an optional instance of an account from the reach standard library */
+  networkAccount?: boolean
 }
 /** 
  * An abstraction of an account on the Algorand
@@ -36,8 +40,10 @@ export class Account {
   reachStdLib: any;
   /** @property The desired network to connect to, the default value is LocalHost */
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
-  /** An instance of the provider object for the signer specified */
+  /** @property An instance of the provider object for the signer specified */
   provider?: any;
+  /** @property an optional instance of an account from the reach standard library */
+  networkAccount?: boolean 
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -45,15 +51,15 @@ export class Account {
     this.secretKey = params.secretKey;
     this.signer = params.signer;
     this.provider = params.provider;
-    this.reachStdLib = loadStdlib('ALGO');
-
+    this.reachStdLib = params.reachStdLib || loadStdlib('ALGO');
+    this.networkAccount = params.networkAccount
     if (params.network) {
       this.network = params.network;
     } else {
       this.network = 'LocalHost';
     }
 
-    if (this.signer == null) {
+    if (this.signer == null && !params.reachStdLib) {
       this.reachStdLib.setProviderByName(this.network);
     }
   }
@@ -66,6 +72,14 @@ export class Account {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
     } else if (this.secretKey != null && this.reachAccount == null) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
+    }else if(this.networkAccount && this.signer != null && this.reachAccount == null && this.provider != null){
+      await this.reachStdLib.setWalletFallback(
+        await this.reachStdLib.walletFallback({
+          providerEnv: this.network,
+          [this.signer]: this.provider,
+        }),
+      );
+      this.reachAccount = await this.reachStdLib.connectAccount(this.networkAccount);
     } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
@@ -97,7 +111,7 @@ export class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
-    const res = await put.liquidateVault(params.address, params.debtAmount);
+    const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount));
     return res;
   }
 
