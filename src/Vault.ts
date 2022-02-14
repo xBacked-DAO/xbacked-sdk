@@ -4,34 +4,53 @@ import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
  * The Parameters returned from the staate of a contract
  */
 export interface VaultReturnParams {
+  /** @property fees that have accrued in the contract */
   accruedFees: number;
+  /** @property the present collateral price in the contract */
   collateralPrice: number;
+  /** @property indicator that signifies if the contract is deprecated or not */
   deprecated: boolean;
+  /** @property the percentage of the accruedFees, sent to the FeeCollector as a reward for distributing fees */
   feeCollectorFee: number;
+  /** @property  minimum collateral ratio for a vault to be liquidated*/
   liquidationCollateralRatio: number;
+  /** @property the percentage of the anount liquidated, taken by the contract as fees during liquidation */
   liquidationFee: number;
+  /** @property the minimum collateral ratio allowed for vault creation, minting, withdrawal in the contract */
   minimumCollateralRatio: number;
+  /** @property The percentage of the amount minted, taken by the contract as fees during minting*/
   mintingFee: number;
+  /**@property the total amount of debt in the contract */
   totalVaultDebt: number;
 }
 /** The parameters returned from a vault in a contract  */
 export interface UserVaultReturnParams {
+  /** @property the collateral ratio for a vault */
   collateralRatio: number;
+  /** @property the amount of collateral in a vault*/
   collateral: number;
+  /** @property indicator that signifies if a vault can be liquidated */
   liquidating: boolean;
+  /** @property the debt in a vault */
   vaultDebt: number;
+  /** inidicator that signifies if a vault can be redeemed*/
   redeemable: boolean;
+  /**indicator that signifies that a vault exists for a particular address */
   vaultFound: boolean;
 }
 /**
  * parameters used to instantiate the Contract constructor
  */
 export interface VaultParameters {
-  /** id of the contract */
+  /**  @property  unique identifier for the contract */
   id: number;
   acc?: any;
 }
-class Vault {
+/** 
+ * An abstraction of an Xusd contract
+ */
+export class Vault {
+  /** unique identifier for the contract */
   readonly id: number | undefined;
   acc?: any;
 
@@ -98,4 +117,4 @@ class Vault {
   }
 }
 
-export default Vault;
+

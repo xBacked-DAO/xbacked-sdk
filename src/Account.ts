@@ -2,28 +2,33 @@
 import { loadStdlib } from '@reach-sh/stdlib';
 // @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
-import Vault, { UserVaultReturnParams, VaultReturnParams } from './Vault';
+import { Vault, UserVaultReturnParams, VaultReturnParams } from './Vault';
 import { convertToMicroUnits, convertFromMicroUnits } from './utils';
 
 /**
  * this is passed as an argument to the [[Account]] constructor
  */
 export interface AccountInterface {
+  /** @property an optional string of 25 words seperated by spaces that can be used to recover an algorand account */
   mnemonic?: string;
+   /** @property an optional array of numbers that can be used to recover an algorand account */
   secretKey?: number[];
+  /** @property an optional name of a signer or wallet provider that can be used to sign transactions, should be set along with the provider property */
   signer?: string | 'MyAlgoConnect';
+  /** @property The desired network to connect to, the default value is LocalHost */
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
+  /** An instance of the provider object for the signer specified */
   provider?: any;
 }
-/**
+/** 
  * An abstraction of an account on the Algorand
  */
 export class Account {
-  /** @property a string of 25 words seperated by spaces that can be used to recover an algorand account */
+  /** @property an optional string of 25 words seperated by spaces that can be used to recover an algorand account */
   mnemonic?: string;
-  /** @property an array of numbers that can be used to recover an algorand account */
+  /** @property an optional array of numbers that can be used to recover an algorand account */
   secretKey?: number[];
-  /** @property the name of a signer or wallet provider that can be used to sign transactions */
+  /** @property an optional name of a signer or wallet provider that can be used to sign transactions */
   signer?: string;
   /** @property An account created from the reach sdk */
   reachAccount: any;
@@ -188,7 +193,7 @@ export class Account {
   }
 
   /**
-   * Allows you to fund this account from the faucet when on devnet
+   * Allows you to fund this account from the faucet when on the Reach devnet
    * @returns a boolean indicating if this account was successfully funded or not
    */
   async fundFromFaucet(): Promise<boolean> {
