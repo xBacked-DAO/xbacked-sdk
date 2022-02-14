@@ -12,33 +12,33 @@ export interface VaultReturnParams {
   deprecated: boolean;
   /** @property the percentage of the accruedFees, sent to the FeeCollector as a reward for distributing fees */
   feeCollectorFee: number;
-  /** @property  minimum collateral ratio for a vault to be liquidated*/
+  /** @property  minimum collateral ratio for a vault to be liquidated */
   liquidationCollateralRatio: number;
   /** @property the percentage of the anount liquidated, taken by the contract as fees during liquidation */
   liquidationFee: number;
   /** @property the minimum collateral ratio allowed for vault creation, minting, withdrawal in the contract */
   minimumCollateralRatio: number;
-  /** @property The percentage of the amount minted, taken by the contract as fees during minting*/
+  /** @property The percentage of the amount minted, taken by the contract as fees during minting */
   mintingFee: number;
-  /**@property the total amount of debt in the contract */
+  /** @property the total amount of debt in the contract */
   totalVaultDebt: number;
 }
 
 export interface ReachUserVault {
   /** @property the collateral ratio for a vault */
   collateralRatio: number;
-  /** @property the amount of collateral in a vault*/
+  /** @property the amount of collateral in a vault */
   collateral: number;
   /** @property indicator that signifies if a vault can be liquidated */
   liquidating: boolean;
   /** @property the debt in a vault */
   vaultDebt: number;
-  /** inidicator that signifies if a vault can be redeemed*/
+  /** inidicator that signifies if a vault can be redeemed */
   redeemable: boolean;
 }
 
 export interface UserVaultReturnParams extends ReachUserVault {
-  /**indicator that signifies that a vault exists for a particular address */ 
+  /** indicator that signifies that a vault exists for a particular address */
   vaultFound: boolean;
 }
 /**
@@ -49,7 +49,7 @@ export interface VaultParameters {
   id: number;
   acc?: any;
 }
-/** 
+/**
  * An abstraction of an Xusd contract
  */
 export class Vault {
@@ -118,5 +118,3 @@ export class Vault {
     };
   }
 }
-
-

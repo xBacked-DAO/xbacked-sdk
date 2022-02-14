@@ -11,7 +11,7 @@ import { convertToMicroUnits, convertFromMicroUnits } from './utils';
 export interface AccountInterface {
   /** @property an optional string of 25 words seperated by spaces that can be used to recover an algorand account */
   mnemonic?: string;
-   /** @property an optional array of numbers that can be used to recover an algorand account */
+  /** @property an optional array of numbers that can be used to recover an algorand account */
   secretKey?: number[];
   /** @property an optional name of a signer or wallet provider that can be used to sign transactions, should be set along with the provider property */
   signer?: string | 'MyAlgoConnect';
@@ -20,11 +20,11 @@ export interface AccountInterface {
   /** @property An optional instance of the provider object for the signer specified */
   provider?: any;
   /** @property an optional instance of the reach standard library */
-  reachStdLib?: any,
+  reachStdLib?: any;
   /** @property an optional instance of an account from the reach standard library */
-  networkAccount?: boolean
+  networkAccount?: boolean;
 }
-/** 
+/**
  * An abstraction of an account on the Algorand
  */
 export class Account {
@@ -43,7 +43,7 @@ export class Account {
   /** @property An instance of the provider object for the signer specified */
   provider?: any;
   /** @property an optional instance of an account from the reach standard library */
-  networkAccount?: boolean 
+  networkAccount?: boolean;
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -52,7 +52,7 @@ export class Account {
     this.signer = params.signer;
     this.provider = params.provider;
     this.reachStdLib = params.reachStdLib || loadStdlib('ALGO');
-    this.networkAccount = params.networkAccount
+    this.networkAccount = params.networkAccount;
     if (params.network) {
       this.network = params.network;
     } else {
@@ -72,7 +72,7 @@ export class Account {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
     } else if (this.secretKey != null && this.reachAccount == null) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    }else if(this.networkAccount && this.signer != null && this.reachAccount == null && this.provider != null){
+    } else if (this.networkAccount && this.signer != null && this.reachAccount == null && this.provider != null) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.network,

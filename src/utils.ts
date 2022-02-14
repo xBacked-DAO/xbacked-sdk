@@ -8,7 +8,6 @@ export const LIQUIDATION_FEE = 0.025;
 // float conversion. (CONTRACT MINIMUM - 1)
 const MINIMUM_COLLATERAL_RATIO = 119;
 
-
 /**
  * Converts number to microunits
  * @param val number to be converted to microunits
@@ -16,7 +15,7 @@ const MINIMUM_COLLATERAL_RATIO = 119;
  */
 export const convertToMicroUnits = (val: number): number => {
   if (Number.isNaN(val) || !val) throw Error('Invalid input given');
-  return Math.abs(Math.floor(val * MICRO_UNITS))
+  return Math.abs(Math.floor(val * MICRO_UNITS));
 };
 /**
  * Converts number from microunits
@@ -43,7 +42,7 @@ export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, v
 };
 
 export const calcCollateralRatio = (collateral: number, collateralPrice: number, vaultDebt: number): number => {
-  return (((collateral * collateralPrice) / MICRO_UNITS)) / vaultDebt;
+  return (collateral * collateralPrice) / MICRO_UNITS / vaultDebt;
 };
 
 export const calcDiscountPrice = (collateralPrice: number): number => {

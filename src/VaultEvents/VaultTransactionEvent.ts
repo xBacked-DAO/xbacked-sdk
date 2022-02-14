@@ -1,6 +1,9 @@
-import {Vault, ReachUserVault } from '../Vault';
+import { Vault, ReachUserVault } from '../Vault';
 import VaultEvent from './VaultEvent';
 
+/**
+ * The type of transaction for a particular  [[VaultTransactionEvent]]
+ */
 enum TransactionType {
   DEPOSIT,
   MINT,
@@ -9,8 +12,13 @@ enum TransactionType {
   LIQUIDATE,
 }
 
+/**
+ * Representation of a VaultTransaction event
+ */
 export default class VaultTransactionEvent extends VaultEvent {
+  /** @property the type of transaction */
   type: string;
+  /** @property the current state of the vault */
   vaultState: ReachUserVault;
 
   constructor(round: number, owner: string, type: string, vaulState: ReachUserVault) {
@@ -19,6 +27,7 @@ export default class VaultTransactionEvent extends VaultEvent {
     this.vaultState = vaulState;
   }
 
+  /** Allows the instanstiation of the [[VaultTransactionEvent]] */
   static parseEvent(event: any, reachStdLib: any): VaultTransactionEvent {
     return new VaultTransactionEvent(
       reachStdLib.bigNumberToNumber(event.when),

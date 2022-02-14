@@ -1,5 +1,5 @@
 import Account from '../__mock__/MockAccount';
-import Vault from '../Vault';
+import { Vault } from '../Vault';
 
 jest.setTimeout(200000000);
 
