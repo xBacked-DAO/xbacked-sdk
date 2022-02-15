@@ -13,7 +13,7 @@ export interface AccountInterface {
   mnemonic?: string;
   /** @property An optional array of numbers that can be used to recover an algorand account */
   secretKey?: number[];
-  /** @property An optional name of a signer or wallet provider that can be used to sign transactions, should be set along with the provider property. Only required when not using a mnemonic or secretKey*/
+  /** @property An optional name of a signer or wallet provider that can be used to sign transactions, should be set along with the provider property. Only required when not using a mnemonic or secretKey */
   signer?: string | 'MyAlgoConnect';
   /** @property The desired network to connect to, the default value is LocalHost */
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
