@@ -1,6 +1,6 @@
 {
   "name": "@xbacked-dao/xbacked-sdk",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Official SDK for the xBacked Protocol",
   "main": "lib/cjs/index.js",
   "module": "/lib/esm/index.js",
