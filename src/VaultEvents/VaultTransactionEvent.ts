@@ -16,9 +16,9 @@ enum TransactionType {
  * Representation of a VaultTransaction event
  */
 export default class VaultTransactionEvent extends VaultEvent {
-  /** @property the type of transaction */
+  /** @property The type of transaction */
   type: string;
-  /** @property the current state of the vault */
+  /** @property The current state of the vault */
   vaultState: ReachUserVault;
 
   constructor(round: number, owner: string, type: string, vaulState: ReachUserVault) {

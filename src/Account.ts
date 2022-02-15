@@ -6,33 +6,33 @@ import { Vault, UserVaultReturnParams, VaultReturnParams } from './Vault';
 import { convertToMicroUnits, convertFromMicroUnits } from './utils';
 
 /**
- * this is passed as an argument to the [[Account]] constructor
+ * This is passed as an argument to the [[Account]] constructor
  */
 export interface AccountInterface {
-  /** @property an optional string of 25 words seperated by spaces that can be used to recover an algorand account */
+  /** @property An optional string of 25 words seperated by spaces that can be used to recover an algorand account */
   mnemonic?: string;
-  /** @property an optional array of numbers that can be used to recover an algorand account */
+  /** @property An optional array of numbers that can be used to recover an algorand account */
   secretKey?: number[];
-  /** @property an optional name of a signer or wallet provider that can be used to sign transactions, should be set along with the provider property */
+  /** @property An optional name of a signer or wallet provider that can be used to sign transactions, should be set along with the provider property. Only required when not using a mnemonic or secretKey*/
   signer?: string | 'MyAlgoConnect';
   /** @property The desired network to connect to, the default value is LocalHost */
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   /** @property An optional instance of the provider object for the signer specified */
   provider?: any;
-  /** @property an optional instance of the reach standard library */
+  /** @property An optional instance of the reach standard library */
   reachStdLib?: any;
-  /** @property an optional instance of an account from the reach standard library */
+  /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: boolean;
 }
 /**
  * An abstraction of an account on the Algorand
  */
 export class Account {
-  /** @property an optional string of 25 words seperated by spaces that can be used to recover an algorand account */
+  /** @property An optional string of 25 words seperated by spaces that can be used to recover an algorand account */
   mnemonic?: string;
-  /** @property an optional array of numbers that can be used to recover an algorand account */
+  /** @property An optional array of numbers that can be used to recover an algorand account */
   secretKey?: number[];
-  /** @property an optional name of a signer or wallet provider that can be used to sign transactions */
+  /** @propertyAn optional name of a signer or wallet provider that can be used to sign transactions, should be set along with the provider property. Only required when not using a mnemonic or secretKey */
   signer?: string;
   /** @property An account created from the reach sdk */
   reachAccount: any;
@@ -42,7 +42,7 @@ export class Account {
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   /** @property An instance of the provider object for the signer specified */
   provider?: any;
-  /** @property an optional instance of an account from the reach standard library */
+  /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: boolean;
 
   constructor(params: AccountInterface) {
@@ -65,7 +65,7 @@ export class Account {
   }
 
   /**
-   * initialises the reachAccount property
+   * Initialises the reachAccount property
    */
   async initialiseReachAccount() {
     if (this.mnemonic != null && this.reachAccount == null) {
@@ -94,8 +94,8 @@ export class Account {
   }
 
   /**
-   * allows an instance of the account class to opt into an Algorand standard Asset
-   * @param tokenID the asa id to opt into
+   * Allows an instance of the account class to opt into an Algorand standard Asset
+   * @param tokenID The asa ID to opt into
    */
   async optIntoToken(tokenID: number) {
     await this.initialiseReachAccount();
@@ -104,8 +104,8 @@ export class Account {
 
   /**
    *
-   * @param params contains keys address, debtAmount, vault that indicates the address of the vault, the debt to be repaid and the vault of type [[Vault]]
-   * @returns a boolean indicating if the vault was liquidated or not
+   * @param params Contains keys address, debtAmount, vault that indicates the address of the vault, the debt to be repaid and the vault of type [[Vault]]
+   * @returns A boolean indicating if the vault was liquidated or not
    */
   async liquidateVault(params: { address: string; debtAmount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -117,8 +117,8 @@ export class Account {
 
   /**
    *
-   * @param params contains the new price and the vault whose price should be updated
-   * @returns a boolean indicating if the price was successfully updated or not
+   * @param params Contains the new price and the vault whose price should be updated
+   * @returns A boolean indicating if the price was successfully updated or not
    */
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -130,8 +130,8 @@ export class Account {
 
   /**
    *
-   * @param params contains the amount of xUsd tokens to be minted as well as the vault in which the token should be minted
-   * @returns a boolean indicating if the xUsd tokens were successfully minted or not
+   * @param params Contains the amount of xUsd tokens to be minted as well as the vault in which the token should be minted
+   * @returns A boolean indicating if the xUsd tokens were successfully minted or not
    */
   async mintToken(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -143,8 +143,8 @@ export class Account {
 
   /**
    *
-   * @param params contains the amount of tokens to be deposited as collateral as well as the vault
-   * @returns a boolean indicating if the collateral was deposited successfully
+   * @param params Contains the amount of tokens to be deposited as collateral as well as the vault
+   * @returns A boolean indicating if the collateral was deposited successfully
    */
   async depositCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -156,8 +156,8 @@ export class Account {
 
   /**
    *
-   * @param params contains amount of collateral to be withdrawn as well as the vault they should be withdrawn from
-   * @returns a boolean indicating if the collaterals were successfully withdrawn or not
+   * @param params Contains amount of collateral to be withdrawn as well as the vault they should be withdrawn from
+   * @returns A boolean indicating if the collaterals were successfully withdrawn or not
    */
   async withdrawCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -169,8 +169,8 @@ export class Account {
 
   /**
    *
-   * @param params an object with key amount signifying the amount of debt tokens to return and key vault indicating the Contract
-   * @returns a boolean indicating if the vault debt was returned or not
+   * @param params An object with key amount signifying the amount of debt tokens to return and key vault indicating the Contract
+   * @returns A boolean indicating if the vault debt was returned or not
    */
   async returnVaultDebt(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -182,8 +182,8 @@ export class Account {
 
   /**
    *
-   * @param params an object with key tokenId that indicates the ASA id whose balance this function must return, this key's value should be set to zero for the native token balance
-   * @returns the balance of the specified tokenId
+   * @param params An object with key tokenId that indicates the ASA id whose balance this function must return, this key's value should be set to zero for the native token balance
+   * @returns The balance of the specified tokenId
    */
   async getBalance(params: { tokenId: number }): Promise<number> {
     // reach.formatCurrency(await reach.balanceOf(account), 4)
@@ -199,7 +199,7 @@ export class Account {
 
   /**
    *
-   * @returns a UInt8 array which is the secretKey of this Reach account
+   * @returns A UInt8 array which is the secretKey of this Reach account
    */
   async getSecret(): Promise<any> {
     await this.initialiseReachAccount();
@@ -208,7 +208,7 @@ export class Account {
 
   /**
    * Allows you to fund this account from the faucet when on the Reach devnet
-   * @returns a boolean indicating if this account was successfully funded or not
+   * @returns A boolean indicating if this account was successfully funded or not
    */
   async fundFromFaucet(): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -222,7 +222,7 @@ export class Account {
 
   /**
    *
-   * @returns the formatted adress of this account
+   * @returns The formatted adress of this account
    */
   async getAddress(): Promise<any> {
     await this.initialiseReachAccount();
@@ -235,8 +235,8 @@ export class Account {
 
   /**
    * Used to get the state of the contract
-   * @param params an object with key vault that indicates the contract whose state is to be retrieved
-   * @returns the state of the vault of type [[VaultReturnParams]]
+   * @param params An object with key vault that indicates the contract whose state is to be retrieved
+   * @returns The state of the vault of type [[VaultReturnParams]]
    */
   async getVaultState(params: { vault: Vault }): Promise<VaultReturnParams> {
     await this.initialiseReachAccount();
@@ -245,8 +245,8 @@ export class Account {
 
   /**
    * Used to create a vault in the contract
-   * @param params contains keys collateral that indicates the amount of collateral that will be used to create the vault, mintAmount that indicates the amount of xusd tokens to be minted and vault that indicates the contract we are communicating with
-   * @returns a boolean indicating if the vault was created or not
+   * @param params Contains keys collateral that indicates the amount of collateral that will be used to create the vault, mintAmount that indicates the amount of xusd tokens to be minted and vault that indicates the contract we are communicating with
+   * @returns A boolean indicating if the vault was created or not
    */
   async createVault(params: { collateral: number; mintAmount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -258,8 +258,8 @@ export class Account {
 
   /**
    * Used by an account to collect fees from the contract
-   * @param params contains key vault which indicates the contract this function should interact with
-   * @returns a boolean indicating of fees were collected or not
+   * @param params Contains key vault which indicates the contract this function should interact with
+   * @returns A boolean indicating of fees were collected or not
    */
   async collectFees(params: { vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -271,7 +271,7 @@ export class Account {
 
   /**
    *
-   * @param params contains key address which indicates the vault we want to retrieve the info of as well as key vault that indicates the contract we want to interact with
+   * @param params Contains key address which indicates the vault we want to retrieve the info of as well as key vault that indicates the contract we want to interact with
    * @returns the information for the specified vault
    */
 
@@ -282,8 +282,8 @@ export class Account {
 
   /**
    * Returns the contract address
-   * @param params an object with key vault that indicates the contract whose address is to be retrieved
-   * @returns a formatted address of the specified contract as a string
+   * @param params An object with key vault that indicates the contract whose address is to be retrieved
+   * @returns A formatted address of the specified contract as a string
    */
   async getContractAddress(params: { vaultId: number }): Promise<string> {
     await this.initialiseReachAccount();
