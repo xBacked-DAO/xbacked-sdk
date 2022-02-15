@@ -11,5 +11,6 @@ export default class VaultEvent {
   }
 
   /** Abstract method that allows the creation of objects of type [[VaultEvent]] */
+  
   static parseEvent: (event: any, reachStdLib: any) => VaultEvent;
 }
