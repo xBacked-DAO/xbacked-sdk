@@ -1,6 +1,6 @@
 # xbacked-sdk
 Official SDK for the xBacked Protocol
-This allows third party software to communicate seamlessly with the xbacked protocol.
+This allows third party software & bots to communicate seamlessly with the xBacked protocol.
 
 # Installation
 ```
