@@ -7,7 +7,6 @@ This allows third party software to communicate seamlessly with the xbacked prot
 yarn install @xbacked-dao/xbacked-sdk
 ```
 # Usage
-## Deploy  A Vault
 ```js
 import { Account, Vault, convertFromMicroUnits } from '@xbacked-dao/xbacked-sdk';
 
