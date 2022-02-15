@@ -29,7 +29,12 @@ const vaultData = await vault.getState({ account });
 const myVault = await vault.getUserInfo({ account, address: acc.getAddress() });
 const friendsVault = await vault.getUserInfo({ account, address: friendsAddress });
 
-if (friendsVault.collateralRatio < vaultData.liquidationCollateralRatio) {
+if (
+  // might want to calculate this off chain for latest CR
+  (friendsVault.collateralRatio < vaultData.liquidationCollateralRatio) ||
+  // partial liquidations are available
+  friendsVault.liquidating
+) {
   await account.liquidateVault({
     address: friendsAddress,
     debtAmount: convertFromMicroUnits(500),
