@@ -87,5 +87,5 @@ export const calcCollateralRatioAfterLiquidation = (
   const collateralValueAfterLiquidation = collateralAfterLiquidation * collateralPrice;
   const crAfterLiq = ((collateralValueAfterLiquidation / MICRO_UNITS) * 100) /
     (vaultDebt - debtPayout);
-  return crAfteRLiq;
+  return crAfterLiq;
 };
