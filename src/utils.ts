@@ -6,7 +6,7 @@ export const LIQUIDATION_FEE = 0.025;
 // The contract will round up to the next integer so 119.x will give 120%
 // This is the closest we can get without having problems from
 // float conversion. (CONTRACT MINIMUM - 1)
-const MINIMUM_COLLATERAL_RATIO = 119;
+const MINIMUM_COLLATERAL_RATIO = 1.2;
 
 /**
  * Converts number to microunits
@@ -43,8 +43,8 @@ export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, v
   const discountRateInv = 1 - DISCOUNT_RATE;
   return Math.floor(
     ((discountRateInv * 100 * collateral * collateralPrice) / MICRO_UNITS -
-      discountRateInv * MINIMUM_COLLATERAL_RATIO * vaultDebt) /
-      (-discountRateInv * MINIMUM_COLLATERAL_RATIO + 100),
+      discountRateInv * (MINIMUM_COLLATERAL_RATIO * 100) * vaultDebt) /
+      (-discountRateInv * (MINIMUM_COLLATERAL_RATIO * 100) + 100),
   );
 };
 
@@ -83,8 +83,9 @@ export const calcCollateralRatioAfterLiquidation = (
   vaultDebt: number,
 ): number => {
   const discountPrice = calcDiscountPrice(collateralPrice);
-  return (
-    ((((collateral - convertToMicroUnits(debtPayout / discountPrice)) * collateralPrice) / MICRO_UNITS) * 100) /
-    (vaultDebt - debtPayout)
-  );
+  const collateralAfterLiquidation = (collateral - convertToMicroUnits(debtPayout / discountPrice));
+  const collateralValueAfterLiquidation = collateralAfterLiquidation * collateralPrice;
+  const crAfterLiq = ((collateralValueAfterLiquidation / MICRO_UNITS) * 100) /
+    (vaultDebt - debtPayout);
+  return crAfteRLiq;
 };
