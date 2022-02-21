@@ -18,7 +18,7 @@ import VaultTransactionEvent from './VaultEvents/VaultTransactionEvent';
 export const getOpenVaults = async (params: {
   vault: Vault;
   account: Account;
-  f: (event: any) => void;
+  f?: (event: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -78,7 +78,7 @@ export const getOpenVaults = async (params: {
 export const getCreatedVaults = async (params: {
   vault: Vault;
   account: Account;
-  f: (event: any) => void;
+  f?: (event: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -104,7 +104,7 @@ export const getCreatedVaults = async (params: {
 export const getClosedVaults = async (params: {
   vault: Vault;
   account: Account;
-  f: (event: any) => void;
+  f?: (event: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -130,7 +130,7 @@ export const getClosedVaults = async (params: {
 export const getTransactions = async (params: {
   vault: Vault;
   account: Account;
-  f: (event: any) => void;
+  f?: (event: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -159,7 +159,7 @@ const getEvents = async <T>(params: {
   reachStdLib: any;
   reachEvent: any;
   parseEvent: (event: any, reachStdLib: any) => T;
-  f: (parsedEvent: any) => void;
+  f?: (parsedEvent: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -207,7 +207,9 @@ const getEvents = async <T>(params: {
       const currentRound = params.reachStdLib.bigNumberToNumber(event.when);
       if (currentRound <= endRound) {
         eventArray.push(params.parseEvent(event, params.reachStdLib));
-        params.f(params.parseEvent(event, params.reachStdLib));
+        if (params.f) {
+          params.f(params.parseEvent(event, params.reachStdLib));
+        }
       } else {
         keepGoing = false;
       }
