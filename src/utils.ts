@@ -33,7 +33,7 @@ export const convertFromMicroUnits = (val: number): number => {
 // m = masDebtPayout, c = collateral, p = collateralPrice, d = vaultDebt, r = MINIMUM_COLLATERAL_RATIO = 120, 0.035 = DISCOUNT_RATE
 // https://www.symbolab.com/solver/equation-calculator/solve%20for%20m%2C%20r%20%3D%20%5Cfrac%7B%5Cleft(%5Cleft(c%20-%5Cleft(%5Cfrac%7Bm%7D%7B%5Cleft(p%20-%20%5Cleft(p%5Ccdot0.035%5Cright)%5Cright)%7D%20%5Cright)%5Cright)%5Ccdot%20p%5Ccdot100%5Cright)%7D%7Bd%20-%20m%7D?or=input
 /**
- * 
+ *
  * @param collateral Collateral tokens in micro units
  * @param collateralPrice Current collateral price in micro units
  * @param vaultDebt Vault debt in micro units
@@ -49,7 +49,7 @@ export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, v
 };
 
 /**
- * 
+ *
  * @param collateral Collateral tokens in micro units
  * @param collateralPrice Collateral price in micro units
  * @param vaultDebt Vault debt in micro units
@@ -60,7 +60,7 @@ export const calcCollateralRatio = (collateral: number, collateralPrice: number,
 };
 
 /**
- * 
+ *
  * @param collateralPrice Collateral price in micro units
  * @returns The discount price for a liquidation in micro units
  */
@@ -69,7 +69,7 @@ export const calcDiscountPrice = (collateralPrice: number): number => {
 };
 
 /**
- * 
+ *
  * @param collateral Collateral tokens in micro units
  * @param collateralPrice Collateral price in micro units
  * @param debtPayout Debt Payout in micro units

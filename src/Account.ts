@@ -283,7 +283,7 @@ export class Account {
   /**
    * Returns the contract address
    * @param params An object with key vault that indicates the contract whose address is to be retrieved
-   * @returns A formatted address of the specified contract as a string 
+   * @returns A formatted address of the specified contract as a string
    */
   async getContractAddress(params: { vaultId: number }): Promise<string> {
     await this.initialiseReachAccount();

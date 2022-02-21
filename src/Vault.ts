@@ -112,7 +112,7 @@ export class Vault {
   }
 
   /**
-   * 
+   *
    * @param vaultState type of [[UserVaultReturnParams]]
    * @returns type of [[ReachUserVault]]
    */
