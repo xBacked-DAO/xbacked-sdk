@@ -14,8 +14,10 @@ const TOKEN_ID = 62281549;
 const NETWORK = 'TestNet';
 
 // Round to start searching
+// This can be changed to any round number, but seems like Reach
+// still need to take it´s time to fast forward in the history
 const startRound = 0;
-// 5 minute timeout to stop fetching
+// 5 minute timeout to stop after the last transaction was fetched.
 const timeout = 5 * 60 * 1000;
 
 (async () => {
@@ -30,12 +32,15 @@ const timeout = 5 * 60 * 1000;
 
   console.log(`Getting transactions history starting from round ${startRound}...`);
   let liquidations = 0, txns = 0;
+
+  // This function will be executed each time a new transaction is found.
   const f = async (event) => {
     const current_liq = liquidations;
     const current_txns = txns;
     txns++;
     if (event.type === 'LIQUIDATE') {
       liquidations++;
+      // Async GET will mess up transaction order.
       const res = await axios.get(`https://algoindexer.testnet.algoexplorerapi.io/v2/blocks/${event.round}`)
       console.log(event);
 
@@ -49,6 +54,7 @@ const timeout = 5 * 60 * 1000;
       console.log(`Txn. count: ${txns}\n`);
     }
   };
+
   await getTransactions({vault, account, f, startRound, timeout});
   console.log(`\nTimed out after ${timeout / 1000}s`);
   process.exit(0);
