@@ -18,6 +18,7 @@ import VaultTransactionEvent from './VaultEvents/VaultTransactionEvent';
 export const getOpenVaults = async (params: {
   vault: Vault;
   account: Account;
+  f: (event: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -77,6 +78,7 @@ export const getOpenVaults = async (params: {
 export const getCreatedVaults = async (params: {
   vault: Vault;
   account: Account;
+  f: (event: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -102,6 +104,7 @@ export const getCreatedVaults = async (params: {
 export const getClosedVaults = async (params: {
   vault: Vault;
   account: Account;
+  f: (event: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -119,6 +122,7 @@ export const getClosedVaults = async (params: {
 /** Returns all transactions for the given vault
  * @param vault The contract ID whose vaults will be returned
  * @param account The account that is used to read information from the contract
+ * @param f A function (parsedEvent) => void that will be executed each time an event is fetched
  * @param startRound The round to start checking from
  * @param endRound The round to stop searching at
  * @param timeOut Duration after which an iteration to search the current round should time out if a result is not gotten
@@ -126,6 +130,7 @@ export const getClosedVaults = async (params: {
 export const getTransactions = async (params: {
   vault: Vault;
   account: Account;
+  f: (event: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -145,6 +150,7 @@ export const getTransactions = async (params: {
  * @param reachStdLib An instance of the reach standard library
  * @param reachEvent The particular event that the contract is being searched for
  * @param parseEvent The parseEvent function of the reachEvent params
+ * @param f A function (parsedEvent) => void that will be executed each time an event is fetched
  * @param startRound The round to start checking from
  * @param endRound The round to stop searching at
  * @param timeOut Duration after which an iteration to search the current round should time out if a result is not gotten
@@ -153,6 +159,7 @@ const getEvents = async <T>(params: {
   reachStdLib: any;
   reachEvent: any;
   parseEvent: (event: any, reachStdLib: any) => T;
+  f: (parsedEvent: any) => void;
   startRound?: number;
   endRound?: number;
   timeout?: number;
@@ -200,6 +207,7 @@ const getEvents = async <T>(params: {
       const currentRound = params.reachStdLib.bigNumberToNumber(event.when);
       if (currentRound <= endRound) {
         eventArray.push(params.parseEvent(event, params.reachStdLib));
+        params.f(params.parseEvent(event, params.reachStdLib));
       } else {
         keepGoing = false;
       }
