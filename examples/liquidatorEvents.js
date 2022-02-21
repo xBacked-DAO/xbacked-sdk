@@ -31,6 +31,8 @@ const timeout = 5 * 60 * 1000;
   console.log(`Getting transactions history starting from round ${startRound}...`);
   let liquidations = 0, txns = 0;
   const f = async (event) => {
+    const current_liq = liquidations;
+    const current_txns = txns;
     txns++;
     if (event.type === 'LIQUIDATE') {
       liquidations++;
@@ -40,8 +42,8 @@ const timeout = 5 * 60 * 1000;
       const d = new Date(res.data.timestamp * 1000);
       console.log(`Liquidation time: ${d.toLocaleString()}`);
 
-      console.log(`Liq. count: ${liquidations}`);
-      console.log(`Txn. count: ${txns}\n`);
+      console.log(`Liq. count: ${current_liq + 1}`);
+      console.log(`Txn. count: ${current_txns + 1}\n`);
     }
     if(txns % 1000 == 0) {
       console.log(`Txn. count: ${txns}\n`);
