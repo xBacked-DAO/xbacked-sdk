@@ -1122,9 +1122,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:0.1.8-rc.9":
-  version: 0.1.8-rc.9
-  resolution: "@reach-sh/stdlib@npm:0.1.8-rc.9"
+"@reach-sh/stdlib@npm:0.1.8-rc.10":
+  version: 0.1.8-rc.10
+  resolution: "@reach-sh/stdlib@npm:0.1.8-rc.10"
   dependencies:
     "@msgpack/msgpack": ^2.5.1
     "@randlabs/myalgo-connect": ^1.1.1
@@ -1139,7 +1139,7 @@ __metadata:
     jsbi: ^3.1.6
     node-fetch: ^2.6.1
     wait-port: ^0.2.9
-  checksum: 157c9a352ce5cc3c167bb90c9948fdf00644f4b9cf91c34d71d14484e7dd5755ce6cfa2ffec7d28560a836a504af7699cd6717ab499d55ad02c697e27d867957
+  checksum: fd791ec4f6f7d9ec17c6f875e5ae2a183a38daadd0536b9c640f91af2e7b6873d2dceca630266bb1cb5cde51f27358ee421cdfd677c88f198958c8331cc5a67a
   languageName: node
   linkType: hard
 
@@ -1710,11 +1710,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:0.0.11":
-  version: 0.0.11
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.11"
+"@xbacked-dao/xbacked-contracts@file:../xbacked-contracts/dist::locator=%40xbacked-dao%2Fxbacked-sdk%40workspace%3A.":
+  version: 0.0.12
+  resolution: "@xbacked-dao/xbacked-contracts@file:../xbacked-contracts/dist#../xbacked-contracts/dist::hash=551063&locator=%40xbacked-dao%2Fxbacked-sdk%40workspace%3A."
   dependencies:
-    "@reach-sh/stdlib": 0.1.8-rc.9
+    "@reach-sh/stdlib": 0.1.8-rc.10
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
@@ -1722,8 +1722,8 @@ __metadata:
     es-main: ^1.0.2
     yargs: ^17.3.1
   peerDependencies:
-    "@reach-sh/stdlib": 0.1.8-rc.7
-  checksum: f20a71834afa2f39cc84b7ea362e1fb171dd160c605f244729ed2f81aab85778a16d58b70116b21601459fa5fa9045737deec6a98c7d1cc7801f5a4807096cb3
+    "@reach-sh/stdlib": 0.1.8-rc.10
+  checksum: 9dcc175dd1c826b01a9d47c85048780a55795c25d2f6c049b058d824f27e966910a7763592a84d0858e77b777d7fcd94c82d458ee16b682fe03b33f3ff22e55f
   languageName: node
   linkType: hard
 
@@ -1734,11 +1734,11 @@ __metadata:
     "@babel/types": ^7.16.0
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": 0.1.8-rc.9
+    "@reach-sh/stdlib": 0.1.8-rc.10
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 0.0.11
+    "@xbacked-dao/xbacked-contracts": "file:../xbacked-contracts/dist"
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
