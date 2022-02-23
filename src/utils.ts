@@ -88,3 +88,33 @@ export const calcCollateralRatioAfterLiquidation = (
     (vaultDebt - debtPayout)
   );
 };
+
+/**
+ * Recursive function to collect all accounts opted into a given application id
+ * @param indexer The algosdk indexer client
+ * @param accounts Current accounts collected
+ * @param nextToken Next token to use with paginaiton
+ * @returns Array of all accounts opted into a vault applicaiton
+ */
+
+export const getAllAccounts = async (applicationId, indexer, accounts, nextToken) => {
+  if (accounts.length > 0 && nextToken) {
+    const allOpenVaults = await indexer
+      .searchAccounts()
+      .applicationID(applicationId)
+      .nextToken(nextToken)
+      .do();
+      const updatedAccounts = accounts.concat(allOpenVaults.accounts);
+      setVaultsCreated(updatedAccounts.length);
+      return getAllAccounts(indexer, updatedAccounts, allOpenVaults['next-token']);
+  // eslint-disable-next-line
+  } else if (accounts.length > 0 && !nextToken) {
+    return Promise.resolve(accounts);
+  }
+  const allOpenVaults = await indexer
+    .searchAccounts()
+    .applicationID(applicationId)
+    .do();
+  setVaultsCreated(allOpenVaults.accounts.length);
+  return getAllAccounts(indexer, allOpenVaults.accounts, allOpenVaults['next-token']);
+};

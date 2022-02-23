@@ -57,9 +57,9 @@
   "dependencies": {
     "@babel/types": "^7.16.0",
     "@randlabs/myalgo-connect": "^1.1.1",
-    "@reach-sh/stdlib": "0.1.8-rc.9",
+    "@reach-sh/stdlib": "0.1.8-rc.10",
     "@types/jsdom": "^16.2.13",
-    "@xbacked-dao/xbacked-contracts": "0.0.11",
+    "@xbacked-dao/xbacked-contracts": "file:../xbacked-contracts/dist",
     "awesome-typescript-loader": "^5.2.1",
     "jest": "^27.3.1"
   }
