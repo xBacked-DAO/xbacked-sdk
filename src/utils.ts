@@ -103,20 +103,20 @@ export const getAllAccounts = async (
   accounts: any[],
   nextToken: string): Promise<any[]> => {
   if (accounts.length > 0 && nextToken) {
-    const allOpenVaults = await indexer
+    const retrievedVaults = await indexer
       .searchAccounts()
       .applicationID(applicationId)
       .nextToken(nextToken)
       .do();
-      const updatedAccounts = accounts.concat(allOpenVaults.accounts);
-      return getAllAccounts(applicationId, indexer, updatedAccounts, allOpenVaults['next-token']);
+      const updatedAccounts = accounts.concat(retrievedVaults.accounts);
+      return getAllAccounts(applicationId, indexer, updatedAccounts, retrievedVaults['next-token']);
   // eslint-disable-next-line
   } else if (accounts.length > 0 && !nextToken) {
     return Promise.resolve(accounts);
   }
-  const allOpenVaults = await indexer
+  const initialVaults = await indexer
     .searchAccounts()
     .applicationID(applicationId)
     .do();
-  return getAllAccounts(applicationId, indexer, allOpenVaults.accounts, allOpenVaults['next-token']);
+  return getAllAccounts(applicationId, indexer, initialVaults.accounts, initialVaults['next-token']);
 };
