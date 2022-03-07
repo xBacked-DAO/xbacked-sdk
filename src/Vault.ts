@@ -24,6 +24,10 @@ export interface VaultReturnParams {
   totalVaultDebt: number;
   /** @property An array of addresses for redeemable vaults */
   redeemableVaults: any[];
+  /** @property the accrued interest in a vault awaiting distribution via settleInterest */
+  accruedInterest: number;
+  /** @property the interest rate of a vault */
+  interestRate: number;
 }
 
 export interface ReachUserVault {

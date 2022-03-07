@@ -1,6 +1,6 @@
 {
   "name": "@xbacked-dao/xbacked-sdk",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Official SDK for the xBacked Protocol",
   "main": "lib/cjs/index.js",
   "module": "/lib/esm/index.js",
@@ -9,6 +9,9 @@
   "files": [
     "lib/**/*"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build:docs": "yarn typedoc src/*.ts",
@@ -33,7 +36,7 @@
   "bugs": {
     "url": "https://github.com/xBacked-DAO/xbacked-sdk/issues"
   },
-  "homepage": "https://github.com/xBacked-DAO/xbacked-sdk#readme",
+  "homepage": "https://github.com/xBacked-DAO/xbacked-sdk",
   "devDependencies": {
     "@jest/globals": "^27.4.6",
     "@types/jest": "^27.4.0",
@@ -57,9 +60,9 @@
   "dependencies": {
     "@babel/types": "^7.16.0",
     "@randlabs/myalgo-connect": "^1.1.1",
-    "@reach-sh/stdlib": "0.1.8-rc.10",
+    "@reach-sh/stdlib": "0.1.8-rc.12",
     "@types/jsdom": "^16.2.13",
-    "@xbacked-dao/xbacked-contracts": "0.0.12",
+    "@xbacked-dao/xbacked-contracts": "file:../xbacked-contracts/dist",
     "awesome-typescript-loader": "^5.2.1",
     "jest": "^27.3.1"
   }

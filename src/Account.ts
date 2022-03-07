@@ -277,7 +277,23 @@ export class Account {
 
   async getUserInfo(params: { address: string; vault: Vault }): Promise<UserVaultReturnParams> {
     await this.initialiseReachAccount();
-    return await params.vault.getUserInfo({ account: this, address: params.address });
+
+    const userVault = await params.vault.getUserInfo({ account: this, address: params.address });
+    // NOTE: does not account for leap year
+    const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
+    const INTEREST_RATE_DENOMINATOR = 100000000000;
+    const VAULT_INTEREST_RATE = this.getVaultState({ vault: params.vault }).interestRate;
+
+    const now = await this.stdlib.getNetworkSecs();
+    const amountOfTimePassed = now.toNumber() - userVault.lastAccruedInterestTime - 200;
+    const interestRatePerSecond =
+      VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
+    const interestRateOverTimePassed =
+      interestRatePerSecond * amountOfTimePassed;
+    const interestAccrued =
+      (interestRateOverTimePassed * vaultDebt) / INTEREST_RATE_DENOMINATOR;
+    userVault.vaultDebt += interestAccrued;
+    return userVault;
   }
 
   /**
