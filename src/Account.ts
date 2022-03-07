@@ -104,13 +104,16 @@ export class Account {
 
   /**
    *
-   * @param params Contains keys address, debtAmount, vault that indicates the address of the vault, the debt to be repaid and the vault of type [[Vault]]
+   * @param params Contains keys address, debtAmount, vault, and dripInterest. Include dripInterest if you would like the vault debt to be updated before liquidation
    * @returns A boolean indicating if the vault was liquidated or not
    */
-  async liquidateVault(params: { address: string; debtAmount: number; vault: Vault }): Promise<boolean> {
+  async liquidateVault(params: { address: string; debtAmount: number; vault: Vault, dripInterest: boolean = false }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
+    if (params.dripInterest) {
+      await this.dripInterest({ vault, address });
+    }
     const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount));
     return res;
   }
@@ -266,6 +269,32 @@ export class Account {
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.FeeCollector;
     const res = await put.collectFees();
+    return res;
+  }
+
+  /**
+   * Used by an account to settle accrued interest in a vault
+   * @param params Contains key vault which indicates the contract this function should interact with
+   * @returns A boolean indicating of fees were collected or not
+   */
+  async settleInterest(params: { vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.FeeCollector;
+    const res = await put.settleInterest();
+    return res;
+  }
+
+  /**
+   * Will trigger interest to accrue on a specific user vault
+   * @param params Contains address of vault to accrue interest for. Also includes vault which indicates the contract this function should interact with.
+   * @returns A boolean indicating of fees were collected or not
+   */
+   async dripInterest(params: { address: string, vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.FeeCollector;
+    const res = await put.dripInterest(address);
     return res;
   }
 
