@@ -85,16 +85,20 @@ export class Vault {
       accruedFees: vaultState.accruedFees.toNumber(),
       collateralPrice: vaultState.collateralPrice.toNumber(),
       deprecated: vaultState.deprecated,
-      feeCollectorFee: vaultState.feeCollectorFee.toNumber(),
+      // Hard coded for now, since it is hard coded in contract
+      feeCollectorFee: 0.5, // vaultState.feeCollectorFee.toNumber(),
       liquidationCollateralRatio: vaultState.liquidationCollateralRatio.toNumber(),
-      liquidationFee: vaultState.liquidationFee.toNumber(),
+      // Hard coded for now, since it is hard coded in contract
+      liquidationFee: 0.1, // vaultState.liquidationFee.toNumber(),
       minimumCollateralRatio: vaultState.minimumCollateralRatio.toNumber(),
-      mintingFee: vaultState.mintingFee.toNumber(),
+      // Hard coded for now, since it is hard coded in contract
+      mintingFee: 0.05, //vaultState.mintingFee.toNumber(),
       totalVaultDebt: vaultState.totalVaultDebt.toNumber(),
       // is a 2d array in the form ["Some", value] returned from reach
       redeemableVaults: vaultState.redeemableVaults.map((v: any[]) => v[1]),
       accruedInterest: vaultState.accruedInterest.toNumber(),
-      interestRate: vaultState.interestRate.toNumber(),
+      // Opcode cost does not permit storing this in view
+      interestRate: 2000000000 // vaultState.interestRate.toNumber(),
     };
   }
   /**
