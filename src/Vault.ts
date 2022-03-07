@@ -41,6 +41,8 @@ export interface ReachUserVault {
   vaultDebt: number;
   /** @property Inidicator that signifies if a vault can be redeemed */
   redeemable: boolean;
+  /** @property the timestamp of the last time interest accrued for a specific vault */
+  lastAccruedInterestTime: number;
 }
 
 export interface UserVaultReturnParams extends ReachUserVault {
@@ -89,7 +91,10 @@ export class Vault {
       minimumCollateralRatio: vaultState.minimumCollateralRatio.toNumber(),
       mintingFee: vaultState.mintingFee.toNumber(),
       totalVaultDebt: vaultState.totalVaultDebt.toNumber(),
-      redeemableVaults: vaultState.redeemableVaults,
+      // is a 2d array in the form ["Some", value] returned from reach
+      redeemableVaults: vaultState.redeemableVaults.map((v: any[]) => v[1]),
+      accruedInterest: vaultState.accruedInterest.toNumber(),
+      interestRate: vaultState.interestRate.toNumber(),
     };
   }
   /**
@@ -109,6 +114,7 @@ export class Vault {
         vaultDebt: 0,
         redeemable: false,
         vaultFound: false,
+        lastAccruedInterestTime: 0
       };
     }
     const vaultState = stateView[1][1];
@@ -127,6 +133,7 @@ export class Vault {
       liquidating: vaultState.liquidating,
       vaultDebt: vaultState.vaultDebt.toNumber(),
       redeemable: vaultState.redeemable,
+      lastAccruedInterestTime: vaultState.lastAccruedInterestTime.toNumber()
     };
   }
 }

@@ -107,12 +107,12 @@ export class Account {
    * @param params Contains keys address, debtAmount, vault, and dripInterest. Include dripInterest if you would like the vault debt to be updated before liquidation
    * @returns A boolean indicating if the vault was liquidated or not
    */
-  async liquidateVault(params: { address: string; debtAmount: number; vault: Vault, dripInterest: boolean = false }): Promise<boolean> {
+  async liquidateVault(params: { address: string; debtAmount: number; vault: Vault, dripInterest: false }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
     if (params.dripInterest) {
-      await this.dripInterest({ vault, address });
+      await this.dripInterest({ vault: params.vault, address: params.address });
     }
     const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount));
     return res;
@@ -294,7 +294,7 @@ export class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.FeeCollector;
-    const res = await put.dripInterest(address);
+    const res = await put.dripInterest(params.address);
     return res;
   }
 
@@ -311,16 +311,17 @@ export class Account {
     // NOTE: does not account for leap year
     const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
     const INTEREST_RATE_DENOMINATOR = 100000000000;
-    const VAULT_INTEREST_RATE = this.getVaultState({ vault: params.vault }).interestRate;
+    const vaultState = await this.getVaultState({ vault: params.vault });
+    const VAULT_INTEREST_RATE = vaultState.interestRate;
 
-    const now = await this.stdlib.getNetworkSecs();
+    const now = await this.reachStdLib.getNetworkSecs();
     const amountOfTimePassed = now.toNumber() - userVault.lastAccruedInterestTime - 200;
     const interestRatePerSecond =
       VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
     const interestRateOverTimePassed =
       interestRatePerSecond * amountOfTimePassed;
     const interestAccrued =
-      (interestRateOverTimePassed * vaultDebt) / INTEREST_RATE_DENOMINATOR;
+      (interestRateOverTimePassed * userVault.vaultDebt) / INTEREST_RATE_DENOMINATOR;
     userVault.vaultDebt += interestAccrued;
     return userVault;
   }
