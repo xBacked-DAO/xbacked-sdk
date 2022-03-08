@@ -98,7 +98,7 @@ export class Vault {
       redeemableVaults: vaultState.redeemableVaults.map((v: any[]) => v[1]),
       accruedInterest: vaultState.accruedInterest.toNumber(),
       // Opcode cost does not permit storing this in view
-      interestRate: 2000000000 // vaultState.interestRate.toNumber(),
+      interestRate: 2000000000, // vaultState.interestRate.toNumber(),
     };
   }
   /**
@@ -118,7 +118,7 @@ export class Vault {
         vaultDebt: 0,
         redeemable: false,
         vaultFound: false,
-        lastAccruedInterestTime: 0
+        lastAccruedInterestTime: 0,
       };
     }
     const vaultState = stateView[1][1];
@@ -126,7 +126,7 @@ export class Vault {
   }
 
   /**
-   * 
+   *
    * @param vaultState type of [[UserVaultReturnParams]]
    * @returns type of [[ReachUserVault]]
    */
@@ -137,7 +137,7 @@ export class Vault {
       liquidating: vaultState.liquidating,
       vaultDebt: vaultState.vaultDebt.toNumber(),
       redeemable: vaultState.redeemable,
-      lastAccruedInterestTime: vaultState.lastAccruedInterestTime.toNumber()
+      lastAccruedInterestTime: vaultState.lastAccruedInterestTime.toNumber(),
     };
   }
 }
