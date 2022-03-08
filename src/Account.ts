@@ -12,8 +12,8 @@ interface AccountInterface {
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   currentVault?: string;
   provider?: any;
-  reachStdLib?: any,
-  networkAccount?: boolean
+  reachStdLib?: any;
+  networkAccount?: boolean;
 }
 
 class Account {
@@ -25,7 +25,7 @@ class Account {
   reachStdLib: any;
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   provider?: any;
-  networkAccount?: boolean 
+  networkAccount?: boolean;
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -35,7 +35,7 @@ class Account {
     this.currentVault = params.currentVault;
     this.provider = params.provider;
     this.reachStdLib = params.reachStdLib || loadStdlib('ALGO');
-    this.networkAccount = params.networkAccount
+    this.networkAccount = params.networkAccount;
     if (params.network) {
       this.network = params.network;
     } else {
@@ -46,12 +46,13 @@ class Account {
       this.reachStdLib.setProviderByName(this.network);
     }
   }
+
   async initialiseReachAccount() {
     if (this.mnemonic != null && this.reachAccount == null) {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
     } else if (this.secretKey != null && this.reachAccount == null) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    }else if(this.networkAccount && this.signer != null && this.reachAccount == null && this.provider != null){
+    } else if (this.networkAccount && this.signer != null && this.reachAccount == null && this.provider != null) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.network,
@@ -84,11 +85,28 @@ class Account {
     const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount));
     return res;
   }
+
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Oracle;
     const res = await put.updatePrice(convertToMicroUnits(params.price));
+    return res;
+  }
+
+  async redeemVault(params: { address: string; amountToRedeem: number; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultRedeemer;
+    const res = await put.redeemVault(params.address, params.amountToRedeem);
+    return res;
+  }
+
+  async proposeVaultForRedemption(params: { address: string; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultRedeemer;
+    const res = await put.proposeVault(params.address);
     return res;
   }
 
