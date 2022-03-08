@@ -1,5 +1,5 @@
-import Account from '../Account';
-import Vault from '../Vault';
+import { Account } from '../Account';
+import { Vault } from '../Vault';
 class MockAccount extends Account {
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
     return true;
@@ -37,8 +37,8 @@ class MockAccount extends Account {
     return true;
   }
 
-  async createVault(params: { collateral: number; mintAmount: number; vault: Vault }): Promise<number> {
-    return 1;
+  async createVault(params: { collateral: number; mintAmount: number; vault: Vault }): Promise<boolean> {
+    return true;
   }
 }
 export default MockAccount;

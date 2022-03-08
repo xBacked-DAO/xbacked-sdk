@@ -1,6 +1,6 @@
 import { getOpenVaults, getCreatedVaults, getClosedVaults, getTransactions } from '../vaultDiscovery';
 import Account from '../__mock__/MockAccount';
-import Vault from '../Vault';
+import { Vault } from '../Vault';
 
 jest.setTimeout(200000000);
 
@@ -37,6 +37,7 @@ describe('Gets open vaults', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -52,6 +53,7 @@ describe('Gets open vaults', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -72,6 +74,7 @@ describe('Gets open vaults', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -87,6 +90,7 @@ describe('Gets open vaults', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -134,6 +138,7 @@ describe('Gets vaults created', () => {
             collateral: toNumberMock,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -149,6 +154,7 @@ describe('Gets vaults created', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -243,6 +249,7 @@ describe('Gets vaults transactions', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -259,6 +266,7 @@ describe('Gets vaults transactions', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),

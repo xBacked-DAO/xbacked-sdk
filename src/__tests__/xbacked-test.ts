@@ -1,5 +1,5 @@
 import Account from '../__mock__/MockAccount';
-import Vault from '../Vault';
+import { Vault } from '../Vault';
 
 jest.setTimeout(200000000);
 
@@ -90,5 +90,5 @@ it('Minter creates vault', async function () {
     collateral: 1000,
     mintAmount: 500,
   });
-  expect(isVaultCreated).toBe(1);
+  expect(isVaultCreated).toBe(true);
 });

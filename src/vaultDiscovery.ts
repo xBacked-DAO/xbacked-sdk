@@ -1,5 +1,5 @@
-import Account from './Account';
-import Vault from './Vault';
+import { Account } from './Account';
+import { Vault } from './Vault';
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import VaultCreatedEvent from './VaultEvents/VaultCreatedEvent';
 import VaultClosedEvent from './VaultEvents/VaultClosedEvent';
@@ -7,6 +7,14 @@ import VaultTransactionEvent from './VaultEvents/VaultTransactionEvent';
 
 // Compares created vaults with closed vaults and returns only the open vaults
 // without duplicate records.
+
+/** Returns the vaults that are open
+ * @param vault The contract ID whose vaults will be returned
+ * @param account The account that is used to read information from the contract
+ * @param startRound The round to start checking from
+ * @param endRound The round to stop searching at
+ * @param timeOut Duration after which an iteration to search the current round should time out if a result is not gotten
+ */
 export const getOpenVaults = async (params: {
   vault: Vault;
   account: Account;
@@ -59,6 +67,13 @@ export const getOpenVaults = async (params: {
   return Promise.resolve(openVaults);
 };
 
+/** Returns the vaults that have been created
+ * @param vault The contract ID whose vaults will be returned
+ * @param account The account that is used to read information from the contract
+ * @param startRound The round to start checking from
+ * @param endRound The round to stop searching at
+ * @param timeOut Duration after which an iteration to search the current round should time out if a result is not gotten
+ */
 export const getCreatedVaults = async (params: {
   vault: Vault;
   account: Account;
@@ -77,6 +92,13 @@ export const getCreatedVaults = async (params: {
   });
 };
 
+/** Returns the vaults that have been closed
+ * @param vault The contract ID whose vaults will be returned
+ * @param account The account that is used to read information from the contract
+ * @param startRound The round to start checking from
+ * @param endRound The round to stop searching at
+ * @param timeOut Duration after which an iteration to search the current round should time out if a result is not gotten
+ */
 export const getClosedVaults = async (params: {
   vault: Vault;
   account: Account;
@@ -94,7 +116,13 @@ export const getClosedVaults = async (params: {
     ...params,
   });
 };
-
+/** Returns all transactions for the given vault
+ * @param vault The contract ID whose vaults will be returned
+ * @param account The account that is used to read information from the contract
+ * @param startRound The round to start checking from
+ * @param endRound The round to stop searching at
+ * @param timeOut Duration after which an iteration to search the current round should time out if a result is not gotten
+ */
 export const getTransactions = async (params: {
   vault: Vault;
   account: Account;
@@ -113,6 +141,14 @@ export const getTransactions = async (params: {
   });
 };
 
+/** Returns the Vault Event for a specified event
+ * @param reachStdLib An instance of the reach standard library
+ * @param reachEvent The particular event that the contract is being searched for
+ * @param parseEvent The parseEvent function of the reachEvent params
+ * @param startRound The round to start checking from
+ * @param endRound The round to stop searching at
+ * @param timeOut Duration after which an iteration to search the current round should time out if a result is not gotten
+ */
 const getEvents = async <T>(params: {
   reachStdLib: any;
   reachEvent: any;
