@@ -92,7 +92,7 @@ export class Vault {
       liquidationFee: 0.1, // vaultState.liquidationFee.toNumber(),
       minimumCollateralRatio: vaultState.minimumCollateralRatio.toNumber(),
       // Hard coded for now, since it is hard coded in contract
-      mintingFee: 0.05, //vaultState.mintingFee.toNumber(),
+      mintingFee: 0.05, // vaultState.mintingFee.toNumber(),
       totalVaultDebt: vaultState.totalVaultDebt.toNumber(),
       // is a 2d array in the form ["Some", value] returned from reach
       redeemableVaults: vaultState.redeemableVaults.map((v: any[]) => v[1]),
