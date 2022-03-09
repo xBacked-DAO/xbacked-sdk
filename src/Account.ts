@@ -3,7 +3,7 @@ import { loadStdlib } from '@reach-sh/stdlib';
 // @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import { Vault, UserVaultReturnParams, VaultReturnParams } from './Vault';
-import { convertToMicroUnits, convertFromMicroUnits } from './utils';
+import { convertToMicroUnits } from './utils';
 
 /**
  * This is passed as an argument to the [[Account]] constructor
@@ -24,6 +24,7 @@ export interface AccountInterface {
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: boolean;
 }
+
 /**
  * An abstraction of an account on the Algorand
  */
@@ -107,7 +108,12 @@ export class Account {
    * @param params Contains keys address, debtAmount, vault, and dripInterest. Include dripInterest if you would like the vault debt to be updated before liquidation
    * @returns A boolean indicating if the vault was liquidated or not
    */
-  async liquidateVault(params: { address: string; debtAmount: number; vault: Vault, dripInterest: false }): Promise<boolean> {
+  async liquidateVault(params: {
+    address: string;
+    debtAmount: number;
+    vault: Vault;
+    dripInterest: false;
+  }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
@@ -115,6 +121,36 @@ export class Account {
       await this.dripInterest({ vault: params.vault, address: params.address });
     }
     const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount));
+    return res;
+  }
+
+  /**
+   * Attempt to redeem some of the Vault asset against a redeemable vault, to
+   * receive vault collateral.
+   * @param params Contains the amount of xUSD to redeem with, and the address
+   * of the vault to redeem.
+   * @returns A boolean indicating success of call.
+   */
+  async redeemVault(params: { address: string; amountToRedeem: number; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultRedeemer;
+    const res = await put.redeemVault(params.address, params.amountToRedeem);
+    return res;
+  }
+
+  /**
+   * Propose the address of a vault that could be redeemable, to qualify the
+   * vault must be 'less healthy' than any of the other proposed vaults, or
+   * there must be a free slot.
+   * @param params Address of vault to propose, and target vault contract.
+   * @returns A boolean indicating success of call.
+   */
+  async proposeVaultForRedemption(params: { address: string; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultRedeemer;
+    const res = await put.proposeVault(params.address);
     return res;
   }
 
@@ -290,7 +326,7 @@ export class Account {
    * @param params Contains address of vault to accrue interest for. Also includes vault which indicates the contract this function should interact with.
    * @returns A boolean indicating of fees were collected or not
    */
-   async dripInterest(params: { address: string, vault: Vault }): Promise<boolean> {
+  async dripInterest(params: { address: string; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.FeeCollector;
@@ -316,12 +352,9 @@ export class Account {
 
     const now = await this.reachStdLib.getNetworkSecs();
     const amountOfTimePassed = now.toNumber() - userVault.lastAccruedInterestTime - 200;
-    const interestRatePerSecond =
-      VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
-    const interestRateOverTimePassed =
-      interestRatePerSecond * amountOfTimePassed;
-    const interestAccrued =
-      (interestRateOverTimePassed * userVault.vaultDebt) / INTEREST_RATE_DENOMINATOR;
+    const interestRatePerSecond = VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
+    const interestRateOverTimePassed = interestRatePerSecond * amountOfTimePassed;
+    const interestAccrued = (interestRateOverTimePassed * userVault.vaultDebt) / INTEREST_RATE_DENOMINATOR;
     userVault.vaultDebt += interestAccrued;
     return userVault;
   }
@@ -329,7 +362,7 @@ export class Account {
   /**
    * Returns the contract address
    * @param params An object with key vault that indicates the contract whose address is to be retrieved
-   * @returns A formatted address of the specified contract as a string 
+   * @returns A formatted address of the specified contract as a string
    */
   async getContractAddress(params: { vaultId: number }): Promise<string> {
     await this.initialiseReachAccount();
