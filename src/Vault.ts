@@ -18,12 +18,14 @@ export interface VaultReturnParams {
   liquidationFee: number;
   /** @property The minimum collateral ratio allowed for vault creation, minting, withdrawal in the contract */
   minimumCollateralRatio: number;
-  /** @property The percentage of the amount minted charged by the protocol in the form of collateral. For exmaple, mitning 100 xUSD would charge $0.5 USD in the form of the collateral type */
-  mintingFee: number;
   /** @property The total amount of debt in the contract */
   totalVaultDebt: number;
   /** @property An array of addresses for redeemable vaults */
   redeemableVaults: any[];
+  /** @property the accrued interest in a vault awaiting distribution via settleInterest */
+  accruedInterest: number;
+  /** @property the interest rate of a vault */
+  interestRate: number;
 }
 
 export interface ReachUserVault {
@@ -37,6 +39,8 @@ export interface ReachUserVault {
   vaultDebt: number;
   /** @property Inidicator that signifies if a vault can be redeemed */
   redeemable: boolean;
+  /** @property the timestamp of the last time interest accrued for a specific vault */
+  lastAccruedInterestTime: number;
 }
 
 export interface UserVaultReturnParams extends ReachUserVault {
@@ -79,13 +83,18 @@ export class Vault {
       accruedFees: vaultState.accruedFees.toNumber(),
       collateralPrice: vaultState.collateralPrice.toNumber(),
       deprecated: vaultState.deprecated,
-      feeCollectorFee: vaultState.feeCollectorFee.toNumber(),
+      // Hard coded for now, since it is hard coded in contract
+      feeCollectorFee: 0.005, // vaultState.feeCollectorFee.toNumber(),
       liquidationCollateralRatio: vaultState.liquidationCollateralRatio.toNumber(),
-      liquidationFee: vaultState.liquidationFee.toNumber(),
+      // Hard coded for now, since it is hard coded in contract
+      liquidationFee: 0.1, // vaultState.liquidationFee.toNumber(),
       minimumCollateralRatio: vaultState.minimumCollateralRatio.toNumber(),
-      mintingFee: vaultState.mintingFee.toNumber(),
       totalVaultDebt: vaultState.totalVaultDebt.toNumber(),
-      redeemableVaults: vaultState.redeemableVaults,
+      // is a 2d array in the form ["Some", value] returned from reach
+      redeemableVaults: vaultState.redeemableVaults.map((v: any[]) => v[1]),
+      accruedInterest: vaultState.accruedInterest.toNumber(),
+      // Opcode cost does not permit storing this in view
+      interestRate: 2000000000, // vaultState.interestRate.toNumber(),
     };
   }
   /**
@@ -105,6 +114,7 @@ export class Vault {
         vaultDebt: 0,
         redeemable: false,
         vaultFound: false,
+        lastAccruedInterestTime: 0,
       };
     }
     const vaultState = stateView[1][1];
@@ -112,7 +122,7 @@ export class Vault {
   }
 
   /**
-   * 
+   *
    * @param vaultState type of [[UserVaultReturnParams]]
    * @returns type of [[ReachUserVault]]
    */
@@ -123,6 +133,7 @@ export class Vault {
       liquidating: vaultState.liquidating,
       vaultDebt: vaultState.vaultDebt.toNumber(),
       redeemable: vaultState.redeemable,
+      lastAccruedInterestTime: vaultState.lastAccruedInterestTime.toNumber(),
     };
   }
 }

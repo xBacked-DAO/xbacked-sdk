@@ -1710,9 +1710,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:0.0.12":
-  version: 0.0.12
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.12"
+"@xbacked-dao/xbacked-contracts@npm:0.0.16":
+  version: 0.0.16
+  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.16"
   dependencies:
     "@reach-sh/stdlib": 0.1.8-rc.10
     algosdk: ^1.12.0
@@ -1723,7 +1723,7 @@ __metadata:
     yargs: ^17.3.1
   peerDependencies:
     "@reach-sh/stdlib": 0.1.8-rc.10
-  checksum: 709f9dd74c5892e08aa57a4eb939e267278e6fc20fa94e8dc66a22b2f3dcbe2957f38df6c130eb7edd9a69ed1f7cda9f413d3474782d9a04c9c1f193cf2b6f27
+  checksum: 56fa00f0b697519a9a05c708c42d7e5ecc4f85bb51c9caeb96f52a9b39f88cad72c612e734873146fbe3ac3e997bbba33d498b5c4bdd6fc691a3435cd59093f4
   languageName: node
   linkType: hard
 
@@ -1738,7 +1738,7 @@ __metadata:
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 0.0.12
+    "@xbacked-dao/xbacked-contracts": 0.0.16
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
