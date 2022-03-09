@@ -98,7 +98,7 @@ export class Vault {
       redeemableVaults: vaultState.redeemableVaults.map((v: any[]) => v[1]),
       accruedInterest: vaultState.accruedInterest.toNumber(),
       // Opcode cost does not permit storing this in view
-      interestRate: 2000000000, // vaultState.interestRate.toNumber(),
+      interestRate: vaultState.interestRate.toNumber(),
     };
   }
   /**
