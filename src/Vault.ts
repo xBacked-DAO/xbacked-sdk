@@ -18,8 +18,6 @@ export interface VaultReturnParams {
   liquidationFee: number;
   /** @property The minimum collateral ratio allowed for vault creation, minting, withdrawal in the contract */
   minimumCollateralRatio: number;
-  /** @property The percentage of the amount minted charged by the protocol in the form of collateral. For exmaple, mitning 100 xUSD would charge $0.5 USD in the form of the collateral type */
-  mintingFee: number;
   /** @property The total amount of debt in the contract */
   totalVaultDebt: number;
   /** @property An array of addresses for redeemable vaults */
@@ -91,14 +89,12 @@ export class Vault {
       // Hard coded for now, since it is hard coded in contract
       liquidationFee: 0.1, // vaultState.liquidationFee.toNumber(),
       minimumCollateralRatio: vaultState.minimumCollateralRatio.toNumber(),
-      // Hard coded for now, since it is hard coded in contract
-      mintingFee: 0.0005, // vaultState.mintingFee.toNumber(),
       totalVaultDebt: vaultState.totalVaultDebt.toNumber(),
       // is a 2d array in the form ["Some", value] returned from reach
       redeemableVaults: vaultState.redeemableVaults.map((v: any[]) => v[1]),
       accruedInterest: vaultState.accruedInterest.toNumber(),
       // Opcode cost does not permit storing this in view
-      interestRate: vaultState.interestRate.toNumber(),
+      interestRate: 2000000000, // vaultState.interestRate.toNumber(),
     };
   }
   /**
