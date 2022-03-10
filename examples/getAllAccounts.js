@@ -10,9 +10,12 @@ const { loadStdlib } = require('@reach-sh/stdlib');
   const vault = new Vault({ id: VAULT_ID });
   const reach = loadStdlib('ALGO');
   const indexer = new reach.algosdk.Indexer(
-      process.env.REACT_APP_INDEXER_KEY,
-      process.env.REACT_APP_INDEXER_URL,
-      process.env.REACT_APP_INDEXER_PORT,
+      // indexer key
+      '',
+      // indexer url
+      'https://algoindexer.testnet.algoexplorerapi.io',
+      // indexer port
+      443,
   );
   // recursive function to get all opted in addresses
   const accounts = await getAllAccounts(
