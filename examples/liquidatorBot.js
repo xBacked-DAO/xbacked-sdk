@@ -1,3 +1,5 @@
+// NOTE: this bot watches events emitted from a vault to determine when to liquidate
+// The alternative is to use the getAllAccounts function to get all addresses & iterate over them
 const {
   Account,
   Vault,

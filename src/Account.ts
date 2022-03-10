@@ -135,7 +135,7 @@ export class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
-    const res = await put.redeemVault(params.address, params.amountToRedeem);
+    const res = await put.redeemVault(params.address, convertToMicroUnits(params.amountToRedeem));
     return res;
   }
 
