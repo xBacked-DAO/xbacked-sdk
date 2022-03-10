@@ -5,7 +5,6 @@ const { Account, Vault } = require('..');
     mnemonic: 'lens sell....',
     network: 'LocalHost',
   });
-  await account.initialiseReachAccount();
   const vault = new Vault({ id: 123 });
 
   // distribute collateral fees to xUSD stakers and DAO

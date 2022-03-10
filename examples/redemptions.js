@@ -5,7 +5,6 @@ const { Account, Vault } = require('..');
     mnemonic: 'lens sell....',
     network: 'LocalHost',
   });
-  await account.initialiseReachAccount();
   const vault = new Vault({ id: 123 });
 
   // receive 0.75% of the collateral of the vault, protocol takes 0.25%
