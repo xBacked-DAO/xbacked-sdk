@@ -18,8 +18,8 @@ const acc = new Account({
 const vault = new Vault({ id: 123456 });
 
 await acc.createVault({
-  collateral: convertFromMicroUnits(100),
-  mintAmount: convertFromMicroUnits(50),
+  collateral: 100,
+  mintAmount: 50,
   vault,
 });
 
@@ -37,7 +37,7 @@ if (
 ) {
   await account.liquidateVault({
     address: friendsAddress,
-    debtAmount: convertFromMicroUnits(500),
+    debtAmount: 500,
     vault
   }
 }
