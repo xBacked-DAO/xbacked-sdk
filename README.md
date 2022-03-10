@@ -23,8 +23,8 @@ await acc.createVault({
   vault,
 });
 
-// all data for the vault contract
-const vaultData = await vault.getState({ account });
+// global vault state
+const vaultState = await acc.getVaultState({ vault });
 // data for a specific vault
 const myVault = await vault.getUserInfo({ account, address: acc.getAddress() });
 const friendsVault = await vault.getUserInfo({ account, address: friendsAddress });
