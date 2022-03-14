@@ -40,5 +40,9 @@ class MockAccount extends Account {
   async createVault(params: { collateral: number; mintAmount: number; vault: Vault }): Promise<boolean> {
     return true;
   }
+
+  async dripInterest(params: { address: string; vault: Vault; }): Promise<boolean> {
+    return true;
+  }
 }
 export default MockAccount;
