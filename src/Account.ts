@@ -22,7 +22,7 @@ export interface AccountInterface {
   /** @property An optional instance of the reach standard library */
   reachStdLib?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
-  networkAccount?: boolean;
+  networkAccount?: any;
 }
 
 /**
@@ -44,7 +44,7 @@ export class Account {
   /** @property An instance of the provider object for the signer specified */
   provider?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
-  networkAccount?: boolean;
+  networkAccount?: any;
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -69,19 +69,13 @@ export class Account {
    * Initialises the reachAccount property
    */
   async initialiseReachAccount() {
-    if (this.mnemonic != null && this.reachAccount == null) {
+    if (this.mnemonic && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
-    } else if (this.secretKey != null && this.reachAccount == null) {
+    } else if (this.secretKey && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    } else if (this.networkAccount && this.signer != null && this.reachAccount == null && this.provider != null) {
-      await this.reachStdLib.setWalletFallback(
-        await this.reachStdLib.walletFallback({
-          providerEnv: this.network,
-          [this.signer]: this.provider,
-        }),
-      );
+    } else if (this.networkAccount && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.connectAccount(this.networkAccount);
-    } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
+    } else if (this.signer && !this.reachAccount && this.provider) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.network,
