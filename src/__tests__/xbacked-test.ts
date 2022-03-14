@@ -144,3 +144,10 @@ it('Minter creates vault', async function () {
   });
   expect(isVaultCreated).toBe(true);
 });
+
+it('Liquidator drips interest', async function () {
+  const dripInterest = await account.dripInterest({
+    vault: new Vault({ id: VAULT_ID }),
+    address: ''
+  })
+})
