@@ -21,10 +21,6 @@ class MockAccount extends Account {
     return true;
   }
 
-  async getUserInfo(params: { address: string; vault: Vault }): Promise<any> {
-    return true;
-  }
-
   async depositCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
     return true;
   }

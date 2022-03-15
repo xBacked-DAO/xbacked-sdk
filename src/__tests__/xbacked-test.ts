@@ -1,6 +1,6 @@
 import Account from '../__mock__/MockAccount';
 import { Vault } from '../Vault';
-
+import { calculateInterestAccrued } from '../utils';
 jest.setTimeout(200000000);
 
 beforeAll(() => {
@@ -19,10 +19,10 @@ const account = new Account({
 });
 
 const bigNumberMock = jest.fn((val) => {
- return {
-   toNumber: () => val
- }
-})
+  return {
+    toNumber: () => val,
+  };
+});
 
 account.reachStdLib.newAccountFromMnemonic = jest.fn(account.reachStdLib.newAccountFromMnemonic);
 account.reachStdLib.newAccountFromSecret = jest.fn(account.reachStdLib.newAccountFromSecret);
@@ -71,9 +71,9 @@ it('Create Reach Account', async function () {
   account.reachAccount = reachAccount;
 });
 
-it("Get user Info", async() => {
+it('Get vault Info', async () => {
   const expectedVaultState = {
-    accruedFees: 1, 
+    accruedFees: 1,
     collateralPrice: 1,
     deprecated: false,
     feeCollectorFee: 0.005,
@@ -81,17 +81,19 @@ it("Get user Info", async() => {
     liquidationFee: 0.1,
     minimumCollateralRatio: 110,
     totalVaultDebt: 10,
-    redeemableVaults: ["d"],
+    redeemableVaults: ['d'],
     accruedInterest: 1,
     interestRate: 2000000000,
-  }
+  };
   account.reachAccount.contract = jest.fn(() => {
-    return{
-      v:{
-        State:{
-          read: async() => {
-              return['Some', {
-                accruedFees: bigNumberMock(1), 
+    return {
+      v: {
+        State: {
+          read: async () => {
+            return [
+              'Some',
+              {
+                accruedFees: bigNumberMock(1),
                 collateralPrice: bigNumberMock(1),
                 deprecated: false,
                 feeCollectorFee: 0.005,
@@ -99,18 +101,58 @@ it("Get user Info", async() => {
                 liquidationFee: 0.1,
                 minimumCollateralRatio: bigNumberMock(110),
                 totalVaultDebt: bigNumberMock(10),
-                redeemableVaults: ["ad"],
+                redeemableVaults: ['ad'],
                 accruedInterest: bigNumberMock(1),
                 interestRate: 2000000000,
-              }
-            ]
-          }
-        }
-      } 
+              },
+            ];
+          },
+          readVault: async () => {
+            return [
+              [],
+              [
+                'Some',
+                {
+                  collateralRatio: bigNumberMock(130),
+                  collateral: bigNumberMock(100),
+                  liquidating: false,
+                  vaultDebt: bigNumberMock(40),
+                  redeemable: false,
+                  vaultFound: true,
+                  lastAccruedInterestTime: bigNumberMock(10000),
+                },
+              ],
+            ];
+          },
+        },
+      },
     };
   });
-  const vaultState = await account.getVaultState({vault: new Vault({id: 10}) });
+  const vaultState = await account.getVaultState({ vault: new Vault({ id: 10 }) });
   expect(JSON.stringify(vaultState)).toEqual(JSON.stringify(expectedVaultState));
+});
+
+it('Get user info', async () => {
+  const networkSecs = 10000000;
+  account.reachStdLib.getNetworkSecs = jest.fn(async () => bigNumberMock(networkSecs));
+  const originalValue = {
+    collateralRatio: 130,
+    collateral: 100,
+    liquidating: false,
+    vaultDebt: 40,
+    redeemable: false,
+    lastAccruedInterestTime: 10000,
+    vaultFound: true,
+  };
+  const userInfo = await account.getUserInfo({ address: ' ', vault: new Vault({ id: VAULT_ID }) });
+  const interestAccrued = calculateInterestAccrued(
+    networkSecs,
+    originalValue.lastAccruedInterestTime,
+    originalValue.vaultDebt,
+    2000000000,
+  );
+  originalValue.vaultDebt = interestAccrued + originalValue.vaultDebt;
+  expect(JSON.stringify(userInfo)).toEqual(JSON.stringify(originalValue));
 });
 
 it('Oracle update price', async function () {
@@ -142,14 +184,6 @@ it('Minter withdraws collateral', async function () {
     vault: new Vault({ id: VAULT_ID }),
   });
   expect(isCollateralWithdrawn).toBe(true);
-});
-
-it('Acount gets user info', async function () {
-  const didGetUserInfo = await account.getUserInfo({
-    vault: new Vault({ id: VAULT_ID }),
-    address: '',
-  });
-  expect(didGetUserInfo).toBe(true);
 });
 
 it('Minter deposit collateral', async function () {

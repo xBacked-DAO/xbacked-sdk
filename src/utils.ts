@@ -3,6 +3,9 @@ const MICRO_UNITS = 1000000;
 export const DISCOUNT_RATE = 0.035;
 export const LIQUIDATION_FEE = 0.025;
 
+const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
+const INTEREST_RATE_DENOMINATOR = 100000000000;
+
 // The contract will round up to the next integer so 119.x will give 120%
 // This is the closest we can get without having problems from
 // float conversion. (CONTRACT MINIMUM - 1)
@@ -113,4 +116,17 @@ export const getAllAccounts = async (
   }
   const initialVaults = await indexer.searchAccounts().applicationID(applicationId).do();
   return getAllAccounts(applicationId, indexer, initialVaults.accounts, initialVaults['next-token']);
+};
+
+export const calculateInterestAccrued = (
+  now: number,
+  lastAccruedInterestTime: number,
+  vaultDebt: number,
+  VAULT_INTEREST_RATE: number,
+) => {
+  const amountOfTimePassed = now - lastAccruedInterestTime - 200;
+  const interestRatePerSecond = VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
+  const interestRateOverTimePassed = interestRatePerSecond * amountOfTimePassed;
+  const interestAccrued = (interestRateOverTimePassed * vaultDebt) / INTEREST_RATE_DENOMINATOR;
+  return interestAccrued;
 };
