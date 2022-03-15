@@ -35,6 +35,10 @@ function clearAccount() {
   account.networkAccount = undefined;
 }
 
+beforeAll(async () => {
+  await account.initialiseReachAccount();
+});
+
 it('Create Reach Account', async function () {
   await account.initialiseReachAccount();
   expect(account.reachStdLib.newAccountFromMnemonic).toHaveBeenCalledTimes(1);
@@ -85,49 +89,6 @@ it('Get vault Info', async () => {
     accruedInterest: 1,
     interestRate: 2000000000,
   };
-  account.reachAccount.contract = jest.fn(() => {
-    return {
-      v: {
-        State: {
-          read: async () => {
-            return [
-              'Some',
-              {
-                accruedFees: bigNumberMock(1),
-                collateralPrice: bigNumberMock(1),
-                deprecated: false,
-                feeCollectorFee: 0.005,
-                liquidationCollateralRatio: bigNumberMock(130),
-                liquidationFee: 0.1,
-                minimumCollateralRatio: bigNumberMock(110),
-                totalVaultDebt: bigNumberMock(10),
-                redeemableVaults: ['ad'],
-                accruedInterest: bigNumberMock(1),
-                interestRate: 2000000000,
-              },
-            ];
-          },
-          readVault: async () => {
-            return [
-              [],
-              [
-                'Some',
-                {
-                  collateralRatio: bigNumberMock(130),
-                  collateral: bigNumberMock(100),
-                  liquidating: false,
-                  vaultDebt: bigNumberMock(40),
-                  redeemable: false,
-                  vaultFound: true,
-                  lastAccruedInterestTime: bigNumberMock(10000),
-                },
-              ],
-            ];
-          },
-        },
-      },
-    };
-  });
   const vaultState = await account.getVaultState({ vault: new Vault({ id: 10 }) });
   expect(JSON.stringify(vaultState)).toEqual(JSON.stringify(expectedVaultState));
 });
@@ -161,13 +122,13 @@ it('Oracle update price', async function () {
 });
 
 it('Liquidator Liquidate Vault', async function () {
-  const isLiquidated = await account.liquidateVault({ vault: new Vault({ id: VAULT_ID }), address: '' });
+  const isLiquidated = await account.liquidateVault({
+    vault: new Vault({ id: VAULT_ID }),
+    address: '',
+    debtAmount: 10,
+    dripInterest: false,
+  });
   expect(isLiquidated).toBe(true);
-});
-
-it('Recovery Toggler toggles recovery mode', async function () {
-  const isRecoveryModeChanged = await account.toggleRecoveryMode({ vault: new Vault({ id: VAULT_ID }), mode: true });
-  expect(isRecoveryModeChanged).toBe(true);
 });
 
 it('Minter returns vault debt', async function () {
