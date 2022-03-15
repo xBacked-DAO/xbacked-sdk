@@ -18,6 +18,12 @@ const account = new Account({
     'lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch',
 });
 
+const bigNumberMock = jest.fn((val) => {
+ return {
+   toNumber: () => val
+ }
+})
+
 account.reachStdLib.newAccountFromMnemonic = jest.fn(account.reachStdLib.newAccountFromMnemonic);
 account.reachStdLib.newAccountFromSecret = jest.fn(account.reachStdLib.newAccountFromSecret);
 account.reachStdLib.connectAccount = jest.fn(account.reachStdLib.connectAccount);
@@ -29,7 +35,7 @@ function clearAccount() {
   account.networkAccount = undefined;
 }
 
-it('Create Account with mnemonic', async function () {
+it('Create Reach Account', async function () {
   await account.initialiseReachAccount();
   expect(account.reachStdLib.newAccountFromMnemonic).toHaveBeenCalledTimes(1);
   expect(account.reachAccount).toBeDefined();
@@ -65,6 +71,48 @@ it('Create Account with mnemonic', async function () {
   account.reachAccount = reachAccount;
 });
 
+it("Get user Info", async() => {
+  const expectedVaultState = {
+    accruedFees: 1, 
+    collateralPrice: 1,
+    deprecated: false,
+    feeCollectorFee: 0.005,
+    liquidationCollateralRatio: 130,
+    liquidationFee: 0.1,
+    minimumCollateralRatio: 110,
+    totalVaultDebt: 10,
+    redeemableVaults: ["d"],
+    accruedInterest: 1,
+    interestRate: 2000000000,
+  }
+  account.reachAccount.contract = jest.fn(() => {
+    return{
+      v:{
+        State:{
+          read: async() => {
+              return['Some', {
+                accruedFees: bigNumberMock(1), 
+                collateralPrice: bigNumberMock(1),
+                deprecated: false,
+                feeCollectorFee: 0.005,
+                liquidationCollateralRatio: bigNumberMock(130),
+                liquidationFee: 0.1,
+                minimumCollateralRatio: bigNumberMock(110),
+                totalVaultDebt: bigNumberMock(10),
+                redeemableVaults: ["ad"],
+                accruedInterest: bigNumberMock(1),
+                interestRate: 2000000000,
+              }
+            ]
+          }
+        }
+      } 
+    };
+  });
+  const vaultState = await account.getVaultState({vault: new Vault({id: 10}) });
+  expect(JSON.stringify(vaultState)).toEqual(JSON.stringify(expectedVaultState));
+});
+
 it('Oracle update price', async function () {
   const isPriceUpdated = await account.updatePrice({ price: COLLATERAL_PRICE, vault: new Vault({ id: VAULT_ID }) });
   expect(isPriceUpdated).toBe(true);
@@ -94,13 +142,6 @@ it('Minter withdraws collateral', async function () {
     vault: new Vault({ id: VAULT_ID }),
   });
   expect(isCollateralWithdrawn).toBe(true);
-});
-
-it('Acount gets vault state', async function () {
-  const didGetVaultState = await account.getVaultState({
-    vault: new Vault({ id: VAULT_ID }),
-  });
-  expect(didGetVaultState).toBe(true);
 });
 
 it('Acount gets user info', async function () {
