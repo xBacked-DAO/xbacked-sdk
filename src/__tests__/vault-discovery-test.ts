@@ -26,75 +26,67 @@ describe('Gets open vaults', () => {
         next: jest.fn(),
       },
     };
-    announcerMock.vaultCreated.next.mockResolvedValueOnce(
-     {
-        when: 0,
-        what: [
-          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
-          {
-            collateralRatio: toNumberMock,
-            collateral: toNumberMock,
-            liquidating: false,
-            vaultDebt: toNumberMock,
-            redeemable: false,
-            lastAccruedInterestTime: toNumberMock,
-          },
-        ],
-      },
-    );
-    announcerMock.vaultCreated.next.mockResolvedValueOnce(
-      {
-        when: 2,
-        what: [
-          '0x1b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
-          {
-            collateralRatio: toNumberMock,
-            collateral: toNumberMock,
-            liquidating: false,
-            vaultDebt: toNumberMock,
-            redeemable: false,
-            lastAccruedInterestTime: toNumberMock,
-          },
-        ],
-      },
-    );
+    announcerMock.vaultCreated.next.mockResolvedValueOnce({
+      when: 0,
+      what: [
+        '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
+        {
+          collateralRatio: toNumberMock,
+          collateral: toNumberMock,
+          liquidating: false,
+          vaultDebt: toNumberMock,
+          redeemable: false,
+          lastAccruedInterestTime: toNumberMock,
+        },
+      ],
+    });
+    announcerMock.vaultCreated.next.mockResolvedValueOnce({
+      when: 2,
+      what: [
+        '0x1b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
+        {
+          collateralRatio: toNumberMock,
+          collateral: toNumberMock,
+          liquidating: false,
+          vaultDebt: toNumberMock,
+          redeemable: false,
+          lastAccruedInterestTime: toNumberMock,
+        },
+      ],
+    });
     announcerMock.vaultCreated.next.mockResolvedValueOnce(
       new Promise((resolve, reject) => {
         setTimeout(resolve, 100);
       }),
     );
-    announcerMock.vaultClosed.next.mockResolvedValueOnce(
-      {
-        when: 1,
-        what: [
-          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
-          {
-            collateralRatio: toNumberMock,
-            collateral: toNumberMock,
-            liquidating: false,
-            vaultDebt: toNumberMock,
-            redeemable: false,
-            lastAccruedInterestTime: toNumberMock,
-          },
-        ],
-      },
-    );
-    announcerMock.vaultClosed.next.mockResolvedValueOnce(
-      {
-        when: 3,
-        what: [
-          '0x1b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
-          {
-            collateralRatio: toNumberMock,
-            collateral: toNumberMock,
-            liquidating: false,
-            vaultDebt: toNumberMock,
-            redeemable: false,
-            lastAccruedInterestTime: toNumberMock,
-          },
-        ],
-      },
-    );
+    announcerMock.vaultClosed.next.mockResolvedValueOnce({
+      when: 1,
+      what: [
+        '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
+        {
+          collateralRatio: toNumberMock,
+          collateral: toNumberMock,
+          liquidating: false,
+          vaultDebt: toNumberMock,
+          redeemable: false,
+          lastAccruedInterestTime: toNumberMock,
+        },
+      ],
+    });
+    announcerMock.vaultClosed.next.mockResolvedValueOnce({
+      when: 3,
+      what: [
+        '0x1b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
+        {
+          collateralRatio: toNumberMock,
+          collateral: toNumberMock,
+          liquidating: false,
+          vaultDebt: toNumberMock,
+          redeemable: false,
+          lastAccruedInterestTime: toNumberMock,
+        },
+      ],
+    });
     announcerMock.vaultClosed.next.mockResolvedValueOnce(
       new Promise((resolve, reject) => {
         setTimeout(resolve, 150);

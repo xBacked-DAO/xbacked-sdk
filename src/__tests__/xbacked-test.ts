@@ -13,9 +13,6 @@ const COLLATERAL_AMOUNT = 3;
 const COLLATERAL_PRICE = 4;
 const TOKEN_ID = 5;
 
-
-
-
 const account = new Account({
   mnemonic:
     'lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch',
@@ -23,9 +20,9 @@ const account = new Account({
 
 account.reachStdLib.newAccountFromMnemonic = jest.fn(account.reachStdLib.newAccountFromMnemonic);
 account.reachStdLib.newAccountFromSecret = jest.fn(account.reachStdLib.newAccountFromSecret);
-account.reachStdLib.connectAccount= jest.fn(account.reachStdLib.connectAccount);
+account.reachStdLib.connectAccount = jest.fn(account.reachStdLib.connectAccount);
 
-function clearAccount(){
+function clearAccount() {
   account.mnemonic = undefined;
   account.reachAccount = undefined;
   account.secretKey = undefined;
@@ -40,35 +37,29 @@ it('Create Account with mnemonic', async function () {
   let reachAccount = account.reachAccount;
   clearAccount();
   let sk = [
-    1, 220, 176, 222, 181,  64, 111, 141,  28,  81, 148,
-   76, 223, 180,  36, 111, 230,  64, 101, 127, 126, 217,
-  116,  95,  20, 215, 105, 219,  78, 250,  98, 143,  11,
-  122,  54,  50, 142,   2,  69,  30,  75,  52,  51, 213,
-  180,  10,   5, 206, 211, 121,  75,  92,  53, 135, 141,
-    7, 207, 239, 149, 169,  31, 132,   0, 221
-  ]
- account.secretKey = sk;
- await account.initialiseReachAccount();
- expect(account.reachStdLib.newAccountFromSecret).toHaveBeenCalledTimes(1);
- clearAccount();
-  let networkAccount =  {
+    1, 220, 176, 222, 181, 64, 111, 141, 28, 81, 148, 76, 223, 180, 36, 111, 230, 64, 101, 127, 126, 217, 116, 95, 20,
+    215, 105, 219, 78, 250, 98, 143, 11, 122, 54, 50, 142, 2, 69, 30, 75, 52, 51, 213, 180, 10, 5, 206, 211, 121, 75,
+    92, 53, 135, 141, 7, 207, 239, 149, 169, 31, 132, 0, 221,
+  ];
+  account.secretKey = sk;
+  await account.initialiseReachAccount();
+  expect(account.reachStdLib.newAccountFromSecret).toHaveBeenCalledTimes(1);
+  clearAccount();
+  let networkAccount = {
     addr: 'BN5DMMUOAJCR4SZUGPK3ICQFZ3JXSS24GWDY2B6P56K2SH4EADO6XN56GQ',
-    sk:  [
-        1, 220, 176, 222, 181,  64, 111, 141,  28,  81, 148,
-       76, 223, 180,  36, 111, 230,  64, 101, 127, 126, 217,
-      116,  95,  20, 215, 105, 219,  78, 250,  98, 143,  11,
-      122,  54,  50, 142,   2,  69,  30,  75,  52,  51, 213,
-      180,  10,   5, 206, 211, 121,  75,  92,  53, 135, 141,
-        7, 207, 239, 149, 169,  31, 132,   0, 221
-    ]
-  }
+    sk: [
+      1, 220, 176, 222, 181, 64, 111, 141, 28, 81, 148, 76, 223, 180, 36, 111, 230, 64, 101, 127, 126, 217, 116, 95, 20,
+      215, 105, 219, 78, 250, 98, 143, 11, 122, 54, 50, 142, 2, 69, 30, 75, 52, 51, 213, 180, 10, 5, 206, 211, 121, 75,
+      92, 53, 135, 141, 7, 207, 239, 149, 169, 31, 132, 0, 221,
+    ],
+  };
   account.networkAccount = networkAccount;
   await account.initialiseReachAccount();
   expect(account.reachStdLib.connectAccount).toHaveBeenCalledTimes(3);
   clearAccount();
-  const throwFunc = async() => {
-    await account.initialiseReachAccount()
-  }
+  const throwFunc = async () => {
+    await account.initialiseReachAccount();
+  };
   await expect(throwFunc).rejects.toThrow(Error);
   account.mnemonic = mnemonic;
   account.reachAccount = reachAccount;
@@ -148,6 +139,6 @@ it('Minter creates vault', async function () {
 it('Liquidator drips interest', async function () {
   const dripInterest = await account.dripInterest({
     vault: new Vault({ id: VAULT_ID }),
-    address: ''
-  })
-})
+    address: '',
+  });
+});

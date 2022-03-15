@@ -41,7 +41,7 @@ class MockAccount extends Account {
     return true;
   }
 
-  async dripInterest(params: { address: string; vault: Vault; }): Promise<boolean> {
+  async dripInterest(params: { address: string; vault: Vault }): Promise<boolean> {
     return true;
   }
 }
