@@ -9,9 +9,7 @@ beforeAll(() => {
 
 const VAULT_ID = 1;
 const MINT_AMOUNT = 2;
-const COLLATERAL_AMOUNT = 3;
 const COLLATERAL_PRICE = 4;
-const TOKEN_ID = 5;
 
 const account = new Account({
   mnemonic:
@@ -177,4 +175,5 @@ it('Liquidator drips interest', async function () {
     vault: new Vault({ id: VAULT_ID }),
     address: '',
   });
+  expect(dripInterest).toBe(true);
 });
