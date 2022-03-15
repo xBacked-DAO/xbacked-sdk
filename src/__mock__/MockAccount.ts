@@ -1,5 +1,4 @@
 import { Account } from '../Account';
-import { Vault } from '../Vault';
 class MockAccount extends Account {
   async initialiseReachAccount(): Promise<void> {
     const bigNumberMock = jest.fn((val) => {
