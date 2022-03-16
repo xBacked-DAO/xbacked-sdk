@@ -3,7 +3,7 @@ import { loadStdlib } from '@reach-sh/stdlib';
 // @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import { Vault, UserVaultReturnParams, VaultReturnParams } from './Vault';
-import { convertToMicroUnits } from './utils';
+import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 
 /**
  * This is passed as an argument to the [[Account]] constructor
@@ -339,16 +339,15 @@ export class Account {
 
     const userVault = await params.vault.getUserInfo({ account: this, address: params.address });
     // NOTE: does not account for leap year
-    const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
-    const INTEREST_RATE_DENOMINATOR = 100000000000;
     const vaultState = await this.getVaultState({ vault: params.vault });
     const VAULT_INTEREST_RATE = vaultState.interestRate;
-
     const now = await this.reachStdLib.getNetworkSecs();
-    const amountOfTimePassed = now.toNumber() - userVault.lastAccruedInterestTime - 200;
-    const interestRatePerSecond = VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
-    const interestRateOverTimePassed = interestRatePerSecond * amountOfTimePassed;
-    const interestAccrued = (interestRateOverTimePassed * userVault.vaultDebt) / INTEREST_RATE_DENOMINATOR;
+    const interestAccrued = calculateInterestAccrued(
+      now.toNumber(),
+      userVault.lastAccruedInterestTime,
+      userVault.vaultDebt,
+      VAULT_INTEREST_RATE,
+    );
     userVault.vaultDebt += interestAccrued;
     return userVault;
   }
