@@ -3,7 +3,7 @@ import { loadStdlib } from '@reach-sh/stdlib';
 // @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import { Vault, UserVaultReturnParams, VaultReturnParams } from './Vault';
-import { convertToMicroUnits } from './utils';
+import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 
 /**
  * This is passed as an argument to the [[Account]] constructor
@@ -22,7 +22,7 @@ export interface AccountInterface {
   /** @property An optional instance of the reach standard library */
   reachStdLib?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
-  networkAccount?: boolean;
+  networkAccount?: any;
 }
 
 /**
@@ -44,7 +44,7 @@ export class Account {
   /** @property An instance of the provider object for the signer specified */
   provider?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
-  networkAccount?: boolean;
+  networkAccount?: any;
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -69,19 +69,13 @@ export class Account {
    * Initialises the reachAccount property
    */
   async initialiseReachAccount() {
-    if (this.mnemonic != null && this.reachAccount == null) {
+    if (this.mnemonic && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
-    } else if (this.secretKey != null && this.reachAccount == null) {
+    } else if (this.secretKey && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    } else if (this.networkAccount && this.signer != null && this.reachAccount == null && this.provider != null) {
-      await this.reachStdLib.setWalletFallback(
-        await this.reachStdLib.walletFallback({
-          providerEnv: this.network,
-          [this.signer]: this.provider,
-        }),
-      );
+    } else if (this.networkAccount && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.connectAccount(this.networkAccount);
-    } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
+    } else if (this.signer && !this.reachAccount && this.provider) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.network,
@@ -345,16 +339,15 @@ export class Account {
 
     const userVault = await params.vault.getUserInfo({ account: this, address: params.address });
     // NOTE: does not account for leap year
-    const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
-    const INTEREST_RATE_DENOMINATOR = 100000000000;
     const vaultState = await this.getVaultState({ vault: params.vault });
     const VAULT_INTEREST_RATE = vaultState.interestRate;
-
     const now = await this.reachStdLib.getNetworkSecs();
-    const amountOfTimePassed = now.toNumber() - userVault.lastAccruedInterestTime - 200;
-    const interestRatePerSecond = VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
-    const interestRateOverTimePassed = interestRatePerSecond * amountOfTimePassed;
-    const interestAccrued = (interestRateOverTimePassed * userVault.vaultDebt) / INTEREST_RATE_DENOMINATOR;
+    const interestAccrued = calculateInterestAccrued(
+      now.toNumber(),
+      userVault.lastAccruedInterestTime,
+      userVault.vaultDebt,
+      VAULT_INTEREST_RATE,
+    );
     userVault.vaultDebt += interestAccrued;
     return userVault;
   }
