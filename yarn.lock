@@ -1710,7 +1710,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:0.0.16":
+"@xbacked-dao/xbacked-contracts@npm:^0.0.16":
   version: 0.0.16
   resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.16"
   dependencies:
@@ -1738,7 +1738,7 @@ __metadata:
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 0.0.16
+    "@xbacked-dao/xbacked-contracts": ^0.0.16
     awesome-typescript-loader: ^5.2.1
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0

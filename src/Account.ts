@@ -45,6 +45,7 @@ export class Account {
   provider?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
+  /** @property The event listener for vault  */
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -365,4 +366,38 @@ export class Account {
   }
 
   // TODO: ADD listeners for events
+  /**
+   * Subscribes to all vault events and calls the provided callbacks when an
+   * event is fired.
+   */
+  async subscribeToEvents(params: {
+    vaultId: number;
+    createCallback: (address: string, state: UserVaultReturnParams) => void;
+    transactionCallback: (address: string, state: UserVaultReturnParams) => void;
+  }): Promise<void> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vaultId);
+    const announcer = ctc.e.Announcer;
+    const lastTime = await announcer.vaultCreated.lastTime();
+    console.log(lastTime);
+    console.log(JSON.stringify(announcer, null, 4));
+
+    if (params.createCallback !== undefined) {
+      announcer.vaultCreated.monitor((event: any) => {
+        const address: string = this.reachStdLib.formatAddress(event.what[0]);
+        const rawVaultState = event.what[1];
+        const vaultState: UserVaultReturnParams = { vaultFound: true, ...Vault.parseUserInfo(rawVaultState) };
+        params.createCallback(address, vaultState);
+      });
+    }
+
+    if (params.transactionCallback) {
+      announcer.vaultTransaction.monitor((event: any) => {
+        const address: string = this.reachStdLib.formatAddress(event.what[0]);
+        const rawVaultState = event.what[1];
+        const vaultState: UserVaultReturnParams = { vaultFound: true, ...Vault.parseUserInfo(rawVaultState) };
+        params.transactionCallback(address, vaultState);
+      });
+    }
+  }
 }
