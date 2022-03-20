@@ -15,7 +15,7 @@ const acc = new Account({
   mnemonic: process.env.SEED_PHRASE
 });
 
-//depend on which Net you're using and could change.
+//current value is placeholder, vault id changes depending on which Net you use
 const vault = new Vault({ id: 123456 });
 
 await acc.createVault({
