@@ -14,7 +14,8 @@ const acc = new Account({
   network: 'LocalHost | TestNet | MainNet',
   mnemonic: process.env.SEED_PHRASE
 });
-//should be specific to vault id depending on which Net you're using
+
+//depend on which Net you're using and could change.
 const vault = new Vault({ id: 123456 });
 
 await acc.createVault({
