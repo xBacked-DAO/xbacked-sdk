@@ -379,8 +379,8 @@ export class Account {
     const ctc = this.reachAccount.contract(backend, params.vaultId);
     const announcer = ctc.e.Announcer;
     const lastTime = await announcer.vaultCreated.lastTime();
-    console.log(lastTime);
-    console.log(JSON.stringify(announcer, null, 4));
+    // console.log(lastTime);
+    // console.log(JSON.stringify(announcer, null, 4));
 
     if (params.createCallback !== undefined) {
       announcer.vaultCreated.monitor((event: any) => {
