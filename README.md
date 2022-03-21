@@ -15,6 +15,7 @@ const acc = new Account({
   mnemonic: process.env.SEED_PHRASE
 });
 
+//current value is placeholder, vault id changes depending on which Net you use
 const vault = new Vault({ id: 123456 });
 
 await acc.createVault({
@@ -26,16 +27,16 @@ await acc.createVault({
 // global vault state
 const vaultState = await acc.getVaultState({ vault });
 // data for a specific vault
-const myVault = await vault.getUserInfo({ account, address: acc.getAddress() });
+const myVault = await vault.getUserInfo({ account, address: await acc.getAddress() });
 const friendsVault = await vault.getUserInfo({ account, address: friendsAddress });
 
 if (
   // might want to calculate this off chain for latest CR
-  (friendsVault.collateralRatio < vaultData.liquidationCollateralRatio) ||
+  (friendsVault.collateralRatio < vaultState.liquidationCollateralRatio) ||
   // partial liquidations are available
   friendsVault.liquidating
 ) {
-  await account.liquidateVault({
+  await acc.liquidateVault({
     address: friendsAddress,
     debtAmount: 500,
     vault
