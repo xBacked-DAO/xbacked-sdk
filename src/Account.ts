@@ -45,7 +45,6 @@ export class Account {
   provider?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
-  /** @property The event listener for vault  */
 
   constructor(params: AccountInterface) {
     // console.log(backend);
