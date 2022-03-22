@@ -133,6 +133,7 @@ it('Minter returns vault debt', async function () {
   const isVaultDebtReturned = await account.returnVaultDebt({
     amount: MINT_AMOUNT,
     vault: new Vault({ id: VAULT_ID }),
+    close: false
   });
   expect(isVaultDebtReturned).toBe(true);
 });
