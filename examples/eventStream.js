@@ -1,14 +1,15 @@
 const { Account } = require('..');
 
+
+// Example snippet to show how to monitor vault activity using the xBacked SDK.
 (async () => {
   const account = new Account({
     mnemonic: '...',
-    network: 'LocalHost',
+    network: 'TestNet',
   });
 
-  // receive 0.75% of the collateral of the vault, protocol takes 0.25%
   await account.subscribeToEvents({
-    vaultId: 6,
+    vaultId: 2,
     createCallback: (address, vaultState) => {
       console.log('Created', address, JSON.stringify(vaultState, null, 4));
     },
