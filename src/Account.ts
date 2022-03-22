@@ -205,11 +205,11 @@ export class Account {
    *  to return, key vault indicating the Contract and key close indicating if the vault should be closed
    * @returns A boolean indicating if the vault debt was returned or not
    */
-  async returnVaultDebt(params: { amount: number; vault: Vault; close: boolean }): Promise<boolean> {
+  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean}): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.returnVaultDebt(convertToMicroUnits(params.amount), params.close);
+    const res = await put.returnVaultDebt(convertToMicroUnits(params.amount), params.close ? params.close : false);
     return res;
   }
 
