@@ -121,15 +121,14 @@ export class Account {
   /**
    * Attempt to redeem some of the Vault asset against a redeemable vault, to
    * receive vault collateral.
-   * @param params Contains the amount of xUSD to redeem with, and the address
-   * of the vault to redeem.
+   * @param params Contains the amount of xUSD to redeem
    * @returns A boolean indicating success of call.
    */
-  async redeemVault(params: { address: string; amountToRedeem: number; vault: Vault }): Promise<boolean> {
+  async redeemVault(params: {amountToRedeem: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
-    const res = await put.redeemVault(params.address, convertToMicroUnits(params.amountToRedeem));
+    const res = await put.redeemVault(convertToMicroUnits(params.amountToRedeem));
     return res;
   }
 
@@ -202,7 +201,8 @@ export class Account {
 
   /**
    *
-   * @param params An object with key amount signifying the amount of debt tokens to return and key vault indicating the Contract
+   * @param params An object with key amount signifying the amount of debt tokens
+   *  to return, key vault indicating the Contract and key close indicating if the vault should be closed
    * @returns A boolean indicating if the vault debt was returned or not
    */
   async returnVaultDebt(params: { amount: number; vault: Vault; close: boolean }): Promise<boolean> {
