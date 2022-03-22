@@ -62,7 +62,7 @@
     "@randlabs/myalgo-connect": "^1.1.1",
     "@reach-sh/stdlib": "0.1.8-rc.10",
     "@types/jsdom": "^16.2.13",
-    "@xbacked-dao/xbacked-contracts": "0.0.16",
+    "@xbacked-dao/xbacked-contracts": "0.0.17",
     "awesome-typescript-loader": "^5.2.1",
     "jest": "^27.3.1"
   }
