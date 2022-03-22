@@ -205,11 +205,11 @@ export class Account {
    * @param params An object with key amount signifying the amount of debt tokens to return and key vault indicating the Contract
    * @returns A boolean indicating if the vault debt was returned or not
    */
-  async returnVaultDebt(params: { amount: number; vault: Vault }): Promise<boolean> {
+  async returnVaultDebt(params: { amount: number; vault: Vault; close: boolean }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.returnVaultDebt(convertToMicroUnits(params.amount));
+    const res = await put.returnVaultDebt(convertToMicroUnits(params.amount), close);
     return res;
   }
 
