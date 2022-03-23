@@ -124,7 +124,7 @@ export class Account {
    * @param params Contains the amount of xUSD to redeem
    * @returns A boolean indicating success of call.
    */
-  async redeemVault(params: {amountToRedeem: number; vault: Vault }): Promise<boolean> {
+  async redeemVault(params: { amountToRedeem: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
@@ -205,7 +205,7 @@ export class Account {
    *  to return, key vault indicating the Contract and key close indicating if the vault should be closed
    * @returns A boolean indicating if the vault debt was returned or not
    */
-  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean}): Promise<boolean> {
+  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
@@ -365,12 +365,15 @@ export class Account {
   }
 
   /**
-   * Subscribes to all vault events and calls the provided callbacks when an
-   * event is fired.
+   * Subscribes to all vault events and calls the provided callbacks when the event is fired
+   * @param params An object that contains key vaultId, key createCallback and key transactionCallback
    */
   async subscribeToEvents(params: {
+    /** @property a uint that uniquely identifies the contract */
     vaultId: number;
+    /** @property callback that is called when a vault is created, it is called with the address that created the vault as well as its user vault state */
     createCallback: (address: string, state: UserVaultReturnParams) => void;
+    /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */
     transactionCallback: (address: string, state: UserVaultReturnParams) => void;
   }): Promise<void> {
     await this.initialiseReachAccount();
