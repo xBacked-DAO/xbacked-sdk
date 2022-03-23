@@ -62,6 +62,10 @@ it('Create Reach Account', async function () {
     ],
   };
   account.networkAccount = networkAccount;
+  account.signer = 'AlgoSigner';
+  account.network = 'TestNet';
+  account.provider = 'Provider';
+  account.reachAccount = null;
   await account.initialiseReachAccount();
   expect(account.reachStdLib.connectAccount).toHaveBeenCalledTimes(3);
   clearAccount();
