@@ -73,7 +73,13 @@ export class Account {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
     } else if (this.secretKey && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    } else if (this.networkAccount && !this.reachAccount) {
+    } else if (this.networkAccount && this.signer && this.reachAccount == null && this.provider) {
+      await this.reachStdLib.setWalletFallback(
+        await this.reachStdLib.walletFallback({
+          providerEnv: this.network,
+          [this.signer]: this.provider,
+        }),
+      );
       this.reachAccount = await this.reachStdLib.connectAccount(this.networkAccount);
     } else if (this.signer && !this.reachAccount && this.provider) {
       await this.reachStdLib.setWalletFallback(
@@ -124,7 +130,7 @@ export class Account {
    * @param params Contains the amount of xUSD to redeem
    * @returns A boolean indicating success of call.
    */
-  async redeemVault(params: {amountToRedeem: number; vault: Vault }): Promise<boolean> {
+  async redeemVault(params: { amountToRedeem: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
@@ -205,7 +211,7 @@ export class Account {
    *  to return, key vault indicating the Contract and key close indicating if the vault should be closed
    * @returns A boolean indicating if the vault debt was returned or not
    */
-  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean}): Promise<boolean> {
+  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
