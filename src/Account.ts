@@ -130,7 +130,7 @@ export class Account {
    * @param params Contains the amount of xUSD to redeem
    * @returns A boolean indicating success of call.
    */
-  async redeemVault(params: {amountToRedeem: number; vault: Vault }): Promise<boolean> {
+  async redeemVault(params: { amountToRedeem: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
@@ -211,7 +211,7 @@ export class Account {
    *  to return, key vault indicating the Contract and key close indicating if the vault should be closed
    * @returns A boolean indicating if the vault debt was returned or not
    */
-  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean}): Promise<boolean> {
+  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
