@@ -398,7 +398,7 @@ export class Account {
     if (params.transactionCallback) {
       announcer.vaultTransaction.monitor((event: any) => {
         const address: string = this.reachStdLib.formatAddress(event.what[0]);
-        const rawVaultState = event.what[1];
+        const rawVaultState = event.what[2];
         const vaultState: UserVaultReturnParams = { vaultFound: true, ...Vault.parseUserInfo(rawVaultState) };
         params.transactionCallback(address, vaultState);
       });
