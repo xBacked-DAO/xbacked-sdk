@@ -215,7 +215,7 @@ export class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.returnVaultDebt(convertToMicroUnits(params.amount), params.close ? params.close : false);
+    const res = await put.returnVaultDebt( params.close ? 0: convertToMicroUnits(params.amount), params.close ? params.close : false);
     return res;
   }
 
@@ -371,12 +371,15 @@ export class Account {
   }
 
   /**
-   * Subscribes to all vault events and calls the provided callbacks when an
-   * event is fired.
+   * Subscribes to all vault events and calls the provided callbacks when the event is fired
+   * @param params An object that contains key vaultId, key createCallback and key transactionCallback
    */
   async subscribeToEvents(params: {
+    /** @property a uint that uniquely identifies the contract */
     vaultId: number;
+    /** @property callback that is called when a vault is created, it is called with the address that created the vault as well as its user vault state */
     createCallback: (address: string, state: UserVaultReturnParams) => void;
+    /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */
     transactionCallback: (address: string, state: UserVaultReturnParams) => void;
   }): Promise<void> {
     await this.initialiseReachAccount();
@@ -395,7 +398,7 @@ export class Account {
     if (params.transactionCallback) {
       announcer.vaultTransaction.monitor((event: any) => {
         const address: string = this.reachStdLib.formatAddress(event.what[0]);
-        const rawVaultState = event.what[1];
+        const rawVaultState = event.what[2];
         const vaultState: UserVaultReturnParams = { vaultFound: true, ...Vault.parseUserInfo(rawVaultState) };
         params.transactionCallback(address, vaultState);
       });
