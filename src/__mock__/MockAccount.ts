@@ -10,6 +10,9 @@ class MockAccount extends Account {
     const trueFunc = async () => {
       return true;
     };
+
+    this.reachStdLib.setWalletFallback = jest.fn(() => true);
+
     this.reachAccount.contract = jest.fn(() => {
       return {
         v: {

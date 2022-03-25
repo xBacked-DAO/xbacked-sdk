@@ -62,6 +62,10 @@ it('Create Reach Account', async function () {
     ],
   };
   account.networkAccount = networkAccount;
+  account.signer = 'AlgoSigner';
+  account.network = 'TestNet';
+  account.provider = 'Provider';
+  account.reachAccount = null;
   await account.initialiseReachAccount();
   expect(account.reachStdLib.connectAccount).toHaveBeenCalledTimes(3);
   clearAccount();
@@ -133,6 +137,7 @@ it('Minter returns vault debt', async function () {
   const isVaultDebtReturned = await account.returnVaultDebt({
     amount: MINT_AMOUNT,
     vault: new Vault({ id: VAULT_ID }),
+    close: false,
   });
   expect(isVaultDebtReturned).toBe(true);
 });
