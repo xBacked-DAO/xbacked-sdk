@@ -289,13 +289,9 @@ export class Account {
    */
   async createVault(params: { collateral: number; mintAmount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
-    console.log("After account initialisation")
     const ctc = this.reachAccount.contract(backend, params.vault.id);
-    console.log("After ctc initialisation")
     const put = ctc.a.VaultOwner;
-    console.log("After put initialisation")
     const res = await put.createVault(convertToMicroUnits(params.collateral), convertToMicroUnits(params.mintAmount));
-    console.log("After createVault initialisation")
     return res;
   }
 
