@@ -1,4 +1,4 @@
-const { Account } = require('..');
+const {Account} = require('..');
 
 
 // Example snippet to show how to monitor vault activity using the xBacked SDK.

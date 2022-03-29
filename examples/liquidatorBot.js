@@ -10,7 +10,7 @@ const {
   calcDiscountPrice,
   calcCollateralRatioAfterLiquidation,
   LIQUIDATION_FEE,
-  getOpenVaults
+  getOpenVaults,
 } = require('..'); // Use require('@xbacked-dao/xbacked-sdk'); instead
 const yargs = require('yargs/yargs');
 
@@ -18,34 +18,34 @@ const yargs = require('yargs/yargs');
 const MAX_EVENT_TIMEOUT = 2000;
 
 const argv = yargs(process.argv.slice(2))
-  .usage('Usage: $0')
-  .number('vault-id')
-  .describe('vault-id', 'The master vault id to search for vaults')
-  .number('token-id')
-  .describe('token-id', 'The token id to use as payment')
-  .number('d')
-  .alias('d', 'debt-amount')
-  .describe('d', 'Amount of debt tokens to use for liquidation')
-  .number('s')
-  .alias('s', 'start-round')
-  .describe('s', 'Search for vaults starting from this round')
-  .number('e')
-  .alias('e', 'end-round')
-  .describe('e', 'Search for vaults ending at this round. Skip this to use the lastest round')
-  .number('u')
-  .alias('u', 'update-interval')
-  .describe('u', 'The interval in seconds between vaults updates')
-  .boolean('v')
-  .alias('v', 'verbose')
-  .describe('v', 'Show all output')
-  .default({u: 10, s: 0, v: false})
-  .demandOption(['vault-id', 'token-id', 'debt-amount'])
-  .version(false)
-  .argv;
+    .usage('Usage: $0')
+    .number('vault-id')
+    .describe('vault-id', 'The master vault id to search for vaults')
+    .number('token-id')
+    .describe('token-id', 'The token id to use as payment')
+    .number('d')
+    .alias('d', 'debt-amount')
+    .describe('d', 'Amount of debt tokens to use for liquidation')
+    .number('s')
+    .alias('s', 'start-round')
+    .describe('s', 'Search for vaults starting from this round')
+    .number('e')
+    .alias('e', 'end-round')
+    .describe('e', 'Search for vaults ending at this round. Skip this to use the lastest round')
+    .number('u')
+    .alias('u', 'update-interval')
+    .describe('u', 'The interval in seconds between vaults updates')
+    .boolean('v')
+    .alias('v', 'verbose')
+    .describe('v', 'Show all output')
+    .default({u: 10, s: 0, v: false})
+    .demandOption(['vault-id', 'token-id', 'debt-amount'])
+    .version(false)
+    .argv;
 
 const verbose = (string) => {
   if (argv.verbose) {
-    console.log(string + "\n");
+    console.log(string + '\n');
   }
 };
 
@@ -68,19 +68,19 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
 
     if (updatedCR < 120) {
       const maxDebtPayout = calcMaxDebtPayout(
-        collateral,
-        collateralPrice,
-        vaultDebt
+          collateral,
+          collateralPrice,
+          vaultDebt,
       );
       // Partial liquidate if there are not enough tokens.
       const amountToPay = Math.min(remainingDebtTokens, maxDebtPayout);
       verbose(`Max pay amount: ${maxDebtPayout}`);
       verbose(`Amount to pay: ${amountToPay}`);
       const collateralRatioAfterLiquidation = calcCollateralRatioAfterLiquidation(
-        collateral,
-        collateralPrice,
-        amountToPay,
-        vaultDebt
+          collateral,
+          collateralPrice,
+          amountToPay,
+          vaultDebt,
       );
       verbose(`CR after liquidation: ${collateralRatioAfterLiquidation}\n`);
 
@@ -102,11 +102,10 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
 };
 
 (async () => {
-
   const account = new Account({
     mnemonic: 'amateur sponsor crystal rain filter bulk document silver erupt wave science enough half access crack illegal such broom tobacco dress napkin faint way ability result',
     // mnemonic: 'lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch',
-    network: 'LocalHost'
+    network: 'LocalHost',
   });
   await account.optIntoToken(yargs.tokenId);
 
@@ -116,10 +115,10 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
 
   let remainingDebtTokens = convertToMicroUnits(argv.debtAmount);
   let startRound = argv.startRound;
-  let openVaults = new Set();
+  const openVaults = new Set();
 
   while (remainingDebtTokens > 1) {
-    let endRound = argv.endRound || reachStdLib.bigNumberToNumber(await reachStdLib.getNetworkTime());
+    const endRound = argv.endRound || reachStdLib.bigNumberToNumber(await reachStdLib.getNetworkTime());
 
     if (startRound < endRound) {
       console.log('Obtaining new vault data\n');
@@ -127,13 +126,13 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
       verbose(`endRound: ${endRound}\n`);
       try {
         (await getOpenVaults({
-            account,
-            vault,
-            startRound,
-            endRound,
-            timeout: MAX_EVENT_TIMEOUT
-        })).forEach(ownerAddr => openVaults.add(ownerAddr));
-      } catch(e) {
+          account,
+          vault,
+          startRound,
+          endRound,
+          timeout: MAX_EVENT_TIMEOUT,
+        })).forEach((ownerAddr) => openVaults.add(ownerAddr));
+      } catch (e) {
         console.log(e);
       }
       startRound = endRound;

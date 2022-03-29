@@ -1,5 +1,5 @@
-const { getAllAccounts, Account, Vault } = require('..');
-const { loadStdlib } = require('@reach-sh/stdlib');
+const {getAllAccounts, Account, Vault} = require('..');
+const {loadStdlib} = require('@reach-sh/stdlib');
 
 (async () => {
   const account = new Account({
@@ -7,7 +7,7 @@ const { loadStdlib } = require('@reach-sh/stdlib');
     network: 'LocalHost',
   });
   const VAULT_ID = 123;
-  const vault = new Vault({ id: VAULT_ID });
+  const vault = new Vault({id: VAULT_ID});
   const reach = loadStdlib('ALGO');
   const indexer = new reach.algosdk.Indexer(
       // indexer key
@@ -26,7 +26,7 @@ const { loadStdlib } = require('@reach-sh/stdlib');
   );
   // get state for each vault
   const vaultData = accounts.map((vaultAccount) => {
-    return account.getUserInfo({ address: vaultAccount.address, vault });
+    return account.getUserInfo({address: vaultAccount.address, vault});
   });
   return vaultData;
 })();
