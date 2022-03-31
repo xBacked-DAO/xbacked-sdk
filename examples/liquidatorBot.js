@@ -12,40 +12,14 @@ const {
   LIQUIDATION_FEE,
   getOpenVaults,
 } = require('..'); // Use require('@xbacked-dao/xbacked-sdk'); instead
-const yargs = require('yargs/yargs');
 const dotenv = require('dotenv');
 dotenv.config();
 // Max. timeout between event queries.
-const MAX_EVENT_TIMEOUT = 2000;
+const MAX_EVENT_TIMEOUT = 5000000;
 
-const argv = yargs(process.argv.slice(2))
-    .usage('Usage: $0')
-    .number('vault-id')
-    .describe('vault-id', 'The master vault id to search for vaults')
-    .number('token-id')
-    .describe('token-id', 'The token id to use as payment')
-    .number('d')
-    .alias('d', 'debt-amount')
-    .describe('d', 'Amount of debt tokens to use for liquidation')
-    .number('s')
-    .alias('s', 'start-round')
-    .describe('s', 'Search for vaults starting from this round')
-    .number('e')
-    .alias('e', 'end-round')
-    .describe('e', 'Search for vaults ending at this round. Skip this to use the lastest round')
-    .number('u')
-    .alias('u', 'update-interval')
-    .describe('u', 'The interval in seconds between vaults updates')
-    .boolean('v')
-    .alias('v', 'verbose')
-    .describe('v', 'Show all output')
-    .default({u: 10, s: 0, v: false})
-    .demandOption(['vault-id', 'token-id', 'debt-amount'])
-    .version(false)
-    .argv;
 
 const verbose = (string) => {
-  if (argv.verbose) {
+  if (process.env.VERBOSE == 1) {
     console.log(string + '\n');
   }
 };
@@ -67,7 +41,7 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
     verbose('User vault state: ' + JSON.stringify(userInfo, null, 2));
 
 
-    if (updatedCR < 120) {
+    if (updatedCR < 1.1) {
       const maxDebtPayout = calcMaxDebtPayout(
           collateral,
           collateralPrice,
@@ -95,6 +69,7 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
       console.log(`Remaining debt tokens: ${convertFromMicroUnits(remainingDebtTokens - amountToPay)}\n`);
       return amountToPay;
     }
+    console.log(`No need to liquidate  updated C.R: ${updatedCR}`);
     return 0;
   } catch (e) {
     console.log(`Failed to liquidate vault: ${e}`);
@@ -110,19 +85,18 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
     mnemonic,
     network: 'TestNet',
   });
-  await account.optIntoToken(yargs.tokenId);
-
-  account.fundFromFaucet();
+  await account.optIntoToken(STABLECOIN);
+  await account.fundFromFaucet();
   const reachStdLib = account.reachStdLib;
   const vault = new Vault({id: VAULT_ID});
-
-  let remainingDebtTokens = convertToMicroUnits(argv.debtAmount);
-  let startRound = argv.startRound;
+  let remainingDebtTokens = convertToMicroUnits(process
+      .env.REMAINING_DEBT_TOKENS);
+  let startRound = process.env.START_ROUND;
   const openVaults = new Set();
 
   while (remainingDebtTokens > 1) {
-    const endRound = argv.endRound || reachStdLib.bigNumberToNumber(await reachStdLib.getNetworkTime());
-
+    const endRound = process.env.END_ROUND || reachStdLib
+        .bigNumberToNumber(await reachStdLib.getNetworkTime());
     if (startRound < endRound) {
       console.log('Obtaining new vault data\n');
       verbose(`startRound: ${startRound}`);
@@ -141,13 +115,16 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
       startRound = endRound;
     }
 
+    console.log(openVaults, 'openVaults');
+
     for (const ownerAddr of openVaults) {
-      const usedTokens = await tryLiquidate(account, vault, ownerAddr, remainingDebtTokens);
+      const usedTokens = await tryLiquidate(account,
+          vault, ownerAddr, remainingDebtTokens);
       remainingDebtTokens -= usedTokens;
     }
 
     // Wait the update interval seconds to update vaults and try to liquidate
-    await new Promise((resolve) => setTimeout(resolve, argv.updateInterval * 1000));
+    await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
   }
   // Reach next() hangs the process.
   process.exit(0);

@@ -1,6 +1,5 @@
 const {getAllAccounts, Account, Vault} = require('..');
 const {loadStdlib} = require('@reach-sh/stdlib');
-const {ask} = require('@reach-sh/stdlib');
 const dotenv = require('dotenv');
 dotenv.config();
 
