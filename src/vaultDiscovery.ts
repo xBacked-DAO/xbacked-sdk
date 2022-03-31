@@ -117,6 +117,7 @@ export const getTransactions = async (params: {
   endRound?: number;
   timeout?: number;
 }): Promise<VaultTransactionEvent[]> => {
+  await params.account.initialiseReachAccount();
   const ctc = params.account.reachAccount.contract(backend, params.vault.id);
   const announcer = ctc.events.Announcer;
 
