@@ -185,7 +185,6 @@ const getEvents = async <T>(params: {
   while (keepGoing) {
     try {
       const event: any = await timeoutReachFetch(timeout);
-      console.log(event)
       const currentRound = params.reachStdLib.bigNumberToNumber(event.when);
       if (currentRound <= endRound) {
         eventArray.push(params.parseEvent(event, params.reachStdLib));
