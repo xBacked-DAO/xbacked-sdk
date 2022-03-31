@@ -35,7 +35,6 @@ export const getOpenVaults = async (params: {
     ...params,
   });
 
-
   createdVaults.map((event) => {
     const vaultEvent = createdVaultsCount.get(event.owner);
     if (vaultEvent) {

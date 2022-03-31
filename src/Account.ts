@@ -215,7 +215,10 @@ export class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.returnVaultDebt( params.close ? 0: convertToMicroUnits(params.amount), params.close ? params.close : false);
+    const res = await put.returnVaultDebt(
+      params.close ? 0 : convertToMicroUnits(params.amount),
+      params.close ? params.close : false,
+    );
     return res;
   }
 
