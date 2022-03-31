@@ -60,7 +60,8 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
 
     verbose('Collateral Price: ' + collateralPrice, null, 2);
 
-    const updatedCR = calcCollateralRatio(collateral, collateralPrice, vaultDebt);
+    const updatedCR = calcCollateralRatio(collateral,
+        collateralPrice, vaultDebt);
     userInfo.collateralRatio = updatedCR;
     verbose('Address: ' + address);
     verbose('User vault state: ' + JSON.stringify(userInfo, null, 2));
