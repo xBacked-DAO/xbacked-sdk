@@ -13,7 +13,8 @@ const {
   getOpenVaults,
 } = require('..'); // Use require('@xbacked-dao/xbacked-sdk'); instead
 const yargs = require('yargs/yargs');
-
+const dotenv = require('dotenv');
+dotenv.config();
 // Max. timeout between event queries.
 const MAX_EVENT_TIMEOUT = 2000;
 
@@ -53,7 +54,6 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
   try {
     const vaultState = await vault.getState({account});
     const collateralPrice = vaultState.collateralPrice;
-
     const userInfo = await vault.getUserInfo({account, address});
     const collateral = userInfo.collateral;
     const vaultDebt = userInfo.vaultDebt;
@@ -103,16 +103,18 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
 };
 
 (async () => {
+  const mnemonic = process.env.MNEMONIC;
+  const VAULT_ID = process.env.VAULT_ID;
+  const STABLECOIN = process.env.STABLE_COIN;
   const account = new Account({
-    mnemonic: 'amateur sponsor crystal rain filter bulk document silver erupt wave science enough half access crack illegal such broom tobacco dress napkin faint way ability result',
-    // mnemonic: 'lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch',
-    network: 'LocalHost',
+    mnemonic,
+    network: 'TestNet',
   });
   await account.optIntoToken(yargs.tokenId);
 
   account.fundFromFaucet();
   const reachStdLib = account.reachStdLib;
-  const vault = new Vault({id: yargs.vaultID});
+  const vault = new Vault({id: VAULT_ID});
 
   let remainingDebtTokens = convertToMicroUnits(argv.debtAmount);
   let startRound = argv.startRound;
