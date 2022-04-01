@@ -1,17 +1,57 @@
 /* eslint-disable no-unused-vars */
-import {Account, Vault} from 'xbacked-sdk';
+const {Account, Vault} = require('..');
+const {ask} = require('@reach-sh/stdlib');
+const dotenv = require('dotenv');
+dotenv.config();
 (async () => {
-  const acc = new Account({signer: 'MyAlgoConnect',
+  const mnemonic = process.env.MNEMONIC;
+  const VAULT_ID = process.env.VAULT_ID;
+  const STABLECOIN = process.env.STABLE_COIN;
+  const acc = new Account({mnemonic,
     network: 'TestNet'});
-  const isVaultCreated = await acc.createVault({collateral: 10,
-    mintAmount: 5,
-    vault: new Vault({id: VAULT_ID})});
-  const isTokenMinted = await acc.mintToken({amount: 2,
-    vault: new Vault({id: VAULT_ID})});
-  const isVaultDebtReturned = await acc.returnVaultDebt({amount: 5,
-    vault: new Vault({id: VAULT_ID})});
-  const isCollateralWithdrawn = await acc.withdrawCollateral({amount: 3,
-    vault: new Vault({id: VAULT_ID})});
-  const isCollateralDeposited = await acc.depositCollateral({amount: 3,
-    vault: new Vault({id: VAULT_ID})});
+
+  while (true) {
+    const todo = await ask.ask(`
+   Do you want to:
+   1.) Opt into stable coin
+   2.) Create vault 
+   3.) to mint token  
+   4.) to return vault debt  
+   5.) to withdraw collateral  
+   6.) to deposit collateral`, parseInt);
+
+    try {
+      switch (todo) {
+        case 1: await acc.optIntoToken(STABLECOIN);
+          console.log('Opted into token');
+          break;
+        case 2: const isVaultCreated = await acc.createVault({collateral: 140,
+          mintAmount: 100,
+          vault: new Vault({id: VAULT_ID})});
+          console.log(`isVaultCreated: ${isVaultCreated}`);
+          break;
+        case 3: const isTokenMinted = await acc.mintToken({amount: 2,
+          vault: new Vault({id: VAULT_ID})});
+          console.log(`isTokenMinted: ${isTokenMinted}`);
+          break;
+        case 4: const isVaultDebtReturned = await acc
+            .returnVaultDebt({amount: 5,
+              vault: new Vault({id: VAULT_ID})});
+          console.log(`isVaultDebtReturned: ${isVaultDebtReturned}`);
+          break;
+        case 5: const isCollateralWithdrawn = await acc.
+            withdrawCollateral({amount: 3,
+              vault: new Vault({id: VAULT_ID})});
+          console.log(`isCollateralWithdrawn: ${isCollateralWithdrawn}`);
+          break;
+        case 6: const isCollateralDeposited = await acc.
+            depositCollateral({amount: 3,
+              vault: new Vault({id: VAULT_ID})});
+          console.log(`isCollateralDeposited: ${isCollateralDeposited}`);
+          break;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 })();

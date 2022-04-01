@@ -1,7 +1,11 @@
-import {Account} from 'xbacked-sdk';
+const {Account} = require('..');
+const dotenv = require('dotenv');
+dotenv.config();
 (async () => {
-  const acc = new Account({signer: 'MyAlgoConnect',
+  const mnemonic = process.env.MNEMONIC;
+  const acc = new Account({mnemonic,
     network: 'TestNet'});
-  await acc.optIntoToken(TOKEN_ID);
+  console.log(await acc.getAddress());
+  await acc.optIntoToken(process.env.STABLE_COIN);
   console.log('opted into token');
 })();
