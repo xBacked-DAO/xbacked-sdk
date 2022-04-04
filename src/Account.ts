@@ -388,8 +388,8 @@ export class Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vaultId);
     const announcer = ctc.e.Announcer;
-
     if (params.createCallback !== undefined) {
+      await announcer.vaultCreated.seekNow();
       announcer.vaultCreated.monitor((event: any) => {
         const address: string = this.reachStdLib.formatAddress(event.what[0]);
         const rawVaultState = event.what[1];
@@ -399,6 +399,7 @@ export class Account {
     }
 
     if (params.transactionCallback) {
+      await announcer.vaultTransaction.seekNow();
       announcer.vaultTransaction.monitor((event: any) => {
         const address: string = this.reachStdLib.formatAddress(event.what[0]);
         const rawVaultState = event.what[2];
