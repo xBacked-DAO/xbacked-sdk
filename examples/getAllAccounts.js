@@ -1,11 +1,11 @@
-const {getAllAccounts, Account, Vault} = require('..');
+const {getAllAccounts, Account, Vault, VAULT_IDS} = require('..');
 const {loadStdlib} = require('@reach-sh/stdlib');
 const dotenv = require('dotenv');
 dotenv.config();
 
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = process.env.VAULT_ID;
+  const VAULT_ID = VAULT_IDS.TestNet.algo;
   const INDEXER_TOKEN = process.env.INDEXER_TOKEN;
   const account = new Account({
     mnemonic,

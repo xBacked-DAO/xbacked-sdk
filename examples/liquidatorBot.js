@@ -11,6 +11,7 @@ const {
   calcCollateralRatioAfterLiquidation,
   LIQUIDATION_FEE,
   getOpenVaults,
+  VAULT_IDS,
 } = require('..'); // Use require('@xbacked-dao/xbacked-sdk'); instead
 const dotenv = require('dotenv');
 dotenv.config();
@@ -79,7 +80,7 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
 
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = process.env.VAULT_ID;
+  const VAULT_ID = VAULT_IDS.TestNet.algo;
   const STABLECOIN = process.env.STABLE_COIN;
   const account = new Account({
     mnemonic,
