@@ -11,6 +11,14 @@ const INTEREST_RATE_DENOMINATOR = 100000000000;
 // float conversion. (CONTRACT MINIMUM - 1)
 const MINIMUM_COLLATERAL_RATIO = 119;
 
+export const VAULT_IDS = {
+  TestNet: {
+    algo: 79758986,
+    gobtc: 0,
+    goeth: 0
+  }
+}
+
 /**
  * Converts number to microunits
  * @param val Number to be converted to microunits

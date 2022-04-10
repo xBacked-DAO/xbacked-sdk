@@ -25,6 +25,10 @@ export interface AccountInterface {
   networkAccount?: any;
 }
 
+interface AbiInterface {
+  sig: string[];
+}
+
 /**
  * An abstraction of an account on the Algorand
  */
@@ -374,6 +378,16 @@ export class Account {
   }
 
   /**
+   * 
+   * @param params vaultId which indicates the contract we want to interact with
+   */
+  async getContractAbi(params: { vaultId: number }): Promise<AbiInterface> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vaultId);
+    return await ctc.getABI();
+  }
+
+  /**
    * Subscribes to all vault events and calls the provided callbacks when the event is fired
    * @param params An object that contains key vaultId, key createCallback and key transactionCallback
    */
@@ -408,4 +422,4 @@ export class Account {
       });
     }
   }
-}
+} 
