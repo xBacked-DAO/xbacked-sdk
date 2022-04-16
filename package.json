@@ -2,9 +2,9 @@
   "name": "@xbacked-dao/xbacked-sdk",
   "version": "0.0.30",
   "description": "Official SDK for the xBacked Protocol",
-  "main": "lib/cjs/index.js",
-  "module": "/lib/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "lib/cjs/index",
+  "module": "lib/esm/index",
+  "types": "lib/types/index",
   "packageManager": "yarn@3.1.0",
   "files": [
     "lib/**/*"
