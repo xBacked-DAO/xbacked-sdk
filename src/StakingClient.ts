@@ -56,6 +56,11 @@ export class StakingClient extends Account {
     return await ctc.getABI();
   }
   
+  /**
+   * @description Get global state of contract
+   * @param params account object that contains the reach account
+   * @returns StakeGlobalView
+   */
   async getState(params: { account: Account }): Promise<StakeGlobalView> {
     const ctc = params.account.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
@@ -79,6 +84,11 @@ export class StakingClient extends Account {
     };
   }
 
+  /**
+   * @description Get local state of user
+   * @param params account object that contains the reach account, address for the look up
+   * @returns StakeLocalView
+   */
   async getUserInfo(params: { account: Account; address: string }): Promise<StakeLocalView> {
     const ctc = params.account.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
@@ -95,45 +105,73 @@ export class StakingClient extends Account {
     return { ...StakingClient.parseUserInfo(stakingState), found: true };
   }
 
-
-  LiquidationVaultAPI
-  async stakeAsset(amount: number): Promise<Bool> {
+  /**
+   * @description stake assets to the contract
+   * @param amount amount to be staked
+   * @returns boolean
+   */
+  async stakeAsset(amount: number): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.stakeAsset(amount);
   }
   
-  async unstakeAsset(amount: number): Promise<Bool> {
+  /**
+   * @description unstake assets from the contract
+   * @param amount amount to be unstaked
+   * @returns boolean
+   */
+  async unstakeAsset(amount: number): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.unstakeAsset(amount);
   }
 
-  async exchangePoints(amount: number): Promise<Bool> {
+  /**
+   * @description exchange accrued points for rewards in the contract
+   * @param amount amount of points to exchange for rewards
+   * @returns Boolean
+   */
+  async exchangePoints(amount: number): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.exchangePoints(amount);
   }
-
-  async withdrawRewards(amount: number): Promise<Bool> {
+  /**
+   * @description withdraw accrued rewards from liquidations
+   * @param amount amount of liquidation rewards to withdraw
+   * @returns 
+   */
+  async withdrawRewards(amount: number): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.withdrawRewards(amount);
   }
   
-  async cachePoints(address: string): Promise<Bool> {
+  /**
+   * @description update accrued points for an account
+   * @param address address of the user to accrue points for
+   * @returns boolean
+   */
+  async cachePoints(address: string): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.cachePoints(address);
   }
 
-  // Endpoint to use liquidation vault assets for liquidations.
-  async liquidateVault(stakerAddress: string, liquidateAddress: string, amount: string): Promise<Bool> {
+  /**
+   * @description Use staked xUSD in a liquidation of a vault
+   * @param stakerAddress address of the staked xUSD
+   * @param liquidateAddress address to liquidate
+   * @param amount amount of xUSD to use in liquidation
+   * @returns boolean
+   */
+  async liquidateVault(stakerAddress: string, liquidateAddress: string, amount: string): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.LiquidatorAPI;
@@ -141,7 +179,12 @@ export class StakingClient extends Account {
   }
 
   // -------------
-  static parseUserInfo(stakingState: any): StakeLocalView {
+  /**
+   * @description Used for internal formatting of BigNumbers
+   * @param stakingState StakeLocalView type
+   * @returns StakeLocalView
+   */
+  static parseUserInfo(stakingState: StakeLocalView): StakeLocalView {
     return {
       amountStaked: stakingState.amountStaked.toNumber(),
       rewardsClaimed: stakingState.rewardsClaimed.toNumber(),
