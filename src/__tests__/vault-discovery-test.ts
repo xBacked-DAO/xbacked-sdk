@@ -1,11 +1,11 @@
 import { getOpenVaults, getCreatedVaults, getClosedVaults, getTransactions } from '../vaultDiscovery';
-import Account from '../__mock__/MockAccount';
+import VaultClient from '../__mock__/MockVaultClient';
 import { Vault } from '../Vault';
 
 jest.setTimeout(200000000);
 
 const vault = new Vault({ id: 1 });
-const account = new Account({});
+const account = new VaultClient({});
 
 account.reachAccount = {};
 account.reachStdLib.getNetworkTime = jest.fn(() => 100);

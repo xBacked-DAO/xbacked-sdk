@@ -1,4 +1,4 @@
-import Account from '../__mock__/MockAccount';
+import VaultClient from '../__mock__/MockVaultClient';
 import { Vault } from '../Vault';
 import { calculateInterestAccrued } from '../utils';
 jest.setTimeout(200000000);
@@ -11,7 +11,7 @@ const VAULT_ID = 1;
 const MINT_AMOUNT = 2;
 const COLLATERAL_PRICE = 4;
 
-const account = new Account({
+const account = new VaultClient({
   mnemonic:
     'lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch',
 });
