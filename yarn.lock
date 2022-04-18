@@ -1761,6 +1761,7 @@ __metadata:
     "@types/node": ^16.11.9
     "@xbacked-dao/xbacked-contracts": 0.0.17
     awesome-typescript-loader: ^5.2.1
+    axios: ^0.26.0
     dotenv: ^16.0.0
     eslint: ^8.4.1
     eslint-config-google: ^0.14.0
@@ -2171,6 +2172,15 @@ __metadata:
   peerDependencies:
     typescript: ^2.7 || ^3
   checksum: 39510d1825c3437ee31a4f8edf46ab582e288b90829dfb71a8aead2935a3d935b7114eae3708a2e21043c89ba13a4a0e293f1691b0441bcbab91a06257c119cd
+  languageName: node
+  linkType: hard
+
+"axios@npm:^0.26.0":
+  version: 0.26.0
+  resolution: "axios@npm:0.26.0"
+  dependencies:
+    follow-redirects: ^1.14.8
+  checksum: d7a8b898f4157bedeb2e06c03b16133b91b354c041205bea732ce58b7a21f373d22057b0eea0d482838145ce6ff482b359750d9bcb8dd19d45e3928e3c65c280
   languageName: node
   linkType: hard
 
@@ -3929,6 +3939,16 @@ __metadata:
   version: 3.2.5
   resolution: "flatted@npm:3.2.5"
   checksum: 3c436e9695ccca29620b4be5671dd72e5dd0a7500e0856611b7ca9bd8169f177f408c3b9abfa78dfe1493ee2d873e2c119080a8a9bee4e1a186a9e60ca6c89f1
+  languageName: node
+  linkType: hard
+
+"follow-redirects@npm:^1.14.8":
+  version: 1.14.9
+  resolution: "follow-redirects@npm:1.14.9"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: f5982e0eb481818642492d3ca35a86989c98af1128b8e1a62911a3410621bc15d2b079e8170b35b19d3bdee770b73ed431a257ed86195af773771145baa57845
   languageName: node
   linkType: hard
 
