@@ -95,6 +95,52 @@ export class StakingClient extends Account {
     return { ...StakingClient.parseUserInfo(stakingState), found: true };
   }
 
+
+  LiquidationVaultAPI
+  async stakeAsset(amount: number): Promise<Bool> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.LiquidationVaultAPI;
+    return put.stakeAsset(amount);
+  }
+  
+  async unstakeAsset(amount: number): Promise<Bool> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.LiquidationVaultAPI;
+    return put.unstakeAsset(amount);
+  }
+
+  async exchangePoints(amount: number): Promise<Bool> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.LiquidationVaultAPI;
+    return put.exchangePoints(amount);
+  }
+
+  async withdrawRewards(amount: number): Promise<Bool> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.LiquidationVaultAPI;
+    return put.withdrawRewards(amount);
+  }
+  
+  async cachePoints(address: string): Promise<Bool> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.LiquidationVaultAPI;
+    return put.cachePoints(address);
+  }
+
+  // Endpoint to use liquidation vault assets for liquidations.
+  async liquidateVault(stakerAddress: string, liquidateAddress: string, amount: string): Promise<Bool> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.LiquidatorAPI;
+    return put.liquidateVault(stakerAddress, liquidateAddress, amount);
+  }
+
+  // -------------
   static parseUserInfo(stakingState: any): StakeLocalView {
     return {
       amountStaked: stakingState.amountStaked.toNumber(),
