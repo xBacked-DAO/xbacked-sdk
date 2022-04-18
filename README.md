@@ -15,29 +15,30 @@ const acc = new Account({
   mnemonic: process.env.SEED_PHRASE
 });
 
+//current value is placeholder, vault id changes depending on which Net you use
 const vault = new Vault({ id: 123456 });
 
 await acc.createVault({
-  collateral: convertFromMicroUnits(100),
-  mintAmount: convertFromMicroUnits(50),
+  collateral: 100,
+  mintAmount: 50,
   vault,
 });
 
-// all data for the vault contract
-const vaultData = await vault.getState({ account });
+// global vault state
+const vaultState = await acc.getVaultState({ vault });
 // data for a specific vault
-const myVault = await vault.getUserInfo({ account, address: acc.getAddress() });
+const myVault = await vault.getUserInfo({ account, address: await acc.getAddress() });
 const friendsVault = await vault.getUserInfo({ account, address: friendsAddress });
 
 if (
   // might want to calculate this off chain for latest CR
-  (friendsVault.collateralRatio < vaultData.liquidationCollateralRatio) ||
+  (friendsVault.collateralRatio < vaultState.liquidationCollateralRatio) ||
   // partial liquidations are available
   friendsVault.liquidating
 ) {
-  await account.liquidateVault({
+  await acc.liquidateVault({
     address: friendsAddress,
-    debtAmount: convertFromMicroUnits(500),
+    debtAmount: 500,
     vault
   }
 }

@@ -3,7 +3,7 @@ import { loadStdlib } from '@reach-sh/stdlib';
 // @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import { Vault, UserVaultReturnParams, VaultReturnParams } from './Vault';
-import { convertToMicroUnits, convertFromMicroUnits } from './utils';
+import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 
 /**
  * This is passed as an argument to the [[Account]] constructor
@@ -22,8 +22,13 @@ export interface AccountInterface {
   /** @property An optional instance of the reach standard library */
   reachStdLib?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
-  networkAccount?: boolean;
+  networkAccount?: any;
 }
+
+interface AbiInterface {
+  sig: string[];
+}
+
 /**
  * An abstraction of an account on the Algorand
  */
@@ -43,7 +48,7 @@ export class Account {
   /** @property An instance of the provider object for the signer specified */
   provider?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
-  networkAccount?: boolean;
+  networkAccount?: any;
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -68,11 +73,11 @@ export class Account {
    * Initialises the reachAccount property
    */
   async initialiseReachAccount() {
-    if (this.mnemonic != null && this.reachAccount == null) {
+    if (this.mnemonic && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
-    } else if (this.secretKey != null && this.reachAccount == null) {
+    } else if (this.secretKey && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    } else if (this.networkAccount && this.signer != null && this.reachAccount == null && this.provider != null) {
+    } else if (this.networkAccount && this.signer && this.reachAccount == null && this.provider) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.network,
@@ -80,7 +85,7 @@ export class Account {
         }),
       );
       this.reachAccount = await this.reachStdLib.connectAccount(this.networkAccount);
-    } else if (this.signer != null && this.reachAccount == null && this.provider != null) {
+    } else if (this.signer && !this.reachAccount && this.provider) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.network,
@@ -104,14 +109,51 @@ export class Account {
 
   /**
    *
-   * @param params Contains keys address, debtAmount, vault that indicates the address of the vault, the debt to be repaid and the vault of type [[Vault]]
+   * @param params Contains keys address, debtAmount, vault, and dripInterest. Include dripInterest if you would like the vault debt to be updated before liquidation
    * @returns A boolean indicating if the vault was liquidated or not
    */
-  async liquidateVault(params: { address: string; debtAmount: number; vault: Vault }): Promise<boolean> {
+  async liquidateVault(params: {
+    address: string;
+    debtAmount: number;
+    vault: Vault;
+    dripInterest: false;
+  }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.Liquidator;
+    if (params.dripInterest) {
+      await this.dripInterest({ vault: params.vault, address: params.address });
+    }
     const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount));
+    return res;
+  }
+
+  /**
+   * Attempt to redeem some of the Vault asset against a redeemable vault, to
+   * receive vault collateral.
+   * @param params Contains the amount of xUSD to redeem
+   * @returns A boolean indicating success of call.
+   */
+  async redeemVault(params: { amountToRedeem: number; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultRedeemer;
+    const res = await put.redeemVault(convertToMicroUnits(params.amountToRedeem));
+    return res;
+  }
+
+  /**
+   * Propose the address of a vault that could be redeemable, to qualify the
+   * vault must be 'less healthy' than any of the other proposed vaults, or
+   * there must be a free slot.
+   * @param params Address of vault to propose, and target vault contract.
+   * @returns A boolean indicating success of call.
+   */
+  async proposeVaultForRedemption(params: { address: string; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.VaultRedeemer;
+    const res = await put.proposeVault(params.address);
     return res;
   }
 
@@ -169,14 +211,18 @@ export class Account {
 
   /**
    *
-   * @param params An object with key amount signifying the amount of debt tokens to return and key vault indicating the Contract
+   * @param params An object with key amount signifying the amount of debt tokens
+   *  to return, key vault indicating the Contract and key close indicating if the vault should be closed
    * @returns A boolean indicating if the vault debt was returned or not
    */
-  async returnVaultDebt(params: { amount: number; vault: Vault }): Promise<boolean> {
+  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.returnVaultDebt(convertToMicroUnits(params.amount));
+    const res = await put.returnVaultDebt(
+      params.close ? 0 : convertToMicroUnits(params.amount),
+      params.close ? params.close : false,
+    );
     return res;
   }
 
@@ -270,6 +316,32 @@ export class Account {
   }
 
   /**
+   * Used by an account to settle accrued interest in a vault
+   * @param params Contains key vault which indicates the contract this function should interact with
+   * @returns A boolean indicating of fees were collected or not
+   */
+  async settleInterest(params: { vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.FeeCollector;
+    const res = await put.settleInterest();
+    return res;
+  }
+
+  /**
+   * Will trigger interest to accrue on a specific user vault
+   * @param params Contains address of vault to accrue interest for. Also includes vault which indicates the contract this function should interact with.
+   * @returns A boolean indicating of fees were collected or not
+   */
+  async dripInterest(params: { address: string; vault: Vault }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const put = ctc.a.FeeCollector;
+    const res = await put.dripInterest(params.address);
+    return res;
+  }
+
+  /**
    *
    * @param params Contains key address which indicates the vault we want to retrieve the info of as well as key vault that indicates the contract we want to interact with
    * @returns the information for the specified vault
@@ -277,7 +349,20 @@ export class Account {
 
   async getUserInfo(params: { address: string; vault: Vault }): Promise<UserVaultReturnParams> {
     await this.initialiseReachAccount();
-    return await params.vault.getUserInfo({ account: this, address: params.address });
+
+    const userVault = await params.vault.getUserInfo({ account: this, address: params.address });
+    // NOTE: does not account for leap year
+    const vaultState = await this.getVaultState({ vault: params.vault });
+    const VAULT_INTEREST_RATE = vaultState.interestRate;
+    const now = await this.reachStdLib.getNetworkSecs();
+    const interestAccrued = calculateInterestAccrued(
+      now.toNumber(),
+      userVault.lastAccruedInterestTime,
+      userVault.vaultDebt,
+      VAULT_INTEREST_RATE,
+    );
+    userVault.vaultDebt += interestAccrued;
+    return userVault;
   }
 
   /**
@@ -292,5 +377,49 @@ export class Account {
     return this.reachStdLib.formatAddress(contractAddress);
   }
 
-  // TODO: ADD listeners for events
-}
+  /**
+   * 
+   * @param params vaultId which indicates the contract we want to interact with
+   */
+  async getContractAbi(params: { vaultId: number }): Promise<AbiInterface> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vaultId);
+    return await ctc.getABI();
+  }
+
+  /**
+   * Subscribes to all vault events and calls the provided callbacks when the event is fired
+   * @param params An object that contains key vaultId, key createCallback and key transactionCallback
+   */
+  async subscribeToEvents(params: {
+    /** @property a uint that uniquely identifies the contract */
+    vaultId: number;
+    /** @property callback that is called when a vault is created, it is called with the address that created the vault as well as its user vault state */
+    createCallback: (address: string, state: UserVaultReturnParams) => void;
+    /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */
+    transactionCallback: (address: string, state: UserVaultReturnParams) => void;
+  }): Promise<void> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, params.vaultId);
+    const announcer = ctc.e.Announcer;
+    if (params.createCallback !== undefined) {
+      await announcer.vaultCreated.seekNow();
+      announcer.vaultCreated.monitor((event: any) => {
+        const address: string = this.reachStdLib.formatAddress(event.what[0]);
+        const rawVaultState = event.what[1];
+        const vaultState: UserVaultReturnParams = { vaultFound: true, ...Vault.parseUserInfo(rawVaultState) };
+        params.createCallback(address, vaultState);
+      });
+    }
+
+    if (params.transactionCallback) {
+      await announcer.vaultTransaction.seekNow();
+      announcer.vaultTransaction.monitor((event: any) => {
+        const address: string = this.reachStdLib.formatAddress(event.what[0]);
+        const rawVaultState = event.what[2];
+        const vaultState: UserVaultReturnParams = { vaultFound: true, ...Vault.parseUserInfo(rawVaultState) };
+        params.transactionCallback(address, vaultState);
+      });
+    }
+  }
+} 

@@ -26,76 +26,40 @@ describe('Gets open vaults', () => {
         next: jest.fn(),
       },
     };
-    announcerMock.vaultCreated.next.mockReturnValueOnce(
-      Promise.resolve({
-        when: 0,
-        what: [
-          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
-          {
-            collateralRatio: toNumberMock,
-            collateral: toNumberMock,
-            liquidating: false,
-            vaultDebt: toNumberMock,
-            redeemable: false,
-          },
-        ],
-      }),
-    );
-    announcerMock.vaultCreated.next.mockReturnValueOnce(
-      Promise.resolve({
-        when: 2,
-        what: [
-          '0x1b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
-          {
-            collateralRatio: toNumberMock,
-            collateral: toNumberMock,
-            liquidating: false,
-            vaultDebt: toNumberMock,
-            redeemable: false,
-          },
-        ],
-      }),
-    );
-    announcerMock.vaultCreated.next.mockReturnValueOnce(
+    announcerMock.vaultCreated.next.mockResolvedValueOnce({
+      when: 0,
+      what: [
+        '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
+        {
+          collateralRatio: toNumberMock,
+          collateral: toNumberMock,
+          liquidating: false,
+          vaultDebt: toNumberMock,
+          redeemable: false,
+          lastAccruedInterestTime: toNumberMock,
+        },
+      ],
+    });
+    announcerMock.vaultCreated.next.mockResolvedValueOnce({
+      when: 2,
+      what: [
+        '0x1b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
+        {
+          collateralRatio: toNumberMock,
+          collateral: toNumberMock,
+          liquidating: false,
+          vaultDebt: toNumberMock,
+          redeemable: false,
+          lastAccruedInterestTime: toNumberMock,
+        },
+      ],
+    });
+    announcerMock.vaultCreated.next.mockResolvedValueOnce(
       new Promise((resolve, reject) => {
         setTimeout(resolve, 100);
       }),
     );
-    announcerMock.vaultClosed.next.mockReturnValueOnce(
-      Promise.resolve({
-        when: 1,
-        what: [
-          '0x0b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
-          {
-            collateralRatio: toNumberMock,
-            collateral: toNumberMock,
-            liquidating: false,
-            vaultDebt: toNumberMock,
-            redeemable: false,
-          },
-        ],
-      }),
-    );
-    announcerMock.vaultClosed.next.mockReturnValueOnce(
-      Promise.resolve({
-        when: 3,
-        what: [
-          '0x1b7a36328e02451e4b3433d5b40a05ced3794b5c35878d07cfef95a91f8400dd',
-          {
-            collateralRatio: toNumberMock,
-            collateral: toNumberMock,
-            liquidating: false,
-            vaultDebt: toNumberMock,
-            redeemable: false,
-          },
-        ],
-      }),
-    );
-    announcerMock.vaultClosed.next.mockReturnValueOnce(
-      new Promise((resolve, reject) => {
-        setTimeout(resolve, 150);
-      }),
-    );
+    account.initialiseReachAccount = jest.fn();
     account.reachAccount.contract = jest.fn((x, y) => {
       return {
         events: {
@@ -107,11 +71,11 @@ describe('Gets open vaults', () => {
 
   it('Checks return only open vaults', async function () {
     const results = await getOpenVaults({ account, vault, timeout: 50 });
-    expect(results.length).toBe(0);
+    expect(results.length).toBe(2);
   });
 
   it('Checks return only open vaults whithin interval', async function () {
-    const results = await getOpenVaults({ account, vault, endRound: 2, timeout: 50 });
+    const results = await getOpenVaults({ account, vault, endRound: 1, timeout: 50 });
     expect(results.length).toBe(1);
   });
 });
@@ -134,6 +98,7 @@ describe('Gets vaults created', () => {
             collateral: toNumberMock,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -149,6 +114,7 @@ describe('Gets vaults created', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -243,6 +209,7 @@ describe('Gets vaults transactions', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),
@@ -259,6 +226,7 @@ describe('Gets vaults transactions', () => {
             liquidating: false,
             vaultDebt: toNumberMock,
             redeemable: false,
+            lastAccruedInterestTime: toNumberMock,
           },
         ],
       }),

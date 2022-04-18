@@ -23,6 +23,7 @@ export const getOpenVaults = async (params: {
   endRound?: number;
   timeout?: number;
 }): Promise<string[]> => {
+  await params.account.initialiseReachAccount();
   const ctc = params.account.reachAccount.contract(backend, params.vault.id);
   const announcer = ctc.events.Announcer;
 
@@ -35,26 +36,12 @@ export const getOpenVaults = async (params: {
     ...params,
   });
 
-  const closedVaults = await getEvents<VaultClosedEvent>({
-    reachStdLib: params.account.reachStdLib,
-    reachEvent: announcer.vaultClosed,
-    parseEvent: VaultClosedEvent.parseEvent,
-    ...params,
-  });
-
   createdVaults.map((event) => {
     const vaultEvent = createdVaultsCount.get(event.owner);
     if (vaultEvent) {
       createdVaultsCount.set(event.owner, vaultEvent + 1);
     } else {
       createdVaultsCount.set(event.owner, 1);
-    }
-  });
-
-  closedVaults.map((event) => {
-    const vaultEvent = createdVaultsCount.get(event.owner);
-    if (vaultEvent) {
-      createdVaultsCount.set(event.owner, vaultEvent - 1);
     }
   });
 
@@ -135,6 +122,7 @@ export const getTransactions = async (params: {
   endRound?: number;
   timeout?: number;
 }): Promise<VaultTransactionEvent[]> => {
+  await params.account.initialiseReachAccount();
   const ctc = params.account.reachAccount.contract(backend, params.vault.id);
   const announcer = ctc.events.Announcer;
 

@@ -1,7 +1,4 @@
-/* tslint:disable no-var-requires */
-import { Account } from './Account';
-import { Vault } from './Vault';
-import * as VaultDiscovery from './vaultDiscovery';
-import * as Utils from './utils';
-
-module.exports = { Account, Vault, ...VaultDiscovery, ...Utils };
+export { Account as Account } from './Account';
+export { Vault as Vault } from './Vault';
+export * from './vaultDiscovery';
+export * from './utils';

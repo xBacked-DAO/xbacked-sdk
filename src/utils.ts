@@ -3,10 +3,21 @@ const MICRO_UNITS = 1000000;
 export const DISCOUNT_RATE = 0.035;
 export const LIQUIDATION_FEE = 0.025;
 
+const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
+const INTEREST_RATE_DENOMINATOR = 100000000000;
+
 // The contract will round up to the next integer so 119.x will give 120%
 // This is the closest we can get without having problems from
 // float conversion. (CONTRACT MINIMUM - 1)
-const MINIMUM_COLLATERAL_RATIO = 119;
+const MINIMUM_COLLATERAL_RATIO = 1.2;
+
+export const VAULT_IDS = {
+  TestNet: {
+    algo: 79758986,
+    gobtc: 0,
+    goeth: 0
+  }
+}
 
 /**
  * Converts number to microunits
@@ -43,8 +54,8 @@ export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, v
   const discountRateInv = 1 - DISCOUNT_RATE;
   return Math.floor(
     ((discountRateInv * 100 * collateral * collateralPrice) / MICRO_UNITS -
-      discountRateInv * MINIMUM_COLLATERAL_RATIO * vaultDebt) /
-      (-discountRateInv * MINIMUM_COLLATERAL_RATIO + 100),
+      discountRateInv * (MINIMUM_COLLATERAL_RATIO * 100) * vaultDebt) /
+      (-discountRateInv * (MINIMUM_COLLATERAL_RATIO * 100) + 100),
   );
 };
 
@@ -83,8 +94,48 @@ export const calcCollateralRatioAfterLiquidation = (
   vaultDebt: number,
 ): number => {
   const discountPrice = calcDiscountPrice(collateralPrice);
-  return (
-    ((((collateral - convertToMicroUnits(debtPayout / discountPrice)) * collateralPrice) / MICRO_UNITS) * 100) /
-    (vaultDebt - debtPayout)
-  );
+  const collateralAfterLiquidation = (collateral - convertToMicroUnits(debtPayout / discountPrice));
+  const collateralValueAfterLiquidation = collateralAfterLiquidation * collateralPrice;
+  const crAfterLiq = ((collateralValueAfterLiquidation / MICRO_UNITS) * 100) /
+    (vaultDebt - debtPayout);
+  return crAfterLiq;
+};
+
+/**
+ * Recursive function to collect all accounts opted into a given application id
+ * @param indexer The algosdk indexer client
+ * @param accounts Current accounts collected
+ * @param nextToken Next token to use with paginaiton
+ * @returns Array of all accounts opted into a vault applicaiton
+ */
+
+export const getAllAccounts = async (
+  applicationId: number,
+  indexer: any,
+  accounts: any[],
+  nextToken: string,
+): Promise<any[]> => {
+  if (accounts.length > 0 && nextToken) {
+    const retrievedVaults = await indexer.searchAccounts().applicationID(applicationId).nextToken(nextToken).do();
+    const updatedAccounts = accounts.concat(retrievedVaults.accounts);
+    return getAllAccounts(applicationId, indexer, updatedAccounts, retrievedVaults['next-token']);
+    // eslint-disable-next-line
+  } else if (accounts.length > 0 && !nextToken) {
+    return Promise.resolve(accounts);
+  }
+  const initialVaults = await indexer.searchAccounts().applicationID(applicationId).do();
+  return getAllAccounts(applicationId, indexer, initialVaults.accounts, initialVaults['next-token']);
+};
+
+export const calculateInterestAccrued = (
+  now: number,
+  lastAccruedInterestTime: number,
+  vaultDebt: number,
+  VAULT_INTEREST_RATE: number,
+) => {
+  const amountOfTimePassed = now - lastAccruedInterestTime - 200;
+  const interestRatePerSecond = VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
+  const interestRateOverTimePassed = interestRatePerSecond * amountOfTimePassed;
+  const interestAccrued = (interestRateOverTimePassed * vaultDebt) / INTEREST_RATE_DENOMINATOR;
+  return interestAccrued;
 };
