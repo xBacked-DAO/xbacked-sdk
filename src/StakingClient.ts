@@ -92,7 +92,7 @@ export class StakingClient extends Account {
    */
   async stakeAsset(amount: number): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const ctc = this.reachAccount.contract(backend, this.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.stakeAsset(amount);
   }
@@ -104,7 +104,7 @@ export class StakingClient extends Account {
    */
   async unstakeAsset(amount: number): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const ctc = this.reachAccount.contract(backend, this.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.unstakeAsset(amount);
   }
@@ -116,7 +116,7 @@ export class StakingClient extends Account {
    */
   async exchangePoints(amount: number): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const ctc = this.reachAccount.contract(backend, this.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.exchangePoints(amount);
   }
@@ -127,7 +127,7 @@ export class StakingClient extends Account {
    */
   async withdrawRewards(amount: number): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const ctc = this.reachAccount.contract(backend, this.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.withdrawRewards(amount);
   }
@@ -139,7 +139,7 @@ export class StakingClient extends Account {
    */
   async cachePoints(address: string): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const ctc = this.reachAccount.contract(backend, this.id);
     const put = ctc.a.LiquidationVaultAPI;
     return put.cachePoints(address);
   }
@@ -153,7 +153,7 @@ export class StakingClient extends Account {
    */
   async liquidateVault(stakerAddress: string, liquidateAddress: string, amount: string): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.vault.id);
+    const ctc = this.reachAccount.contract(backend, this.id);
     const put = ctc.a.LiquidatorAPI;
     return put.liquidateVault(stakerAddress, liquidateAddress, amount);
   }
@@ -164,7 +164,7 @@ export class StakingClient extends Account {
    * @param stakingState StakeLocalView type
    * @returns StakeLocalView
    */
-  static parseUserInfo(stakingState: StakeLocalView): StakeLocalView {
+  static parseUserInfo(stakingState: any): StakeLocalView {
     return {
       amountStaked: stakingState.amountStaked.toNumber(),
       rewardsClaimed: stakingState.rewardsClaimed.toNumber(),

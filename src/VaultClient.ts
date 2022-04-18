@@ -2,10 +2,10 @@
 import { loadStdlib } from '@reach-sh/stdlib';
 // @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
-import { Vault, UserVaultReturnParams, VaultReturnParams } from './Vault';
+import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 import { Account } from './Account';
-import { AbiInterface, AccountInterface } from './interfaces';
+import { AbiInterface, AccountInterface, UserVaultReturnParams, VaultReturnParams } from './interfaces';
 
 export class VaultClient extends Account {
  
