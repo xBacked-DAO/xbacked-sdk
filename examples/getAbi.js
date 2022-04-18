@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-vars */
-const {Account, VAULT_IDS} = require('..');
+const {VaultClient, VAULT_IDS} = require('..');
 const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
   const VAULT_ID = VAULT_IDS.TestNet.algo;
-  const account = new Account({
+  const account = new VaultClient({
     mnemonic,
     network: 'TestNet',
   });

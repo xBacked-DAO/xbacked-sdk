@@ -1,7 +1,7 @@
 // NOTE: this bot watches events emitted from a vault to determine when to liquidate
 // The alternative is to use the getAllAccounts function to get all addresses & iterate over them
 const {
-  Account,
+  VaultClient,
   Vault,
   convertToMicroUnits,
   convertFromMicroUnits,
@@ -82,7 +82,7 @@ const tryLiquidate = async (account, vault, address, remainingDebtTokens) => {
   const mnemonic = process.env.MNEMONIC;
   const VAULT_ID = VAULT_IDS.TestNet.algo;
   const STABLECOIN = process.env.STABLE_COIN;
-  const account = new Account({
+  const account = new VaultClient({
     mnemonic,
     network: 'TestNet',
   });

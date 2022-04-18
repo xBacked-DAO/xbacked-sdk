@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const {Account, Vault, VAULT_IDS} = require('..');
+const {VaultClient, Vault, VAULT_IDS} = require('..');
 const {ask} = require('@reach-sh/stdlib');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -7,7 +7,7 @@ dotenv.config();
   const mnemonic = process.env.MNEMONIC;
   const VAULT_ID = VAULT_IDS.TestNet.algo;
   const STABLECOIN = process.env.STABLE_COIN;
-  const acc = new Account({mnemonic,
+  const acc = new VaultClient({mnemonic,
     network: 'TestNet'});
 
   while (true) {

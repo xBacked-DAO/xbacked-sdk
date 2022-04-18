@@ -1,4 +1,4 @@
-const {Account, Vault, VAULT_IDS} = require('..');
+const {VaultClient, Vault, VAULT_IDS} = require('..');
 const {ask} = require('@reach-sh/stdlib');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -7,7 +7,7 @@ dotenv.config();
   const mnemonic = process.env.MNEMONIC;
   const VAULT_ID = VAULT_IDS.TestNet.algo;
   const proposedAddress = process.env.ADDRESS_FOR_REDEMPTION;
-  const account = new Account({
+  const account = new VaultClient({
     mnemonic,
     network: 'TestNet',
   });
