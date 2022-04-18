@@ -3,28 +3,8 @@ import { loadStdlib } from '@reach-sh/stdlib';
 // @ts-ignore
 import { liquidationStaking as backend } from '@xbacked-dao/xbacked-contracts';
 import { Account } from './Account';
-import { AbiInterface, AccountInterface } from './interfaces';
+import { AbiInterface, AccountInterface, StakeGlobalView, StakeLocalView } from './interfaces';
 
-export interface StakeGlobalView {
-  stakingAssetID: number;
-  policy: {
-    status: number;
-    rewardMethod: number;
-    rewardRate: number;
-    applicationType: number;
-    time: number;
-  };
-  totalStake: number;
-  totalRewards: number;
-  totalUsers: number;
-}
-
-export interface StakeLocalView {
-  amountStaked: number;
-  rewardsClaimed: number;
-  lastClaim: number;
-  found: boolean;
-}
 export class StakingClient extends Account {
   /** @property Unique identifier for the contract */
   readonly id: number | undefined;
