@@ -378,7 +378,7 @@ export class Account {
   }
 
   /**
-   * 
+   *
    * @param params vaultId which indicates the contract we want to interact with
    */
   async getContractAbi(params: { vaultId: number }): Promise<AbiInterface> {
@@ -422,4 +422,4 @@ export class Account {
       });
     }
   }
-} 
+}
