@@ -70,6 +70,7 @@ export const getCreatedVaults = async (params: {
   endRound?: number;
   timeout?: number;
 }): Promise<VaultCreatedEvent[]> => {
+  await params.account.initialiseReachAccount();
   const ctc = params.account.reachAccount.contract(backend, params.vault.id);
   const announcer = ctc.events.Announcer;
 
@@ -96,6 +97,7 @@ export const getClosedVaults = async (params: {
   endRound?: number;
   timeout?: number;
 }): Promise<VaultClosedEvent[]> => {
+  await params.account.initialiseReachAccount();
   const ctc = params.account.reachAccount.contract(backend, params.vault.id);
   const announcer = ctc.events.Announcer;
 
