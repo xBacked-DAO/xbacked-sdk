@@ -135,7 +135,5 @@ export class Account {
       const balance = await this.reachStdLib.balanceOf(this.reachAccount);
       return balance.toNumber();
     }
-  }
-
-  
+  }  
 } 

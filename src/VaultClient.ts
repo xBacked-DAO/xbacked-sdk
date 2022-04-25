@@ -1,6 +1,4 @@
 // @ts-ignore
-import { loadStdlib } from '@reach-sh/stdlib';
-// @ts-ignore
 import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
 import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';

@@ -133,7 +133,7 @@ export const calculateInterestAccrued = (
   vaultDebt: number,
   VAULT_INTEREST_RATE: number,
 ) => {
-  const amountOfTimePassed = now - lastAccruedInterestTime - 200;
+  const amountOfTimePassed = now - lastAccruedInterestTime;
   const interestRatePerSecond = VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
   const interestRateOverTimePassed = interestRatePerSecond * amountOfTimePassed;
   const interestAccrued = (interestRateOverTimePassed * vaultDebt) / INTEREST_RATE_DENOMINATOR;

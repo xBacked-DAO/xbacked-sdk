@@ -1,6 +1,4 @@
 // @ts-ignore
-import { loadStdlib } from '@reach-sh/stdlib';
-// @ts-ignore
 import { liquidationStaking as backend } from '@xbacked-dao/xbacked-contracts';
 import { Account } from './Account';
 import { AbiInterface, AccountInterface, StakeGlobalView, StakeLocalView } from './interfaces';
