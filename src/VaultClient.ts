@@ -260,6 +260,7 @@ export class VaultClient extends Account {
     createCallback: (address: string, state: UserVaultReturnParams) => void;
     /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */
     transactionCallback: (address: string, state: UserVaultReturnParams) => void;
+    updatePriceCallback: (address: string, newPrice: number) => void
   }): Promise<void> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vaultId);
@@ -282,6 +283,16 @@ export class VaultClient extends Account {
         const vaultState: UserVaultReturnParams = { vaultFound: true, ...Vault.parseUserInfo(rawVaultState) };
         params.transactionCallback(address, vaultState);
       });
+    }
+
+    if(params.updatePriceCallback != undefined){
+      await announcer.priceChange.seekNow();
+      announcer.priceChange.monitor((event: any) => {
+        const address: string = this.reachStdLib.formatAddress(event.what[0]);
+        const newPrice = event.what[1];
+        params.updatePriceCallback(address, newPrice);
+      });
+      
     }
   }
 }
