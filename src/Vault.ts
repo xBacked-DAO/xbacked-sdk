@@ -29,21 +29,28 @@ export class Vault {
     }
     const vaultState = stateView[1];
     return {
-      accruedFees: vaultState.accruedFees.toNumber(),
-      collateralPrice: vaultState.collateralPrice.toNumber(),
-      deprecated: vaultState.deprecated,
-      // Hard coded for now, since it is hard coded in contract
-      feeCollectorFee: 0.005, // vaultState.feeCollectorFee.toNumber(),
-      liquidationCollateralRatio: vaultState.liquidationCollateralRatio.toNumber(),
-      // Hard coded for now, since it is hard coded in contract
-      liquidationFee: 0.1, // vaultState.liquidationFee.toNumber(),
-      minimumCollateralRatio: vaultState.minimumCollateralRatio.toNumber(),
-      totalVaultDebt: vaultState.totalVaultDebt.toNumber(),
-      // is a 2d array in the form ["Some", value] returned from reach
-      redeemableVaults: vaultState.redeemableVaults.map((v: any[]) => v[1]),
-      accruedInterest: vaultState.accruedInterest.toNumber(),
-      // Opcode cost does not permit storing this in view
-      interestRate: 2000000000, // vaultState.interestRate.toNumber(),
+      constants: {
+        INTEREST_RATE_PER_SECOND: vaultState.constants.INTEREST_RATE_PER_SECOND.toNumber(),
+        LIQUIDATION_COLLATERAL_RATIO: vaultState.constants.LIQUIDATION_COLLATERAL_RATIO.toNumber(),
+        MINIMUM_COLLATERAL_RATIO: vaultState.constants.MINIMUM_COLLATERAL_RATIO.toNumber(),
+        VAULT_INTEREST_RATE: vaultState.constants.VAULT_INTEREST_RATE.toNumber()
+      },
+      hotState: {
+        accruedInterest: vaultState.hotState.accruedInterest.toNumber(),
+        totalVaultDebt: vaultState.hotState.totalVaultDebt.toNumber()
+      },
+      coldState: {
+        accruedFees: vaultState.coldState.accruedFees.toNumber(),
+        collateralPrice: vaultState.coldState.collateralPrice.toNumber(),
+        deprecated:  vaultState.coldState.deprecated,
+        redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
+        govStakersAddress: vaultState.coldState.coldState.govStakersAddress,
+        liquidationStakersAddress: vaultState.coldState.liquidationStakersAddress,
+        oracleAddress: vaultState.coldState.oracleAddress,
+        adminAddress: vaultState.coldState.adminAddress,
+        daoAddress: vaultState.coldState.daoAddress,
+        proposalTime: vaultState.coldState.proposalTime.toNumber()
+      }
     };
   }
   /**
