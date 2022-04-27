@@ -44,7 +44,7 @@ export class VaultClient extends Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
-    const res = await put.redeemVault(convertToMicroUnits(params.amountToRedeem), convertToMicroUnits(params.minimumPrice));
+    const res = await put.redeemVault(convertToMicroUnits(params.amountToRedeem), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
     return res;
   }
 
@@ -87,7 +87,7 @@ export class VaultClient extends Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.mintToken(convertToMicroUnits(params.amount), params.minimumPrice, params.maximumPrice);
+    const res = await put.mintToken(convertToMicroUnits(params.amount), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
     return res;
   }
 
@@ -115,7 +115,7 @@ export class VaultClient extends Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.withdrawCollateral(convertToMicroUnits(params.amount), params.minimumPrice, params.maximumPrice);
+    const res = await put.withdrawCollateral(convertToMicroUnits(params.amount), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
     return res;
   }
 
@@ -158,7 +158,7 @@ export class VaultClient extends Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.createVault(convertToMicroUnits(params.collateral), convertToMicroUnits(params.mintAmount), params.minimumPrice, params.maximumPrice);
+    const res = await put.createVault(convertToMicroUnits(params.collateral), convertToMicroUnits(params.mintAmount), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
     return res;
   }
 
