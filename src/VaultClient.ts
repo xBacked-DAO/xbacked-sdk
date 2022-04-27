@@ -35,14 +35,16 @@ export class VaultClient extends Account {
   /**
    * Attempt to redeem some of the Vault asset against a redeemable vault, to
    * receive vault collateral.
-   * @param params Contains the amount of xUSD to redeem
+   * @param params Contains the amount of xUSD to redeem, the vault to redeem it from, minimumPrice 
+   * that indicates the minimum price allowed for this transaction and maximumPrice that 
+   * indicates the maximum price allowed for this transaction
    * @returns A boolean indicating success of call.
    */
-  async redeemVault(params: { amountToRedeem: number; vault: Vault }): Promise<boolean> {
+  async redeemVault(params: { amountToRedeem: number; vault: Vault, minimumPrice: number, maximumPrice: number }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
-    const res = await put.redeemVault(convertToMicroUnits(params.amountToRedeem));
+    const res = await put.redeemVault(convertToMicroUnits(params.amountToRedeem), convertToMicroUnits(params.minimumPrice));
     return res;
   }
 
