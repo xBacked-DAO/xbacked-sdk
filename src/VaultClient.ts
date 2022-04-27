@@ -76,14 +76,16 @@ export class VaultClient extends Account {
 
   /**
    *
-   * @param params Contains the amount of xUsd tokens to be minted as well as the vault in which the token should be minted
+   * @param params Contains the amount of xUsd tokens to be minted, the vault in which the token should be minted,
+   * minimumPrice that indicates the minimum price allowed for this transaction and maximumPrice that 
+   * indicates the maximum price allowed for this transaction
    * @returns A boolean indicating if the xUsd tokens were successfully minted or not
    */
-  async mintToken(params: { amount: number; vault: Vault }): Promise<boolean> {
+  async mintToken(params: { amount: number; vault: Vault; minimumPrice: number; maximumPrice: number }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.mintToken(convertToMicroUnits(params.amount));
+    const res = await put.mintToken(convertToMicroUnits(params.amount), params.minimumPrice, params.maximumPrice);
     return res;
   }
 
@@ -102,14 +104,16 @@ export class VaultClient extends Account {
 
   /**
    *
-   * @param params Contains amount of collateral to be withdrawn as well as the vault they should be withdrawn from
+   * @param params Contains amount of collateral to be withdrawn, the vault they should be withdrawn from,
+   * minimumPrice that indicates the minimum price allowed for this transaction and maximumPrice that 
+   * indicates the maximum price allowed for this transaction
    * @returns A boolean indicating if the collaterals were successfully withdrawn or not
    */
-  async withdrawCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
+  async withdrawCollateral(params: { amount: number; vault: Vault, minimumPrice: number, maximumPrice: number }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.withdrawCollateral(convertToMicroUnits(params.amount));
+    const res = await put.withdrawCollateral(convertToMicroUnits(params.amount), params.minimumPrice, params.maximumPrice);
     return res;
   }
 
@@ -142,14 +146,17 @@ export class VaultClient extends Account {
 
   /**
    * Used to create a vault in the contract
-   * @param params Contains keys collateral that indicates the amount of collateral that will be used to create the vault, mintAmount that indicates the amount of xusd tokens to be minted and vault that indicates the contract we are communicating with
+   * @param params Contains keys collateral that indicates the amount of collateral that will be used to create the vault,
+   * mintAmount that indicates the amount of xusd tokens to be minted, vault that indicates the contract we are 
+   * communicating with, minimumPrice that indicates the minimum price allowed for this transaction and maximumPrice that 
+   * indicates the maximum price allowed for this transaction
    * @returns A boolean indicating if the vault was created or not
    */
-  async createVault(params: { collateral: number; mintAmount: number; vault: Vault }): Promise<boolean> {
+  async createVault(params: { collateral: number; mintAmount: number; vault: Vault; minimumPrice: number, maximumPrice: number }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.createVault(convertToMicroUnits(params.collateral), convertToMicroUnits(params.mintAmount));
+    const res = await put.createVault(convertToMicroUnits(params.collateral), convertToMicroUnits(params.mintAmount), params.minimumPrice, params.maximumPrice);
     return res;
   }
 
