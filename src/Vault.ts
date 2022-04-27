@@ -57,7 +57,6 @@ export class Vault {
     const stateView = await get.readVault(params.address);
     if (stateView[1][0] === 'None') {
       return {
-        collateralRatio: 0,
         collateral: 0,
         liquidating: false,
         vaultDebt: 0,
@@ -77,7 +76,6 @@ export class Vault {
    */
   static parseUserInfo(vaultState: any): ReachUserVault {
     return {
-      collateralRatio: vaultState.collateralRatio.toNumber(),
       collateral: vaultState.collateral.toNumber(),
       liquidating: vaultState.liquidating,
       vaultDebt: vaultState.vaultDebt.toNumber(),

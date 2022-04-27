@@ -69,8 +69,6 @@ export interface VaultReturnParams {
 }
 
 export interface ReachUserVault {
-  /** @property The collateral ratio for a vault */
-  collateralRatio: number;
   /** @property The amount of collateral in a vault */
   collateral: number;
   /** @property Indicator that signifies if a vault can be liquidated */

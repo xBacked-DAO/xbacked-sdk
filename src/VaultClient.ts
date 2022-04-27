@@ -13,7 +13,7 @@ export class VaultClient extends Account {
 
   /**
    *
-   * @param params Contains keys address, debtAmount, vault, and dripInterest. Include dripInterest if you would like the vault debt to be updated before liquidation
+   * @param params Contains keys address, debtAmount, vault, dripInterest, minimumPrice allowed for this transaction and maximumPrice allowed for this transaction. Include dripInterest if you would like the vault debt to be updated before liquidation
    * @returns A boolean indicating if the vault was liquidated or not
    */
   async liquidateVault(params: {
@@ -21,6 +21,8 @@ export class VaultClient extends Account {
     debtAmount: number;
     vault: Vault;
     dripInterest: false;
+    minimumPrice: number;
+    maximumPrice: number
   }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -28,7 +30,7 @@ export class VaultClient extends Account {
     if (params.dripInterest) {
       await this.dripInterest({ vault: params.vault, address: params.address });
     }
-    const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount));
+    const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
     return res;
   }
 
