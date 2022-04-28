@@ -5,7 +5,8 @@ dotenv.config();
 
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULT_IDS.TestNet.algo;
+  const VAULT_ID = process.env.VAULT_ID ? process.env.VAULT_ID :
+  VAULT_IDS.TestNet.algo; VAULT_IDS.TestNet.algo;
   const proposedAddress = process.env.ADDRESS_FOR_REDEMPTION;
   const account = new VaultClient({
     mnemonic,
@@ -29,7 +30,10 @@ dotenv.config();
           break;
           // redeem 100 xUSD tokens & receive $100 worth of collateral
         case 2: const isVaultRedeemed = await account.redeemVault({vault,
-          amountToRedeem: 10});
+          amountToRedeem: 10,
+          minimumPrice: 1,
+          maximumPrice: 1,
+        });
           console.log(isVaultRedeemed);
           break;
       }

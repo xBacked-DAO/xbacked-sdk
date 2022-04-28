@@ -5,7 +5,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULT_IDS.TestNet.algo;
+  const VAULT_ID = process.env.VAULT_ID ? process.env.VAULT_ID :
+   VAULT_IDS.TestNet.algo;
+  console.log(VAULT_ID);
   const STABLECOIN = process.env.STABLE_COIN;
   const acc = new VaultClient({mnemonic,
     network: 'TestNet'});
@@ -27,21 +29,25 @@ dotenv.config();
           break;
         case 2: const isVaultCreated = await acc.createVault({collateral: 140,
           mintAmount: 100,
-          vault: new Vault({id: VAULT_ID})});
+          vault: new Vault({id: VAULT_ID}),
+          minimumPrice: 1,
+          maximumPrice: 1});
           console.log(`isVaultCreated: ${isVaultCreated}`);
           break;
         case 3: const isTokenMinted = await acc.mintToken({amount: 2,
-          vault: new Vault({id: VAULT_ID})});
+          vault: new Vault({id: VAULT_ID}), minimumPrice: 1,
+          maximumPrice: 1});
           console.log(`isTokenMinted: ${isTokenMinted}`);
           break;
         case 4: const isVaultDebtReturned = await acc
-            .returnVaultDebt({amount: 5,
+            .returnVaultDebt({amount: 1,
               vault: new Vault({id: VAULT_ID})});
           console.log(`isVaultDebtReturned: ${isVaultDebtReturned}`);
           break;
         case 5: const isCollateralWithdrawn = await acc.
             withdrawCollateral({amount: 3,
-              vault: new Vault({id: VAULT_ID})});
+              vault: new Vault({id: VAULT_ID}), minimumPrice: 1,
+              maximumPrice: 1});
           console.log(`isCollateralWithdrawn: ${isCollateralWithdrawn}`);
           break;
         case 6: const isCollateralDeposited = await acc.
