@@ -45,7 +45,9 @@ export class Vault {
         deprecated: vaultState.coldState.deprecated,
         redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
         govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.govStakersAddress),
-        liquidationStakersAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.liquidationStakersAddress),
+        liquidationStakersAddress: params.account.reachStdLib.formatAddress(
+          vaultState.coldState.liquidationStakersAddress,
+        ),
         oracleAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.oracleAddress),
         adminAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.adminAddress),
         daoAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.daoAddress),
