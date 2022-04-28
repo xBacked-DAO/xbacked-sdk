@@ -33,24 +33,24 @@ export class Vault {
         INTEREST_RATE_PER_SECOND: vaultState.constants.INTEREST_RATE_PER_SECOND.toNumber(),
         LIQUIDATION_COLLATERAL_RATIO: vaultState.constants.LIQUIDATION_COLLATERAL_RATIO.toNumber(),
         MINIMUM_COLLATERAL_RATIO: vaultState.constants.MINIMUM_COLLATERAL_RATIO.toNumber(),
-        VAULT_INTEREST_RATE: vaultState.constants.VAULT_INTEREST_RATE.toNumber()
+        VAULT_INTEREST_RATE: vaultState.constants.VAULT_INTEREST_RATE.toNumber(),
       },
       hotState: {
         accruedInterest: vaultState.hotState.accruedInterest.toNumber(),
-        totalVaultDebt: vaultState.hotState.totalVaultDebt.toNumber()
+        totalVaultDebt: vaultState.hotState.totalVaultDebt.toNumber(),
       },
       coldState: {
         accruedFees: vaultState.coldState.accruedFees.toNumber(),
         collateralPrice: vaultState.coldState.collateralPrice.toNumber(),
-        deprecated:  vaultState.coldState.deprecated,
+        deprecated: vaultState.coldState.deprecated,
         redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
         govStakersAddress: vaultState.coldState.govStakersAddress,
         liquidationStakersAddress: vaultState.coldState.liquidationStakersAddress,
         oracleAddress: vaultState.coldState.oracleAddress,
         adminAddress: vaultState.coldState.adminAddress,
         daoAddress: vaultState.coldState.daoAddress,
-        proposalTime: vaultState.coldState.proposalTime.toNumber()
-      }
+        proposalTime: vaultState.coldState.proposalTime.toNumber(),
+      },
     };
   }
   /**

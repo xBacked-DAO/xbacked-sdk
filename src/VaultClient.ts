@@ -6,7 +6,6 @@ import { Account } from './Account';
 import { AbiInterface, AccountInterface, UserVaultReturnParams, VaultReturnParams } from './interfaces';
 
 export class VaultClient extends Account {
- 
   constructor(params: AccountInterface) {
     super(params);
   }
@@ -22,7 +21,7 @@ export class VaultClient extends Account {
     vault: Vault;
     dripInterest: false;
     minimumPrice: number;
-    maximumPrice: number
+    maximumPrice: number;
   }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
@@ -30,23 +29,37 @@ export class VaultClient extends Account {
     if (params.dripInterest) {
       await this.dripInterest({ vault: params.vault, address: params.address });
     }
-    const res = await put.liquidateVault(params.address, convertToMicroUnits(params.debtAmount), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
+    const res = await put.liquidateVault(
+      params.address,
+      convertToMicroUnits(params.debtAmount),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice),
+    );
     return res;
   }
 
   /**
    * Attempt to redeem some of the Vault asset against a redeemable vault, to
    * receive vault collateral.
-   * @param params Contains the amount of xUSD to redeem, the vault to redeem it from, minimumPrice 
-   * that indicates the minimum price allowed for this transaction and maximumPrice that 
+   * @param params Contains the amount of xUSD to redeem, the vault to redeem it from, minimumPrice
+   * that indicates the minimum price allowed for this transaction and maximumPrice that
    * indicates the maximum price allowed for this transaction
    * @returns A boolean indicating success of call.
    */
-  async redeemVault(params: { amountToRedeem: number; vault: Vault, minimumPrice: number, maximumPrice: number }): Promise<boolean> {
+  async redeemVault(params: {
+    amountToRedeem: number;
+    vault: Vault;
+    minimumPrice: number;
+    maximumPrice: number;
+  }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
-    const res = await put.redeemVault(convertToMicroUnits(params.amountToRedeem), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
+    const res = await put.redeemVault(
+      convertToMicroUnits(params.amountToRedeem),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice),
+    );
     return res;
   }
 
@@ -81,15 +94,24 @@ export class VaultClient extends Account {
   /**
    *
    * @param params Contains the amount of xUsd tokens to be minted, the vault in which the token should be minted,
-   * minimumPrice that indicates the minimum price allowed for this transaction and maximumPrice that 
+   * minimumPrice that indicates the minimum price allowed for this transaction and maximumPrice that
    * indicates the maximum price allowed for this transaction
    * @returns A boolean indicating if the xUsd tokens were successfully minted or not
    */
-  async mintToken(params: { amount: number; vault: Vault; minimumPrice: number; maximumPrice: number }): Promise<boolean> {
+  async mintToken(params: {
+    amount: number;
+    vault: Vault;
+    minimumPrice: number;
+    maximumPrice: number;
+  }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.mintToken(convertToMicroUnits(params.amount), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
+    const res = await put.mintToken(
+      convertToMicroUnits(params.amount),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice),
+    );
     return res;
   }
 
@@ -109,15 +131,24 @@ export class VaultClient extends Account {
   /**
    *
    * @param params Contains amount of collateral to be withdrawn, the vault they should be withdrawn from,
-   * minimumPrice that indicates the minimum price allowed for this transaction and maximumPrice that 
+   * minimumPrice that indicates the minimum price allowed for this transaction and maximumPrice that
    * indicates the maximum price allowed for this transaction
    * @returns A boolean indicating if the collaterals were successfully withdrawn or not
    */
-  async withdrawCollateral(params: { amount: number; vault: Vault, minimumPrice: number, maximumPrice: number }): Promise<boolean> {
+  async withdrawCollateral(params: {
+    amount: number;
+    vault: Vault;
+    minimumPrice: number;
+    maximumPrice: number;
+  }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.withdrawCollateral(convertToMicroUnits(params.amount), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
+    const res = await put.withdrawCollateral(
+      convertToMicroUnits(params.amount),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice),
+    );
     return res;
   }
 
@@ -151,16 +182,27 @@ export class VaultClient extends Account {
   /**
    * Used to create a vault in the contract
    * @param params Contains keys collateral that indicates the amount of collateral that will be used to create the vault,
-   * mintAmount that indicates the amount of xusd tokens to be minted, vault that indicates the contract we are 
-   * communicating with, minimumPrice that indicates the minimum price allowed for this transaction and maximumPrice that 
+   * mintAmount that indicates the amount of xusd tokens to be minted, vault that indicates the contract we are
+   * communicating with, minimumPrice that indicates the minimum price allowed for this transaction and maximumPrice that
    * indicates the maximum price allowed for this transaction
    * @returns A boolean indicating if the vault was created or not
    */
-  async createVault(params: { collateral: number; mintAmount: number; vault: Vault; minimumPrice: number, maximumPrice: number }): Promise<boolean> {
+  async createVault(params: {
+    collateral: number;
+    mintAmount: number;
+    vault: Vault;
+    minimumPrice: number;
+    maximumPrice: number;
+  }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    const res = await put.createVault(convertToMicroUnits(params.collateral), convertToMicroUnits(params.mintAmount), convertToMicroUnits(params.minimumPrice), convertToMicroUnits(params.maximumPrice));
+    const res = await put.createVault(
+      convertToMicroUnits(params.collateral),
+      convertToMicroUnits(params.mintAmount),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice),
+    );
     return res;
   }
 
@@ -240,7 +282,7 @@ export class VaultClient extends Account {
   }
 
   /**
-   * 
+   *
    * @param params vaultId which indicates the contract we want to interact with
    */
   async getContractAbi(params: { vaultId: number }): Promise<AbiInterface> {
@@ -260,7 +302,7 @@ export class VaultClient extends Account {
     createCallback: (address: string, state: UserVaultReturnParams) => void;
     /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */
     transactionCallback: (address: string, state: UserVaultReturnParams) => void;
-    updatePriceCallback: (address: string, newPrice: number) => void
+    updatePriceCallback: (address: string, newPrice: number) => void;
   }): Promise<void> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, params.vaultId);
@@ -285,14 +327,13 @@ export class VaultClient extends Account {
       });
     }
 
-    if(params.updatePriceCallback != undefined){
+    if (params.updatePriceCallback !== undefined) {
       await announcer.priceChange.seekNow();
       announcer.priceChange.monitor((event: any) => {
         const address: string = this.reachStdLib.formatAddress(event.what[0]);
         const newPrice = event.what[1];
         params.updatePriceCallback(address, newPrice);
       });
-      
     }
   }
 }

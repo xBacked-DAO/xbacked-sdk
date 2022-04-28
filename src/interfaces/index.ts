@@ -1,11 +1,11 @@
 export interface AbiInterface {
   sig: string[];
-};
+}
 
 /**
  * This is passed as an argument to the [[Account]] constructor
  */
- export interface AccountInterface {
+export interface AccountInterface {
   /** @property An optional string of 25 words seperated by spaces that can be used to recover an algorand account */
   mnemonic?: string;
   /** @property An optional array of numbers that can be used to recover an algorand account */

@@ -88,7 +88,7 @@ export class Account {
    *
    * @returns A UInt8 array which is the secretKey of this Reach account
    */
-   async getSecret(): Promise<any> {
+  async getSecret(): Promise<any> {
     await this.initialiseReachAccount();
     return this.reachAccount.networkAccount.sk;
   }
@@ -97,7 +97,7 @@ export class Account {
    * Allows you to fund this account from the faucet when on the Reach devnet
    * @returns A boolean indicating if this account was successfully funded or not
    */
-   async fundFromFaucet(): Promise<boolean> {
+  async fundFromFaucet(): Promise<boolean> {
     await this.initialiseReachAccount();
     if ((await this.reachStdLib.canFundFromFaucet()) && this.reachAccount != null) {
       await this.reachStdLib.fundFromFaucet(this.reachAccount, this.reachStdLib.parseCurrency(100));
@@ -111,7 +111,7 @@ export class Account {
    *
    * @returns The formatted adress of this account
    */
-   async getAddress(): Promise<any> {
+  async getAddress(): Promise<any> {
     await this.initialiseReachAccount();
     if (this.reachAccount != null) {
       return this.reachStdLib.formatAddress(this.reachAccount);
@@ -125,7 +125,7 @@ export class Account {
    * @param params An object with key tokenId that indicates the ASA id whose balance this function must return, this key's value should be set to zero for the native token balance
    * @returns The balance of the specified tokenId
    */
-   async getBalance(params: { tokenId: number }): Promise<number> {
+  async getBalance(params: { tokenId: number }): Promise<number> {
     // reach.formatCurrency(await reach.balanceOf(account), 4)
     await this.initialiseReachAccount();
     if (this.reachAccount && params.tokenId !== 0 && params.tokenId !== null) {
@@ -135,5 +135,5 @@ export class Account {
       const balance = await this.reachStdLib.balanceOf(this.reachAccount);
       return balance.toNumber();
     }
-  }  
-} 
+  }
+}

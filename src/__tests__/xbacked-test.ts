@@ -76,34 +76,32 @@ it('Create Reach Account', async function () {
   await expect(throwFunc).rejects.toThrow(Error);
   account.mnemonic = mnemonic;
   account.reachAccount = reachAccount;
-
-
 });
 
 it('Get vault Info', async () => {
   const expectedVaultState = {
     constants: {
-        INTEREST_RATE_PER_SECOND: 1,
-        LIQUIDATION_COLLATERAL_RATIO: 1,
-        MINIMUM_COLLATERAL_RATIO: 1,
-        VAULT_INTEREST_RATE: 1
-      },
-      hotState: {
-        accruedInterest:1,
-        totalVaultDebt: 1
-      },
-      coldState: {
-        accruedFees: 1,
-        collateralPrice: 1,
-        deprecated: false,
-        redeemableVaults: [],
-        govStakersAddress: "",
-        liquidationStakersAddress: "",
-        oracleAddress: "",
-        adminAddress: "",
-        daoAddress: "",
-        proposalTime: 1
-      }
+      INTEREST_RATE_PER_SECOND: 1,
+      LIQUIDATION_COLLATERAL_RATIO: 1,
+      MINIMUM_COLLATERAL_RATIO: 1,
+      VAULT_INTEREST_RATE: 1,
+    },
+    hotState: {
+      accruedInterest: 1,
+      totalVaultDebt: 1,
+    },
+    coldState: {
+      accruedFees: 1,
+      collateralPrice: 1,
+      deprecated: false,
+      redeemableVaults: [],
+      govStakersAddress: '',
+      liquidationStakersAddress: '',
+      oracleAddress: '',
+      adminAddress: '',
+      daoAddress: '',
+      proposalTime: 1,
+    },
   };
   const vaultState = await account.getVaultState({ vault: new Vault({ id: 10 }) });
   expect(JSON.stringify(vaultState)).toEqual(JSON.stringify(expectedVaultState));
@@ -144,7 +142,7 @@ it('Liquidator Liquidate Vault', async function () {
     debtAmount: 10,
     dripInterest: false,
     minimumPrice: MINIMUM_PRICE,
-    maximumPrice: MAXIMUM_PRICE
+    maximumPrice: MAXIMUM_PRICE,
   });
   expect(isLiquidated).toBe(true);
 });
@@ -163,8 +161,7 @@ it('Minter withdraws collateral', async function () {
     amount: MINT_AMOUNT,
     vault: new Vault({ id: VAULT_ID }),
     minimumPrice: MINIMUM_PRICE,
-    maximumPrice: MAXIMUM_PRICE
-
+    maximumPrice: MAXIMUM_PRICE,
   });
   expect(isCollateralWithdrawn).toBe(true);
 });
@@ -182,7 +179,7 @@ it('Minter mints token', async function () {
     vault: new Vault({ id: VAULT_ID }),
     amount: 500,
     minimumPrice: MINIMUM_PRICE,
-    maximumPrice: MAXIMUM_PRICE
+    maximumPrice: MAXIMUM_PRICE,
   });
   expect(isTokenMinted).toBe(true);
 });
@@ -193,7 +190,7 @@ it('Minter creates vault', async function () {
     collateral: 1000,
     mintAmount: 500,
     minimumPrice: MINIMUM_PRICE,
-    maximumPrice: MAXIMUM_PRICE
+    maximumPrice: MAXIMUM_PRICE,
   });
   expect(isVaultCreated).toBe(true);
 });

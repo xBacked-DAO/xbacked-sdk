@@ -15,9 +15,9 @@ export const VAULT_IDS = {
   TestNet: {
     algo: 79758986,
     gobtc: 0,
-    goeth: 0
-  }
-}
+    goeth: 0,
+  },
+};
 
 /**
  * Converts number to microunits
@@ -94,10 +94,9 @@ export const calcCollateralRatioAfterLiquidation = (
   vaultDebt: number,
 ): number => {
   const discountPrice = calcDiscountPrice(collateralPrice);
-  const collateralAfterLiquidation = (collateral - convertToMicroUnits(debtPayout / discountPrice));
+  const collateralAfterLiquidation = collateral - convertToMicroUnits(debtPayout / discountPrice);
   const collateralValueAfterLiquidation = collateralAfterLiquidation * collateralPrice;
-  const crAfterLiq = ((collateralValueAfterLiquidation / MICRO_UNITS) * 100) /
-    (vaultDebt - debtPayout);
+  const crAfterLiq = ((collateralValueAfterLiquidation / MICRO_UNITS) * 100) / (vaultDebt - debtPayout);
   return crAfterLiq;
 };
 
