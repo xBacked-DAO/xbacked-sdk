@@ -44,7 +44,7 @@ export class Vault {
         collateralPrice: vaultState.coldState.collateralPrice.toNumber(),
         deprecated:  vaultState.coldState.deprecated,
         redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
-        govStakersAddress: vaultState.coldState.coldState.govStakersAddress,
+        govStakersAddress: vaultState.coldState.govStakersAddress,
         liquidationStakersAddress: vaultState.coldState.liquidationStakersAddress,
         oracleAddress: vaultState.coldState.oracleAddress,
         adminAddress: vaultState.coldState.adminAddress,
