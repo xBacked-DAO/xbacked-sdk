@@ -1,6 +1,5 @@
 // @ts-ignore
-import { masterVault} from '@xbacked-dao/xbacked-contracts';
-import { masterVaultAsa} from '@xbacked-dao/xbacked-contracts';
+import { masterVault, masterVaultAsa } from '@xbacked-dao/xbacked-contracts';
 import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 import { Account } from './Account';
@@ -39,9 +38,9 @@ export class VaultClient extends Account {
     }
     const res = await put.liquidateVault(
       params.address,
-      convertToMicroUnits(params.debtAmount, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.minimumPrice, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.maximumPrice, this.asaVault ? this.asaVault.decimals: undefined),
+      convertToMicroUnits(params.debtAmount),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice),
     );
     return res;
   }
@@ -64,9 +63,9 @@ export class VaultClient extends Account {
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
     const res = await put.redeemVault(
-      convertToMicroUnits(params.amountToRedeem, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.minimumPrice, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.maximumPrice, this.asaVault ? this.asaVault.decimals: undefined),
+      convertToMicroUnits(params.amountToRedeem),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice)
     );
     return res;
   }
@@ -95,7 +94,7 @@ export class VaultClient extends Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.Oracle;
-    const res = await put.updatePrice(convertToMicroUnits(params.price, this.asaVault ? this.asaVault.decimals: undefined));
+    const res = await put.updatePrice(convertToMicroUnits(params.price));
     return res;
   }
 
@@ -116,9 +115,9 @@ export class VaultClient extends Account {
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.mintToken(
-      convertToMicroUnits(params.amount, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.minimumPrice, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.maximumPrice, this.asaVault ? this.asaVault.decimals: undefined),
+      convertToMicroUnits(params.amount),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice),
     );
     return res;
   }
@@ -154,8 +153,8 @@ export class VaultClient extends Account {
     const put = ctc.a.VaultOwner;
     const res = await put.withdrawCollateral(
       convertToMicroUnits(params.amount, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.minimumPrice, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.maximumPrice, this.asaVault ? this.asaVault.decimals: undefined),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice),
     );
     return res;
   }
@@ -171,7 +170,7 @@ export class VaultClient extends Account {
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.returnVaultDebt(
-      params.close ? 0 : convertToMicroUnits(params.amount, this.asaVault ? this.asaVault.decimals: undefined),
+      params.close ? 0 : convertToMicroUnits(params.amount),
       params.close ? params.close : false,
     );
     return res;
@@ -207,9 +206,9 @@ export class VaultClient extends Account {
     const put = ctc.a.VaultOwner;
     const res = await put.createVault(
       convertToMicroUnits(params.collateral, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.mintAmount, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.minimumPrice, this.asaVault ? this.asaVault.decimals: undefined),
-      convertToMicroUnits(params.maximumPrice, this.asaVault ? this.asaVault.decimals: undefined),
+      convertToMicroUnits(params.mintAmount),
+      convertToMicroUnits(params.minimumPrice),
+      convertToMicroUnits(params.maximumPrice),
     );
     return res;
   }

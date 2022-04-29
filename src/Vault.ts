@@ -1,5 +1,5 @@
 import { Account } from './Account';
-import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
+import { masterVault, masterVaultAsa } from '@xbacked-dao/xbacked-contracts';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
 /**
  * The Parameters returned from the staate of a contract
@@ -10,9 +10,10 @@ import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParamete
 export class Vault {
   /** @property Unique identifier for the contract */
   readonly id: number | undefined;
-
-  constructor(params: VaultParameters) {
+  backend: any
+  constructor(params: VaultParameters, asaVault?: boolean) {
     this.id = params.id;
+    asaVault? this.backend = masterVaultAsa : this.backend = masterVault;
   }
 
   /**
@@ -21,7 +22,7 @@ export class Vault {
    * @returns State information of type [[VaultReturnParams]]
    */
   async getState(params: { account: Account }): Promise<VaultReturnParams> {
-    const ctc = params.account.reachAccount.contract(backend, this.id);
+    const ctc = params.account.reachAccount.contract(this.backend, this.id);
     const get = ctc.v.State;
     const stateView = await get.read();
     if (stateView[0] === 'None') {
@@ -51,7 +52,7 @@ export class Vault {
         oracleAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.oracleAddress),
         adminAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.adminAddress),
         daoAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.daoAddress),
-        proposalTime: vaultState.coldState.proposalTime.toNumber(),
+        proposalTime: vaultState.coldState.proposalTime?.toNumber(),
       },
     };
   }
@@ -61,7 +62,7 @@ export class Vault {
    * @returns User information of type [[UserVaultReturnParams]]
    */
   async getUserInfo(params: { account: Account; address: string }): Promise<UserVaultReturnParams> {
-    const ctc = params.account.reachAccount.contract(backend, this.id);
+    const ctc = params.account.reachAccount.contract(this.backend, this.id);
     const get = ctc.v.State;
     const stateView = await get.readVault(params.address);
     if (stateView[1][0] === 'None') {
