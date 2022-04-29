@@ -16,7 +16,10 @@ dotenv.config();
     const isVaultLiquidated = await account.liquidateVault({
       address: liquidationAddress,
       debtAmount: 30,
-      vault, dripInterest: true, minimumPrice: 0.5, maximumPrice: 0.5});
+      vault,
+      dripInterest: true,
+      minimumPrice: 0.5,
+      maximumPrice: 0.5});
     console.log(`isVaultLiquidated: ${isVaultLiquidated}`);
   } catch (error) {
     console.error(error);
