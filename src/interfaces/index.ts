@@ -21,11 +21,9 @@ export interface AccountInterface {
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
   asaVault?: {
-    decimals: number
-  }
+    decimals: number;
+  };
 }
-
-
 
 export interface StakeGlobalView {
   stakingAssetID: number;

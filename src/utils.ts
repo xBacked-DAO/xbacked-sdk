@@ -26,7 +26,7 @@ export const VAULT_IDS = {
  */
 export const convertToMicroUnits = (val: number, decimals = 6): number => {
   if (Number.isNaN(val) || !val) throw Error('Invalid input given');
-  return Math.abs(Math.floor(val * (10 ** decimals)));
+  return Math.abs(Math.floor(val * 10 ** decimals));
 };
 /**
  * Converts number from microunits
@@ -34,7 +34,7 @@ export const convertToMicroUnits = (val: number, decimals = 6): number => {
  * @returns Number that has been converted from microunits
  */
 export const convertFromMicroUnits = (val: number, decimals = 6): number => {
-  return val / (10 ** decimals);
+  return val / 10 ** decimals;
 };
 
 // Calculates the max amount of debt you can pay to drive the CR

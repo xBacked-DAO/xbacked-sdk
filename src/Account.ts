@@ -25,8 +25,8 @@ export class Account {
   networkAccount?: any;
 
   asaVault?: {
-    decimals: number
-  }
+    decimals: number;
+  };
 
   constructor(params: AccountInterface) {
     // console.log(backend);

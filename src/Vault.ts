@@ -10,10 +10,10 @@ import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParamete
 export class Vault {
   /** @property Unique identifier for the contract */
   readonly id: number | undefined;
-  backend: any
+  backend: any;
   constructor(params: VaultParameters, asaVault?: boolean) {
     this.id = params.id;
-    asaVault? this.backend = masterVaultAsa : this.backend = masterVault;
+    asaVault ? (this.backend = masterVaultAsa) : (this.backend = masterVault);
   }
 
   /**
