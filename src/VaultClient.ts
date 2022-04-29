@@ -12,7 +12,8 @@ export class VaultClient extends Account {
 
   /**
    *
-   * @param params Contains keys address, debtAmount, vault, dripInterest, minimumPrice allowed for this transaction and maximumPrice allowed for this transaction. Include dripInterest if you would like the vault debt to be updated before liquidation
+   * @param params Contains keys address, debtAmount, vault, dripInterest, minimumPrice allowed for this transaction
+   * and maximumPrice allowed for this transaction. Include dripInterest if you would like the vault debt to be updated before liquidation
    * @returns A boolean indicating if the vault was liquidated or not
    */
   async liquidateVault(params: {

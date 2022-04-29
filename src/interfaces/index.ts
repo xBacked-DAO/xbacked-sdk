@@ -67,9 +67,28 @@ export interface VaultReturnParams {
   // /** @property the interest rate of a vault */
   // interestRate: number;
 
-  constants: any;
-  hotState: any;
-  coldState: any;
+  constants: {
+     INTEREST_RATE_PER_SECOND: number,
+    LIQUIDATION_COLLATERAL_RATIO: number,
+    MINIMUM_COLLATERAL_RATIO: number,
+    VAULT_INTEREST_RATE: number
+  };
+  hotState: {
+    accruedInterest: number,
+    totalVaultDebt: number
+  };
+  coldState: {
+    accruedFees: number,
+    collateralPrice: number,
+    deprecated: boolean,
+    redeemableVaults:  any[],
+    govStakersAddress: string,
+    liquidationStakersAddress: string,
+    oracleAddress: string,
+    adminAddress: string,
+    daoAddress: string,
+    proposalTime?: number
+  };
 }
 
 export interface ReachUserVault {
