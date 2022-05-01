@@ -44,15 +44,18 @@ export class Vault {
         collateralPrice: vaultState.coldState.collateralPrice.toNumber(),
         deprecated: vaultState.coldState.deprecated,
         redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
-        govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.govStakersAddress),
-        liquidationStakersAddress: params.account.reachStdLib.formatAddress(
-          vaultState.coldState.liquidationStakersAddress,
-        ),
-        oracleAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.oracleAddress),
-        adminAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.adminAddress),
-        daoAddress: params.account.reachStdLib.formatAddress(vaultState.coldState.daoAddress),
         proposalTime: vaultState.coldState.proposalTime.toNumber(),
       },
+      colderState: {
+        govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.govStakersAddress),
+        liquidationStakersAddress: params.account.reachStdLib.formatAddress(
+          vaultState.colderState.liquidationStakersAddress,
+        ),
+        oracleAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.oracleAddress),
+        adminAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.adminAddress),
+        daoAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.daoAddress),
+      }
+
     };
   }
   /**

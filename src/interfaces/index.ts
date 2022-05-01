@@ -44,29 +44,6 @@ export interface StakeLocalView {
 }
 
 export interface VaultReturnParams {
-  // /** @property Fees that have accrued in the contract */
-  // accruedFees: number;
-  // /** @property The present collateral price in the contract */
-  // collateralPrice: number;
-  // /** @property Indicator that signifies if the contract is deprecated or not */
-  // deprecated: boolean;
-  // /** @property The percentage of the accruedFees, sent to the FeeCollector as a reward for distributing fees */
-  // feeCollectorFee: number;
-  // /** @property Minimum collateral ratio for a vault to be liquidated in micro units */
-  // liquidationCollateralRatio: number;
-  // /** @property The percentage of the amount liquidated, taken by the contract as fees during liquidation */
-  // liquidationFee: number;
-  // /** @property The minimum collateral ratio allowed for vault creation, minting, withdrawal in the contract */
-  // minimumCollateralRatio: number;
-  // /** @property The total amount of debt in the contract */
-  // totalVaultDebt: number;
-  // /** @property An array of addresses for redeemable vaults */
-  // redeemableVaults: any[];
-  // /** @property the accrued interest in a vault awaiting distribution via settleInterest */
-  // accruedInterest: number;
-  // /** @property the interest rate of a vault */
-  // interestRate: number;
-
   constants: {
      INTEREST_RATE_PER_SECOND: number,
     LIQUIDATION_COLLATERAL_RATIO: number,
@@ -82,13 +59,15 @@ export interface VaultReturnParams {
     collateralPrice: number,
     deprecated: boolean,
     redeemableVaults:  any[],
+    proposalTime?: number
+  };
+  colderState:{
     govStakersAddress: string,
     liquidationStakersAddress: string,
     oracleAddress: string,
     adminAddress: string,
-    daoAddress: string,
-    proposalTime?: number
-  };
+    daoAddress: string
+  }
 }
 
 export interface ReachUserVault {
