@@ -29,30 +29,32 @@ dotenv.config();
           break;
         case 2: const isVaultCreated = await acc.createVault({collateral: 140,
           mintAmount: 100,
-          vault: new Vault({id: VAULT_ID}, true),
+          vault: new Vault({id: VAULT_ID, asaVault: {decimals: 8}}),
           minimumPrice: 1,
           maximumPrice: 1});
           console.log(`isVaultCreated: ${isVaultCreated}`);
           break;
         case 3: const isTokenMinted = await acc.mintToken({amount: 2,
-          vault: new Vault({id: VAULT_ID}, true), minimumPrice: 1,
+          vault: new Vault({id: VAULT_ID,
+            asaVault: {decimals: 8}}), minimumPrice: 1,
           maximumPrice: 1});
           console.log(`isTokenMinted: ${isTokenMinted}`);
           break;
         case 4: const isVaultDebtReturned = await acc
             .returnVaultDebt({amount: 1,
-              vault: new Vault({id: VAULT_ID}, true)});
+              vault: new Vault({id: VAULT_ID, asaVault: {decimals: 8}})});
           console.log(`isVaultDebtReturned: ${isVaultDebtReturned}`);
           break;
         case 5: const isCollateralWithdrawn = await acc.
             withdrawCollateral({amount: 3,
-              vault: new Vault({id: VAULT_ID}, true), minimumPrice: 1,
+              vault: new Vault({id: VAULT_ID,
+                asaVault: {decimals: 8}}), minimumPrice: 1,
               maximumPrice: 1});
           console.log(`isCollateralWithdrawn: ${isCollateralWithdrawn}`);
           break;
         case 6: const isCollateralDeposited = await acc.
             depositCollateral({amount: 3,
-              vault: new Vault({id: VAULT_ID}, true)});
+              vault: new Vault({id: VAULT_ID, asaVault: {decimals: 8}})});
           console.log(`isCollateralDeposited: ${isCollateralDeposited}`);
           break;
       }

@@ -13,7 +13,7 @@ dotenv.config();
     network: 'TestNet',
     asaVault: {decimals: 8},
   });
-  const vault = new Vault({id: VAULT_ID}, true);
+  const vault = new Vault({id: VAULT_ID, asaVault: {decimals: 8}});
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(`

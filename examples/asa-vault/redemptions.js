@@ -13,7 +13,7 @@ dotenv.config();
     network: 'TestNet',
     asaVault: {decimals: 8},
   });
-  const vault = new Vault({id: VAULT_ID}, true);
+  const vault = new Vault({id: VAULT_ID, asaVault: {decimals: 8}});
   while (true) {
     const action = await ask.ask(`
   Do you want to:

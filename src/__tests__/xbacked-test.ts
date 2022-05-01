@@ -95,12 +95,14 @@ it('Get vault Info', async () => {
       collateralPrice: 1,
       deprecated: false,
       redeemableVaults: [],
+      proposalTime: 1,
+    },
+    colderState: {
       govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
       liquidationStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
       oracleAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
       adminAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
       daoAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
-      proposalTime: 1,
     },
   };
   const vaultState = await account.getVaultState({ vault: new Vault({ id: 10 }) });
