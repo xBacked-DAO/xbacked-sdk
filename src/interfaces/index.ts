@@ -64,7 +64,7 @@ export interface VaultReturnParams {
     redeemableVaults: any[];
     proposalTime?: number;
   };
-  colderState: {
+  addresses: {
     govStakersAddress: string;
     liquidationStakersAddress: string;
     oracleAddress: string;

@@ -97,7 +97,7 @@ it('Get vault Info', async () => {
       redeemableVaults: [],
       proposalTime: 1,
     },
-    colderState: {
+    addresses: {
       govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
       liquidationStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
       oracleAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',

@@ -47,14 +47,14 @@ export class Vault {
         redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
         proposalTime: vaultState.coldState.proposalTime.toNumber(),
       },
-      colderState: {
-        govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.govStakersAddress),
+      addresses: {
+        govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),
         liquidationStakersAddress: params.account.reachStdLib.formatAddress(
-          vaultState.colderState.liquidationStakersAddress,
+          vaultState.addresses.liquidationStakersAddress,
         ),
-        oracleAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.oracleAddress),
-        adminAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.adminAddress),
-        daoAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.daoAddress),
+        oracleAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.oracleAddress),
+        adminAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.adminAddress),
+        daoAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.daoAddress),
       },
     };
   }

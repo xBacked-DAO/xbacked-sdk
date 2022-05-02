@@ -38,7 +38,7 @@ class MockVaultClient extends VaultClient {
                     redeemableVaults: [],
                     proposalTime: bigNumberMock(1),
                   },
-                  colderState: {
+                  addresses: {
                     govStakersAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',
                     liquidationStakersAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',
                     oracleAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',
