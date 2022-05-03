@@ -266,13 +266,13 @@ export class VaultClient extends Account {
     const userVault = await params.vault.getUserInfo({ account: this, address: params.address });
     // NOTE: does not account for leap year
     const vaultState = await this.getVaultState({ vault: params.vault });
-    const VAULT_INTEREST_RATE = vaultState.constants.VAULT_INTEREST_RATE;
+    const VAULT_INTEREST_RATE = vaultState.constants?.VAULT_INTEREST_RATE;
     const now = await this.reachStdLib.getNetworkSecs();
     const interestAccrued = calculateInterestAccrued(
       now.toNumber(),
       userVault.lastAccruedInterestTime,
       userVault.vaultDebt,
-      VAULT_INTEREST_RATE,
+      VAULT_INTEREST_RATE ? VAULT_INTEREST_RATE: 2000000000,
     );
     userVault.vaultDebt += interestAccrued;
     return userVault;
