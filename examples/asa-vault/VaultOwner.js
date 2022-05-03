@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const {VaultClient, Vault, VAULT_IDS} = require('..');
+const {VaultClient, Vault, VAULT_IDS} = require('../..');
 const {ask} = require('@reach-sh/stdlib');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -10,7 +10,7 @@ dotenv.config();
   console.log(VAULT_ID);
   const STABLECOIN = process.env.STABLE_COIN;
   const acc = new VaultClient({mnemonic,
-    network: 'TestNet'});
+    network: 'TestNet', asaVault: {decimals: 8}});
 
   while (true) {
     const todo = await ask.ask(`
@@ -29,30 +29,32 @@ dotenv.config();
           break;
         case 2: const isVaultCreated = await acc.createVault({collateral: 140,
           mintAmount: 100,
-          vault: new Vault({id: VAULT_ID}),
+          vault: new Vault({id: VAULT_ID, asaVault: {decimals: 8}}),
           minimumPrice: 1,
           maximumPrice: 1});
           console.log(`isVaultCreated: ${isVaultCreated}`);
           break;
         case 3: const isTokenMinted = await acc.mintToken({amount: 2,
-          vault: new Vault({id: VAULT_ID}), minimumPrice: 1,
+          vault: new Vault({id: VAULT_ID,
+            asaVault: {decimals: 8}}), minimumPrice: 1,
           maximumPrice: 1});
           console.log(`isTokenMinted: ${isTokenMinted}`);
           break;
         case 4: const isVaultDebtReturned = await acc
             .returnVaultDebt({amount: 1,
-              vault: new Vault({id: VAULT_ID})});
+              vault: new Vault({id: VAULT_ID, asaVault: {decimals: 8}})});
           console.log(`isVaultDebtReturned: ${isVaultDebtReturned}`);
           break;
         case 5: const isCollateralWithdrawn = await acc.
             withdrawCollateral({amount: 3,
-              vault: new Vault({id: VAULT_ID}), minimumPrice: 1,
+              vault: new Vault({id: VAULT_ID,
+                asaVault: {decimals: 8}}), minimumPrice: 1,
               maximumPrice: 1});
           console.log(`isCollateralWithdrawn: ${isCollateralWithdrawn}`);
           break;
         case 6: const isCollateralDeposited = await acc.
             depositCollateral({amount: 3,
-              vault: new Vault({id: VAULT_ID})});
+              vault: new Vault({id: VAULT_ID, asaVault: {decimals: 8}})});
           console.log(`isCollateralDeposited: ${isCollateralDeposited}`);
           break;
       }

@@ -18,26 +18,26 @@ export const VAULT_IDS = {
   TestNet: {
     algo: 79758986,
     gobtc: 0,
-    goeth: 0
-  }
-}
+    goeth: 0,
+  },
+};
 
 /**
  * Converts number to microunits
  * @param val Number to be converted to microunits
  * @returns Number that has been converted to microunits
  */
-export const convertToMicroUnits = (val: number): number => {
+export const convertToMicroUnits = (val: number, decimals = 6): number => {
   if (Number.isNaN(val) || !val) throw Error('Invalid input given');
-  return Math.abs(Math.floor(val * MICRO_UNITS));
+  return Math.abs(Math.floor(val * 10 ** decimals));
 };
 /**
  * Converts number from microunits
  * @param val Number to be converted from microunits
  * @returns Number that has been converted from microunits
  */
-export const convertFromMicroUnits = (val: number): number => {
-  return val / MICRO_UNITS;
+export const convertFromMicroUnits = (val: number, decimals = 6): number => {
+  return val / 10 ** decimals;
 };
 
 // Calculates the max amount of debt you can pay to drive the CR
@@ -97,10 +97,9 @@ export const calcCollateralRatioAfterLiquidation = (
   vaultDebt: number,
 ): number => {
   const discountPrice = calcDiscountPrice(collateralPrice);
-  const collateralAfterLiquidation = (collateral - convertToMicroUnits(debtPayout / discountPrice));
+  const collateralAfterLiquidation = collateral - convertToMicroUnits(debtPayout / discountPrice);
   const collateralValueAfterLiquidation = collateralAfterLiquidation * collateralPrice;
-  const crAfterLiq = ((collateralValueAfterLiquidation / MICRO_UNITS) * 100) /
-    (vaultDebt - debtPayout);
+  const crAfterLiq = ((collateralValueAfterLiquidation / MICRO_UNITS) * 100) / (vaultDebt - debtPayout);
   return crAfterLiq;
 };
 
@@ -145,5 +144,5 @@ export const calculateInterestAccrued = (
 
 export const backends = {
   vault: masterVault,
-  liquidationStaking
-}
+  liquidationStaking,
+};

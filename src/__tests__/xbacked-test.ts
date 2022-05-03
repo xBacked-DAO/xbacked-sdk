@@ -10,7 +10,8 @@ beforeAll(() => {
 const VAULT_ID = 1;
 const MINT_AMOUNT = 2;
 const COLLATERAL_PRICE = 4;
-
+const MINIMUM_PRICE = 1;
+const MAXIMUM_PRICE = 1;
 const account = new VaultClient({
   mnemonic:
     'lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch',
@@ -79,17 +80,30 @@ it('Create Reach Account', async function () {
 
 it('Get vault Info', async () => {
   const expectedVaultState = {
-    accruedFees: 1,
-    collateralPrice: 1,
-    deprecated: false,
-    feeCollectorFee: 0.005,
-    liquidationCollateralRatio: 130,
-    liquidationFee: 0.1,
-    minimumCollateralRatio: 110,
-    totalVaultDebt: 10,
-    redeemableVaults: ['d'],
-    accruedInterest: 1,
-    interestRate: 2000000000,
+    constants: {
+      INTEREST_RATE_PER_SECOND: 1,
+      LIQUIDATION_COLLATERAL_RATIO: 1,
+      MINIMUM_COLLATERAL_RATIO: 1,
+      VAULT_INTEREST_RATE: 1,
+    },
+    hotState: {
+      accruedInterest: 1,
+      totalVaultDebt: 1,
+    },
+    coldState: {
+      accruedFees: 1,
+      collateralPrice: 1,
+      deprecated: false,
+      redeemableVaults: [],
+      proposalTime: 1,
+    },
+    addresses: {
+      govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      liquidationStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      oracleAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      adminAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      daoAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+    },
   };
   const vaultState = await account.getVaultState({ vault: new Vault({ id: 10 }) });
   expect(JSON.stringify(vaultState)).toEqual(JSON.stringify(expectedVaultState));
@@ -99,7 +113,6 @@ it('Get user info', async () => {
   const networkSecs = 10000000;
   account.reachStdLib.getNetworkSecs = jest.fn(async () => bigNumberMock(networkSecs));
   const originalValue = {
-    collateralRatio: 130,
     collateral: 100,
     liquidating: false,
     vaultDebt: 40,
@@ -115,6 +128,7 @@ it('Get user info', async () => {
     2000000000,
   );
   originalValue.vaultDebt = interestAccrued + originalValue.vaultDebt;
+  userInfo.vaultDebt = originalValue.vaultDebt;
   expect(JSON.stringify(userInfo)).toEqual(JSON.stringify(originalValue));
 });
 
@@ -129,6 +143,8 @@ it('Liquidator Liquidate Vault', async function () {
     address: '',
     debtAmount: 10,
     dripInterest: false,
+    minimumPrice: MINIMUM_PRICE,
+    maximumPrice: MAXIMUM_PRICE,
   });
   expect(isLiquidated).toBe(true);
 });
@@ -146,6 +162,8 @@ it('Minter withdraws collateral', async function () {
   const isCollateralWithdrawn = await account.withdrawCollateral({
     amount: MINT_AMOUNT,
     vault: new Vault({ id: VAULT_ID }),
+    minimumPrice: MINIMUM_PRICE,
+    maximumPrice: MAXIMUM_PRICE,
   });
   expect(isCollateralWithdrawn).toBe(true);
 });
@@ -162,6 +180,8 @@ it('Minter mints token', async function () {
   const isTokenMinted = await account.mintToken({
     vault: new Vault({ id: VAULT_ID }),
     amount: 500,
+    minimumPrice: MINIMUM_PRICE,
+    maximumPrice: MAXIMUM_PRICE,
   });
   expect(isTokenMinted).toBe(true);
 });
@@ -171,6 +191,8 @@ it('Minter creates vault', async function () {
     vault: new Vault({ id: VAULT_ID }),
     collateral: 1000,
     mintAmount: 500,
+    minimumPrice: MINIMUM_PRICE,
+    maximumPrice: MAXIMUM_PRICE,
   });
   expect(isVaultCreated).toBe(true);
 });

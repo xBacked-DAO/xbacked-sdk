@@ -1,11 +1,11 @@
 export interface AbiInterface {
   sig: string[];
-};
+}
 
 /**
  * This is passed as an argument to the [[Account]] constructor
  */
- export interface AccountInterface {
+export interface AccountInterface {
   /** @property An optional string of 25 words seperated by spaces that can be used to recover an algorand account */
   mnemonic?: string;
   /** @property An optional array of numbers that can be used to recover an algorand account */
@@ -20,6 +20,9 @@ export interface AbiInterface {
   reachStdLib?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
+  asaVault?: {
+    decimals: number;
+  };
 }
 
 export interface StakeGlobalView {
@@ -44,33 +47,33 @@ export interface StakeLocalView {
 }
 
 export interface VaultReturnParams {
-  /** @property Fees that have accrued in the contract */
-  accruedFees: number;
-  /** @property The present collateral price in the contract */
-  collateralPrice: number;
-  /** @property Indicator that signifies if the contract is deprecated or not */
-  deprecated: boolean;
-  /** @property The percentage of the accruedFees, sent to the FeeCollector as a reward for distributing fees */
-  feeCollectorFee: number;
-  /** @property Minimum collateral ratio for a vault to be liquidated in micro units */
-  liquidationCollateralRatio: number;
-  /** @property The percentage of the amount liquidated, taken by the contract as fees during liquidation */
-  liquidationFee: number;
-  /** @property The minimum collateral ratio allowed for vault creation, minting, withdrawal in the contract */
-  minimumCollateralRatio: number;
-  /** @property The total amount of debt in the contract */
-  totalVaultDebt: number;
-  /** @property An array of addresses for redeemable vaults */
-  redeemableVaults: any[];
-  /** @property the accrued interest in a vault awaiting distribution via settleInterest */
-  accruedInterest: number;
-  /** @property the interest rate of a vault */
-  interestRate: number;
+  constants: {
+    INTEREST_RATE_PER_SECOND: number;
+    LIQUIDATION_COLLATERAL_RATIO: number;
+    MINIMUM_COLLATERAL_RATIO: number;
+    VAULT_INTEREST_RATE: number;
+  };
+  hotState: {
+    accruedInterest: number;
+    totalVaultDebt: number;
+  };
+  coldState: {
+    accruedFees: number;
+    collateralPrice: number;
+    deprecated: boolean;
+    redeemableVaults: any[];
+    proposalTime?: number;
+  };
+  addresses: {
+    govStakersAddress: string;
+    liquidationStakersAddress: string;
+    oracleAddress: string;
+    adminAddress: string;
+    daoAddress: string;
+  };
 }
 
 export interface ReachUserVault {
-  /** @property The collateral ratio for a vault */
-  collateralRatio: number;
   /** @property The amount of collateral in a vault */
   collateral: number;
   /** @property Indicator that signifies if a vault can be liquidated */
@@ -94,4 +97,7 @@ export interface VaultParameters {
   /**  @property Unique identifier for the contract */
   id: number;
   acc?: any;
+  asaVault?: {
+    decimals: number;
+  };
 }

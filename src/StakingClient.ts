@@ -1,17 +1,17 @@
 // @ts-ignore
 import { liquidationStaking as backend } from '@xbacked-dao/xbacked-contracts';
 import { Account } from './Account';
-import { AbiInterface, AccountInterface, StakeGlobalView, StakeLocalView } from './interfaces';
+import { AccountInterface, StakeGlobalView, StakeLocalView } from './interfaces';
 
 export class StakingClient extends Account {
   /** @property Unique identifier for the contract */
   readonly id: number | undefined;
- 
+
   constructor(params: AccountInterface, contractId: number) {
     super(params);
     this.id = contractId;
   }
-  
+
   /**
    * @description Get global state of contract
    * @param params account object that contains the reach account
@@ -32,11 +32,11 @@ export class StakingClient extends Account {
         status: stakeState.policy.status.toNumber(),
         time: stakeState.policy.time.toNumber(),
         rewardMethod: stakeState.policy.rewardMethod.toNumber(),
-        rewardRate: stakeState.policy.rewardRate.toNumber()
+        rewardRate: stakeState.policy.rewardRate.toNumber(),
       },
       totalStake: stakeState.totalStake.toNumber(),
       totalUsers: stakeState.totalUsers.toNumber(),
-      totalRewards: stakeState.totalRewards.toNumber()
+      totalRewards: stakeState.totalRewards.toNumber(),
     };
   }
 
@@ -54,7 +54,7 @@ export class StakingClient extends Account {
         amountStaked: stateView.amountStaked.toNumber(),
         rewardsClaimed: stateView.rewardsClaimed.toNumber(),
         lastClaim: stateView.lastClaim.toNumber(),
-        found: false
+        found: false,
       };
     }
     const stakingState = stateView[1][1];
@@ -72,7 +72,7 @@ export class StakingClient extends Account {
     const put = ctc.a.LiquidationVaultAPI;
     return put.stakeAsset(amount);
   }
-  
+
   /**
    * @description unstake assets from the contract
    * @param amount amount to be unstaked
@@ -99,7 +99,7 @@ export class StakingClient extends Account {
   /**
    * @description withdraw accrued rewards from liquidations
    * @param amount amount of liquidation rewards to withdraw
-   * @returns 
+   * @returns
    */
   async withdrawRewards(amount: number): Promise<boolean> {
     await this.initialiseReachAccount();
@@ -107,7 +107,7 @@ export class StakingClient extends Account {
     const put = ctc.a.LiquidationVaultAPI;
     return put.withdrawRewards(amount);
   }
-  
+
   /**
    * @description update accrued points for an account
    * @param address address of the user to accrue points for
@@ -148,5 +148,4 @@ export class StakingClient extends Account {
       found: stakingState.found,
     };
   }
-
 }

@@ -1,5 +1,5 @@
 import { Account } from './Account';
-import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
+import { masterVault, masterVaultAsa } from '@xbacked-dao/xbacked-contracts';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
 /**
  * The Parameters returned from the staate of a contract
@@ -10,9 +10,10 @@ import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParamete
 export class Vault {
   /** @property Unique identifier for the contract */
   readonly id: number | undefined;
-
+  backend: any;
   constructor(params: VaultParameters) {
     this.id = params.id;
+    params.asaVault ? (this.backend = masterVaultAsa) : (this.backend = masterVault);
   }
 
   /**
@@ -21,7 +22,7 @@ export class Vault {
    * @returns State information of type [[VaultReturnParams]]
    */
   async getState(params: { account: Account }): Promise<VaultReturnParams> {
-    const ctc = params.account.reachAccount.contract(backend, this.id);
+    const ctc = params.account.reachAccount.contract(this.backend, this.id);
     const get = ctc.v.State;
     const stateView = await get.read();
     if (stateView[0] === 'None') {
@@ -29,21 +30,32 @@ export class Vault {
     }
     const vaultState = stateView[1];
     return {
-      accruedFees: vaultState.accruedFees.toNumber(),
-      collateralPrice: vaultState.collateralPrice.toNumber(),
-      deprecated: vaultState.deprecated,
-      // Hard coded for now, since it is hard coded in contract
-      feeCollectorFee: 0.005, // vaultState.feeCollectorFee.toNumber(),
-      liquidationCollateralRatio: vaultState.liquidationCollateralRatio.toNumber(),
-      // Hard coded for now, since it is hard coded in contract
-      liquidationFee: 0.1, // vaultState.liquidationFee.toNumber(),
-      minimumCollateralRatio: vaultState.minimumCollateralRatio.toNumber(),
-      totalVaultDebt: vaultState.totalVaultDebt.toNumber(),
-      // is a 2d array in the form ["Some", value] returned from reach
-      redeemableVaults: vaultState.redeemableVaults.map((v: any[]) => v[1]),
-      accruedInterest: vaultState.accruedInterest.toNumber(),
-      // Opcode cost does not permit storing this in view
-      interestRate: 2000000000, // vaultState.interestRate.toNumber(),
+      constants: {
+        INTEREST_RATE_PER_SECOND: vaultState.constants.INTEREST_RATE_PER_SECOND.toNumber(),
+        LIQUIDATION_COLLATERAL_RATIO: vaultState.constants.LIQUIDATION_COLLATERAL_RATIO.toNumber(),
+        MINIMUM_COLLATERAL_RATIO: vaultState.constants.MINIMUM_COLLATERAL_RATIO.toNumber(),
+        VAULT_INTEREST_RATE: vaultState.constants.VAULT_INTEREST_RATE.toNumber(),
+      },
+      hotState: {
+        accruedInterest: vaultState.hotState.accruedInterest.toNumber(),
+        totalVaultDebt: vaultState.hotState.totalVaultDebt.toNumber(),
+      },
+      coldState: {
+        accruedFees: vaultState.coldState.accruedFees.toNumber(),
+        collateralPrice: vaultState.coldState.collateralPrice.toNumber(),
+        deprecated: vaultState.coldState.deprecated,
+        redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
+        proposalTime: vaultState.coldState.proposalTime.toNumber(),
+      },
+      addresses: {
+        govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),
+        liquidationStakersAddress: params.account.reachStdLib.formatAddress(
+          vaultState.addresses.liquidationStakersAddress,
+        ),
+        oracleAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.oracleAddress),
+        adminAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.adminAddress),
+        daoAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.daoAddress),
+      },
     };
   }
   /**
@@ -52,12 +64,11 @@ export class Vault {
    * @returns User information of type [[UserVaultReturnParams]]
    */
   async getUserInfo(params: { account: Account; address: string }): Promise<UserVaultReturnParams> {
-    const ctc = params.account.reachAccount.contract(backend, this.id);
+    const ctc = params.account.reachAccount.contract(this.backend, this.id);
     const get = ctc.v.State;
     const stateView = await get.readVault(params.address);
     if (stateView[1][0] === 'None') {
       return {
-        collateralRatio: 0,
         collateral: 0,
         liquidating: false,
         vaultDebt: 0,
@@ -77,7 +88,6 @@ export class Vault {
    */
   static parseUserInfo(vaultState: any): ReachUserVault {
     return {
-      collateralRatio: vaultState.collateralRatio.toNumber(),
       collateral: vaultState.collateral.toNumber(),
       liquidating: vaultState.liquidating,
       vaultDebt: vaultState.vaultDebt.toNumber(),

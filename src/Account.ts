@@ -2,7 +2,7 @@
 import { loadStdlib } from '@reach-sh/stdlib';
 import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';
-import { AccountInterface } from './interfaces';
+import { AccountInterface, AbiInterface } from './interfaces';
 
 /**
  * An abstraction of an account on the Algorand
@@ -25,6 +25,10 @@ export class Account {
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
 
+  asaVault?: {
+    decimals: number;
+  };
+
   constructor(params: AccountInterface) {
     // console.log(backend);
     this.mnemonic = params.mnemonic;
@@ -33,6 +37,7 @@ export class Account {
     this.provider = params.provider;
     this.reachStdLib = params.reachStdLib || loadStdlib('ALGO');
     this.networkAccount = params.networkAccount;
+    this.asaVault = params.asaVault;
     if (params.network) {
       this.network = params.network;
     } else {
@@ -86,7 +91,7 @@ export class Account {
    *
    * @returns A UInt8 array which is the secretKey of this Reach account
    */
-   async getSecret(): Promise<any> {
+  async getSecret(): Promise<any> {
     await this.initialiseReachAccount();
     return this.reachAccount.networkAccount.sk;
   }
@@ -95,7 +100,7 @@ export class Account {
    * Allows you to fund this account from the faucet when on the Reach devnet
    * @returns A boolean indicating if this account was successfully funded or not
    */
-   async fundFromFaucet(): Promise<boolean> {
+  async fundFromFaucet(): Promise<boolean> {
     await this.initialiseReachAccount();
     if ((await this.reachStdLib.canFundFromFaucet()) && this.reachAccount != null) {
       await this.reachStdLib.fundFromFaucet(this.reachAccount, this.reachStdLib.parseCurrency(100));
@@ -109,7 +114,7 @@ export class Account {
    *
    * @returns The formatted adress of this account
    */
-   async getAddress(): Promise<any> {
+  async getAddress(): Promise<any> {
     await this.initialiseReachAccount();
     if (this.reachAccount != null) {
       return this.reachStdLib.formatAddress(this.reachAccount);
@@ -123,20 +128,20 @@ export class Account {
    * @param params An object with key vault that indicates the contract whose address is to be retrieved, and the backend to use (see utils.ts for backend options)
    * @returns A formatted address of the specified contract as a string
    */
-   async getContractAddress(params: { contractId: number, backend: any }): Promise<string> {
+  async getContractAddress(params: { contractId: number; backend: any }): Promise<string> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.contractId);
+    const ctc = this.reachAccount.contract(params.backend, params.contractId);
     const contractAddress = await ctc.getContractAddress();
     return this.reachStdLib.formatAddress(contractAddress);
   }
 
   /**
-   * 
+   *
    * @param params contractId which indicates the contract we want to interact with, and the backend to use (see utils.ts for backend options)
    */
-   async getContractAbi(params: { contractId: number, backend: any }): Promise<AbiInterface> {
+  async getContractAbi(params: { contractId: number; backend: any }): Promise<AbiInterface> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.contractId);
+    const ctc = this.reachAccount.contract(params.backend, params.contractId);
     return await ctc.getABI();
   }
 
@@ -145,7 +150,7 @@ export class Account {
    * @param params An object with key tokenId that indicates the ASA id whose balance this function must return, this key's value should be set to zero for the native token balance
    * @returns The balance of the specified tokenId
    */
-   async getBalance(params: { tokenId: number }): Promise<number> {
+  async getBalance(params: { tokenId: number }): Promise<number> {
     // reach.formatCurrency(await reach.balanceOf(account), 4)
     await this.initialiseReachAccount();
     if (this.reachAccount && params.tokenId !== 0 && params.tokenId !== null) {
@@ -155,5 +160,5 @@ export class Account {
       const balance = await this.reachStdLib.balanceOf(this.reachAccount);
       return balance.toNumber();
     }
-  }  
-} 
+  }
+}
