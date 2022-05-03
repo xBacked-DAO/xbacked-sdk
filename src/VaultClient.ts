@@ -279,28 +279,6 @@ export class VaultClient extends Account {
   }
 
   /**
-   * Returns the contract address
-   * @param params An object with key vault that indicates the contract whose address is to be retrieved
-   * @returns A formatted address of the specified contract as a string
-   */
-  async getContractAddress(params: { vaultId: number }): Promise<string> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vaultId);
-    const contractAddress = await ctc.getContractAddress();
-    return this.reachStdLib.formatAddress(contractAddress);
-  }
-
-  /**
-   *
-   * @param params vaultId which indicates the contract we want to interact with
-   */
-  async getContractAbi(params: { vaultId: number }): Promise<AbiInterface> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vaultId);
-    return await ctc.getABI();
-  }
-
-  /**
    * Subscribes to all vault events and calls the provided callbacks when the event is fired
    * @param params An object that contains key vaultId, key createCallback and key transactionCallback
    */

@@ -1,7 +1,8 @@
 // @ts-ignore
 import { loadStdlib } from '@reach-sh/stdlib';
-// @ts-ignore
-import { AccountInterface } from './interfaces';
+import { Vault } from './Vault';
+import { convertToMicroUnits, calculateInterestAccrued } from './utils';
+import { AccountInterface, AbiInterface } from './interfaces';
 
 /**
  * An abstraction of an account on the Algorand
@@ -120,6 +121,28 @@ export class Account {
     } else {
       return false;
     }
+  }
+
+  /**
+   * Returns the contract address
+   * @param params An object with key vault that indicates the contract whose address is to be retrieved, and the backend to use (see utils.ts for backend options)
+   * @returns A formatted address of the specified contract as a string
+   */
+   async getContractAddress(params: { contractId: number, backend: any }): Promise<string> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(params.backend, params.contractId);
+    const contractAddress = await ctc.getContractAddress();
+    return this.reachStdLib.formatAddress(contractAddress);
+  }
+
+  /**
+   * 
+   * @param params contractId which indicates the contract we want to interact with, and the backend to use (see utils.ts for backend options)
+   */
+   async getContractAbi(params: { contractId: number, backend: any }): Promise<AbiInterface> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(params.backend, params.contractId);
+    return await ctc.getABI();
   }
 
   /**

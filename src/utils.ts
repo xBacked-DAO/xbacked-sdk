@@ -1,3 +1,6 @@
+// @ts-ignore
+import { masterVault, liquidationStaking } from '@xbacked-dao/xbacked-contracts';
+
 const MICRO_UNITS = 1000000;
 
 export const DISCOUNT_RATE = 0.035;
@@ -138,3 +141,8 @@ export const calculateInterestAccrued = (
   const interestAccrued = (interestRateOverTimePassed * vaultDebt) / INTEREST_RATE_DENOMINATOR;
   return interestAccrued;
 };
+
+export const backends = {
+  vault: masterVault,
+  liquidationStaking
+}

@@ -1,7 +1,7 @@
 // @ts-ignore
 import { liquidationStaking as backend } from '@xbacked-dao/xbacked-contracts';
 import { Account } from './Account';
-import { AbiInterface, AccountInterface, StakeGlobalView, StakeLocalView } from './interfaces';
+import { AccountInterface, StakeGlobalView, StakeLocalView } from './interfaces';
 
 export class StakingClient extends Account {
   /** @property Unique identifier for the contract */
@@ -11,29 +11,7 @@ export class StakingClient extends Account {
     super(params);
     this.id = contractId;
   }
-
-  /**
-   * Returns the contract address
-   * @param params An object with key vault that indicates the contract whose address is to be retrieved
-   * @returns A formatted address of the specified contract as a string
-   */
-  async getContractAddress(params: { contractId: number }): Promise<string> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.contractId);
-    const contractAddress = await ctc.getContractAddress();
-    return this.reachStdLib.formatAddress(contractAddress);
-  }
-
-  /**
-   *
-   * @param params contractId which indicates the contract we want to interact with
-   */
-  async getContractAbi(params: { contractId: number }): Promise<AbiInterface> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, params.contractId);
-    return await ctc.getABI();
-  }
-
+  
   /**
    * @description Get global state of contract
    * @param params account object that contains the reach account
