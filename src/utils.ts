@@ -144,5 +144,5 @@ export const calculateInterestAccrued = (
 
 export const backends = {
   vault: masterVault,
-  liquidationStaking
-}
+  liquidationStaking,
+};

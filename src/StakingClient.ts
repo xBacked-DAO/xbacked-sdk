@@ -11,7 +11,7 @@ export class StakingClient extends Account {
     super(params);
     this.id = contractId;
   }
-  
+
   /**
    * @description Get global state of contract
    * @param params account object that contains the reach account
