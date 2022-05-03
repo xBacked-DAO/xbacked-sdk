@@ -20,6 +20,9 @@ export interface AccountInterface {
   reachStdLib?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
+  asaVault?: {
+    decimals: number;
+  };
 }
 
 export interface StakeGlobalView {
@@ -45,29 +48,29 @@ export interface StakeLocalView {
 
 export interface VaultReturnParams {
   constants: {
-     INTEREST_RATE_PER_SECOND: number,
-    LIQUIDATION_COLLATERAL_RATIO: number,
-    MINIMUM_COLLATERAL_RATIO: number,
-    VAULT_INTEREST_RATE: number
+    INTEREST_RATE_PER_SECOND: number;
+    LIQUIDATION_COLLATERAL_RATIO: number;
+    MINIMUM_COLLATERAL_RATIO: number;
+    VAULT_INTEREST_RATE: number;
   };
   hotState: {
-    accruedInterest: number,
-    totalVaultDebt: number
+    accruedInterest: number;
+    totalVaultDebt: number;
   };
   coldState: {
-    accruedFees: number,
-    collateralPrice: number,
-    deprecated: boolean,
-    redeemableVaults:  any[],
-    proposalTime?: number
+    accruedFees: number;
+    collateralPrice: number;
+    deprecated: boolean;
+    redeemableVaults: any[];
+    proposalTime?: number;
   };
-  colderState:{
-    govStakersAddress: string,
-    liquidationStakersAddress: string,
-    oracleAddress: string,
-    adminAddress: string,
-    daoAddress: string
-  }
+  addresses: {
+    govStakersAddress: string;
+    liquidationStakersAddress: string;
+    oracleAddress: string;
+    adminAddress: string;
+    daoAddress: string;
+  };
 }
 
 export interface ReachUserVault {
@@ -94,4 +97,7 @@ export interface VaultParameters {
   /**  @property Unique identifier for the contract */
   id: number;
   acc?: any;
+  asaVault?: {
+    decimals: number;
+  };
 }

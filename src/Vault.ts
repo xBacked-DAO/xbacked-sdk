@@ -1,5 +1,5 @@
 import { Account } from './Account';
-import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
+import { masterVault, masterVaultAsa } from '@xbacked-dao/xbacked-contracts';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
 /**
  * The Parameters returned from the staate of a contract
@@ -10,9 +10,10 @@ import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParamete
 export class Vault {
   /** @property Unique identifier for the contract */
   readonly id: number | undefined;
-
+  backend: any;
   constructor(params: VaultParameters) {
     this.id = params.id;
+    params.asaVault ? (this.backend = masterVaultAsa) : (this.backend = masterVault);
   }
 
   /**
@@ -21,7 +22,7 @@ export class Vault {
    * @returns State information of type [[VaultReturnParams]]
    */
   async getState(params: { account: Account }): Promise<VaultReturnParams> {
-    const ctc = params.account.reachAccount.contract(backend, this.id);
+    const ctc = params.account.reachAccount.contract(this.backend, this.id);
     const get = ctc.v.State;
     const stateView = await get.read();
     if (stateView[0] === 'None') {
@@ -46,16 +47,15 @@ export class Vault {
         redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
         proposalTime: vaultState.coldState.proposalTime.toNumber(),
       },
-      colderState: {
-        govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.govStakersAddress),
+      addresses: {
+        govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),
         liquidationStakersAddress: params.account.reachStdLib.formatAddress(
-          vaultState.colderState.liquidationStakersAddress,
+          vaultState.addresses.liquidationStakersAddress,
         ),
-        oracleAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.oracleAddress),
-        adminAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.adminAddress),
-        daoAddress: params.account.reachStdLib.formatAddress(vaultState.colderState.daoAddress),
-      }
-
+        oracleAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.oracleAddress),
+        adminAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.adminAddress),
+        daoAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.daoAddress),
+      },
     };
   }
   /**
@@ -64,7 +64,7 @@ export class Vault {
    * @returns User information of type [[UserVaultReturnParams]]
    */
   async getUserInfo(params: { account: Account; address: string }): Promise<UserVaultReturnParams> {
-    const ctc = params.account.reachAccount.contract(backend, this.id);
+    const ctc = params.account.reachAccount.contract(this.backend, this.id);
     const get = ctc.v.State;
     const stateView = await get.readVault(params.address);
     if (stateView[1][0] === 'None') {

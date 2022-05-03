@@ -1,9 +1,6 @@
 // @ts-ignore
 import { loadStdlib } from '@reach-sh/stdlib';
 // @ts-ignore
-import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
-import { Vault } from './Vault';
-import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 import { AccountInterface } from './interfaces';
 
 /**
@@ -27,6 +24,10 @@ export class Account {
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
 
+  asaVault?: {
+    decimals: number;
+  };
+
   constructor(params: AccountInterface) {
     // console.log(backend);
     this.mnemonic = params.mnemonic;
@@ -35,6 +36,7 @@ export class Account {
     this.provider = params.provider;
     this.reachStdLib = params.reachStdLib || loadStdlib('ALGO');
     this.networkAccount = params.networkAccount;
+    this.asaVault = params.asaVault;
     if (params.network) {
       this.network = params.network;
     } else {
