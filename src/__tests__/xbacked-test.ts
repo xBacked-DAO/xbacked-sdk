@@ -96,7 +96,7 @@ it('Get vault Info', async () => {
       deprecated: false,
       redeemableVaults: [],
       proposalTime: 1,
-      contractState: 0
+      contractState: 0,
     },
     addresses: {
       govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',

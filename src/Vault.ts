@@ -30,12 +30,14 @@ export class Vault {
     }
     const vaultState = stateView[1];
     return {
-      constants: vaultState.constants ? {
-        INTEREST_RATE_PER_SECOND: vaultState.constants.INTEREST_RATE_PER_SECOND.toNumber(),
-        LIQUIDATION_COLLATERAL_RATIO: vaultState.constants.LIQUIDATION_COLLATERAL_RATIO.toNumber(),
-        MINIMUM_COLLATERAL_RATIO: vaultState.constants.MINIMUM_COLLATERAL_RATIO.toNumber(),
-        VAULT_INTEREST_RATE: vaultState.constants.VAULT_INTEREST_RATE.toNumber(),
-      }: undefined,
+      constants: vaultState.constants
+        ? {
+            INTEREST_RATE_PER_SECOND: vaultState.constants.INTEREST_RATE_PER_SECOND.toNumber(),
+            LIQUIDATION_COLLATERAL_RATIO: vaultState.constants.LIQUIDATION_COLLATERAL_RATIO.toNumber(),
+            MINIMUM_COLLATERAL_RATIO: vaultState.constants.MINIMUM_COLLATERAL_RATIO.toNumber(),
+            VAULT_INTEREST_RATE: vaultState.constants.VAULT_INTEREST_RATE.toNumber(),
+          }
+        : undefined,
       hotState: {
         accruedInterest: vaultState.hotState.accruedInterest.toNumber(),
         totalVaultDebt: vaultState.hotState.totalVaultDebt.toNumber(),
@@ -46,7 +48,7 @@ export class Vault {
         deprecated: vaultState.coldState.deprecated,
         redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
         proposalTime: vaultState.coldState.proposalTime.toNumber(),
-        contractState: vaultState.coldState.contractState.toNumber()
+        contractState: vaultState.coldState.contractState.toNumber(),
       },
       addresses: {
         govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),

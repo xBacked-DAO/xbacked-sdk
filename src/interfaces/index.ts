@@ -63,7 +63,7 @@ export interface VaultReturnParams {
     deprecated: boolean;
     redeemableVaults: any[];
     proposalTime?: number;
-    contractState?: number
+    contractState?: number;
   };
   addresses: {
     govStakersAddress: string;

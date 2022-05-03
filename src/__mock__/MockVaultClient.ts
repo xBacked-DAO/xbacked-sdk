@@ -37,7 +37,7 @@ class MockVaultClient extends VaultClient {
                     deprecated: false,
                     redeemableVaults: [],
                     proposalTime: bigNumberMock(1),
-                    contractState: bigNumberMock(0)
+                    contractState: bigNumberMock(0),
                   },
                   addresses: {
                     govStakersAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',

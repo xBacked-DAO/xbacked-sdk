@@ -272,7 +272,7 @@ export class VaultClient extends Account {
       now.toNumber(),
       userVault.lastAccruedInterestTime,
       userVault.vaultDebt,
-      VAULT_INTEREST_RATE ? VAULT_INTEREST_RATE: 2000000000,
+      VAULT_INTEREST_RATE ? VAULT_INTEREST_RATE : 2000000000,
     );
     userVault.vaultDebt += interestAccrued;
     return userVault;
