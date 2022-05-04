@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-const {VaultClient, Vault, VAULT_IDS} = require('..');
+const {VaultClient, Vault, VAULTS} = require('..');
 const {ask} = require('@reach-sh/stdlib');
 const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
   const VAULT_ID = process.env.VAULT_ID ? process.env.VAULT_ID :
-   VAULT_IDS.TestNet.algo;
+  VAULTS.TestNet.algo.vaultId;
   console.log(VAULT_ID);
   const STABLECOIN = process.env.STABLE_COIN;
   const acc = new VaultClient({mnemonic,
@@ -27,11 +27,11 @@ dotenv.config();
         case 1: await acc.optIntoToken(STABLECOIN);
           console.log('Opted into token');
           break;
-        case 2: const isVaultCreated = await acc.createVault({collateral: 140,
+        case 2: const isVaultCreated = await acc.createVault({collateral: 225,
           mintAmount: 100,
           vault: new Vault({id: VAULT_ID}),
-          minimumPrice: 1,
-          maximumPrice: 1});
+          minimumPrice: 0.5,
+          maximumPrice: 0.5});
           console.log(`isVaultCreated: ${isVaultCreated}`);
           break;
         case 3: const isTokenMinted = await acc.mintToken({amount: 2,

@@ -1,11 +1,11 @@
-const {VaultClient, Vault, VAULT_IDS} = require('../..');
+const {VaultClient, Vault, VAULTS} = require('../..');
 const dotenv = require('dotenv');
 dotenv.config();
 
 (async () => {
   const mnemonic = process.env.MNEMONIC;
   const VAULT_ID = process.env.VAULT_ID ? process.env.VAULT_ID :
-  VAULT_IDS.TestNet.algo; VAULT_IDS.TestNet.algo;
+  VAULTS.TestNet.algo.vaultId;
   const liquidationAddress = process.env.ADDRESS_FOR_LIQUIDATION;
   const account = new VaultClient({
     mnemonic,
