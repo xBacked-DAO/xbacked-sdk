@@ -21,12 +21,10 @@ class MockVaultClient extends VaultClient {
               return [
                 'Some',
                 {
-                  constants: {
-                    INTEREST_RATE_PER_SECOND: bigNumberMock(1),
-                    LIQUIDATION_COLLATERAL_RATIO: bigNumberMock(1),
-                    MINIMUM_COLLATERAL_RATIO: bigNumberMock(1),
-                    VAULT_INTEREST_RATE: bigNumberMock(1),
-                  },
+                  LIQUIDATION_COLLATERAL_RATIO: bigNumberMock(1),
+                  MINIMUM_COLLATERAL_RATIO: bigNumberMock(1),
+                  VAULT_INTEREST_RATE: bigNumberMock(1),
+
                   hotState: {
                     accruedInterest: bigNumberMock(1),
                     totalVaultDebt: bigNumberMock(1),
