@@ -80,12 +80,10 @@ it('Create Reach Account', async function () {
 
 it('Get vault Info', async () => {
   const expectedVaultState = {
-    constants: {
-      INTEREST_RATE_PER_SECOND: 1,
-      LIQUIDATION_COLLATERAL_RATIO: 1,
-      MINIMUM_COLLATERAL_RATIO: 1,
-      VAULT_INTEREST_RATE: 1,
-    },
+    LIQUIDATION_COLLATERAL_RATIO: 1,
+    MINIMUM_COLLATERAL_RATIO: 1,
+    VAULT_INTEREST_RATE: 1,
+
     hotState: {
       accruedInterest: 1,
       totalVaultDebt: 1,
@@ -96,6 +94,7 @@ it('Get vault Info', async () => {
       deprecated: false,
       redeemableVaults: [],
       proposalTime: 1,
+      contractState: 0,
     },
     addresses: {
       govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',

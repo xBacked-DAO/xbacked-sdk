@@ -21,12 +21,10 @@ class MockVaultClient extends VaultClient {
               return [
                 'Some',
                 {
-                  constants: {
-                    INTEREST_RATE_PER_SECOND: bigNumberMock(1),
-                    LIQUIDATION_COLLATERAL_RATIO: bigNumberMock(1),
-                    MINIMUM_COLLATERAL_RATIO: bigNumberMock(1),
-                    VAULT_INTEREST_RATE: bigNumberMock(1),
-                  },
+                  LIQUIDATION_COLLATERAL_RATIO: bigNumberMock(1),
+                  MINIMUM_COLLATERAL_RATIO: bigNumberMock(1),
+                  VAULT_INTEREST_RATE: bigNumberMock(1),
+
                   hotState: {
                     accruedInterest: bigNumberMock(1),
                     totalVaultDebt: bigNumberMock(1),
@@ -37,6 +35,7 @@ class MockVaultClient extends VaultClient {
                     deprecated: false,
                     redeemableVaults: [],
                     proposalTime: bigNumberMock(1),
+                    contractState: bigNumberMock(0),
                   },
                   addresses: {
                     govStakersAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',

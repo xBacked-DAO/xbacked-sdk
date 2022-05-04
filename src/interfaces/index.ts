@@ -47,12 +47,9 @@ export interface StakeLocalView {
 }
 
 export interface VaultReturnParams {
-  constants: {
-    INTEREST_RATE_PER_SECOND: number;
-    LIQUIDATION_COLLATERAL_RATIO: number;
-    MINIMUM_COLLATERAL_RATIO: number;
-    VAULT_INTEREST_RATE: number;
-  };
+  LIQUIDATION_COLLATERAL_RATIO: number;
+  MINIMUM_COLLATERAL_RATIO: number;
+  VAULT_INTEREST_RATE: number;
   hotState: {
     accruedInterest: number;
     totalVaultDebt: number;
@@ -63,6 +60,7 @@ export interface VaultReturnParams {
     deprecated: boolean;
     redeemableVaults: any[];
     proposalTime?: number;
+    contractState?: number;
   };
   addresses: {
     govStakersAddress: string;

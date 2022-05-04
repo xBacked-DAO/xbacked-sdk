@@ -1143,9 +1143,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:^0.1.10-rc.2":
-  version: 0.1.10-rc.2
-  resolution: "@reach-sh/stdlib@npm:0.1.10-rc.2"
+"@reach-sh/stdlib@npm:^0.1.10-rc.3":
+  version: 0.1.10-rc.3
+  resolution: "@reach-sh/stdlib@npm:0.1.10-rc.3"
   dependencies:
     "@msgpack/msgpack": ^2.5.1
     "@randlabs/myalgo-connect": ^1.1.2
@@ -1161,7 +1161,7 @@ __metadata:
     node-fetch: ^2.6.1
     tslib: ^2.3.1
     wait-port: ^0.2.9
-  checksum: b72699c4cc6db63b1eb953381da99a99d0244c766b7d17c743750cd6a2daf7055033cc191800897e4efa335ac7c4ef17450fa98155886dc7c570259b07c0b61b
+  checksum: 0184a1f8ce78a1b2ea3cf7b3bc6e97bd2163261c3658a1de363a274fa495238ca0557fd4175cef40355135f51cbf51e425ebb36897c2a637b047389cba6c8ed4
   languageName: node
   linkType: hard
 
@@ -1777,7 +1777,7 @@ __metadata:
     "@babel/types": ^7.16.0
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": ^0.1.10-rc.2
+    "@reach-sh/stdlib": ^0.1.10-rc.3
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
