@@ -22,6 +22,13 @@ export const VAULT_IDS = {
   },
 };
 
+export const ASSET_IDS ={
+  TestNet:{
+    gobtc: 67396528,
+    goeth: 76598897,
+  }
+}
+
 /**
  * Converts number to microunits
  * @param val Number to be converted to microunits
