@@ -16,9 +16,9 @@ const MINIMUM_COLLATERAL_RATIO = 1.2;
 
 export const VAULT_IDS = {
   TestNet: {
-    algo: 79758986,
-    gobtc: 0,
-    goeth: 0,
+    algo: 87683030,
+    gobtc: 87736275,
+    goeth: 87728217,
   },
 };
 
