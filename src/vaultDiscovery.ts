@@ -1,6 +1,6 @@
 import { Account } from './Account';
 import { Vault } from './Vault';
-import { masterVault as backend } from '@xbacked-dao/xbacked-contracts';
+import { masterVault, masterVaultAsa } from '@xbacked-dao/xbacked-contracts';
 import VaultCreatedEvent from './VaultEvents/VaultCreatedEvent';
 import VaultClosedEvent from './VaultEvents/VaultClosedEvent';
 import VaultTransactionEvent from './VaultEvents/VaultTransactionEvent';
@@ -22,9 +22,10 @@ export const getOpenVaults = async (params: {
   startRound?: number;
   endRound?: number;
   timeout?: number;
+  asaVault?: boolean;
 }): Promise<string[]> => {
   await params.account.initialiseReachAccount();
-  const ctc = params.account.reachAccount.contract(backend, params.vault.id);
+  const ctc = params.account.reachAccount.contract(params.asaVault ? masterVaultAsa : masterVault, params.vault.id);
   const announcer = ctc.events.Announcer;
 
   const createdVaultsCount = new Map<string, number>();
@@ -69,9 +70,10 @@ export const getCreatedVaults = async (params: {
   startRound?: number;
   endRound?: number;
   timeout?: number;
+  asaVault?: boolean;
 }): Promise<VaultCreatedEvent[]> => {
   await params.account.initialiseReachAccount();
-  const ctc = params.account.reachAccount.contract(backend, params.vault.id);
+  const ctc = params.account.reachAccount.contract(params.asaVault ? masterVaultAsa : masterVault, params.vault.id);
   const announcer = ctc.events.Announcer;
 
   return getEvents<VaultCreatedEvent>({
@@ -96,9 +98,10 @@ export const getClosedVaults = async (params: {
   startRound?: number;
   endRound?: number;
   timeout?: number;
+  asaVault?: boolean;
 }): Promise<VaultClosedEvent[]> => {
   await params.account.initialiseReachAccount();
-  const ctc = params.account.reachAccount.contract(backend, params.vault.id);
+  const ctc = params.account.reachAccount.contract(params.asaVault ? masterVaultAsa : masterVault, params.vault.id);
   const announcer = ctc.events.Announcer;
 
   return getEvents<VaultClosedEvent>({
@@ -123,9 +126,10 @@ export const getTransactions = async (params: {
   startRound?: number;
   endRound?: number;
   timeout?: number;
+  asaVault?: boolean;
 }): Promise<VaultTransactionEvent[]> => {
   await params.account.initialiseReachAccount();
-  const ctc = params.account.reachAccount.contract(backend, params.vault.id);
+  const ctc = params.account.reachAccount.contract(params.asaVault ? masterVaultAsa : masterVault, params.vault.id);
   const announcer = ctc.events.Announcer;
 
   return getEvents<VaultTransactionEvent>({

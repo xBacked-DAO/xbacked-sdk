@@ -1,3 +1,6 @@
+// @ts-ignore
+import { masterVault, liquidationStaking } from '@xbacked-dao/xbacked-contracts';
+
 const MICRO_UNITS = 1000000;
 
 export const DISCOUNT_RATE = 0.035;
@@ -11,30 +14,31 @@ const INTEREST_RATE_DENOMINATOR = 100000000000;
 // float conversion. (CONTRACT MINIMUM - 1)
 const MINIMUM_COLLATERAL_RATIO = 1.2;
 
-export const VAULT_IDS = {
+export const VAULTS = {
   TestNet: {
-    algo: 79758986,
-    gobtc: 0,
-    goeth: 0,
+    algo: { vaultId: 87683030},
+    gobtc: {vaultId: 87736275, assetId: 67396528 },
+    goeth: {vaultId: 87728217, assetId: 76598897},
   },
 };
+
 
 /**
  * Converts number to microunits
  * @param val Number to be converted to microunits
  * @returns Number that has been converted to microunits
  */
-export const convertToMicroUnits = (val: number): number => {
+export const convertToMicroUnits = (val: number, decimals = 6): number => {
   if (Number.isNaN(val) || !val) throw Error('Invalid input given');
-  return Math.abs(Math.floor(val * MICRO_UNITS));
+  return Math.abs(Math.floor(val * 10 ** decimals));
 };
 /**
  * Converts number from microunits
  * @param val Number to be converted from microunits
  * @returns Number that has been converted from microunits
  */
-export const convertFromMicroUnits = (val: number): number => {
-  return val / MICRO_UNITS;
+export const convertFromMicroUnits = (val: number, decimals = 6): number => {
+  return val / 10 ** decimals;
 };
 
 // Calculates the max amount of debt you can pay to drive the CR
@@ -132,9 +136,14 @@ export const calculateInterestAccrued = (
   vaultDebt: number,
   VAULT_INTEREST_RATE: number,
 ) => {
-  const amountOfTimePassed = now - lastAccruedInterestTime - 200;
+  const amountOfTimePassed = now - lastAccruedInterestTime;
   const interestRatePerSecond = VAULT_INTEREST_RATE / AMOUNT_OF_SECONDS_IN_YEAR;
   const interestRateOverTimePassed = interestRatePerSecond * amountOfTimePassed;
   const interestAccrued = (interestRateOverTimePassed * vaultDebt) / INTEREST_RATE_DENOMINATOR;
   return interestAccrued;
+};
+
+export const backends = {
+  vault: masterVault,
+  liquidationStaking,
 };

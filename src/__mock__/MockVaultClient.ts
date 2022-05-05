@@ -1,5 +1,5 @@
-import { Account } from '../Account';
-class MockAccount extends Account {
+import { VaultClient } from '../VaultClient';
+class MockVaultClient extends VaultClient {
   async initialiseReachAccount(): Promise<void> {
     const bigNumberMock = jest.fn((val) => {
       return {
@@ -21,17 +21,29 @@ class MockAccount extends Account {
               return [
                 'Some',
                 {
-                  accruedFees: bigNumberMock(1),
-                  collateralPrice: bigNumberMock(1),
-                  deprecated: false,
-                  feeCollectorFee: 0.005,
-                  liquidationCollateralRatio: bigNumberMock(130),
-                  liquidationFee: 0.1,
-                  minimumCollateralRatio: bigNumberMock(110),
-                  totalVaultDebt: bigNumberMock(10),
-                  redeemableVaults: ['ad'],
-                  accruedInterest: bigNumberMock(1),
-                  interestRate: 2000000000,
+                  LIQUIDATION_COLLATERAL_RATIO: bigNumberMock(1),
+                  MINIMUM_COLLATERAL_RATIO: bigNumberMock(1),
+                  VAULT_INTEREST_RATE: bigNumberMock(1),
+
+                  hotState: {
+                    accruedInterest: bigNumberMock(1),
+                    totalVaultDebt: bigNumberMock(1),
+                  },
+                  coldState: {
+                    accruedFees: bigNumberMock(1),
+                    collateralPrice: bigNumberMock(1),
+                    deprecated: false,
+                    redeemableVaults: [],
+                    proposalTime: bigNumberMock(1),
+                    contractState: bigNumberMock(0),
+                  },
+                  addresses: {
+                    govStakersAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',
+                    liquidationStakersAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',
+                    oracleAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',
+                    adminAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',
+                    daoAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',
+                  },
                 },
               ];
             },
@@ -41,7 +53,6 @@ class MockAccount extends Account {
                 [
                   'Some',
                   {
-                    collateralRatio: bigNumberMock(130),
                     collateral: bigNumberMock(100),
                     liquidating: false,
                     vaultDebt: bigNumberMock(40),
@@ -79,4 +90,4 @@ class MockAccount extends Account {
     });
   }
 }
-export default MockAccount;
+export default MockVaultClient;

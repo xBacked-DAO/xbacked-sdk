@@ -1122,15 +1122,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:0.1.9-rc.5":
-  version: 0.1.9-rc.5
-  resolution: "@reach-sh/stdlib@npm:0.1.9-rc.5"
+"@reach-sh/stdlib@npm:^0.1.10-rc.3":
+  version: 0.1.10-rc.3
+  resolution: "@reach-sh/stdlib@npm:0.1.10-rc.3"
   dependencies:
     "@msgpack/msgpack": ^2.5.1
     "@randlabs/myalgo-connect": ^1.1.2
     "@walletconnect/client": ^1.7.3
     algorand-walletconnect-qrcode-modal: ^1.6.1
-    algosdk: ^1.14.0-beta.1
+    algosdk: ^1.15.0
     await-timeout: ^0.6.0
     ethers: ^5.5.4
     express: ^4.17.3
@@ -1138,8 +1138,9 @@ __metadata:
     js-conflux-sdk: "git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber"
     jsbi: ^3.1.6
     node-fetch: ^2.6.1
+    tslib: ^2.3.1
     wait-port: ^0.2.9
-  checksum: ed4a2f72c7eb37525b2ffb5def02856f24d46a643c48351157019e5f19e8a2c6516dfcd3f1f2457b6c62ded099d91948aa3241f036fa4f62cda6fc152cbaaec3
+  checksum: 0184a1f8ce78a1b2ea3cf7b3bc6e97bd2163261c3658a1de363a274fa495238ca0557fd4175cef40355135f51cbf51e425ebb36897c2a637b047389cba6c8ed4
   languageName: node
   linkType: hard
 
@@ -1730,11 +1731,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:0.0.17":
-  version: 0.0.17
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.17"
+"@xbacked-dao/xbacked-contracts@npm:0.0.20":
+  version: 0.0.20
+  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.20"
   dependencies:
-    "@reach-sh/stdlib": 0.1.9-rc.5
+    "@reach-sh/stdlib": ^0.1.10-rc.3
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
@@ -1743,8 +1744,8 @@ __metadata:
     jest-extended: ^2.0.0
     yargs: ^17.3.1
   peerDependencies:
-    "@reach-sh/stdlib": 0.1.9-rc.5
-  checksum: 57297eb231f48751948a39b100d1c5878b355142749391071552c048e2a38290b4cdcefb87f3b70de5e91a0f8fad40c001b577397f81fa50853105f49993e61d
+    "@reach-sh/stdlib": 0.1.10-rc.3
+  checksum: 74762d35942a02c87f9f304b34a58a37e79fb7680a8aefe4f3d8629c626e32a938b98e1af1ef75d5d7fe0eff71362b93e6a9e485866eae5a7825195ce67b48db
   languageName: node
   linkType: hard
 
@@ -1755,11 +1756,11 @@ __metadata:
     "@babel/types": ^7.16.0
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": 0.1.9-rc.5
+    "@reach-sh/stdlib": ^0.1.10-rc.3
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 0.0.17
+    "@xbacked-dao/xbacked-contracts": 0.0.20
     awesome-typescript-loader: ^5.2.1
     axios: ^0.26.0
     dotenv: ^16.0.0
@@ -1976,9 +1977,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"algosdk@npm:^1.14.0-beta.1":
-  version: 1.14.0
-  resolution: "algosdk@npm:1.14.0"
+"algosdk@npm:^1.15.0":
+  version: 1.15.0
+  resolution: "algosdk@npm:1.15.0"
   dependencies:
     algo-msgpack-with-bigint: ^2.1.1
     buffer: ^6.0.2
@@ -1990,7 +1991,7 @@ __metadata:
     superagent: ^6.1.0
     tweetnacl: ^1.0.3
     url-parse: ^1.5.1
-  checksum: 9c19191d2a2d7e4e3a20756603f5b321590cfe5d09bdf522614a6a6ce9872c4e533b03b6c92e35b886ae3ce15d049d046f004154dd45d1b120bde191c0da427d
+  checksum: c506d0ec3b032316d478385b9787c80fb8d1484146da81381c17eb1c48cd5906a2abf0ff9b616852b01ddbccc8cdeacdd1c4df660d26d5e7e4c565a4ad7ac505
   languageName: node
   linkType: hard
 

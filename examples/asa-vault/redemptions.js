@@ -1,4 +1,4 @@
-const {VaultClient, Vault, VAULTS} = require('..');
+const {VaultClient, Vault, VAULTS} = require('../..');
 const {ask} = require('@reach-sh/stdlib');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -11,8 +11,9 @@ dotenv.config();
   const account = new VaultClient({
     mnemonic,
     network: 'TestNet',
+    asaVault: {decimals: 8},
   });
-  const vault = new Vault({id: VAULT_ID});
+  const vault = new Vault({id: VAULT_ID, asaVault: {decimals: 8}});
   while (true) {
     const action = await ask.ask(`
   Do you want to:

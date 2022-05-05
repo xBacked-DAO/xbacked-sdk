@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const {ask} = require('@reach-sh/stdlib');
-const {VaultClient, Vault, VAULTS} = require('..');
+const {VaultClient, Vault, VAULTS} = require('../..');
 const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
@@ -11,8 +11,9 @@ dotenv.config();
   const account = new VaultClient({
     mnemonic,
     network: 'TestNet',
+    asaVault: {decimals: 8},
   });
-  const vault = new Vault({id: VAULT_ID});
+  const vault = new Vault({id: VAULT_ID, asaVault: {decimals: 8}});
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(`

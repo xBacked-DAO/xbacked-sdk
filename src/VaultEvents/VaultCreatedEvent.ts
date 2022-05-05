@@ -1,4 +1,5 @@
-import { Vault, ReachUserVault } from '../Vault';
+import { Vault } from '../Vault';
+import { ReachUserVault } from '../interfaces';
 import VaultEvent from './VaultEvent';
 
 /** Representation of the Created Vault Events */
