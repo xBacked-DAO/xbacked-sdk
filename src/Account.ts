@@ -22,9 +22,11 @@ export class Account {
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   /** @property An instance of the provider object for the signer specified */
   provider?: any;
+  /** @property providerEnv for indexer */
+  providerEnv?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
-
+  /** @property An optional object used to interact with ASA vaults with varying decimals */
   asaVault?: {
     decimals: number;
   };
@@ -35,6 +37,7 @@ export class Account {
     this.secretKey = params.secretKey;
     this.signer = params.signer;
     this.provider = params.provider;
+    this.providerEnv = params.providerEnv;
     this.reachStdLib = params.reachStdLib || loadStdlib('ALGO');
     this.networkAccount = params.networkAccount;
     this.asaVault = params.asaVault;
@@ -60,7 +63,7 @@ export class Account {
     } else if (this.networkAccount && this.signer && this.reachAccount == null && this.provider) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
-          providerEnv: this.network,
+          providerEnv: this.providerEnv ? this.providerEnv : this.network,
           [this.signer]: this.provider,
         }),
       );
@@ -68,7 +71,7 @@ export class Account {
     } else if (this.signer && !this.reachAccount && this.provider) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
-          providerEnv: this.network,
+          providerEnv: this.providerEnv ? this.providerEnv : this.network,
           [this.signer]: this.provider,
         }),
       );
