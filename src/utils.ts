@@ -1,8 +1,6 @@
 // @ts-ignore
 import { masterVault, liquidationStaking } from '@xbacked-dao/xbacked-contracts';
 
-const MICRO_UNITS = 1000000;
-
 export const DISCOUNT_RATE = 0.035;
 export const LIQUIDATION_FEE = 0.025;
 
@@ -54,8 +52,9 @@ export const convertFromMicroUnits = (val: number, decimals = 6): number => {
  * @param vaultDebt Vault debt in micro units
  * @returns The maximum amount of debt you can pay to drive the CR back to 120%, considering collateral goes down on each liquidation.
  */
-export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, vaultDebt: number): number => {
+export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, vaultDebt: number, decimals: number): number => {
   const discountRateInv = 1 - DISCOUNT_RATE;
+  const MICRO_UNITS = 10 ** decimals;
   return Math.floor(
     ((discountRateInv * 100 * collateral * collateralPrice) / MICRO_UNITS -
       discountRateInv * (MINIMUM_COLLATERAL_RATIO * 100) * vaultDebt) /
@@ -70,7 +69,8 @@ export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, v
  * @param vaultDebt Vault debt in micro units
  * @returns The vaults current collateral ratio in decimal form (1 = 100%)
  */
-export const calcCollateralRatio = (collateral: number, collateralPrice: number, vaultDebt: number): number => {
+export const calcCollateralRatio = (collateral: number, collateralPrice: number, vaultDebt: number, decimals: number): number => {
+  const MICRO_UNITS = 10 ** decimals;
   return (collateral * collateralPrice) / MICRO_UNITS / vaultDebt;
 };
 
@@ -96,7 +96,9 @@ export const calcCollateralRatioAfterLiquidation = (
   collateralPrice: number,
   debtPayout: number,
   vaultDebt: number,
+  decimals: number,
 ): number => {
+  const MICRO_UNITS = 10 ** decimals;
   const discountPrice = calcDiscountPrice(collateralPrice);
   const collateralAfterLiquidation = collateral - convertToMicroUnits(debtPayout / discountPrice);
   const collateralValueAfterLiquidation = collateralAfterLiquidation * collateralPrice;

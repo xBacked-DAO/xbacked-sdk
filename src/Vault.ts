@@ -13,7 +13,7 @@ export class Vault {
   backend: any;
   constructor(params: VaultParameters) {
     this.id = params.id;
-    params.asaVault ? (this.backend = masterVaultAsa) : (this.backend = masterVault);
+    params?.asaVault?.decimals ? (this.backend = masterVaultAsa) : (this.backend = masterVault);
   }
 
   /**

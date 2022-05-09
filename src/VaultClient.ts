@@ -9,7 +9,7 @@ export class VaultClient extends Account {
   backend: any;
   constructor(params: AccountInterface) {
     super(params);
-    if (params.asaVault) {
+    if (params?.asaVault?.decimals) {
       this.backend = masterVaultAsa;
     } else {
       this.backend = masterVault;

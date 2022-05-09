@@ -16,6 +16,8 @@ export interface AccountInterface {
   network?: 'LocalHost' | 'MainNet' | 'TestNet';
   /** @property An optional instance of the provider object for the signer specified */
   provider?: any;
+  /** @property providerEnv for indexer */
+  providerEnv?: any;
   /** @property An optional instance of the reach standard library */
   reachStdLib?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
