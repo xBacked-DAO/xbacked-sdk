@@ -14,9 +14,10 @@ const MINIMUM_COLLATERAL_RATIO = 1.2;
 
 export const VAULTS = {
   TestNet: {
-    algo: { vaultId: 87683030},
-    gobtc: {vaultId: 87736275, assetId: 67396528 },
-    goeth: {vaultId: 87728217, assetId: 76598897},
+    // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
+    algo: {vaultId: 88466294},
+    gobtc: {vaultId: 88466407, assetId: 67396528, assetDecimals: 8},
+    goeth: {vaultId: 88466499, assetId: 76598897, assetDecimals: 8},
   },
 };
 
@@ -52,13 +53,19 @@ export const convertFromMicroUnits = (val: number, decimals = 6): number => {
  * @param vaultDebt Vault debt in micro units
  * @returns The maximum amount of debt you can pay to drive the CR back to 120%, considering collateral goes down on each liquidation.
  */
-export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, vaultDebt: number, decimals: number): number => {
+export const calcMaxDebtPayout = (
+  collateral: number,
+  collateralPrice: number,
+  vaultDebt: number,
+  decimals: number,
+  minimumCollateralRatio: number = MINIMUM_COLLATERAL_RATIO,
+): number => {
   const discountRateInv = 1 - DISCOUNT_RATE;
   const MICRO_UNITS = 10 ** decimals;
   return Math.floor(
     ((discountRateInv * 100 * collateral * collateralPrice) / MICRO_UNITS -
-      discountRateInv * (MINIMUM_COLLATERAL_RATIO * 100) * vaultDebt) /
-      (-discountRateInv * (MINIMUM_COLLATERAL_RATIO * 100) + 100),
+      discountRateInv * (minimumCollateralRatio * 100) * vaultDebt) /
+      (-discountRateInv * (minimumCollateralRatio * 100) + 100),
   );
 };
 
