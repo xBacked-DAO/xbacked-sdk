@@ -1,5 +1,5 @@
 // @ts-ignore
-import { masterVault, liquidationStaking } from '@xbacked-dao/xbacked-contracts';
+import { vault as vaultBackend, stabilityPool } from '@xbacked-dao/xbacked-contracts';
 
 export const DISCOUNT_RATE = 0.035;
 export const LIQUIDATION_FEE = 0.025;
@@ -15,9 +15,22 @@ const MINIMUM_COLLATERAL_RATIO = 1.2;
 export const VAULTS = {
   TestNet: {
     // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
-    algo: {vaultId: 88466294},
-    gobtc: {vaultId: 88466407, assetId: 67396528, assetDecimals: 8},
-    goeth: {vaultId: 88466499, assetId: 76598897, assetDecimals: 8},
+    algo: {
+      vaultId: 88654250,
+      liquidatorDiscount: 0.045
+    },
+    gobtc: {
+      vaultId: 88654361,
+      assetId: 67396528,
+      assetDecimals: 8,
+      liquidatorDiscount: 0.065
+    },
+    goeth: {
+      vaultId: 88654461,
+      assetId: 76598897,
+      assetDecimals: 8,
+      liquidatorDiscount: 0.065
+    },
   },
 };
 
@@ -59,8 +72,9 @@ export const calcMaxDebtPayout = (
   vaultDebt: number,
   decimals: number,
   minimumCollateralRatio: number = MINIMUM_COLLATERAL_RATIO,
+  discountRate: number = DISCOUNT_RATE,
 ): number => {
-  const discountRateInv = 1 - DISCOUNT_RATE;
+  const discountRateInv = 1 - discountRate;
   const MICRO_UNITS = 10 ** decimals;
   return Math.floor(
     ((discountRateInv * 100 * collateral * collateralPrice) / MICRO_UNITS -
@@ -153,6 +167,6 @@ export const calculateInterestAccrued = (
 };
 
 export const backends = {
-  vault: masterVault,
-  liquidationStaking,
+  vault: vaultBackend,
+  stabilityPool,
 };
