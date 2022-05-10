@@ -16,17 +16,17 @@ export const VAULTS = {
   TestNet: {
     // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
     algo: {
-      vaultId: 88654250,
+      vaultId: 88664016,
       liquidatorDiscount: 0.045
     },
     gobtc: {
-      vaultId: 88654361,
+      vaultId: 88664145,
       assetId: 67396528,
       assetDecimals: 8,
       liquidatorDiscount: 0.065
     },
     goeth: {
-      vaultId: 88654461,
+      vaultId: 88664271,
       assetId: 76598897,
       assetDecimals: 8,
       liquidatorDiscount: 0.065
