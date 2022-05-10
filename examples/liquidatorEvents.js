@@ -7,7 +7,6 @@
   $ VAULT_ID=79758986 node examples/liquidatorEvents.js | tee log.txt
 */
 
-const { masterVault } = require('@xbacked-dao/xbacked-contracts');
 const axios = require('axios');
 const {
   Account,

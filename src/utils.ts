@@ -1,5 +1,5 @@
 // @ts-ignore
-import { masterVault, liquidationStaking } from '@xbacked-dao/xbacked-contracts';
+import { vault as vaultBackend, stabilityPool } from '@xbacked-dao/xbacked-contracts';
 
 export const DISCOUNT_RATE = 0.035;
 export const LIQUIDATION_FEE = 0.025;
@@ -14,9 +14,23 @@ const MINIMUM_COLLATERAL_RATIO = 1.2;
 
 export const VAULTS = {
   TestNet: {
-    algo: { vaultId: 87683030},
-    gobtc: {vaultId: 87736275, assetId: 67396528 },
-    goeth: {vaultId: 87728217, assetId: 76598897},
+    // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
+    algo: {
+      vaultId: 88664016,
+      liquidatorDiscount: 0.045
+    },
+    gobtc: {
+      vaultId: 88664145,
+      assetId: 67396528,
+      assetDecimals: 8,
+      liquidatorDiscount: 0.065
+    },
+    goeth: {
+      vaultId: 88664271,
+      assetId: 76598897,
+      assetDecimals: 8,
+      liquidatorDiscount: 0.065
+    },
   },
 };
 
@@ -52,13 +66,20 @@ export const convertFromMicroUnits = (val: number, decimals = 6): number => {
  * @param vaultDebt Vault debt in micro units
  * @returns The maximum amount of debt you can pay to drive the CR back to 120%, considering collateral goes down on each liquidation.
  */
-export const calcMaxDebtPayout = (collateral: number, collateralPrice: number, vaultDebt: number, decimals: number): number => {
-  const discountRateInv = 1 - DISCOUNT_RATE;
+export const calcMaxDebtPayout = (
+  collateral: number,
+  collateralPrice: number,
+  vaultDebt: number,
+  decimals: number,
+  minimumCollateralRatio: number = MINIMUM_COLLATERAL_RATIO,
+  discountRate: number = DISCOUNT_RATE,
+): number => {
+  const discountRateInv = 1 - discountRate;
   const MICRO_UNITS = 10 ** decimals;
   return Math.floor(
     ((discountRateInv * 100 * collateral * collateralPrice) / MICRO_UNITS -
-      discountRateInv * (MINIMUM_COLLATERAL_RATIO * 100) * vaultDebt) /
-      (-discountRateInv * (MINIMUM_COLLATERAL_RATIO * 100) + 100),
+      discountRateInv * (minimumCollateralRatio * 100) * vaultDebt) /
+      (-discountRateInv * (minimumCollateralRatio * 100) + 100),
   );
 };
 
@@ -146,6 +167,6 @@ export const calculateInterestAccrued = (
 };
 
 export const backends = {
-  vault: masterVault,
-  liquidationStaking,
+  vault: vaultBackend,
+  stabilityPool,
 };

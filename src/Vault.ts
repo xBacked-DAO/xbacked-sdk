@@ -1,5 +1,5 @@
 import { Account } from './Account';
-import { masterVault, masterVaultAsa } from '@xbacked-dao/xbacked-contracts';
+import { vault as vaultBackend, vaultAsa } from '@xbacked-dao/xbacked-contracts';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
 /**
  * The Parameters returned from the staate of a contract
@@ -13,7 +13,7 @@ export class Vault {
   backend: any;
   constructor(params: VaultParameters) {
     this.id = params.id;
-    params?.asaVault?.decimals ? (this.backend = masterVaultAsa) : (this.backend = masterVault);
+    params?.asaVault?.decimals ? (this.backend = vaultAsa) : (this.backend = vaultBackend);
   }
 
   /**

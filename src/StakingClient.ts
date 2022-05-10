@@ -1,5 +1,5 @@
 // @ts-ignore
-import { liquidationStaking as backend } from '@xbacked-dao/xbacked-contracts';
+import { stabilityPool as backend } from '@xbacked-dao/xbacked-contracts';
 import { Account } from './Account';
 import { AccountInterface, StakeGlobalView, StakeLocalView } from './interfaces';
 
