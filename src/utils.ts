@@ -1,9 +1,6 @@
 // @ts-ignore
 import { vault as vaultBackend, stabilityPool } from '@xbacked-dao/xbacked-contracts';
 
-export const DISCOUNT_RATE = 0.035;
-export const LIQUIDATION_FEE = 0.025;
-
 const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
 const INTEREST_RATE_DENOMINATOR = 100000000000;
 
@@ -71,8 +68,8 @@ export const calcMaxDebtPayout = (
   collateralPrice: number,
   vaultDebt: number,
   decimals: number,
-  minimumCollateralRatio: number = MINIMUM_COLLATERAL_RATIO,
-  discountRate: number = DISCOUNT_RATE,
+  minimumCollateralRatio: number,
+  discountRate: number,
 ): number => {
   const discountRateInv = 1 - discountRate;
   const MICRO_UNITS = 10 ** decimals;
@@ -100,8 +97,8 @@ export const calcCollateralRatio = (collateral: number, collateralPrice: number,
  * @param collateralPrice Collateral price in micro units
  * @returns The discount price for a liquidation in micro units
  */
-export const calcDiscountPrice = (collateralPrice: number): number => {
-  return collateralPrice - collateralPrice * DISCOUNT_RATE;
+export const calcDiscountPrice = (collateralPrice: number, DISCOUNT_RATE: number): number => {
+  return collateralPrice - (collateralPrice * DISCOUNT_RATE);
 };
 
 /**
@@ -118,9 +115,10 @@ export const calcCollateralRatioAfterLiquidation = (
   debtPayout: number,
   vaultDebt: number,
   decimals: number,
+  DISCOUNT_RATE: number,
 ): number => {
   const MICRO_UNITS = 10 ** decimals;
-  const discountPrice = calcDiscountPrice(collateralPrice);
+  const discountPrice = calcDiscountPrice(collateralPrice, DISCOUNT_RATE);
   const collateralAfterLiquidation = collateral - convertToMicroUnits(debtPayout / discountPrice);
   const collateralValueAfterLiquidation = collateralAfterLiquidation * collateralPrice;
   const crAfterLiq = ((collateralValueAfterLiquidation / MICRO_UNITS) * 100) / (vaultDebt - debtPayout);
