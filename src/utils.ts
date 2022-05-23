@@ -61,23 +61,27 @@ export const convertFromMicroUnits = (val: number, decimals = 6): number => {
  * @param collateral Collateral tokens in micro units
  * @param collateralPrice Current collateral price in micro units
  * @param vaultDebt Vault debt in micro units
+ * @param scaleFactor the amount of decimals the ASA has, default is 6
+ * @param MAXIMUM_LIQUIDATION_CR the maximum CR liquidations can take a vault to
+ * @param DISCOUNT_RATE the vault discount rate 
  * @returns The maximum amount of debt you can pay to drive the CR back to 120%, considering collateral goes down on each liquidation.
  */
-export const calcMaxDebtPayout = (
+ export const maxDebtPayout = (
   collateral: number,
   collateralPrice: number,
   vaultDebt: number,
-  decimals: number,
-  minimumCollateralRatio: number,
-  discountRate: number,
+  scaleFactor = 6,
+  MAXIMUM_LIQUIDATION_CR: number,
+  DISCOUNT_RATE: number
 ): number => {
-  const discountRateInv = 1 - discountRate;
-  const MICRO_UNITS = 10 ** decimals;
-  return Math.floor(
-    ((discountRateInv * 100 * collateral * collateralPrice) / MICRO_UNITS -
-      discountRateInv * (minimumCollateralRatio * 100) * vaultDebt) /
-      (-discountRateInv * (minimumCollateralRatio * 100) + 100),
-  );
+  const discountRateInv = 1 - DISCOUNT_RATE;
+
+  const collateralValue = convertFromMicroUnits(collateral, scaleFactor) * convertFromMicroUnits(collateralPrice);
+  const discountedCollateralValue = discountRateInv * collateralValue;
+  const debtWithPremium = discountRateInv * ((MAXIMUM_LIQUIDATION_CR - 0.01)) * convertFromMicroUnits(vaultDebt);
+  const maxPayment = (discountedCollateralValue - debtWithPremium) / (discountRateInv * (MAXIMUM_LIQUIDATION_CR - 0.01) - 1);
+
+  return Math.abs(maxPayment);
 };
 
 /**
@@ -100,7 +104,6 @@ export const calcCollateralRatio = (collateral: number, collateralPrice: number,
 export const calcDiscountPrice = (collateralPrice: number, DISCOUNT_RATE: number): number => {
   return collateralPrice - (collateralPrice * DISCOUNT_RATE);
 };
-
 /**
  *
  * @param collateral Collateral tokens in micro units
@@ -119,7 +122,7 @@ export const calcCollateralRatioAfterLiquidation = (
 ): number => {
   const MICRO_UNITS = 10 ** decimals;
   const discountPrice = calcDiscountPrice(collateralPrice, DISCOUNT_RATE);
-  const collateralAfterLiquidation = collateral - convertToMicroUnits(debtPayout / discountPrice);
+  const collateralAfterLiquidation = collateral - convertToMicroUnits(debtPayout / discountPrice, decimals);
   const collateralValueAfterLiquidation = collateralAfterLiquidation * collateralPrice;
   const crAfterLiq = ((collateralValueAfterLiquidation / MICRO_UNITS) * 100) / (vaultDebt - debtPayout);
   return crAfterLiq;
