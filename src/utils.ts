@@ -76,7 +76,7 @@ export const convertFromMicroUnits = (val: number, decimals = 6): number => {
 ): number => {
   const discountRateInv = 1 - discountRate;
 
-  const collateralValue = convertFromMicroUnits(collateral, scaleFactor) * convertFromMicroUnits(collateralPrice);
+  const collateralValue = convertFromMicroUnits(collateral, decimals) * convertFromMicroUnits(collateralPrice);
   const discountedCollateralValue = discountRateInv * collateralValue;
   const debtWithPremium = discountRateInv * ((minimumCollateralRatio - 0.01)) * convertFromMicroUnits(vaultDebt);
   const maxPayment = (discountedCollateralValue - debtWithPremium) / (discountRateInv * (minimumCollateralRatio - 0.01) - 1);
