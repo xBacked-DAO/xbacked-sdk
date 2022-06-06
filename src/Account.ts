@@ -47,8 +47,10 @@ export class Account {
       this.network = 'LocalHost';
     }
 
-    if (this.signer == null && !params.reachStdLib) {
+    if (this.signer == null && !params.reachStdLib && !params.providerEnv) {
       this.reachStdLib.setProviderByName(this.network);
+    } else if (this.providerEnv) {
+      this.reachStdLib.setProviderByEnv(this.providerEnv);
     }
   }
 
