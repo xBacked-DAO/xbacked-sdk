@@ -14,23 +14,22 @@ export const VAULTS = {
     // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
     algo: {
       vaultId: 88664016,
-      liquidatorDiscount: 0.045
+      liquidatorDiscount: 0.045,
     },
     gobtc: {
       vaultId: 88664145,
       assetId: 67396528,
       assetDecimals: 8,
-      liquidatorDiscount: 0.065
+      liquidatorDiscount: 0.065,
     },
     goeth: {
       vaultId: 88664271,
       assetId: 76598897,
       assetDecimals: 8,
-      liquidatorDiscount: 0.065
+      liquidatorDiscount: 0.065,
     },
   },
 };
-
 
 /**
  * Converts number to microunits
@@ -63,10 +62,10 @@ export const convertFromMicroUnits = (val: number, decimals = 6): number => {
  * @param vaultDebt Vault debt in micro units
  * @param decimals the amount of decimals the ASA has, default is 6
  * @param minimumCollateralRatio the maximum CR liquidations can take a vault to
- * @param discountRate the vault discount rate 
+ * @param discountRate the vault discount rate
  * @returns The maximum amount of debt you can pay to drive the CR back to 120%, considering collateral goes down on each liquidation.
  */
- export const calcMaxDebtPayout = (
+export const calcMaxDebtPayout = (
   collateral: number,
   collateralPrice: number,
   vaultDebt: number,
@@ -78,8 +77,9 @@ export const convertFromMicroUnits = (val: number, decimals = 6): number => {
 
   const collateralValue = convertFromMicroUnits(collateral, decimals) * convertFromMicroUnits(collateralPrice);
   const discountedCollateralValue = discountRateInv * collateralValue;
-  const debtWithPremium = discountRateInv * ((minimumCollateralRatio - 0.01)) * convertFromMicroUnits(vaultDebt);
-  const maxPayment = (discountedCollateralValue - debtWithPremium) / (discountRateInv * (minimumCollateralRatio - 0.01) - 1);
+  const debtWithPremium = discountRateInv * (minimumCollateralRatio - 0.01) * convertFromMicroUnits(vaultDebt);
+  const maxPayment =
+    (discountedCollateralValue - debtWithPremium) / (discountRateInv * (minimumCollateralRatio - 0.01) - 1);
 
   return Math.abs(maxPayment);
 };
@@ -91,7 +91,12 @@ export const convertFromMicroUnits = (val: number, decimals = 6): number => {
  * @param vaultDebt Vault debt in micro units
  * @returns The vaults current collateral ratio in decimal form (1 = 100%)
  */
-export const calcCollateralRatio = (collateral: number, collateralPrice: number, vaultDebt: number, decimals: number): number => {
+export const calcCollateralRatio = (
+  collateral: number,
+  collateralPrice: number,
+  vaultDebt: number,
+  decimals: number,
+): number => {
   const MICRO_UNITS = 10 ** decimals;
   return (collateral * collateralPrice) / MICRO_UNITS / vaultDebt;
 };
@@ -102,7 +107,7 @@ export const calcCollateralRatio = (collateral: number, collateralPrice: number,
  * @returns The discount price for a liquidation in micro units
  */
 export const calcDiscountPrice = (collateralPrice: number, DISCOUNT_RATE: number): number => {
-  return collateralPrice - (collateralPrice * DISCOUNT_RATE);
+  return collateralPrice - collateralPrice * DISCOUNT_RATE;
 };
 /**
  *
