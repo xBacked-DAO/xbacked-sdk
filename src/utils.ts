@@ -28,6 +28,12 @@ export const VAULTS = {
       assetDecimals: 8,
       liquidatorDiscount: 0.065,
     },
+    dAlgo: {
+      vaultId: 96463733,
+      assetId: 96202534,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.045
+    }
   },
 };
 
