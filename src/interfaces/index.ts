@@ -27,27 +27,6 @@ export interface AccountInterface {
   };
 }
 
-export interface StakeGlobalView {
-  stakingAssetID: number;
-  policy: {
-    status: number;
-    rewardMethod: number;
-    rewardRate: number;
-    applicationType: number;
-    time: number;
-  };
-  totalStake: number;
-  totalRewards: number;
-  totalUsers: number;
-}
-
-export interface StakeLocalView {
-  amountStaked: number;
-  rewardsClaimed: number;
-  lastClaim: number;
-  found: boolean;
-}
-
 export interface VaultReturnParams {
   LIQUIDATION_COLLATERAL_RATIO: number;
   MINIMUM_COLLATERAL_RATIO: number;
@@ -80,7 +59,7 @@ export interface ReachUserVault {
   liquidating: boolean;
   /** @property The debt in a vault */
   vaultDebt: number;
-  /** @property Inidicator that signifies if a vault can be redeemed */
+  /** @property Indicator that signifies if a vault can be redeemed */
   redeemable: boolean;
   /** @property the timestamp of the last time interest accrued for a specific vault */
   lastAccruedInterestTime: number;
@@ -90,6 +69,7 @@ export interface UserVaultReturnParams extends ReachUserVault {
   /** @property Indicator that signifies that a vault exists for a particular address */
   vaultFound: boolean;
 }
+
 /**
  * parameters used to instantiate the Contract constructor
  */
@@ -100,4 +80,35 @@ export interface VaultParameters {
   asaVault?: {
     decimals: number;
   };
+}
+
+export interface MasterStakingColdState {
+  stakingASA: number;
+  stakingASADecimals: number;
+  rewardASAs: number[];
+  rewardASADecimals: number[];
+}
+
+export interface MasterStakingAdminParameters {
+  adminAddress: string;
+  deprecateTimeout: number;
+  deprecateAt: number;
+  rewardRatios: number[];
+  rewardRate: number;
+}
+
+export interface MasterStakingHotState extends MasterStakingAdminParameters {
+  remainingRewards: number[];
+  totalRewards: number;
+  totalDeposit: number;
+  lastRewardBlock: number;
+  rewardPerToken: number;
+}
+
+export interface MasterStakingGlobalView extends MasterStakingColdState, MasterStakingHotState {};
+
+export interface MasterStakingLocalView {
+  amountDeposited: number;
+  rewardPerTokenPaid: number;
+  rewards: number;
 }
