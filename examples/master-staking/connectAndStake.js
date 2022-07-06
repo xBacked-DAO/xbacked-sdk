@@ -1,4 +1,4 @@
-const { MasterStakingClient } = require('../..');
+const {MasterStakingClient} = require('../..');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -9,11 +9,11 @@ dotenv.config();
   console.log(mnemonic, MASTER_STAKING_ID);
 
   const stakingContract = new MasterStakingClient(
-    {
-      mnemonic,
-      network: 'LocalHost',
-    },
-    MASTER_STAKING_ID,
+      {
+        mnemonic,
+        network: 'LocalHost',
+      },
+      MASTER_STAKING_ID,
   );
 
   try {

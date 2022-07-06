@@ -33,7 +33,7 @@ export class MasterStakingClient extends Account {
       deprecateTimeout: rawHotState.deprecateTimeout.toNumber(),
       deprecateAt: rawHotState.deprecateAt.toNumber(),
       rewardRatios: rawHotState.rewardRatios.map((ratios: any) => ratios.toNumber()),
-      rewardRate: rawHotState.deprecateAt.toNumber(),
+      rewardRate: rawHotState.rewardRate.toNumber(),
       remainingRewards: rawHotState.remainingRewards.map((rewards: any) => rewards.toNumber()),
       totalRewards: rawHotState.totalRewards.toNumber(),
       totalDeposit: rawHotState.totalDeposit.toNumber(),
@@ -96,7 +96,7 @@ export class MasterStakingClient extends Account {
     return this.parseUserState(rawUserState[1]);
   };
 
-   /**
+  /**
    * @description update last consensus time of the contract
    * @returns boolean
    */
