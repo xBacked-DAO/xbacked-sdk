@@ -48,11 +48,11 @@ export class Vault {
       addresses: {
         govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),
         liquidationStakersAddress: params.account.reachStdLib.formatAddress(
-          vaultState.addresses.liquidationStakersAddress,
+          vaultState.addresses.stabilityPoolAddress,
         ),
         oracleAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.oracleAddress),
         adminAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.adminAddress),
-        daoAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.daoAddress),
+        daoAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.treasuryAddress),
       },
     };
   }

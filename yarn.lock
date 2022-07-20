@@ -1122,9 +1122,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:^0.1.10-rc.3":
-  version: 0.1.10-rc.3
-  resolution: "@reach-sh/stdlib@npm:0.1.10-rc.3"
+"@reach-sh/stdlib@npm:0.1.11-rc.0":
+  version: 0.1.11-rc.0
+  resolution: "@reach-sh/stdlib@npm:0.1.11-rc.0"
   dependencies:
     "@msgpack/msgpack": ^2.5.1
     "@randlabs/myalgo-connect": ^1.1.2
@@ -1140,7 +1140,7 @@ __metadata:
     node-fetch: ^2.6.1
     tslib: ^2.3.1
     wait-port: ^0.2.9
-  checksum: 0184a1f8ce78a1b2ea3cf7b3bc6e97bd2163261c3658a1de363a274fa495238ca0557fd4175cef40355135f51cbf51e425ebb36897c2a637b047389cba6c8ed4
+  checksum: 70b6df8ef8e48f57f5f084da6810f39a122a81a51334559beb6c67d54e85921c2ce18e4c3428612cc1467ece106baa98041befa27add99ff2af49468f834123b
   languageName: node
   linkType: hard
 
@@ -1731,11 +1731,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:0.0.23":
-  version: 0.0.23
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.23"
+"@xbacked-dao/xbacked-contracts@npm:0.0.24":
+  version: 0.0.24
+  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.24"
   dependencies:
-    "@reach-sh/stdlib": ^0.1.10-rc.3
+    "@reach-sh/stdlib": 0.1.11-rc.0
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
@@ -1744,8 +1744,8 @@ __metadata:
     jest-extended: ^2.0.0
     yargs: ^17.3.1
   peerDependencies:
-    "@reach-sh/stdlib": 0.1.10-rc.3
-  checksum: 81ae1ac20b139ad509746131849a1a90fbae36dc109428b6a578705bf84ae4c225cbe75fa2e23b20ae0e5b3030ca2c9c21d5529a405116f0b553009b983eecf4
+    "@reach-sh/stdlib": 0.1.11-rc.0
+  checksum: 556ddb3cf1e7a17fdc341838c55b31a4f2884ccfdf097281864f9309e294d77ccb9ad6dcf47f0a02c416e86c72d0451e6edf2d41aab5dd9222731c299786dcd3
   languageName: node
   linkType: hard
 
@@ -1756,11 +1756,11 @@ __metadata:
     "@babel/types": ^7.16.0
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": ^0.1.10-rc.3
+    "@reach-sh/stdlib": 0.1.11-rc.0
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 0.0.23
+    "@xbacked-dao/xbacked-contracts": 0.0.24
     awesome-typescript-loader: ^5.2.1
     axios: ^0.26.0
     dotenv: ^16.0.0
