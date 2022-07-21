@@ -1169,6 +1169,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/await-timeout@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@types/await-timeout@npm:0.3.1"
+  checksum: 44a262e188d847ec9a2ea0b9b436c38f388f4aed12c5a71ae1292a8a7b35fe97e2311e147a391eafb4fe5066c54151bf9a046137485736fd113065f5137f8573
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.0.0, @types/babel__core@npm:^7.1.14":
   version: 7.1.18
   resolution: "@types/babel__core@npm:7.1.18"
@@ -1757,6 +1764,7 @@ __metadata:
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
     "@reach-sh/stdlib": 0.1.11-rc.0
+    "@types/await-timeout": ^0.3.1
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
