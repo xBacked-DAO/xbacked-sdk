@@ -91,10 +91,11 @@ it('Get vault Info', async () => {
     coldState: {
       accruedFees: 1,
       collateralPrice: 1,
-      deprecated: false,
       redeemableVaults: [],
       proposalTime: 1,
       contractState: 0,
+      feeStructure: [1, 5, 50, 50],
+      minimumDebtAmount: 10,
     },
     addresses: {
       govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
