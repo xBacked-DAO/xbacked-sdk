@@ -154,6 +154,7 @@ it('Minter returns vault debt', async function () {
     amount: MINT_AMOUNT,
     vault: new Vault({ id: VAULT_ID }),
     close: false,
+    address: await account.getAddress(),
   });
   expect(isVaultDebtReturned).toBe(true);
 });
