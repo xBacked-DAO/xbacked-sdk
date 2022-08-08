@@ -1,6 +1,6 @@
 {
   "name": "@xbacked-dao/xbacked-sdk",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "description": "Official SDK for the xBacked Protocol",
   "main": "lib/cjs/index",
   "module": "lib/esm/index",
@@ -39,6 +39,7 @@
   "homepage": "https://github.com/xBacked-DAO/xbacked-sdk",
   "devDependencies": {
     "@jest/globals": "^27.4.6",
+    "@types/await-timeout": "^0.3.1",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.9",
     "eslint": "^8.4.1",
@@ -60,9 +61,9 @@
   "dependencies": {
     "@babel/types": "^7.16.0",
     "@randlabs/myalgo-connect": "^1.1.1",
-    "@reach-sh/stdlib": "^0.1.10-rc.3",
+    "@reach-sh/stdlib": "0.1.11-rc.0",
     "@types/jsdom": "^16.2.13",
-    "@xbacked-dao/xbacked-contracts": "0.0.23",
+    "@xbacked-dao/xbacked-contracts": "0.0.24",
     "awesome-typescript-loader": "^5.2.1",
     "axios": "^0.26.0",
     "dotenv": "^16.0.0",

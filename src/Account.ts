@@ -62,7 +62,14 @@ export class Account {
       this.reachAccount = await this.reachStdLib.newAccountFromMnemonic(this.mnemonic);
     } else if (this.secretKey && !this.reachAccount) {
       this.reachAccount = await this.reachStdLib.newAccountFromSecret(this.secretKey);
-    } else if (this.networkAccount && this.signer && this.reachAccount == null && this.provider && (!this.mnemonic && !this.secretKey)) {
+    } else if (
+      this.networkAccount &&
+      this.signer &&
+      this.reachAccount == null &&
+      this.provider &&
+      !this.mnemonic &&
+      !this.secretKey
+    ) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.providerEnv ? this.providerEnv : this.network,
@@ -70,7 +77,7 @@ export class Account {
         }),
       );
       this.reachAccount = await this.reachStdLib.connectAccount(this.networkAccount);
-    } else if (this.signer && !this.reachAccount && this.provider && (!this.mnemonic && !this.secretKey)) {
+    } else if (this.signer && !this.reachAccount && this.provider && !this.mnemonic && !this.secretKey) {
       await this.reachStdLib.setWalletFallback(
         await this.reachStdLib.walletFallback({
           providerEnv: this.providerEnv ? this.providerEnv : this.network,

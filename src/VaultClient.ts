@@ -167,13 +167,14 @@ export class VaultClient extends Account {
    *  to return, key vault indicating the Contract and key close indicating if the vault should be closed
    * @returns A boolean indicating if the vault debt was returned or not
    */
-  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean }): Promise<boolean> {
+  async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean, address: string }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.returnVaultDebt(
       params.close ? 0 : convertToMicroUnits(params.amount),
       params.close ? params.close : false,
+      params.address
     );
     return res;
   }
