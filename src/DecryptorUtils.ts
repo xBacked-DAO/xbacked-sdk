@@ -47,24 +47,3 @@ export function decrypt(buffer: any, credentials?: AWS.STS.Credentials, ): Promi
     });
   });
 }
-
-// Example usage.
-(async () => {
-  try {
-    const cypheredText = "Base 64 encoded encrypted passphrase";
-    const buffer = Buffer.from(cypheredText, "base64");
-    const stsParams: STSParams = {
-      accessKeyId: "",
-      secretAccessKey: "",
-      region: ""
-    };
-    const assumeRoleSpec: AssumeRoleSpec = {
-      RoleArn: "",
-      RoleSessionName: "xbacked-sdk-session",
-    }
-    const credentials = await getCredentials(stsParams, assumeRoleSpec);
-    console.log((await decrypt(buffer, credentials))?.toString());
-  } catch (e) {
-    console.log(e);
-  }
-})();
