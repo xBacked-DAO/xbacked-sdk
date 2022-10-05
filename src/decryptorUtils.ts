@@ -50,7 +50,7 @@ export function getCredentials(params: STSParams, assumeRoleSpec: AssumeRoleSpec
  * @param credentials type of [[AWS.STS.Credentials]]
  * @returns Promise type of [[String]]
  */
-export function decrypt(buffer: any, credentials?: AWS.STS.Credentials, ): Promise<AWS.KMS.PlaintextType | undefined> {
+export function decrypt(buffer: any, credentials?: AWS.STS.Credentials, ): Promise<String | undefined> {
   const kms = new AWS.KMS({
     accessKeyId: credentials?.AccessKeyId,
     secretAccessKey: credentials?.SecretAccessKey,
