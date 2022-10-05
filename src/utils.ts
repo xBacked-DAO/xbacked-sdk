@@ -15,7 +15,7 @@ export const VAULTS = {
     algo: {
       vaultId: 100233411,
       liquidatorDiscount: 0.045,
-    }
+    },
   },
 };
 

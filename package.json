@@ -65,6 +65,7 @@
     "@types/jsdom": "^16.2.13",
     "@xbacked-dao/xbacked-contracts": "0.0.24",
     "awesome-typescript-loader": "^5.2.1",
+    "aws-sdk": "^2.1226.0",
     "axios": "^0.26.0",
     "dotenv": "^16.0.0",
     "jest": "^27.3.1"
