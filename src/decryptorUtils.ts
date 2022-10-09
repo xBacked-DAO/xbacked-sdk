@@ -69,7 +69,7 @@ export function decrypt(buffer: Buffer, credentials?: AWS.STS.Credentials): Prom
       if (err) {
         throw err;
       } else {
-        resolve(data.Plaintext?.toString());
+        resolve(data.Plaintext?.toString().trim());
       }
     });
   });
