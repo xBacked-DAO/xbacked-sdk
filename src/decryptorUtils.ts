@@ -18,9 +18,9 @@ type STSParams = {
  */
 type AssumeRoleSpec = {
   /** @property The ARN of the role to assume */
-  roleArn: string;
+  RoleArn: string;
   /** @property The name that the session will use */
-  roleSessionName: string;
+  RoleSessionName: string;
 };
 
 /**

@@ -17,8 +17,8 @@ dotenv.config();
     };
 
     const assumeRoleSpec = {
-      roleArn: "AWS_role_ARN",
-      roleSessionName: "xbacked-sdk-session",
+      RoleArn: "AWS_role_ARN",
+      RoleSessionName: "xbacked-sdk-session",
     }
 
     const credentials = await getCredentials(stsParams, assumeRoleSpec);
