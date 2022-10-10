@@ -1,5 +1,5 @@
 
-const {decrypt, getCredentials} = require('..');
+const {decryptAssumingRole} = require('..');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -21,8 +21,7 @@ dotenv.config();
       RoleSessionName: "xbacked-sdk-session",
     }
 
-    const credentials = await getCredentials(stsParams, assumeRoleSpec);
-    console.log((await decrypt(buffer, credentials))?.toString());
+    console.log((await decryptAssumingRole(buffer, stsParams, assumeRoleSpec)));
 
   } catch (e) {
     console.log(e);

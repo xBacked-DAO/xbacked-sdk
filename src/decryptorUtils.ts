@@ -4,7 +4,7 @@ import AWS from 'aws-sdk';
 /**
  * Specifies an object with AWS access credentials needed for STS.
  */
-type STSParams = {
+export type STSParams = {
   /** @property The user's access key id */
   accessKeyId: string;
   /** @property The user's access key secret */
@@ -16,7 +16,7 @@ type STSParams = {
 /**
  * Specifies the Assume Role object used by the getCredentials method
  */
-type AssumeRoleSpec = {
+export type AssumeRoleSpec = {
   /** @property The ARN of the role to assume */
   RoleArn: string;
   /** @property The name that the session will use */
@@ -48,12 +48,12 @@ export function getCredentials(
 }
 
 /**
- *
+ * Decrypts a string using the AWS KMS service.
  * @param buffer type of [[Buffer]]
  * @param credentials type of [[AWS.STS.Credentials]]
  * @returns Promise type of [[String]]
  */
-export function decrypt(buffer: any, credentials?: AWS.STS.Credentials): Promise<string | undefined> {
+export function decrypt(buffer: Buffer, credentials?: AWS.STS.Credentials): Promise<string | undefined> {
   const kms = new AWS.KMS({
     accessKeyId: credentials?.AccessKeyId,
     secretAccessKey: credentials?.SecretAccessKey,
@@ -69,8 +69,24 @@ export function decrypt(buffer: any, credentials?: AWS.STS.Credentials): Promise
       if (err) {
         throw err;
       } else {
-        resolve(data.Plaintext?.toString());
+        resolve(data.Plaintext?.toString().trim());
       }
     });
   });
+}
+
+/**
+ * Utility function that combines getCredentials() and decrypt().
+ * @param buffer type of [[Buffer]]
+ * @param stsParams type of [[STSParams]]
+ * * @param assumeRoleSpec type of [[AssumeRoleSpec]]
+ * @returns Promise type of [[String]]
+ */
+export async function decryptAssumingRole(
+  buffer: Buffer,
+  stsParams: STSParams,
+  assumeRoleSpec: AssumeRoleSpec,
+): Promise<string | undefined> {
+  const credentials = await getCredentials(stsParams, assumeRoleSpec);
+  return decrypt(buffer, credentials);
 }
