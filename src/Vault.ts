@@ -40,19 +40,18 @@ export class Vault {
       coldState: {
         accruedFees: vaultState.coldState.accruedFees.toNumber(),
         collateralPrice: vaultState.coldState.collateralPrice.toNumber(),
-        deprecated: vaultState.coldState.deprecated,
         redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
         proposalTime: vaultState.coldState.proposalTime.toNumber(),
         contractState: vaultState.coldState.contractState.toNumber(),
+        feeStructure: vaultState.coldState.feeStructure.map((feeSplit: any) => feeSplit.toNumber()),
+        minimumDebtAmount: vaultState.coldState.minimumDebtAmount.toNumber(),
       },
       addresses: {
         govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),
-        liquidationStakersAddress: params.account.reachStdLib.formatAddress(
-          vaultState.addresses.liquidationStakersAddress,
-        ),
+        liquidationStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.stabilityPoolAddress),
         oracleAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.oracleAddress),
         adminAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.adminAddress),
-        daoAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.daoAddress),
+        daoAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.treasuryAddress),
       },
     };
   }
@@ -65,7 +64,7 @@ export class Vault {
     const ctc = params.account.reachAccount.contract(this.backend, this.id);
     const get = ctc.v.State;
     const stateView = await get.readVault(params.address);
-    if (stateView[1][0] === 'None') {
+    if (!stateView[1] || stateView[1][0] === 'None') {
       return {
         collateral: 0,
         liquidating: false,

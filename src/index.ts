@@ -4,3 +4,4 @@ export { MasterStakingClient as MasterStakingClient } from './MasterStakingClien
 export { Vault as Vault } from './Vault';
 export * from './vaultDiscovery';
 export * from './utils';
+export * from './decryptorUtils';

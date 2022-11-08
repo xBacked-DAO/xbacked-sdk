@@ -38,10 +38,11 @@ export interface VaultReturnParams {
   coldState: {
     accruedFees: number;
     collateralPrice: number;
-    deprecated: boolean;
     redeemableVaults: any[];
     proposalTime?: number;
     contractState?: number;
+    feeStructure: number[];
+    minimumDebtAmount: number;
   };
   addresses: {
     govStakersAddress: string;

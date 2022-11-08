@@ -27,11 +27,11 @@ dotenv.config();
         case 1: await acc.optIntoToken(STABLECOIN);
           console.log('Opted into token');
           break;
-        case 2: const isVaultCreated = await acc.createVault({collateral: 225,
+        case 2: const isVaultCreated = await acc.createVault({collateral: 400,
           mintAmount: 100,
           vault: new Vault({id: VAULT_ID}),
-          minimumPrice: 0.5,
-          maximumPrice: 0.5});
+          minimumPrice: 0.31,
+          maximumPrice: 0.41});
           console.log(`isVaultCreated: ${isVaultCreated}`);
           break;
         case 3: const isTokenMinted = await acc.mintToken({amount: 2,
