@@ -4,14 +4,12 @@ import { masterStaking as backend } from '@xbacked-dao/xbacked-contracts';
 import { Account } from './Account';
 import {
   AccountInterface,
-  MasterStakingAdminParameters,
-  MasterStakingColdState,
-  MasterStakingHotState,
-  MasterStakingGlobalView,
-  MasterStakingUserState,
+  StabilityPoolAdminParameters,
+  StabilityPoolGlobalView,
+  StabilityPoolUserState,
 } from './interfaces';
 
-export class MasterStakingClient extends Account {
+export class StabilityPoolClient extends Account {
   readonly id: number | undefined;
 
   constructor(params: AccountInterface, contractId: number) {
@@ -64,35 +62,41 @@ export class MasterStakingClient extends Account {
     };
   };
 
-  private static parseUserState = ({ amountDeposited, rewardPerTokenPaid, rewards }: any): MasterStakingUserState => {
+  private static parseUserState = ({
+    amountDeposited,
+    rewardPerTokenPaid,
+    stakingRewards,
+    liquidationRewards,
+  }: any): StabilityPoolUserState => {
     return {
       amountDeposited: amountDeposited.toNumber(),
       rewardPerTokenPaid: rewardPerTokenPaid.toNumber(),
-      rewards: rewards.toNumber(),
+      stakingRewards: stakingRewards.toNumber(),
+      liquidationRewards: liquidationRewards.toNumber(),
     };
   };
 
   /**
    * @description Get global state of contract
-   * @returns MasterStakingGlobalView
+   * @returns StabilityPoolGlobalView
    */
-  public getState = async (): Promise<MasterStakingGlobalView> => {
+  public getState = async (): Promise<StabilityPoolGlobalView> => {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
     const rawColdState = await get.readColdState();
     const rawHotState = await get.readHotState();
     return {
-      ...MasterStakingClient.parseColdState(rawColdState[1]),
-      ...MasterStakingClient.parseHotState(this.reachStdLib, rawHotState[1]),
+      ...StabilityPoolClient.parseColdState(rawColdState[1]),
+      ...StabilityPoolClient.parseHotState(this.reachStdLib, rawHotState[1]),
     };
   };
 
   /**
    * @description Get admin properties of contract
-   * @returns MasterStakingAdminParameters
+   * @returns StabilityPoolAdminParameters
    */
-  public getAdminProperties = async (): Promise<MasterStakingAdminParameters> => {
+  public getAdminProperties = async (): Promise<StabilityPoolAdminParameters> => {
     const state = await this.getState();
     return {
       adminAddress: state.adminAddress,
@@ -106,22 +110,22 @@ export class MasterStakingClient extends Account {
   /**
    * @description Get local state of user
    * @param params address for the look up
-   * @returns MasterStakingUserState
+   * @returns StabilityPoolUserState
    */
-  public getUserState = async (params: { address: string }): Promise<MasterStakingUserState> => {
+  public getUserState = async (params: { address: string }): Promise<StabilityPoolUserState> => {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, this.id);
     const get = ctc.v.State;
     const rawUserState = await get.readUser(params.address);
-    return MasterStakingClient.parseUserState(rawUserState[1]);
+    return StabilityPoolClient.parseUserState(rawUserState[1]);
   };
 
   /**
    * @description update admin parameters
-   * @param adminProperties MasterStakingAdminParameters
+   * @param adminProperties StabilityPoolAdminParameters
    * @returns boolean
    */
-  public async updateAdminParameters(adminParameters: MasterStakingAdminParameters): Promise<boolean> {
+  public async updateAdminParameters(adminParameters: StabilityPoolAdminParameters): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(backend, this.id);
     const put = ctc.a.AdminAPI;
@@ -129,18 +133,6 @@ export class MasterStakingClient extends Account {
       ...(await this.getAdminProperties()),
       ...adminParameters,
     });
-  }
-
-  /**
-   * @description deposit rewards into the contract
-   * @param rewardsToDeposit array of values of each reward to deposit
-   * @returns boolean
-   */
-  public async depositRewards(rewardsToDeposit: number[]): Promise<boolean> {
-    await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(backend, this.id);
-    const put = ctc.a.AdminAPI;
-    return put.depositRewards(rewardsToDeposit);
   }
 
   /**
@@ -170,6 +162,17 @@ export class MasterStakingClient extends Account {
   }
 
   /**
+   * @description cache rewards for the signer
+   * @returns boolean
+   */
+  public async cacheRewards(): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, this.id);
+    const put = ctc.a.StakingUserAPI;
+    return put.cacheRewards(amount);
+  }
+
+  /**
    * @description withdraw rewards from the contract
    * @param amount amount to be withdrawn
    * @returns boolean
@@ -179,5 +182,23 @@ export class MasterStakingClient extends Account {
     const ctc = this.reachAccount.contract(backend, this.id);
     const put = ctc.a.StakingUserAPI;
     return put.withdrawRewards(amount);
+  }
+
+  /**
+   * @description withdraw rewards from the contract
+   * @param amount amount to be withdrawn
+   * @returns boolean
+   */
+  public async liquidateVault(
+    liquidatorVault: string,
+    targetVault: string,
+    liquidationAmount: number,
+    minimumPrice: number,
+    maximumPrice: number,
+  ): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(backend, this.id);
+    const put = ctc.a.LiquidatorAPI;
+    return put.liquidateVault(liquidatorVault, targetVault, liquidationAmount, minimumPrice, maximumPrice);
   }
 }
