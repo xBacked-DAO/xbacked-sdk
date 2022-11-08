@@ -5,7 +5,9 @@ import { Account } from './Account';
 import {
   AccountInterface,
   StabilityPoolAdminParameters,
+  StabilityPoolColdState,
   StabilityPoolGlobalView,
+  StabilityPoolHotState,
   StabilityPoolUserState,
 } from './interfaces';
 
@@ -17,19 +19,10 @@ export class StabilityPoolClient extends Account {
     this.id = contractId;
   }
 
-  private static parseColdState = ({
-    stakingASA,
-    stakingASADecimals,
-    rewardASAs,
-    rewardASADecimals,
-    assetScaleInfos,
-  }: any): MasterStakingColdState => {
+  private static parseColdState = ({ stakingASA, stakingASADecimals }: any): StabilityPoolColdState => {
     return {
       stakingASA: stakingASA.toNumber(),
       stakingASADecimals: stakingASADecimals.toNumber(),
-      rewardASAs: rewardASAs.map((asa: any) => asa.toNumber()),
-      rewardASADecimals: rewardASADecimals.map((decimals: any) => decimals.toNumber()),
-      assetScaleInfos: assetScaleInfos.map(({ sign, scaleFactor }: any) => [sign, scaleFactor.toNumber()]),
     };
   };
 
@@ -37,25 +30,27 @@ export class StabilityPoolClient extends Account {
     reachStdlib: any,
     {
       adminAddress,
+      remoteContract,
       deprecateTimeout,
       deprecateAt,
-      rewardRatios,
+      liquidationFee,
       rewardRate,
-      remainingRewards,
-      totalRewards,
+      remainingStakingRewards,
+      remainingLiquidationRewards,
       totalDeposit,
       lastRewardBlock,
       rewardPerToken,
     }: any,
-  ): MasterStakingHotState => {
+  ): StabilityPoolHotState => {
     return {
       adminAddress: reachStdlib.formatAddress(adminAddress),
+      remoteContract: remoteContract.map((contractID: any) => contractID.toNumber()),
       deprecateTimeout: deprecateTimeout.toNumber(),
       deprecateAt: deprecateAt.toNumber(),
-      rewardRatios: rewardRatios.map((ratios: any) => ratios.toNumber()),
+      liquidationFee: liquidationFee.toNumber(),
       rewardRate: rewardRate.toNumber(),
-      remainingRewards: remainingRewards.map((rewards: any) => rewards.toNumber()),
-      totalRewards: totalRewards.toNumber(),
+      remainingStakingRewards: remainingStakingRewards.toNumber(),
+      remainingLiquidationRewards: remainingLiquidationRewards.toNumber(),
       totalDeposit: totalDeposit.toNumber(),
       lastRewardBlock: lastRewardBlock.toNumber(),
       rewardPerToken: rewardPerToken.toNumber(),
@@ -100,9 +95,10 @@ export class StabilityPoolClient extends Account {
     const state = await this.getState();
     return {
       adminAddress: state.adminAddress,
+      remoteContract: state.remoteContract,
       deprecateTimeout: state.deprecateTimeout,
       deprecateAt: state.deprecateAt,
-      rewardRatios: state.rewardRatios,
+      liquidationFee: state.liquidationFee,
       rewardRate: state.rewardRate,
     };
   };
