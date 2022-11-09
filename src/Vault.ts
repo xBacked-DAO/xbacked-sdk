@@ -45,7 +45,7 @@ export class Vault {
         contractState: vaultState.coldState.contractState.toNumber(),
         feeStructure: vaultState.coldState.feeStructure.map((feeSplit: any) => feeSplit.toNumber()),
         minimumDebtAmount: vaultState.coldState.minimumDebtAmount.toNumber(),
-        maximumCollateralValue: vaultState.coldState.maximumCollateralValue.toNumber()
+        maximumCollateralValue: vaultState.coldState.maximumCollateralValue.toNumber(),
       },
       addresses: {
         govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),

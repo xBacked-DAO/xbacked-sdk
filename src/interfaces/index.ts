@@ -110,7 +110,7 @@ export interface VaultParameters {
 export enum ContractState {
   NORMAL = 0,
   DEPRECATED = 1,
-  PAUSED = 2
+  PAUSED = 2,
 }
 
 /**
@@ -118,15 +118,15 @@ export enum ContractState {
  */
 export interface AdminProperties {
   /**  @property A valid [[ContractState]] */
-  contractState: ContractState,
-  oracleAddress: string,
-  stabilityPoolAddress: string,
-  govStakersAddress: string,
-  treasuryAddress: string,
+  contractState: ContractState;
+  oracleAddress: string;
+  stabilityPoolAddress: string;
+  govStakersAddress: string;
+  treasuryAddress: string;
   /**  @property A number array(4) of the form
    * [FEE_COLLECTOR_FEE, LIQUIDATION_FEE, STABILITY_POOL_SPLIT, GOV_STAKERS_SPLIT]
    */
-  feeStructure: number[],
-  minimumDebtAmount: number,
-  maximumCollateralValue: number
+  feeStructure: number[];
+  minimumDebtAmount: number;
+  maximumCollateralValue: number;
 }

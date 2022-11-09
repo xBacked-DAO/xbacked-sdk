@@ -330,10 +330,7 @@ export class VaultClient extends Account {
    * @param params An object that contains the supply amount and the target [[Vault]].
    * @returns A boolean indicating if the supply was replenished or not
    */
-   async replenishSupply(params: {
-    supplyAmt: number,
-    vault: Vault
-  }): Promise<boolean> {
+  async replenishSupply(params: { supplyAmt: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.AdminAPI;
@@ -346,10 +343,7 @@ export class VaultClient extends Account {
    * @param params An object that contains an [[AdminProperties]] object and the target [[Vault]].
    * @returns A boolean indicating if the properties were set or not
    */
-   async setAdminProperties(params: {
-    adminProperties: AdminProperties,
-    vault: Vault
-  }): Promise<boolean> {
+  async setAdminProperties(params: { adminProperties: AdminProperties; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.AdminAPI;
@@ -364,10 +358,7 @@ export class VaultClient extends Account {
    * @param params An object that contains an address and the target [[Vault]].
    * @returns A boolean indicating if the address was updated.
    */
-   async updateAdminAddress(params: {
-    address: string,
-    vault: Vault
-  }): Promise<boolean> {
+  async updateAdminAddress(params: { address: string; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.AdminAPI;
