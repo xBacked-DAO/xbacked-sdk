@@ -3,7 +3,7 @@ import { vault as vaultBackend, vaultAsa } from '@xbacked-dao/xbacked-contracts'
 import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 import { Account } from './Account';
-import { AbiInterface, AccountInterface, UserVaultReturnParams, VaultReturnParams } from './interfaces';
+import { AccountInterface, UserVaultReturnParams, VaultReturnParams, AdminProperties } from './interfaces';
 
 export class VaultClient extends Account {
   backend: any;
@@ -323,5 +323,55 @@ export class VaultClient extends Account {
         params.updatePriceCallback(address, newPrice);
       });
     }
+  }
+
+  /**
+   * Used to relplenish the supply on the treasury address
+   * @param params An object that contains the supply amount and the target [[Vault]].
+   * @returns A boolean indicating if the supply was replenished or not
+   */
+   async replenishSupply(params: {
+    supplyAmt: number,
+    vault: Vault
+  }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const put = ctc.a.AdminAPI;
+    const res = await put.replenishSupply(convertToMicroUnits(params.supplyAmt));
+    return res;
+  }
+
+  /**
+   * Used to set the admin properties of a vault
+   * @param params An object that contains an [[AdminProperties]] object and the target [[Vault]].
+   * @returns A boolean indicating if the properties were set or not
+   */
+   async setAdminProperties(params: {
+    adminProperties: AdminProperties,
+    vault: Vault
+  }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const put = ctc.a.AdminAPI;
+    params.adminProperties.minimumDebtAmount = convertToMicroUnits(params.adminProperties.minimumDebtAmount);
+    params.adminProperties.maximumCollateralValue = convertToMicroUnits(params.adminProperties.maximumCollateralValue);
+    const res = await put.setAdminProperties(params.adminProperties);
+    return res;
+  }
+
+  /**
+   * Used to update the admin address of a vault
+   * @param params An object that contains an address and the target [[Vault]].
+   * @returns A boolean indicating if the address was updated.
+   */
+   async updateAdminAddress(params: {
+    address: string,
+    vault: Vault
+  }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const put = ctc.a.AdminAPI;
+    const res = await put.updateAdminAddress(params.address);
+    return res;
   }
 }

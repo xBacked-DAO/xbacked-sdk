@@ -64,6 +64,7 @@ export interface VaultReturnParams {
     contractState?: number;
     feeStructure: number[];
     minimumDebtAmount: number;
+    maximumCollateralValue: number;
   };
   addresses: {
     govStakersAddress: string;
@@ -101,4 +102,31 @@ export interface VaultParameters {
   asaVault?: {
     decimals: number;
   };
+}
+
+/**
+ * Valid contract states
+ */
+export enum ContractState {
+  NORMAL = 0,
+  DEPRECATED = 1,
+  PAUSED = 2
+}
+
+/**
+ * parameters used to indicate the new admin properties to be set.
+ */
+export interface AdminProperties {
+  /**  @property A valid [[ContractState]] */
+  contractState: ContractState,
+  oracleAddress: string,
+  stabilityPoolAddress: string,
+  govStakersAddress: string,
+  treasuryAddress: string,
+  /**  @property A number array(4) of the form
+   * [FEE_COLLECTOR_FEE, LIQUIDATION_FEE, STABILITY_POOL_SPLIT, GOV_STAKERS_SPLIT]
+   */
+  feeStructure: number[],
+  minimumDebtAmount: number,
+  maximumCollateralValue: number
 }
