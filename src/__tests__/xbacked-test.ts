@@ -96,7 +96,7 @@ it('Get vault Info', async () => {
       contractState: 0,
       feeStructure: [1, 5, 50, 50],
       minimumDebtAmount: 10,
-      maximumCollateralValue: 10000,
+      // maximumCollateralValue: 10000,
     },
     addresses: {
       govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',

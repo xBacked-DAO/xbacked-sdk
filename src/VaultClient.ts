@@ -348,7 +348,7 @@ export class VaultClient extends Account {
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.AdminAPI;
     params.adminProperties.minimumDebtAmount = convertToMicroUnits(params.adminProperties.minimumDebtAmount);
-    params.adminProperties.maximumCollateralValue = convertToMicroUnits(params.adminProperties.maximumCollateralValue);
+    // params.adminProperties.maximumCollateralValue = convertToMicroUnits(params.adminProperties.maximumCollateralValue);
     const res = await put.setAdminProperties(params.adminProperties);
     return res;
   }
