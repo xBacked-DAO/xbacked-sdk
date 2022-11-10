@@ -206,3 +206,20 @@ it('Liquidator drips interest', async function () {
   });
   expect(dripInterest).toBe(true);
 });
+
+it('Admin set propoerties', async function () {
+  const res = await account.setAdminProperties({
+    adminProperties: {
+      contractState: 1,
+      oracleAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      stabilityPoolAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      treasuryAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      feeStructure: [1, 5, 50, 50],
+      minimumDebtAmount: 10,
+      // maximumCollateralValue: 10000,
+    },
+    vault: new Vault({ id: VAULT_ID }),
+  });
+  expect(res).toBe(true);
+});
