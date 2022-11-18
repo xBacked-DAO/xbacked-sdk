@@ -1217,7 +1217,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@randlabs/myalgo-connect@npm:^1.1.1, @randlabs/myalgo-connect@npm:^1.1.2":
+"@randlabs/myalgo-connect@npm:^1.1.1, @randlabs/myalgo-connect@npm:^1.1.2, @randlabs/myalgo-connect@npm:^1.2.0":
   version: 1.4.1
   resolution: "@randlabs/myalgo-connect@npm:1.4.1"
   dependencies:
@@ -1245,6 +1245,28 @@ __metadata:
     tslib: ^2.3.1
     wait-port: ^0.2.9
   checksum: 70b6df8ef8e48f57f5f084da6810f39a122a81a51334559beb6c67d54e85921c2ce18e4c3428612cc1467ece106baa98041befa27add99ff2af49468f834123b
+  languageName: node
+  linkType: hard
+
+"@reach-sh/stdlib@npm:0.1.12-rc.1":
+  version: 0.1.12-rc.1
+  resolution: "@reach-sh/stdlib@npm:0.1.12-rc.1"
+  dependencies:
+    "@randlabs/myalgo-connect": ^1.2.0
+    "@walletconnect/client": ^1.7.8
+    algorand-walletconnect-qrcode-modal: ^1.7.8-beta.1
+    algosdk: ^1.20.0
+    await-timeout: ^0.6.0
+    ethers: ^5.5.4
+    express: ^4.17.3
+    hi-base32: ^0.5.1
+    js-conflux-sdk: "git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber"
+    jsbi: ^3.1.6
+    node-fetch: ^2.6.1
+    tslib: ^2.3.1
+    url-parse: ^1.5.10
+    wait-port: ^0.2.9
+  checksum: 796c88ae50504797612a91ea538b61b91e5fe095395880ba573e75b012acac0f73b683854fa1d527d2a24c5c74cf47a70edfb3e84a1688f9aeacaacc684a3369
   languageName: node
   linkType: hard
 
@@ -1495,7 +1517,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@walletconnect/client@npm:^1.7.3":
+"@walletconnect/client@npm:^1.7.3, @walletconnect/client@npm:^1.7.8":
   version: 1.8.0
   resolution: "@walletconnect/client@npm:1.8.0"
   dependencies:
@@ -1861,7 +1883,7 @@ __metadata:
     "@babel/types": ^7.16.0
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": 0.1.11-rc.0
+    "@reach-sh/stdlib": 0.1.12-rc.1
     "@types/await-timeout": ^0.3.1
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
@@ -2052,7 +2074,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"algorand-walletconnect-qrcode-modal@npm:^1.6.1":
+"algorand-walletconnect-qrcode-modal@npm:^1.6.1, algorand-walletconnect-qrcode-modal@npm:^1.7.8-beta.1":
   version: 1.8.0
   resolution: "algorand-walletconnect-qrcode-modal@npm:1.8.0"
   dependencies:
@@ -2066,7 +2088,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"algosdk@npm:^1.12.0, algosdk@npm:^1.15.0":
+"algosdk@npm:^1.12.0, algosdk@npm:^1.15.0, algosdk@npm:^1.20.0":
   version: 1.23.2
   resolution: "algosdk@npm:1.23.2"
   dependencies:
@@ -8296,7 +8318,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-parse@npm:^1.5.3":
+"url-parse@npm:^1.5.10, url-parse@npm:^1.5.3":
   version: 1.5.10
   resolution: "url-parse@npm:1.5.10"
   dependencies:
