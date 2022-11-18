@@ -207,7 +207,7 @@ it('Liquidator drips interest', async function () {
   expect(dripInterest).toBe(true);
 });
 
-it('Admin set propoerties', async function () {
+it('Admin set properties', async function () {
   const res = await account.setAdminProperties({
     adminProperties: {
       contractState: 1,
