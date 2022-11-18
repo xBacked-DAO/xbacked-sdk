@@ -45,6 +45,7 @@ export class Vault {
         contractState: vaultState.coldState.contractState.toNumber(),
         feeStructure: vaultState.coldState.feeStructure.map((feeSplit: any) => feeSplit.toNumber()),
         minimumDebtAmount: vaultState.coldState.minimumDebtAmount.toNumber(),
+        // TODO: re rc-0.0.25
         // maximumCollateralValue: vaultState.coldState.maximumCollateralValue.toNumber(),
       },
       addresses: {

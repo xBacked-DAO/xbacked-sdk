@@ -64,6 +64,7 @@ export interface VaultReturnParams {
     contractState?: number;
     feeStructure: number[];
     minimumDebtAmount: number;
+    // TODO: re rc-0.0.25
     // maximumCollateralValue: number;
   };
   addresses: {
@@ -128,5 +129,6 @@ export interface AdminProperties {
    */
   feeStructure: number[];
   minimumDebtAmount: number;
+  // TODO: re rc-0.0.25
   // maximumCollateralValue: number;
 }

@@ -96,6 +96,7 @@ it('Get vault Info', async () => {
       contractState: 0,
       feeStructure: [1, 5, 50, 50],
       minimumDebtAmount: 10,
+      // TODO: re rc-0.0.25
       // maximumCollateralValue: 10000,
     },
     addresses: {
@@ -217,6 +218,7 @@ it('Admin set propoerties', async function () {
       treasuryAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
       feeStructure: [1, 5, 50, 50],
       minimumDebtAmount: 10,
+      // TODO: re rc-0.0.25
       // maximumCollateralValue: 10000,
     },
     vault: new Vault({ id: VAULT_ID }),
