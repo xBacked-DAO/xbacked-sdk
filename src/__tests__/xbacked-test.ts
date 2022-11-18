@@ -96,6 +96,8 @@ it('Get vault Info', async () => {
       contractState: 0,
       feeStructure: [1, 5, 50, 50],
       minimumDebtAmount: 10,
+      // TODO: re rc-0.0.25
+      // maximumCollateralValue: 10000,
     },
     addresses: {
       govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
@@ -204,4 +206,22 @@ it('Liquidator drips interest', async function () {
     address: '',
   });
   expect(dripInterest).toBe(true);
+});
+
+it('Admin set properties', async function () {
+  const res = await account.setAdminProperties({
+    adminProperties: {
+      contractState: 1,
+      oracleAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      stabilityPoolAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      treasuryAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      feeStructure: [1, 5, 50, 50],
+      minimumDebtAmount: 10,
+      // TODO: re rc-0.0.25
+      // maximumCollateralValue: 10000,
+    },
+    vault: new Vault({ id: VAULT_ID }),
+  });
+  expect(res).toBe(true);
 });
