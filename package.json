@@ -61,9 +61,9 @@
   "dependencies": {
     "@babel/types": "^7.16.0",
     "@randlabs/myalgo-connect": "^1.1.1",
-    "@reach-sh/stdlib": "0.1.11-rc.0",
+    "@reach-sh/stdlib": "0.1.12-rc.9",
     "@types/jsdom": "^16.2.13",
-    "@xbacked-dao/xbacked-contracts": "0.0.24",
+    "@xbacked-dao/xbacked-contracts": "0.0.26",
     "awesome-typescript-loader": "^5.2.1",
     "aws-sdk": "^2.1226.0",
     "axios": "^0.26.0",

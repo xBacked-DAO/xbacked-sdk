@@ -13,7 +13,7 @@ export const VAULTS = {
   TestNet: {
     // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
     algo: {
-      vaultId: 100233411,
+      vaultId: 141814229,
       liquidatorDiscount: 0.045,
     },
   },

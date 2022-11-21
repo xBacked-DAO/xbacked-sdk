@@ -1156,13 +1156,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@msgpack/msgpack@npm:^2.5.1":
-  version: 2.8.0
-  resolution: "@msgpack/msgpack@npm:2.8.0"
-  checksum: bead9393f57239007a2fe455df5277cbc03b125f14f310162a652b81471dcf3ab6780eaa24b36e20aa742998910a6840147d08b7267063b8e2de5d40c624360e
-  languageName: node
-  linkType: hard
-
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -1217,7 +1210,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@randlabs/myalgo-connect@npm:^1.1.1, @randlabs/myalgo-connect@npm:^1.1.2":
+"@randlabs/myalgo-connect@npm:^1.1.1, @randlabs/myalgo-connect@npm:^1.2.0":
   version: 1.4.1
   resolution: "@randlabs/myalgo-connect@npm:1.4.1"
   dependencies:
@@ -1226,25 +1219,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:0.1.11-rc.0":
-  version: 0.1.11-rc.0
-  resolution: "@reach-sh/stdlib@npm:0.1.11-rc.0"
+"@reach-sh/js-conflux-sdk@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "@reach-sh/js-conflux-sdk@npm:1.6.0"
   dependencies:
-    "@msgpack/msgpack": ^2.5.1
-    "@randlabs/myalgo-connect": ^1.1.2
-    "@walletconnect/client": ^1.7.3
-    algorand-walletconnect-qrcode-modal: ^1.6.1
-    algosdk: ^1.15.0
+    "@babel/runtime": ^7.8.4
+    "@conflux-dev/conflux-address-js": ^1.0.0
+    big.js: ^5.2.2
+    keccak: ^2.0.0
+    lodash: ^4.17.19
+    scrypt-js: ^3.0.1
+    secp256k1: ^3.7.1
+    superagent: ^5.1.0
+    websocket: ^1.0.31
+  checksum: ef2f7570860155d9ddf22c1e3f7f18a9f73b15b1622611380ba8d2e9b36036cd89127eef101cdb2a9116de0a212a468696f06e4a278161e81be7aeabfac270d1
+  languageName: node
+  linkType: hard
+
+"@reach-sh/stdlib@npm:0.1.12-rc.9":
+  version: 0.1.12-rc.9
+  resolution: "@reach-sh/stdlib@npm:0.1.12-rc.9"
+  dependencies:
+    "@randlabs/myalgo-connect": ^1.2.0
+    "@reach-sh/js-conflux-sdk": ^1.6.0
+    "@walletconnect/client": ^1.7.8
+    algorand-walletconnect-qrcode-modal: ^1.7.8-beta.1
+    algosdk: ^1.20.0
     await-timeout: ^0.6.0
     ethers: ^5.5.4
     express: ^4.17.3
-    hi-base32: ^0.5.0
-    js-conflux-sdk: "git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber"
+    hi-base32: ^0.5.1
     jsbi: ^3.1.6
     node-fetch: ^2.6.1
     tslib: ^2.3.1
+    url-parse: ^1.5.10
     wait-port: ^0.2.9
-  checksum: 70b6df8ef8e48f57f5f084da6810f39a122a81a51334559beb6c67d54e85921c2ce18e4c3428612cc1467ece106baa98041befa27add99ff2af49468f834123b
+  checksum: bf257ed59e68d6f7e97556b76a2b2d45ba706a1c0cdcaab0eb1f3b40b79d61d960ee7e68983c9bca66bc48d6a0e034172d297fb4fabce52d5b559f1be7352a1c
   languageName: node
   linkType: hard
 
@@ -1495,7 +1505,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@walletconnect/client@npm:^1.7.3":
+"@walletconnect/client@npm:^1.7.8":
   version: 1.8.0
   resolution: "@walletconnect/client@npm:1.8.0"
   dependencies:
@@ -1836,21 +1846,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:0.0.24":
-  version: 0.0.24
-  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.24"
+"@xbacked-dao/xbacked-contracts@npm:0.0.26":
+  version: 0.0.26
+  resolution: "@xbacked-dao/xbacked-contracts@npm:0.0.26"
   dependencies:
-    "@reach-sh/stdlib": 0.1.11-rc.0
+    "@reach-sh/stdlib": 0.1.12-rc.9
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
     dotenv: ^10.0.0
     es-main: ^1.0.2
     jest-extended: ^2.0.0
+    react: ^18.2.0
+    react-dom: ^18.2.0
     yargs: ^17.3.1
   peerDependencies:
     "@reach-sh/stdlib": 0.1.11-rc.0
-  checksum: 556ddb3cf1e7a17fdc341838c55b31a4f2884ccfdf097281864f9309e294d77ccb9ad6dcf47f0a02c416e86c72d0451e6edf2d41aab5dd9222731c299786dcd3
+  checksum: 323ae7e6b9e8ad267ae33aa17e33e2b677dd859b04960177c699a7f1e1bb7c109940f8628916d85c33449f8c9dc9f785989476a777ba0ff2d30fce11a018f37c
   languageName: node
   linkType: hard
 
@@ -1861,12 +1873,12 @@ __metadata:
     "@babel/types": ^7.16.0
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": 0.1.11-rc.0
+    "@reach-sh/stdlib": 0.1.12-rc.9
     "@types/await-timeout": ^0.3.1
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 0.0.24
+    "@xbacked-dao/xbacked-contracts": 0.0.26
     awesome-typescript-loader: ^5.2.1
     aws-sdk: ^2.1226.0
     axios: ^0.26.0
@@ -2052,7 +2064,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"algorand-walletconnect-qrcode-modal@npm:^1.6.1":
+"algorand-walletconnect-qrcode-modal@npm:^1.7.8-beta.1":
   version: 1.8.0
   resolution: "algorand-walletconnect-qrcode-modal@npm:1.8.0"
   dependencies:
@@ -2066,7 +2078,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"algosdk@npm:^1.12.0, algosdk@npm:^1.15.0":
+"algosdk@npm:^1.12.0, algosdk@npm:^1.20.0":
   version: 1.23.2
   resolution: "algosdk@npm:1.23.2"
   dependencies:
@@ -4512,7 +4524,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hi-base32@npm:^0.5.0, hi-base32@npm:^0.5.1":
+"hi-base32@npm:^0.5.1":
   version: 0.5.1
   resolution: "hi-base32@npm:0.5.1"
   checksum: 6655682b5796d75ed3068071e61d05a490e2086c4908af3b94a730059147b8a4a5e8870e656b828d0550dcc9988d8748bda54a53e428cbce28e0d7a785b2ffde
@@ -5571,23 +5583,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-conflux-sdk@git+https://github.com/reach-sh/js-conflux-sdk.git#v1_6_0_blockNumber":
-  version: 1.6.0
-  resolution: "js-conflux-sdk@https://github.com/reach-sh/js-conflux-sdk.git#commit=6df5f0538c2077a7e29f0be08205b937499a1040"
-  dependencies:
-    "@babel/runtime": ^7.8.4
-    "@conflux-dev/conflux-address-js": ^1.0.0
-    big.js: ^5.2.2
-    keccak: ^2.0.0
-    lodash: ^4.17.19
-    scrypt-js: ^3.0.1
-    secp256k1: ^3.7.1
-    superagent: ^5.1.0
-    websocket: ^1.0.31
-  checksum: d29d40d0f1b25b1396cc07d35fed61af28d18c5cbaca0ed54d434a99fbb644c5a28b57834e8b08192da511ee19997448ff241177068196793c9ba556924cd261
-  languageName: node
-  linkType: hard
-
 "js-sdsl@npm:^4.1.4":
   version: 4.1.5
   resolution: "js-sdsl@npm:4.1.5"
@@ -5616,7 +5611,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-tokens@npm:^4.0.0":
+"js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
   checksum: 8a95213a5a77deb6cbe94d86340e8d9ace2b93bc367790b260101d2f36a2eaf4e4e22d9fa9cf459b38af3a32fb4190e638024cf82ec95ef708680e405ea7cc78
@@ -5935,6 +5930,17 @@ __metadata:
     es6-symbol: ^3.1.1
     object.assign: ^4.1.0
   checksum: f4eff8e178a37c45bbd107a81e34892f0c61398e1231bb25be88df330d1057b3719175348b426b8486a3d466ce5c7d5adbff6fcddd413a1dd67607a41326c9dd
+  languageName: node
+  linkType: hard
+
+"loose-envify@npm:^1.1.0":
+  version: 1.4.0
+  resolution: "loose-envify@npm:1.4.0"
+  dependencies:
+    js-tokens: ^3.0.0 || ^4.0.0
+  bin:
+    loose-envify: cli.js
+  checksum: 6517e24e0cad87ec9888f500c5b5947032cdfe6ef65e1c1936a0c48a524b81e65542c9c3edc91c97d5bddc806ee2a985dbc79be89215d613b1de5db6d1cfe6f4
   languageName: node
   linkType: hard
 
@@ -6975,10 +6981,31 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-dom@npm:^18.2.0":
+  version: 18.2.0
+  resolution: "react-dom@npm:18.2.0"
+  dependencies:
+    loose-envify: ^1.1.0
+    scheduler: ^0.23.0
+  peerDependencies:
+    react: ^18.2.0
+  checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^17.0.1":
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 9d6d111d8990dc98bc5402c1266a808b0459b5d54830bbea24c12d908b536df7883f268a7868cfaedde3dd9d4e0d574db456f84d2e6df9c4526f99bb4b5344d8
+  languageName: node
+  linkType: hard
+
+"react@npm:^18.2.0":
+  version: 18.2.0
+  resolution: "react@npm:18.2.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
   languageName: node
   linkType: hard
 
@@ -7240,6 +7267,15 @@ __metadata:
   dependencies:
     xmlchars: ^2.2.0
   checksum: 5636b55cf15f7cf0baa73f2797bf992bdcf75d1b39d82c0aa4608555c774368f6ac321cb641fd5f3d3ceb87805122cd47540da6a7b5960fe0dbdb8f8c263f000
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.23.0":
+  version: 0.23.0
+  resolution: "scheduler@npm:0.23.0"
+  dependencies:
+    loose-envify: ^1.1.0
+  checksum: d79192eeaa12abef860c195ea45d37cbf2bbf5f66e3c4dcd16f54a7da53b17788a70d109ee3d3dde1a0fd50e6a8fc171f4300356c5aee4fc0171de526bf35f8a
   languageName: node
   linkType: hard
 
@@ -8296,7 +8332,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"url-parse@npm:^1.5.3":
+"url-parse@npm:^1.5.10, url-parse@npm:^1.5.3":
   version: 1.5.10
   resolution: "url-parse@npm:1.5.10"
   dependencies:
