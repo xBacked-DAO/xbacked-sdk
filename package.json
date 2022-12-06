@@ -5,7 +5,7 @@
   "main": "lib/cjs/index",
   "module": "lib/esm/index",
   "types": "lib/types/index",
-  "packageManager": "yarn@3.1.0",
+  "packageManager": "yarn@3.3.0",
   "files": [
     "lib/**/*"
   ],
