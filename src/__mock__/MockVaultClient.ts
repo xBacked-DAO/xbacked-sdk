@@ -93,7 +93,7 @@ class MockVaultClient extends VaultClient {
             replenishSupply: trueFunc,
             setAdminProperties: trueFunc,
             updateAdminAddress: trueFunc,
-          }
+          },
         },
       };
     });
