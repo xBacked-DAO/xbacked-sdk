@@ -1,11 +1,11 @@
 {
   "name": "@xbacked-dao/xbacked-sdk",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Official SDK for the xBacked Protocol",
   "main": "lib/cjs/index",
   "module": "lib/esm/index",
   "types": "lib/types/index",
-  "packageManager": "yarn@3.1.0",
+  "packageManager": "yarn@3.3.0",
   "files": [
     "lib/**/*"
   ],
@@ -61,9 +61,9 @@
   "dependencies": {
     "@babel/types": "^7.16.0",
     "@randlabs/myalgo-connect": "^1.1.1",
-    "@reach-sh/stdlib": "0.1.12-rc.9",
+    "@reach-sh/stdlib": "0.1.13-rc.0",
     "@types/jsdom": "^16.2.13",
-    "@xbacked-dao/xbacked-contracts": "0.0.26",
+    "@xbacked-dao/xbacked-contracts": "file:../xbacked-contracts/dist",
     "awesome-typescript-loader": "^5.2.1",
     "aws-sdk": "^2.1226.0",
     "axios": "^0.26.0",
