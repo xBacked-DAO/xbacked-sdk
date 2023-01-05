@@ -209,7 +209,6 @@ export class VaultClient extends Account {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(this.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
-    console.log(params)
     const res = await put.createVault({
       initialCollateral: convertToMicroUnits(params.collateral, this.asaVault ? this.asaVault.decimals : undefined),
       initialVaultDebt: convertToMicroUnits(params.mintAmount),
