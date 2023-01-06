@@ -1,3 +1,5 @@
+.yarn/cache
+.yarn/*.gz
 !.yarn/releases/*
 # Logs
 logs
@@ -107,7 +109,6 @@ dist
 
 # Lib Folder
 /lib
-/.yarn
 /_bundles
 
 .reach
