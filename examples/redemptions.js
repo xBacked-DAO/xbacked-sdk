@@ -33,6 +33,7 @@ dotenv.config();
           amountToRedeem: 10,
           minimumPrice: 1,
           maximumPrice: 1,
+          targetVault: proposedAddress,
         });
           console.log(isVaultRedeemed);
           break;
