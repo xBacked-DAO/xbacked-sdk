@@ -163,10 +163,12 @@ export const calculateInterestAccrued = (
 
 // Reach encodes box names following this method: https://docs.reach.sh/networks/#p_8
 export const addrFromBox = (box: any) => {
+  // need to deep copy because otherwise the origial box will be mutated, which the user may not expect
+  const deepCopy = new Uint8Array(box.name.toString().split(','));
   // reverse the bytes so the MapIndex is the last byte
-  box.name.reverse();
+  deepCopy.reverse();
   // remove the last byte in the array
-  const addrBytes = box.name.slice(0, -1);
+  const addrBytes = deepCopy.slice(0, -1);
   // reverse back to original order
   addrBytes.reverse();
   return encodeAddress(addrBytes);
