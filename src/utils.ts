@@ -1,5 +1,6 @@
 // @ts-ignore
 import { vault as vaultBackend, stabilityPool } from '@xbacked-dao/xbacked-contracts';
+import { encodeAddress } from 'algosdk';
 
 const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
 const INTEREST_RATE_DENOMINATOR = 100000000000;
@@ -136,15 +137,15 @@ export const getAllAccounts = async (
   nextToken: string,
 ): Promise<any[]> => {
   if (accounts.length > 0 && nextToken) {
-    const retrievedVaults = await indexer.searchAccounts().applicationID(applicationId).nextToken(nextToken).do();
+    const retrievedVaults = await indexer.searchForApplicationBoxes(applicationId).nextToken(nextToken).do();
     const updatedAccounts = accounts.concat(retrievedVaults.accounts);
     return getAllAccounts(applicationId, indexer, updatedAccounts, retrievedVaults['next-token']);
     // eslint-disable-next-line
   } else if (accounts.length > 0 && !nextToken) {
     return Promise.resolve(accounts);
   }
-  const initialVaults = await indexer.searchAccounts().applicationID(applicationId).do();
-  return getAllAccounts(applicationId, indexer, initialVaults.accounts, initialVaults['next-token']);
+  const initialVaults = await indexer.searchForApplicationBoxes(applicationId).do();
+  return getAllAccounts(applicationId, indexer, initialVaults.boxes, initialVaults['next-token']);
 };
 
 export const calculateInterestAccrued = (
@@ -159,6 +160,19 @@ export const calculateInterestAccrued = (
   const interestAccrued = (interestRateOverTimePassed * vaultDebt) / INTEREST_RATE_DENOMINATOR;
   return interestAccrued;
 };
+
+// Reach encodes box names following this method: https://docs.reach.sh/networks/#p_8
+export const addrFromBox = (box: any) => {
+  // need to deep copy because otherwise the origial box will be mutated, which the user may not expect
+  const deepCopy = new Uint8Array(box.name.toString().split(','));
+  // reverse the bytes so the MapIndex is the last byte
+  deepCopy.reverse();
+  // remove the last byte in the array
+  const addrBytes = deepCopy.slice(0, -1);
+  // reverse back to original order
+  addrBytes.reverse();
+  return encodeAddress(addrBytes);
+}
 
 export const backends = {
   vault: vaultBackend,
