@@ -1,6 +1,6 @@
 // @ts-ignore
 import { vault as vaultBackend, stabilityPool } from '@xbacked-dao/xbacked-contracts';
-import { encodeAddress } from 'algosdk';
+import { decodeAddress, encodeAddress } from 'algosdk';
 
 const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
 const INTEREST_RATE_DENOMINATOR = 100000000000;
@@ -179,6 +179,14 @@ export const addrFromBox = (box: any) => {
   // reverse back to original order
   addrBytes.reverse();
   return encodeAddress(addrBytes);
+}
+
+export const addrToBox = (addr: string) => {
+  const addrBytes = decodeAddress(addr).publicKey;
+  // add a byte to the first position of the array indicating the MapIndex
+  // Reach encodes box names following this method: https://docs.reach.sh/networks/#p_8
+  const boxBytes = new Uint8Array([0, ...addrBytes]);
+  return Buffer.from(boxBytes).toString('base64');
 }
 
 export const backends = {
