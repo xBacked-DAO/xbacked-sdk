@@ -304,14 +304,6 @@ export class VaultClient extends Account {
       });
     }
 
-    if (params.updatePriceCallback !== undefined) {
-      await announcer.priceChange.seekNow();
-      announcer.priceChange.monitor((event: any) => {
-        const address: string = this.reachStdLib.formatAddress(event.what[0]);
-        const newPrice = event.what[1];
-        params.updatePriceCallback(address, newPrice);
-      });
-    }
   }
 
   /**
