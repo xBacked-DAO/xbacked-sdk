@@ -18,12 +18,12 @@ export const VAULTS = {
       liquidatorDiscount: 0.045,
     },
   },
-  MainNet: {
-    algo: {
-      vaultId: 1008909422,
-      liquidatorDiscount: 0.05,
-    },
-  },
+  MainNet:{
+    algo:{
+      vaultId: 1012903350,
+      liquidatorDiscount: 0.05
+    }
+  }
 };
 
 /**
