@@ -38,8 +38,7 @@ class MockVaultClient extends VaultClient {
                     contractState: bigNumberMock(0),
                     feeStructure: [bigNumberMock(1), bigNumberMock(5), bigNumberMock(50), bigNumberMock(50)],
                     minimumDebtAmount: bigNumberMock(10),
-                    // TODO: re rc-0.0.25
-                    // maximumCollateralValue: bigNumberMock(1000),
+                    maximumCollateralValue: bigNumberMock(10000),
                   },
                   addresses: {
                     govStakersAddress: '0x128a983f12324311e7f85264e9d92e5d02cf9cc87e3cc2ae13095673bd0e05f7',

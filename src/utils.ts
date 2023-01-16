@@ -24,7 +24,6 @@ export const VAULTS = {
       liquidatorDiscount: 0.05
     }
   }
-
 };
 
 /**
@@ -179,7 +178,7 @@ export const addrFromBox = (box: any) => {
   // reverse back to original order
   addrBytes.reverse();
   return encodeAddress(addrBytes);
-}
+};
 
 export const addrToBox = (addr: string) => {
   const addrBytes = decodeAddress(addr).publicKey;
@@ -187,7 +186,7 @@ export const addrToBox = (addr: string) => {
   // Reach encodes box names following this method: https://docs.reach.sh/networks/#p_8
   const boxBytes = new Uint8Array([0, ...addrBytes]);
   return Buffer.from(boxBytes).toString('base64');
-}
+};
 
 export const backends = {
   vault: vaultBackend,
