@@ -303,7 +303,6 @@ export class VaultClient extends Account {
         params.transactionCallback(address, vaultState);
       });
     }
-
   }
 
   /**
