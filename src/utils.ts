@@ -67,16 +67,17 @@ export const calcMaxDebtPayout = (
   decimals: number,
   minimumCollateralRatio: number,
   discountRate: number,
-): number => {
-  const discountRateInv = 1 - discountRate;
+) => {
+  minimumCollateralRatio = minimumCollateralRatio / 10 ** 6;
+  const discountAmt = Math.floor(collateralPrice * discountRate);
+  const discountPrice = collateralPrice - discountAmt;
+  const discountedCollateralValue = collateral * discountPrice / 10 ** decimals;
 
-  const collateralValue = convertFromMicroUnits(collateral, decimals) * convertFromMicroUnits(collateralPrice);
-  const discountedCollateralValue = discountRateInv * collateralValue;
-  const debtWithPremium = discountRateInv * (minimumCollateralRatio - 0.01) * convertFromMicroUnits(vaultDebt);
-  const maxPayment =
-    (discountedCollateralValue - debtWithPremium) / (discountRateInv * (minimumCollateralRatio - 0.01) - 1);
+  const maxDebtPayout = Math.abs(Math.floor((discountedCollateralValue - minimumCollateralRatio * vaultDebt +
+    minimumCollateralRatio * discountRate * vaultDebt) /
+    (-minimumCollateralRatio + minimumCollateralRatio * discountRate + 1)));
 
-  return Math.abs(maxPayment);
+  return maxDebtPayout;
 };
 
 /**
