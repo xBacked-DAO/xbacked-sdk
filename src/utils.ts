@@ -17,6 +17,10 @@ export const VAULTS = {
       vaultId: 152242747,
       liquidatorDiscount: 0.045,
     },
+    test:{
+      vaultId: 157723693,
+      liquidatorDiscount: 3.5
+    }
   },
   MainNet:{
     algo:{
