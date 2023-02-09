@@ -27,27 +27,6 @@ export interface AccountInterface {
   };
 }
 
-export interface StakeGlobalView {
-  stakingAssetID: number;
-  policy: {
-    status: number;
-    rewardMethod: number;
-    rewardRate: number;
-    applicationType: number;
-    time: number;
-  };
-  totalStake: number;
-  totalRewards: number;
-  totalUsers: number;
-}
-
-export interface StakeLocalView {
-  amountStaked: number;
-  rewardsClaimed: number;
-  lastClaim: number;
-  found: boolean;
-}
-
 export interface VaultReturnParams {
   LIQUIDATION_COLLATERAL_RATIO: number;
   MINIMUM_COLLATERAL_RATIO: number;
@@ -82,7 +61,7 @@ export interface ReachUserVault {
   liquidating: boolean;
   /** @property The debt in a vault */
   vaultDebt: number;
-  /** @property Inidicator that signifies if a vault can be redeemed */
+  /** @property Indicator that signifies if a vault can be redeemed */
   redeemable: boolean;
   /** @property the timestamp of the last time interest accrued for a specific vault */
   lastAccruedInterestTime: number;
@@ -92,8 +71,9 @@ export interface UserVaultReturnParams extends ReachUserVault {
   /** @property Indicator that signifies that a vault exists for a particular address */
   vaultFound: boolean;
 }
+
 /**
- * parameters used to instantiate the Contract constructor
+ * Parameters used to instantiate the Contract constructor
  */
 export interface VaultParameters {
   /**  @property Unique identifier for the contract */
@@ -114,7 +94,7 @@ export enum ContractState {
 }
 
 /**
- * parameters used to indicate the new admin properties to be set.
+ * Parameters used to indicate the new admin properties to be set.
  */
 export interface AdminProperties {
   /**  @property A valid [[ContractState]] */
@@ -129,4 +109,95 @@ export interface AdminProperties {
   feeStructure: number[];
   minimumDebtAmount: number;
   maximumCollateralValue: number;
+}
+
+/**
+ * Definitions related to the MasterStaking contract.
+ */
+export interface MasterStakingInitializationParameters {
+  stakingASAInfo: [number, number];
+  rewardASAInfo?: [number, number][];
+  initialDeprecateTimeout: number;
+  initialDeprecateAt: number;
+  initialRewardRatios: number[];
+  initialRewardRate: number;
+  initialRewards: number[];
+}
+
+export interface MasterStakingConfigurationParams {
+  adminAddress: string;
+  deprecateTimeout: number;
+  deprecateAt: number;
+  rewardRatios: number[];
+  rewardRate: number;
+}
+
+export interface MasterStakingColdState {
+  stakingASA: number;
+  stakingASADecimals: number;
+  rewardASAs?: number[];
+  rewardASADecimals?: number[];
+  assetScaleInfos: [boolean, number][];
+}
+
+export interface MasterStakingHotState extends MasterStakingConfigurationParams {
+  remainingRewards: number[];
+  totalRewards: number;
+  totalDeposit: number;
+  lastRewardBlock: number;
+  rewardPerToken: number;
+}
+
+export interface MasterStakingGlobalView extends MasterStakingColdState, MasterStakingHotState {}
+
+export interface MasterStakingUserState {
+  amountDeposited: number;
+  rewardPerTokenPaid: number;
+  rewards: number;
+}
+
+/**
+ * Definitions related to the StabilityPool contract.
+ */
+export interface StabilityPoolInitializationParameters {
+  stakingASAInfo: [number, number];
+  rewardASAInfo?: [number, number];
+  initialRemoteContract: [number, number];
+  initialDeprecateTimeout: number;
+  initialDeprecateAt: number;
+  initialLiquidationFee: number;
+  initialRewardRate: number;
+  initialRewards: number;
+}
+
+export interface StabilityPoolConfigurationParams {
+  adminAddress: string;
+  remoteContract: [number, number];
+  deprecateTimeout: number;
+  deprecateAt: number;
+  liquidationFee: number;
+  rewardRate: number;
+}
+
+export interface StabilityPoolColdState {
+  stakingASA: number;
+  stakingASADecimals: number;
+  rewardASA?: number;
+  rewardASADecimals?: number;
+}
+
+export interface StabilityPoolHotState extends StabilityPoolConfigurationParams {
+  remainingStakingRewards: number;
+  remainingLiquidationRewards: number;
+  totalDeposit: number;
+  lastRewardBlock: number;
+  rewardPerToken: number;
+}
+
+export interface StabilityPoolGlobalView extends StabilityPoolColdState, StabilityPoolHotState {}
+
+export interface StabilityPoolUserState {
+  amountDeposited: number;
+  rewardPerTokenPaid: number;
+  rewards: number;
 }
