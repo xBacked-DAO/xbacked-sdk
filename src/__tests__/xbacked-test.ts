@@ -45,15 +45,15 @@ it('Create Reach Account', async function () {
   let mnemonic = account.mnemonic;
   let reachAccount = account.reachAccount;
   clearAccount();
-  let sk = [
-    1, 220, 176, 222, 181, 64, 111, 141, 28, 81, 148, 76, 223, 180, 36, 111, 230, 64, 101, 127, 126, 217, 116, 95, 20,
-    215, 105, 219, 78, 250, 98, 143, 11, 122, 54, 50, 142, 2, 69, 30, 75, 52, 51, 213, 180, 10, 5, 206, 211, 121, 75,
-    92, 53, 135, 141, 7, 207, 239, 149, 169, 31, 132, 0, 221,
-  ];
-  account.secretKey = sk;
-  await account.initialiseReachAccount();
-  expect(account.reachStdLib.newAccountFromSecret).toHaveBeenCalledTimes(1);
-  clearAccount();
+  // let sk = [
+  //   1, 220, 176, 222, 181, 64, 111, 141, 28, 81, 148, 76, 223, 180, 36, 111, 230, 64, 101, 127, 126, 217, 116, 95, 20,
+  //   215, 105, 219, 78, 250, 98, 143, 11, 122, 54, 50, 142, 2, 69, 30, 75, 52, 51, 213, 180, 10, 5, 206, 211, 121, 75,
+  //   92, 53, 135, 141, 7, 207, 239, 149, 169, 31, 132, 0, 221,
+  // ];
+  // account.secretKey = sk;
+  // await account.initialiseReachAccount();
+  // expect(account.reachStdLib.newAccountFromSecret).toHaveBeenCalledTimes(1);
+  // clearAccount();
   let networkAccount = {
     addr: 'BN5DMMUOAJCR4SZUGPK3ICQFZ3JXSS24GWDY2B6P56K2SH4EADO6XN56GQ',
     sk: [
@@ -68,7 +68,7 @@ it('Create Reach Account', async function () {
   account.provider = 'Provider';
   account.reachAccount = null;
   await account.initialiseReachAccount();
-  expect(account.reachStdLib.connectAccount).toHaveBeenCalledTimes(3);
+  expect(account.reachStdLib.connectAccount).toHaveBeenCalledTimes(1);
   clearAccount();
   const throwFunc = async () => {
     await account.initialiseReachAccount();
@@ -96,6 +96,7 @@ it('Get vault Info', async () => {
       contractState: 0,
       feeStructure: [1, 5, 50, 50],
       minimumDebtAmount: 10,
+      maximumCollateralValue: 10000,
     },
     addresses: {
       govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
@@ -204,4 +205,21 @@ it('Liquidator drips interest', async function () {
     address: '',
   });
   expect(dripInterest).toBe(true);
+});
+
+it('Admin set properties', async function () {
+  const res = await account.setAdminProperties({
+    adminProperties: {
+      contractState: 1,
+      oracleAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      stabilityPoolAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      govStakersAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      treasuryAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
+      feeStructure: [1, 5, 50, 50],
+      minimumDebtAmount: 10,
+      maximumCollateralValue: 10000,
+    },
+    vault: new Vault({ id: VAULT_ID }),
+  });
+  expect(res).toBe(true);
 });

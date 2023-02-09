@@ -43,6 +43,7 @@ export interface VaultReturnParams {
     contractState?: number;
     feeStructure: number[];
     minimumDebtAmount: number;
+    maximumCollateralValue: number;
   };
   addresses: {
     govStakersAddress: string;
@@ -72,7 +73,7 @@ export interface UserVaultReturnParams extends ReachUserVault {
 }
 
 /**
- * parameters used to instantiate the Contract constructor
+ * Parameters used to instantiate the Contract constructor
  */
 export interface VaultParameters {
   /**  @property Unique identifier for the contract */
@@ -84,11 +85,38 @@ export interface VaultParameters {
 }
 
 /**
+ * Valid contract states
+ */
+export enum ContractState {
+  NORMAL = 0,
+  DEPRECATED = 1,
+  PAUSED = 2,
+}
+
+/**
+ * Parameters used to indicate the new admin properties to be set.
+ */
+export interface AdminProperties {
+  /**  @property A valid [[ContractState]] */
+  contractState: ContractState;
+  oracleAddress: string;
+  stabilityPoolAddress: string;
+  govStakersAddress: string;
+  treasuryAddress: string;
+  /**  @property A number array(4) of the form
+   * [FEE_COLLECTOR_FEE, LIQUIDATION_FEE, STABILITY_POOL_SPLIT, GOV_STAKERS_SPLIT]
+   */
+  feeStructure: number[];
+  minimumDebtAmount: number;
+  maximumCollateralValue: number;
+}
+
+/**
  * Definitions related to the MasterStaking contract.
  */
 export interface MasterStakingInitializationParameters {
   stakingASAInfo: [number, number];
-  rewardASAInfo: [number, number][];
+  rewardASAInfo?: [number, number][];
   initialDeprecateTimeout: number;
   initialDeprecateAt: number;
   initialRewardRatios: number[];
@@ -96,7 +124,7 @@ export interface MasterStakingInitializationParameters {
   initialRewards: number[];
 }
 
-export interface MasterStakingAdminParameters {
+export interface MasterStakingConfigurationParams {
   adminAddress: string;
   deprecateTimeout: number;
   deprecateAt: number;
@@ -107,12 +135,12 @@ export interface MasterStakingAdminParameters {
 export interface MasterStakingColdState {
   stakingASA: number;
   stakingASADecimals: number;
-  rewardASAs: number[];
-  rewardASADecimals: number[];
+  rewardASAs?: number[];
+  rewardASADecimals?: number[];
   assetScaleInfos: [boolean, number][];
 }
 
-export interface MasterStakingHotState extends MasterStakingAdminParameters {
+export interface MasterStakingHotState extends MasterStakingConfigurationParams {
   remainingRewards: number[];
   totalRewards: number;
   totalDeposit: number;
@@ -133,6 +161,7 @@ export interface MasterStakingUserState {
  */
 export interface StabilityPoolInitializationParameters {
   stakingASAInfo: [number, number];
+  rewardASAInfo?: [number, number];
   initialRemoteContract: [number, number];
   initialDeprecateTimeout: number;
   initialDeprecateAt: number;
@@ -141,7 +170,7 @@ export interface StabilityPoolInitializationParameters {
   initialRewards: number;
 }
 
-export interface StabilityPoolAdminParameters {
+export interface StabilityPoolConfigurationParams {
   adminAddress: string;
   remoteContract: [number, number];
   deprecateTimeout: number;
@@ -150,19 +179,14 @@ export interface StabilityPoolAdminParameters {
   rewardRate: number;
 }
 
-export interface StabilityPoolUserState {
-  amountDeposited: number;
-  rewardPerTokenPaid: number;
-  stakingRewards: number;
-  liquidationRewards: number;
-}
-
 export interface StabilityPoolColdState {
   stakingASA: number;
   stakingASADecimals: number;
+  rewardASA?: number;
+  rewardASADecimals?: number;
 }
 
-export interface StabilityPoolHotState extends StabilityPoolAdminParameters {
+export interface StabilityPoolHotState extends StabilityPoolConfigurationParams {
   remainingStakingRewards: number;
   remainingLiquidationRewards: number;
   totalDeposit: number;
@@ -171,3 +195,9 @@ export interface StabilityPoolHotState extends StabilityPoolAdminParameters {
 }
 
 export interface StabilityPoolGlobalView extends StabilityPoolColdState, StabilityPoolHotState {}
+
+export interface StabilityPoolUserState {
+  amountDeposited: number;
+  rewardPerTokenPaid: number;
+  rewards: number;
+}

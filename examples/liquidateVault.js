@@ -18,8 +18,8 @@ dotenv.config();
       debtAmount: 30,
       vault,
       dripInterest: true,
-      minimumPrice: 0.5,
-      maximumPrice: 0.5});
+      minimumPrice: 1,
+      maximumPrice: 1});
     console.log(`isVaultLiquidated: ${isVaultLiquidated}`);
   } catch (error) {
     console.error(error);
