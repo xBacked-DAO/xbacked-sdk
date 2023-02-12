@@ -17,11 +17,11 @@ export const VAULTS = {
       vaultId: 152242747,
       liquidatorDiscount: 0.045,
     },
-    gobtc:{
-      vaultId: 157723693,
+    dAlgo:{
+      vaultId: 158389376,
       liquidatorDiscount: 3.5,
-      assetId: 157723670,
-      assetDecimals: 8
+      assetId: 158389363,
+      assetDecimals: 6
     }
   },
   MainNet:{
