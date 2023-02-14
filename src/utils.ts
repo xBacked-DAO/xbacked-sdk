@@ -17,7 +17,7 @@ export const VAULTS = {
       vaultId: 152242747,
       liquidatorDiscount: 0.045,
     },
-    dAlgo:{
+    gAlgo:{
       vaultId: 158389376,
       liquidatorDiscount: 3.5,
       assetId: 158389363,

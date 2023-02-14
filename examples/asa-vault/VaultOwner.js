@@ -9,7 +9,7 @@ dotenv.config();
   VAULTS.TestNet.algo.vaultId;
   console.log(VAULT_ID);
   const STABLECOIN = process.env.STABLE_COIN;
-  const COLLATERALTOKEN = process.env.COLLATERAL_TOKEN;
+  const COLLATERAL_TOKEN = process.env.COLLATERAL_TOKEN;
   const acc = new VaultClient({mnemonic,
     network: 'TestNet', asaVault: {decimals: 8}});
   while (true) {
