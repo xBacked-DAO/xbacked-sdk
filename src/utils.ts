@@ -19,7 +19,7 @@ export const VAULTS = {
     },
     gAlgo:{
       vaultId: 159486489,
-      liquidatorDiscount: 3.5,
+      liquidatorDiscount: 0.035,
       assetId: 159486474,
       assetDecimals: 6
     },
