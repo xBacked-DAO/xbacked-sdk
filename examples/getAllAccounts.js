@@ -5,11 +5,11 @@ dotenv.config();
 
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.TestNet.algo.vaultId;
+  const VAULT_ID = VAULTS.MainNet.algo.vaultId;
   const INDEXER_TOKEN = process.env.INDEXER_TOKEN;
   const account = new VaultClient({
     mnemonic,
-    network: 'TestNet',
+    network: 'MainNet',
   });
   const vault = new Vault({id: VAULT_ID});
   const reach = loadStdlib('ALGO');
@@ -18,7 +18,7 @@ dotenv.config();
       // indexer key
       token,
       // indexer url
-      'https://algoindexer.testnet.algoexplorerapi.io',
+      'https://mainnet-api.algonode.network',
       // indexer port
       '',
   );

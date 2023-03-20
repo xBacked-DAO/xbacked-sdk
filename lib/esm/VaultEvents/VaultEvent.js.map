@@ -1,0 +1,1 @@
+{"version":3,"file":"VaultEvent.js","sourceRoot":"","sources":["../../../src/VaultEvents/VaultEvent.ts"],"names":[],"mappings":"AAAA,qCAAqC;AACrC,MAAM,CAAC,OAAO,OAAO,UAAU;IAM7B,YAAY,KAAa,EAAE,KAAa;QACtC,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;QACnB,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACrB,CAAC;CAIF"}

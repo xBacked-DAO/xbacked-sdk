@@ -108,7 +108,7 @@ dist
 **/docs
 
 # Lib Folder
-/lib
+# /lib
 /_bundles
 
 .reach

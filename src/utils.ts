@@ -17,11 +17,23 @@ export const VAULTS = {
       vaultId: 152242747,
       liquidatorDiscount: 0.045,
     },
+    gAlgo:{
+      vaultId: 159615312,
+      liquidatorDiscount: 0.10,
+      assetId: 159613406,
+      assetDecimals: 6
+    },
   },
   MainNet:{
     algo:{
       vaultId: 1012903350,
       liquidatorDiscount: 0.05
+    },
+    gAlgo:{
+      vaultId:1065042555,
+      liquidatorDiscount: 0.10,
+      assetId: 793124631,
+      assetDecimals: 6
     }
   }
 };

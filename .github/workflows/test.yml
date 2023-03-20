@@ -19,15 +19,15 @@ jobs:
         npm install -g yarn
         yarn set version 3.3.0
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '14'
         cache: 'yarn'
     - run: |
        yarn config set cacheFolder $(pwd)/.yarn/cache
-       yarn config set npmScopes.xbacked-dao.npmAuthToken $NODE_AUTH_TOKEN
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      #  yarn config set npmScopes.xbacked-dao.npmAuthToken $NODE_AUTH_TOKEN
+      # env:
+      #   NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     - run: YARN_CHECKSUM_BEHAVIOR=ignore yarn install --immutable
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
