@@ -16,6 +16,12 @@ export declare const VAULTS: {
             vaultId: number;
             liquidatorDiscount: number;
         };
+        gAlgo: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+        };
     };
 };
 /**
