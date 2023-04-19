@@ -17,25 +17,31 @@ export const VAULTS = {
       vaultId: 152242747,
       liquidatorDiscount: 0.045,
     },
-    gAlgo:{
+    gAlgo: {
       vaultId: 159615312,
-      liquidatorDiscount: 0.10,
+      liquidatorDiscount: 0.1,
       assetId: 159613406,
-      assetDecimals: 6
+      assetDecimals: 6,
+    },
+    meldGold: {
+      vaultId: 200641557,
+      liquidatorDiscount: 0.1,
+      assetId: 195364510,
+      assetDecimals: 6,
     },
   },
-  MainNet:{
-    algo:{
+  MainNet: {
+    algo: {
       vaultId: 1012903350,
-      liquidatorDiscount: 0.05
+      liquidatorDiscount: 0.05,
     },
-    gAlgo:{
-      vaultId:1065042555,
-      liquidatorDiscount: 0.10,
+    gAlgo: {
+      vaultId: 1065042555,
+      liquidatorDiscount: 0.1,
       assetId: 793124631,
-      assetDecimals: 6
-    }
-  }
+      assetDecimals: 6,
+    },
+  },
 };
 
 /**
@@ -83,11 +89,16 @@ export const calcMaxDebtPayout = (
   minimumCollateralRatio = minimumCollateralRatio / 10 ** 6;
   const discountAmt = Math.floor(collateralPrice * discountRate);
   const discountPrice = collateralPrice - discountAmt;
-  const discountedCollateralValue = collateral * discountPrice / 10 ** decimals;
+  const discountedCollateralValue = (collateral * discountPrice) / 10 ** decimals;
 
-  const maxDebtPayout = Math.abs(Math.floor((discountedCollateralValue - minimumCollateralRatio * vaultDebt +
-    minimumCollateralRatio * discountRate * vaultDebt) /
-    (-minimumCollateralRatio + minimumCollateralRatio * discountRate + 1)));
+  const maxDebtPayout = Math.abs(
+    Math.floor(
+      (discountedCollateralValue -
+        minimumCollateralRatio * vaultDebt +
+        minimumCollateralRatio * discountRate * vaultDebt) /
+        (-minimumCollateralRatio + minimumCollateralRatio * discountRate + 1),
+    ),
+  );
 
   return maxDebtPayout;
 };
