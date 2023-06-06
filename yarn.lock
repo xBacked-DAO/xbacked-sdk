@@ -1201,9 +1201,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reach-sh/stdlib@npm:0.1.13-rc.0":
-  version: 0.1.13-rc.0
-  resolution: "@reach-sh/stdlib@npm:0.1.13-rc.0"
+"@reach-sh/stdlib@npm:0.1.13-rc.3":
+  version: 0.1.13-rc.3
+  resolution: "@reach-sh/stdlib@npm:0.1.13-rc.3"
   dependencies:
     algosdk: ^1.23.2
     await-timeout: ^0.6.0
@@ -1216,7 +1216,7 @@ __metadata:
     tslib: ^2.3.1
     url-parse: ^1.5.10
     wait-port: ^0.2.9
-  checksum: 2e83bbfa3e33add57dd785a06a442ca6003e6da77afc82ce3bedd97cfe2ce8a2dbb64804c232e83a3ac0f07fb5fb7ff943c13304ce6579853cdc08187deae341
+  checksum: f4ffcd37b207675e40994a566ab46c32aaa5ccf929df1322a5953de5b17dc2950229f235d42be7c6f255865c7838703a1866e13f733ed7417484de4218eb600c
   languageName: node
   linkType: hard
 
@@ -1638,11 +1638,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:1.0.2":
-  version: 1.0.2
-  resolution: "@xbacked-dao/xbacked-contracts@npm:1.0.2"
+"@xbacked-dao/xbacked-contracts@npm:1.0.5":
+  version: 1.0.5
+  resolution: "@xbacked-dao/xbacked-contracts@npm:1.0.5"
   dependencies:
-    "@reach-sh/stdlib": 0.1.13-rc.0
+    "@reach-sh/stdlib": 0.1.13-rc.3
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
@@ -1654,7 +1654,7 @@ __metadata:
     yargs: ^17.3.1
   peerDependencies:
     "@reach-sh/stdlib": 0.1.13-rc.0
-  checksum: 5c56b385092f58a5dece6fbbab4fbdfda37eb22dccb2918dad04847234df52cb2612f9041350301f35c21ac09621af0ae3978e8084ed62c73c6259014aa2c965
+  checksum: 913730bd26f08d0d3a06ea65f9088d81c36ee592f132e499c8d8ba18d854e9b8e0258dc557e6073e4c031cc1f212783298373e4545d88239388e679b4e503f91
   languageName: node
   linkType: hard
 
@@ -1665,12 +1665,12 @@ __metadata:
     "@babel/types": ^7.16.0
     "@jest/globals": ^27.4.6
     "@randlabs/myalgo-connect": ^1.1.1
-    "@reach-sh/stdlib": 0.1.13-rc.0
+    "@reach-sh/stdlib": 0.1.13-rc.3
     "@types/await-timeout": ^0.3.1
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 1.0.2
+    "@xbacked-dao/xbacked-contracts": 1.0.5
     algosdk: ^2.0.0
     awesome-typescript-loader: ^5.2.1
     aws-sdk: ^2.1226.0

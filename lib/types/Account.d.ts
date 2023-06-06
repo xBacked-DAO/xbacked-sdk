@@ -24,6 +24,7 @@ export declare class Account {
     /** @property An optional object used to interact with ASA vaults with varying decimals */
     asaVault?: {
         decimals: number;
+        z_p_f_vault?: boolean;
     };
     constructor(params: AccountInterface);
     /**
