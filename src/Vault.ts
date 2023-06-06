@@ -1,5 +1,5 @@
 import { Account } from './Account';
-import { vault as vaultBackend, vaultAsa } from '@xbacked-dao/xbacked-contracts';
+import { vault as vaultBackend, vaultAsa, z_p_f_vaultAsa } from '@xbacked-dao/xbacked-contracts';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
 /**
  * The Parameters returned from the staate of a contract
@@ -13,9 +13,16 @@ export class Vault {
   backend: any;
   constructor(params: VaultParameters) {
     this.id = params.id;
-    params?.asaVault?.decimals ? (this.backend = vaultAsa) : (this.backend = vaultBackend);
+    if (params?.asaVault?.decimals) {
+      if(params?.asaVault?.z_p_f_vault){
+        this.backend = z_p_f_vaultAsa;
+      }else{
+        this.backend = vaultAsa;
+      }
+    } else {
+      this.backend = vaultBackend;
+    }
   }
-
   /**
    * Used to get the state of the contract
    * @param params Contains key account of type [[Account]] that will be used to read state from the contract
