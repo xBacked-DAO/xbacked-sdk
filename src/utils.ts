@@ -24,9 +24,9 @@ export const VAULTS = {
       assetDecimals: 6,
     },
     meldGold: {
-      vaultId: 200641557,
+      vaultId: 228836290,
       liquidatorDiscount: 0.1,
-      assetId: 195364510,
+      assetId: 228836101,
       assetDecimals: 6,
     },
   },

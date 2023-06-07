@@ -23,6 +23,7 @@ export interface AccountInterface {
     networkAccount?: any;
     asaVault?: {
         decimals: number;
+        z_p_f_vault_asa?: boolean;
     };
 }
 export interface StakeGlobalView {
