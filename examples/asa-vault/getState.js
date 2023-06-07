@@ -13,7 +13,7 @@ dotenv.config();
     asaVault: {decimals: 6},
   });
   console.log(await account.getAddress());
-  const vault = new Vault({id: VAULT_ID, asaVault: {decimals: 8}});
+  const vault = new Vault({id: VAULT_ID, asaVault: {decimals: 8, z_p_f_vault_asa: true}});
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(
