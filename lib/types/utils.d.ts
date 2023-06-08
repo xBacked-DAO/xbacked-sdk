@@ -16,6 +16,12 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
         };
+        silver$: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+        };
     };
     MainNet: {
         algo: {

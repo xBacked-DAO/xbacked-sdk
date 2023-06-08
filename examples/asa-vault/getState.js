@@ -5,11 +5,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.meldGold.vaultId;
+  const VAULT_ID = VAULTS.TestNet.silver$.vaultId;
   console.log(VAULT_ID);
   const account = new VaultClient({
     mnemonic,
-    network: 'MainNet',
+    network: 'TestNet',
     asaVault: {decimals: 6},
   });
   console.log(await account.getAddress());
