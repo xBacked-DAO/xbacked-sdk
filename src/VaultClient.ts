@@ -10,7 +10,7 @@ export class VaultClient extends Account {
   constructor(params: AccountInterface) {
     super(params);
     if (params?.asaVault?.decimals) {
-      if(params?.asaVault?.z_p_f_vault){
+      if(params?.asaVault?.z_p_f_vault_asa){
         this.backend = z_p_f_vaultAsa;
       }else{
         this.backend = vaultAsa;

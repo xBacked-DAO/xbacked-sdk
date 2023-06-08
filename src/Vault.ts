@@ -14,7 +14,7 @@ export class Vault {
   constructor(params: VaultParameters) {
     this.id = params.id;
     if (params?.asaVault?.decimals) {
-      if(params?.asaVault?.z_p_f_vault){
+      if(params?.asaVault?.z_p_f_vault_asa){
         this.backend = z_p_f_vaultAsa;
       }else{
         this.backend = vaultAsa;

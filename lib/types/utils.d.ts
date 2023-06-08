@@ -10,6 +10,12 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
         };
+        meldGold: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+        };
     };
     MainNet: {
         algo: {
@@ -17,6 +23,12 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
         };
         gAlgo: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+        };
+        meldGold: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
