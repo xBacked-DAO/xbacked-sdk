@@ -56,6 +56,13 @@ export const VAULTS = {
       assetDecimals: 6,
       z_p_f_vault_asa: true,
     },
+    silver$: {
+      vaultId: 1120776512,
+      liquidatorDiscount: 0.05,
+      assetId: 246519683,
+      assetDecimals: 6,
+      z_p_f_vault_asa: true,
+    },
   },
 };
 

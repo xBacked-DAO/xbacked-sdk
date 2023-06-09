@@ -15,12 +15,14 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
+            z_p_f_vault_asa: boolean;
         };
         silver$: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
+            z_p_f_vault_asa: boolean;
         };
     };
     MainNet: {
@@ -39,6 +41,14 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
+            z_p_f_vault_asa: boolean;
+        };
+        silver$: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            z_p_f_vault_asa: boolean;
         };
     };
 };
