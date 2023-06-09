@@ -28,6 +28,14 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       assetId: 228836101,
       assetDecimals: 6,
+      z_p_f_vault_asa: true,
+    },
+    silver$: {
+      vaultId: 230690513,
+      liquidatorDiscount: 0.01,
+      assetId: 230686227,
+      assetDecimals: 6,
+      z_p_f_vault_asa: true,
     },
   },
   MainNet: {
@@ -45,7 +53,15 @@ export const VAULTS = {
       vaultId: 1119611603,
       liquidatorDiscount: 0.05,
       assetId: 246516580,
-      assetDecimals: 6
+      assetDecimals: 6,
+      z_p_f_vault_asa: true,
+    },
+    silver$: {
+      vaultId: 1120776512,
+      liquidatorDiscount: 0.05,
+      assetId: 246519683,
+      assetDecimals: 6,
+      z_p_f_vault_asa: true,
     },
   },
 };
