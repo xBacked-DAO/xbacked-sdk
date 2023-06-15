@@ -24,7 +24,8 @@ export interface AccountInterface {
   networkAccount?: any;
   asaVault?: {
     decimals: number;
-    z_p_f_vault_asa?:boolean
+    z_p_f_vault_asa?: boolean;
+    large_cp_vault_asa?:boolean;
   };
 }
 
@@ -103,6 +104,7 @@ export interface VaultParameters {
   asaVault?: {
     decimals: number;
     z_p_f_vault_asa?: boolean;
+    large_cp_vault_asa?:boolean
   };
 }
 

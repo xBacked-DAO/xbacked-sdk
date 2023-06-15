@@ -5,12 +5,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.silver$.vaultId;
+  const VAULT_ID = VAULTS.TestNet.goBtc.vaultId;
   console.log(VAULT_ID);
   const account = new VaultClient({
     mnemonic,
-    network: 'MainNet',
-    asaVault: {decimals: 6},
+    network: 'TestNet',
+    asaVault: {decimals: 8},
   });
   console.log(await account.getAddress());
   const vault = new Vault({id: VAULT_ID, asaVault: {decimals: 8, z_p_f_vault_asa: true}});

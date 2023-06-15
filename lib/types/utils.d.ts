@@ -24,6 +24,20 @@ export declare const VAULTS: {
             assetDecimals: number;
             z_p_f_vault_asa: boolean;
         };
+        goBtc: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            large_cp_vault_asa: boolean;
+        };
+        goEth: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            large_cp_vault_asa: boolean;
+        };
     };
     MainNet: {
         algo: {
@@ -49,6 +63,20 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             z_p_f_vault_asa: boolean;
+        };
+        goBtc: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            large_cp_vault_asa: boolean;
+        };
+        goEth: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            large_cp_vault_asa: boolean;
         };
     };
 };
