@@ -1,5 +1,5 @@
 // @ts-ignore
-import { vault as vaultBackend, vaultAsa, z_p_f_vaultAsa } from '@xbacked-dao/xbacked-contracts';
+import { vault as vaultBackend, vaultAsa, z_p_f_vaultAsa, large_cp_vault_asa } from '@xbacked-dao/xbacked-contracts';
 import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 import { Account } from './Account';
@@ -12,6 +12,8 @@ export class VaultClient extends Account {
     if (params?.asaVault?.decimals) {
       if(params?.asaVault?.z_p_f_vault_asa){
         this.backend = z_p_f_vaultAsa;
+      }else if(params?.asaVault?.large_cp_vault_asa){
+        this.backend = large_cp_vault_asa;
       }else{
         this.backend = vaultAsa;
       }

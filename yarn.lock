@@ -1201,6 +1201,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@reach-sh/stdlib@npm:0.1.13-rc.0":
+  version: 0.1.13-rc.0
+  resolution: "@reach-sh/stdlib@npm:0.1.13-rc.0"
+  dependencies:
+    algosdk: ^1.23.2
+    await-timeout: ^0.6.0
+    ethers: ^5.7.2
+    express: ^4.17.3
+    hi-base32: ^0.5.1
+    jsbi: ^3.1.6
+    node-fetch: ^2.6.1
+    superagent: ^8.0.3
+    tslib: ^2.3.1
+    url-parse: ^1.5.10
+    wait-port: ^0.2.9
+  checksum: 2e83bbfa3e33add57dd785a06a442ca6003e6da77afc82ce3bedd97cfe2ce8a2dbb64804c232e83a3ac0f07fb5fb7ff943c13304ce6579853cdc08187deae341
+  languageName: node
+  linkType: hard
+
 "@reach-sh/stdlib@npm:0.1.13-rc.3":
   version: 0.1.13-rc.3
   resolution: "@reach-sh/stdlib@npm:0.1.13-rc.3"
@@ -1638,11 +1657,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@xbacked-dao/xbacked-contracts@npm:1.0.5"
+"@xbacked-dao/xbacked-contracts@npm:1.0.6":
+  version: 1.0.6
+  resolution: "@xbacked-dao/xbacked-contracts@npm:1.0.6"
   dependencies:
-    "@reach-sh/stdlib": 0.1.13-rc.3
+    "@reach-sh/stdlib": 0.1.13-rc.0
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
     bignumber.js: ^9.0.1
@@ -1654,7 +1673,7 @@ __metadata:
     yargs: ^17.3.1
   peerDependencies:
     "@reach-sh/stdlib": 0.1.13-rc.0
-  checksum: 913730bd26f08d0d3a06ea65f9088d81c36ee592f132e499c8d8ba18d854e9b8e0258dc557e6073e4c031cc1f212783298373e4545d88239388e679b4e503f91
+  checksum: fdb49266d43c68177f6cd197691968f28c4dce91c3b8b34e0dfc029b41e278f645a6dc1c5bd7c9245f5e754447fc2935fb9f4a5b77fa22ba7aa9c40acdb61f87
   languageName: node
   linkType: hard
 
@@ -1670,7 +1689,7 @@ __metadata:
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 1.0.5
+    "@xbacked-dao/xbacked-contracts": 1.0.6
     algosdk: ^2.0.0
     awesome-typescript-loader: ^5.2.1
     aws-sdk: ^2.1226.0

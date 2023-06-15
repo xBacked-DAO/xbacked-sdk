@@ -37,6 +37,20 @@ export const VAULTS = {
       assetDecimals: 6,
       z_p_f_vault_asa: true,
     },
+    goBtc: {
+      vaultId: 240036244,
+      liquidatorDiscount: 0.05,
+      assetId: 239570832,
+      assetDecimals: 8,
+      large_cp_vault_asa: true,
+    },
+    goEth: {
+      vaultId: 240034480,
+      liquidatorDiscount: 0.05,
+      assetId: 239571365,
+      assetDecimals: 8,
+      large_cp_vault_asa: true,
+    },
   },
   MainNet: {
     algo: {
@@ -62,6 +76,20 @@ export const VAULTS = {
       assetId: 246519683,
       assetDecimals: 6,
       z_p_f_vault_asa: true,
+    },
+    goBtc: {
+      vaultId: 1127025818,
+      liquidatorDiscount: 0.05,
+      assetId: 386192725,
+      assetDecimals: 8,
+      large_cp_vault_asa: true,
+    },
+    goEth: {
+      vaultId: 1127031775,
+      liquidatorDiscount: 0.05,
+      assetId: 386195940,
+      assetDecimals: 8,
+      large_cp_vault_asa: true,
     },
   },
 };
