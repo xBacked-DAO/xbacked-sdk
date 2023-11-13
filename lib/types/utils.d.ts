@@ -38,6 +38,11 @@ export declare const VAULTS: {
             assetDecimals: number;
             large_cp_vault_asa: boolean;
         };
+        newAlgo: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            new_algo_vault: boolean;
+        };
     };
     MainNet: {
         algo: {

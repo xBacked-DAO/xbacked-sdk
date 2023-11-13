@@ -1,5 +1,12 @@
 // @ts-ignore
-import { vault as vaultBackend, vaultAsa, z_p_f_vaultAsa, large_cp_vault_asa } from '@xbacked-dao/xbacked-contracts';
+import {
+  vault as vaultBackend,
+  vaultAsa,
+  z_p_f_vaultAsa,
+  large_cp_vault_asa,
+  new_algo_vault,
+  new_asa_vault,
+} from '@xbacked-dao/xbacked-contracts';
 import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 import { Account } from './Account';
@@ -14,12 +21,18 @@ export class VaultClient extends Account {
         this.backend = z_p_f_vaultAsa;
       }else if(params?.asaVault?.large_cp_vault_asa){
         this.backend = large_cp_vault_asa;
-      }else{
+      } else if (params?.asaVault?.new_asa_vault) { 
+        this.backend = new_asa_vault
+      } else{
         this.backend = vaultAsa;
       }
      
     } else {
-      this.backend = vaultBackend;
+        if (!params.new_algo_vault) {
+          this.backend = vaultBackend;
+        } else {
+          this.backend = new_algo_vault;
+        }
     }
   }
 

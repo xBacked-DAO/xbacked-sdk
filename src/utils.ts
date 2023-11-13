@@ -51,6 +51,18 @@ export const VAULTS = {
       assetDecimals: 8,
       large_cp_vault_asa: true,
     },
+    newAlgo: {
+      vaultId: 476562701,
+      liquidatorDiscount: 0.05,
+      new_algo_vault: true,
+    },
+    // newgAlgo: {
+    //   vaultId: 159615312,
+    //   liquidatorDiscount: 0.1,
+    //   assetId: 159613406,
+    //   assetDecimals: 6,
+    //   new_asa_vault: true,
+    // },
   },
   MainNet: {
     algo: {

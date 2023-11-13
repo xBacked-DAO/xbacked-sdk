@@ -25,7 +25,9 @@ export interface AccountInterface {
         decimals: number;
         z_p_f_vault_asa?: boolean;
         large_cp_vault_asa?: boolean;
+        new_asa_vault?: boolean;
     };
+    new_algo_vault?: boolean;
 }
 export interface StakeGlobalView {
     stakingAssetID: number;
@@ -99,7 +101,9 @@ export interface VaultParameters {
         decimals: number;
         z_p_f_vault_asa?: boolean;
         large_cp_vault_asa?: boolean;
+        new_asa_vault?: boolean;
     };
+    new_algo_vault?: boolean;
 }
 /**
  * Valid contract states

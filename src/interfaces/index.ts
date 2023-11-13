@@ -25,8 +25,10 @@ export interface AccountInterface {
   asaVault?: {
     decimals: number;
     z_p_f_vault_asa?: boolean;
-    large_cp_vault_asa?:boolean;
+    large_cp_vault_asa?: boolean;
+    new_asa_vault?: boolean;
   };
+  new_algo_vault?: boolean
 }
 
 export interface StakeGlobalView {
@@ -104,8 +106,10 @@ export interface VaultParameters {
   asaVault?: {
     decimals: number;
     z_p_f_vault_asa?: boolean;
-    large_cp_vault_asa?:boolean
+    large_cp_vault_asa?: boolean;
+    new_asa_vault?: boolean;
   };
+  new_algo_vault?: boolean;
 }
 
 /**
