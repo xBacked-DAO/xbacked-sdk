@@ -17,22 +17,21 @@ export class VaultClient extends Account {
   constructor(params: AccountInterface) {
     super(params);
     if (params?.asaVault?.decimals) {
-      if(params?.asaVault?.z_p_f_vault_asa){
+      if (params?.asaVault?.z_p_f_vault_asa) {
         this.backend = z_p_f_vaultAsa;
-      }else if(params?.asaVault?.large_cp_vault_asa){
+      } else if (params?.asaVault?.large_cp_vault_asa) {
         this.backend = large_cp_vault_asa;
-      } else if (params?.asaVault?.new_asa_vault) { 
-        this.backend = new_asa_vault
-      } else{
+      } else if (params?.asaVault?.new_asa_vault) {
+        this.backend = new_asa_vault;
+      } else {
         this.backend = vaultAsa;
       }
-     
     } else {
-        if (!params.new_algo_vault) {
-          this.backend = vaultBackend;
-        } else {
-          this.backend = new_algo_vault;
-        }
+      if (!params.new_algo_vault) {
+        this.backend = vaultBackend;
+      } else {
+        this.backend = new_algo_vault;
+      }
     }
   }
 
@@ -57,6 +56,35 @@ export class VaultClient extends Account {
       await this.dripInterest({ vault: params.vault, address: params.address });
     }
     const res = await put.liquidateVault({
+      vaultOwner: params.address,
+      debtAmount: convertToMicroUnits(params.debtAmount),
+      minPrice: convertToMicroUnits(params.minimumPrice),
+      maxPrice: convertToMicroUnits(params.maximumPrice),
+    });
+    return res;
+  }
+
+  /**
+   *
+   * @param params Contains keys address, debtAmount, vault, dripInterest, minimumPrice allowed for this transaction
+   * and maximumPrice allowed for this transaction. Include dripInterest if you would like the vault debt to be updated before liquidation
+   * @returns A boolean indicating if the vault was liquidated or not
+   */
+  async liquidateDuringShutdown(params: {
+    address: string;
+    debtAmount: number;
+    vault: Vault;
+    dripInterest: false;
+    minimumPrice: number;
+    maximumPrice: number;
+  }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const put = ctc.a.Liquidator;
+    if (params.dripInterest) {
+      await this.dripInterest({ vault: params.vault, address: params.address });
+    }
+    const res = await put.liquidateDuringShutdown({
       vaultOwner: params.address,
       debtAmount: convertToMicroUnits(params.debtAmount),
       minPrice: convertToMicroUnits(params.minimumPrice),
