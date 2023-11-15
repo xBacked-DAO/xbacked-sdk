@@ -56,7 +56,7 @@ export class Vault {
     return {
       LIQUIDATION_COLLATERAL_RATIO: vaultState.LIQUIDATION_COLLATERAL_RATIO.toNumber(),
       MINIMUM_COLLATERAL_RATIO: vaultState.MINIMUM_COLLATERAL_RATIO.toNumber(),
-      VAULT_INTEREST_RATE: vaultState.VAULT_INTEREST_RATE.toNumber(),
+      VAULT_INTEREST_RATE: vaultState?.VAULT_INTEREST_RATE?.toNumber(),
       hotState: {
         accruedInterest: vaultState.hotState.accruedInterest.toNumber(),
         totalVaultDebt: vaultState.hotState.totalVaultDebt.toNumber(),
@@ -64,12 +64,13 @@ export class Vault {
       coldState: {
         accruedFees: vaultState.coldState.accruedFees.toNumber(),
         collateralPrice: vaultState.coldState.collateralPrice.toNumber(),
-        redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
+        redeemableVaults: vaultState.coldState.redeemableVaults?.map((v: any[]) => v[1]),
         proposalTime: vaultState.coldState.proposalTime.toNumber(),
         contractState: vaultState.coldState.contractState.toNumber(),
         feeStructure: vaultState.coldState.feeStructure.map((feeSplit: any) => feeSplit.toNumber()),
         minimumDebtAmount: vaultState.coldState.minimumDebtAmount.toNumber(),
         maximumCollateralValue: vaultState.coldState.maximumCollateralValue.toNumber(),
+        vaultInterestRate: vaultState.coldState?.vaultInterestRate?.toNumber(),
       },
       addresses: {
         govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),

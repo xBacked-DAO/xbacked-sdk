@@ -51,7 +51,7 @@ export interface StakeLocalView {
 export interface VaultReturnParams {
     LIQUIDATION_COLLATERAL_RATIO: number;
     MINIMUM_COLLATERAL_RATIO: number;
-    VAULT_INTEREST_RATE: number;
+    VAULT_INTEREST_RATE?: number;
     hotState: {
         accruedInterest: number;
         totalVaultDebt: number;
@@ -59,12 +59,13 @@ export interface VaultReturnParams {
     coldState: {
         accruedFees: number;
         collateralPrice: number;
-        redeemableVaults: any[];
+        redeemableVaults?: any[];
         proposalTime?: number;
         contractState?: number;
         feeStructure: number[];
         minimumDebtAmount: number;
         maximumCollateralValue: number;
+        vaultInterestRate?: number;
     };
     addresses: {
         govStakersAddress: string;
@@ -129,4 +130,5 @@ export interface AdminProperties {
     feeStructure: number[];
     minimumDebtAmount: number;
     maximumCollateralValue: number;
+    vaultInterestRate?: number;
 }

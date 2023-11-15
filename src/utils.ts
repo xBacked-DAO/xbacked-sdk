@@ -52,7 +52,7 @@ export const VAULTS = {
       large_cp_vault_asa: true,
     },
     newAlgo: {
-      vaultId: 476562701,
+      vaultId: 479636586,
       liquidatorDiscount: 0.05,
       new_algo_vault: true,
     },
