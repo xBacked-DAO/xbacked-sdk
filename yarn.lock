@@ -1657,9 +1657,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:1.0.9":
-  version: 1.0.9
-  resolution: "@xbacked-dao/xbacked-contracts@npm:1.0.9"
+"@xbacked-dao/xbacked-contracts@npm:1.1.0":
+  version: 1.1.0
+  resolution: "@xbacked-dao/xbacked-contracts@npm:1.1.0"
   dependencies:
     "@reach-sh/stdlib": 0.1.13-rc.0
     algosdk: ^1.12.0
@@ -1673,7 +1673,7 @@ __metadata:
     yargs: ^17.3.1
   peerDependencies:
     "@reach-sh/stdlib": 0.1.13-rc.0
-  checksum: 13a60ef0dcc765f1611c57f980e55734f4cc745e126080c6032d029e1d225a371b67698175c755d4696f20a9253c0345a5a6cb104e7062f9f60725c22dc855d3
+  checksum: 10269cbd45de83bd87639890f9df7c6c093f75272ae4bc32c48d374c1a40abb00c2d648686372ba8c607f6061f51cb343ef2ea12087dc9a4dd4d46d1944ee1f3
   languageName: node
   linkType: hard
 
@@ -1689,7 +1689,7 @@ __metadata:
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 1.0.9
+    "@xbacked-dao/xbacked-contracts": 1.1.0
     algosdk: ^2.0.0
     awesome-typescript-loader: ^5.2.1
     aws-sdk: ^2.1226.0

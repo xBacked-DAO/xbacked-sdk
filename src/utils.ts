@@ -52,17 +52,44 @@ export const VAULTS = {
       large_cp_vault_asa: true,
     },
     newAlgo: {
-      vaultId: 479636586,
+      vaultId: 481069338,
       liquidatorDiscount: 0.05,
       new_algo_vault: true,
     },
-    // newgAlgo: {
-    //   vaultId: 159615312,
-    //   liquidatorDiscount: 0.1,
-    //   assetId: 159613406,
-    //   assetDecimals: 6,
-    //   new_asa_vault: true,
-    // },
+    newGAlgo: {
+      vaultId: 481065403,
+      liquidatorDiscount: 0.1,
+      assetId: 159613406,
+      assetDecimals: 6,
+    },
+    newMeldGold: {
+      vaultId: 481066526,
+      liquidatorDiscount: 0.1,
+      assetId: 228836101,
+      assetDecimals: 6,
+      new_asa_vault: true,
+    },
+    newSilver$: {
+      vaultId: 481069084,
+      liquidatorDiscount: 0.01,
+      assetId: 230686227,
+      assetDecimals: 6,
+      new_asa_vault: true,
+    },
+    newGoBtc: {
+      vaultId: 481065574,
+      liquidatorDiscount: 0.05,
+      assetId: 239570832,
+      assetDecimals: 8,
+      new_asa_vault: true,
+    },
+    newGoEth: {
+      vaultId: 481065791,
+      liquidatorDiscount: 0.05,
+      assetId: 239571365,
+      assetDecimals: 8,
+      new_asa_vault: true,
+    },
   },
   MainNet: {
     algo: {

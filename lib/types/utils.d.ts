@@ -43,6 +43,40 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_algo_vault: boolean;
         };
+        newGAlgo: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+        };
+        newMeldGold: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+        };
+        newSilver$: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+        };
+        newGoBtc: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+        };
+        newGoEth: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+        };
     };
     MainNet: {
         algo: {
