@@ -5,11 +5,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.TestNet.newAlgo.vaultId;
+  const VAULT_ID = VAULTS.MainNet.newAlgo.vaultId;
   console.log(VAULT_ID);
   const account = new VaultClient({
     mnemonic,
-    network: 'TestNet',
+    network: 'MainNet',
     new_algo_vault: true,
   });
   const vault = new Vault({id: VAULT_ID, new_algo_vault: true});

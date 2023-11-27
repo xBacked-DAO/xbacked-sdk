@@ -117,6 +117,45 @@ export declare const VAULTS: {
             assetDecimals: number;
             large_cp_vault_asa: boolean;
         };
+        newAlgo: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            new_algo_vault: boolean;
+        };
+        newGAlgo: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+        };
+        newMeldGold: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+        };
+        newSilver$: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+        };
+        newGoBtc: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+        };
+        newGoEth: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+        };
     };
 };
 /**
