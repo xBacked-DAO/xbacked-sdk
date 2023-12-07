@@ -77,6 +77,13 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
         };
+        wrappedSol: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+        };
     };
     MainNet: {
         algo: {
@@ -155,6 +162,13 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+        };
+        wrappedSol: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
         };
     };
 };
