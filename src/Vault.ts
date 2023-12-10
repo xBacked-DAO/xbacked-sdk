@@ -1,5 +1,12 @@
 import { Account } from './Account';
-import { vault as vaultBackend, vaultAsa, z_p_f_vaultAsa, large_cp_vault_asa } from '@xbacked-dao/xbacked-contracts';
+import {
+  vault as vaultBackend,
+  vaultAsa,
+  z_p_f_vaultAsa,
+  large_cp_vault_asa,
+  new_algo_vault,
+  new_asa_vault,
+} from '@xbacked-dao/xbacked-contracts';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
 /**
  * The Parameters returned from the staate of a contract
@@ -18,12 +25,19 @@ export class Vault {
         this.backend = z_p_f_vaultAsa;
       }else if(params?.asaVault?.large_cp_vault_asa){
         this.backend = large_cp_vault_asa;
+      } else if (params?.asaVault?.new_asa_vault) { 
+        this.backend = new_asa_vault
       }
       else{
         this.backend = vaultAsa;
       }
     } else {
-      this.backend = vaultBackend;
+      if (!params.new_algo_vault) {
+        this.backend = vaultBackend;
+      } else { 
+        this.backend = new_algo_vault
+      }
+      
     }
   }
   /**
@@ -42,7 +56,7 @@ export class Vault {
     return {
       LIQUIDATION_COLLATERAL_RATIO: vaultState.LIQUIDATION_COLLATERAL_RATIO.toNumber(),
       MINIMUM_COLLATERAL_RATIO: vaultState.MINIMUM_COLLATERAL_RATIO.toNumber(),
-      VAULT_INTEREST_RATE: vaultState.VAULT_INTEREST_RATE.toNumber(),
+      VAULT_INTEREST_RATE: vaultState?.VAULT_INTEREST_RATE?.toNumber(),
       hotState: {
         accruedInterest: vaultState.hotState.accruedInterest.toNumber(),
         totalVaultDebt: vaultState.hotState.totalVaultDebt.toNumber(),
@@ -50,12 +64,13 @@ export class Vault {
       coldState: {
         accruedFees: vaultState.coldState.accruedFees.toNumber(),
         collateralPrice: vaultState.coldState.collateralPrice.toNumber(),
-        redeemableVaults: vaultState.coldState.redeemableVaults.map((v: any[]) => v[1]),
+        redeemableVaults: vaultState.coldState.redeemableVaults?.map((v: any[]) => v[1]),
         proposalTime: vaultState.coldState.proposalTime.toNumber(),
         contractState: vaultState.coldState.contractState.toNumber(),
         feeStructure: vaultState.coldState.feeStructure.map((feeSplit: any) => feeSplit.toNumber()),
         minimumDebtAmount: vaultState.coldState.minimumDebtAmount.toNumber(),
         maximumCollateralValue: vaultState.coldState.maximumCollateralValue.toNumber(),
+        vaultInterestRate: vaultState.coldState?.vaultInterestRate?.toNumber(),
       },
       addresses: {
         govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),

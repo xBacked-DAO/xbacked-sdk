@@ -25,7 +25,9 @@ export interface AccountInterface {
         decimals: number;
         z_p_f_vault_asa?: boolean;
         large_cp_vault_asa?: boolean;
+        new_asa_vault?: boolean;
     };
+    new_algo_vault?: boolean;
 }
 export interface StakeGlobalView {
     stakingAssetID: number;
@@ -49,7 +51,7 @@ export interface StakeLocalView {
 export interface VaultReturnParams {
     LIQUIDATION_COLLATERAL_RATIO: number;
     MINIMUM_COLLATERAL_RATIO: number;
-    VAULT_INTEREST_RATE: number;
+    VAULT_INTEREST_RATE?: number;
     hotState: {
         accruedInterest: number;
         totalVaultDebt: number;
@@ -57,12 +59,13 @@ export interface VaultReturnParams {
     coldState: {
         accruedFees: number;
         collateralPrice: number;
-        redeemableVaults: any[];
+        redeemableVaults?: any[];
         proposalTime?: number;
         contractState?: number;
         feeStructure: number[];
         minimumDebtAmount: number;
         maximumCollateralValue: number;
+        vaultInterestRate?: number;
     };
     addresses: {
         govStakersAddress: string;
@@ -99,7 +102,9 @@ export interface VaultParameters {
         decimals: number;
         z_p_f_vault_asa?: boolean;
         large_cp_vault_asa?: boolean;
+        new_asa_vault?: boolean;
     };
+    new_algo_vault?: boolean;
 }
 /**
  * Valid contract states
@@ -125,4 +130,5 @@ export interface AdminProperties {
     feeStructure: number[];
     minimumDebtAmount: number;
     maximumCollateralValue: number;
+    vaultInterestRate?: number;
 }

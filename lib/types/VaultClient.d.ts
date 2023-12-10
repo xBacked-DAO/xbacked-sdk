@@ -19,6 +19,20 @@ export declare class VaultClient extends Account {
         maximumPrice: number;
     }): Promise<boolean>;
     /**
+     *
+     * @param params Contains keys address, debtAmount, vault, dripInterest, minimumPrice allowed for this transaction
+     * and maximumPrice allowed for this transaction. Include dripInterest if you would like the vault debt to be updated before liquidation
+     * @returns A boolean indicating if the vault was liquidated or not
+     */
+    liquidateDuringShutdown(params: {
+        address: string;
+        debtAmount: number;
+        vault: Vault;
+        dripInterest: false;
+        minimumPrice: number;
+        maximumPrice: number;
+    }): Promise<boolean>;
+    /**
      * Attempt to redeem some of the Vault asset against a redeemable vault, to
      * receive vault collateral.
      * @param params Contains the amount of xUSD to redeem, the vault to redeem it from, minimumPrice
