@@ -32,7 +32,7 @@ export const VAULTS = {
     },
     silver$: {
       vaultId: 230690513,
-      liquidatorDiscount: 0.01,
+      liquidatorDiscount: 0.1,
       assetId: 230686227,
       assetDecimals: 6,
       z_p_f_vault_asa: true,
@@ -71,7 +71,7 @@ export const VAULTS = {
     },
     newSilver$: {
       vaultId: 481069084,
-      liquidatorDiscount: 0.01,
+      liquidatorDiscount: 0.1,
       assetId: 230686227,
       assetDecimals: 6,
       new_asa_vault: true,
@@ -96,6 +96,13 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.05,
+    },
+    wrappedAvax: {
+      vaultId: 503183655,
+      assetId: 503109996,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
     },
   },
   MainNet: {
@@ -183,6 +190,13 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.05,
+    },
+    wrappedAvax: {
+      vaultId: 1273568518,
+      assetId: 893309613,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.05
     },
   },
 };
