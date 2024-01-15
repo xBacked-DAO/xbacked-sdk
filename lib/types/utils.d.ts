@@ -48,6 +48,7 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
+            new_asa_vault: boolean;
         };
         newMeldGold: {
             vaultId: number;
@@ -90,6 +91,13 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
+        };
+        mAlgo: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
         };
     };
     MainNet: {
@@ -178,6 +186,13 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
         };
         wrappedAvax: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+        };
+        mAlgo: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;

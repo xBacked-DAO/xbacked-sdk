@@ -61,6 +61,7 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       assetId: 159613406,
       assetDecimals: 6,
+      new_asa_vault: true,
     },
     newMeldGold: {
       vaultId: 481066526,
@@ -103,6 +104,13 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.1,
+    },
+    mAlgo: {
+      vaultId: 576268296,
+      liquidatorDiscount: 0.1,
+      assetId: 576151225,
+      assetDecimals: 6,
+      new_asa_vault: true,
     },
   },
   MainNet: {
@@ -196,7 +204,14 @@ export const VAULTS = {
       assetId: 893309613,
       assetDecimals: 8,
       new_asa_vault: true,
-      liquidatorDiscount: 0.05
+      liquidatorDiscount: 0.05,
+    },
+    mAlgo: {
+      vaultId: 1403586486,
+      assetId: 1185173782,
+      assetDecimals:6,
+      new_asa_vault:true,
+      liquidatorDiscount: 0.1
     },
   },
 };
