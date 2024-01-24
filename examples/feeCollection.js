@@ -5,12 +5,15 @@ dotenv.config();
 
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.TestNet.algo.vaultId;
+  const VAULT_ID = VAULTS.MainNet.gAlgo.vaultId;
   const account = new VaultClient({
     mnemonic,
-    network: 'TestNet',
+    network: 'MainNet',
+    asaVault:{
+      decimals: 6
+    }
   });
-  const vault = new Vault({id: VAULT_ID});
+  const vault = new Vault({id: VAULT_ID, asaVault: {decimals: 6}});
 
   while (true) {
     const action = await ask.ask(

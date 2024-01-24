@@ -112,6 +112,14 @@ export const VAULTS = {
       assetDecimals: 6,
       new_asa_vault: true,
     },
+
+    link: {
+      assetId: 586271698,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+      vaultId: 586275700,
+    },
   },
   MainNet: {
     algo: {
@@ -209,9 +217,16 @@ export const VAULTS = {
     mAlgo: {
       vaultId: 1403586486,
       assetId: 1185173782,
-      assetDecimals:6,
-      new_asa_vault:true,
-      liquidatorDiscount: 0.1
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+    },
+    link: {
+      vaultId: 1421760711,
+      assetId: 1200094857,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
     },
   },
 };

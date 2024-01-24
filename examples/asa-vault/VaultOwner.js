@@ -5,11 +5,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.TestNet.meldGold.vaultId;
+  const VAULT_ID = VAULTS.MainNet.newGAlgo.vaultId;
   console.log(VAULT_ID);
   const STABLECOIN = process.env.STABLE_COIN;
   const COLLATERAL_TOKEN = process.env.COLLATERAL_TOKEN;
-  const acc = new VaultClient({mnemonic, network: 'TestNet', asaVault: {decimals: 6}});
+  const acc = new VaultClient({mnemonic, network: 'MainNet', asaVault: {decimals: 6, new_asa_vault: true}});
+  console.log(await acc.getAddress());
   while (true) {
     const todo = await ask.ask(
         `
@@ -51,10 +52,10 @@ dotenv.config();
           break;
         case 4:
           const isVaultDebtReturned = await acc.returnVaultDebt({
-            amount: 1,
+            amount: 3.5,
             vault: new Vault({id: VAULT_ID, asaVault: {decimals: 6}}),
             close: false,
-            address: await acc.getAddress(),
+            address: 'Y3YTSFL3HC24NDJGMVDMRJXI6YBRT2QVYWCTSYWT4SLNYPBFSVX5JDFDM4',
           });
           console.log(`isVaultDebtReturned: ${isVaultDebtReturned}`);
           break;
