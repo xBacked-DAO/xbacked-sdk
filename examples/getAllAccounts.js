@@ -1,24 +1,26 @@
-const {getAllAccounts, VaultClient, Vault, VAULTS} = require('..');
+const {getAllAccounts, VaultClient, Vault, VAULTS, addrFromBox} = require('..');
 const {loadStdlib} = require('@reach-sh/stdlib');
 const dotenv = require('dotenv');
 dotenv.config();
 
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.algo.vaultId;
+  const VAULT_ID = VAULTS.MainNet.newAlgo.vaultId;
   const INDEXER_TOKEN = process.env.INDEXER_TOKEN;
   const account = new VaultClient({
     mnemonic,
     network: 'MainNet',
+    new_algo_vault: true
   });
-  const vault = new Vault({id: VAULT_ID});
+  console.log({VAULT_ID})
+  const vault = new Vault({id: VAULT_ID, new_algo_vault: true});
   const reach = loadStdlib('ALGO');
   const token = {'X-API-Key': INDEXER_TOKEN};
   const indexer = new reach.algosdk.Indexer(
       // indexer key
       token,
       // indexer url
-      'https://mainnet-api.algonode.network',
+      '	https://mainnet-idx.algonode.cloud',
       // indexer port
       '',
   );
@@ -29,10 +31,19 @@ dotenv.config();
       indexer,
       [],
   );
+  console.log({accounts});
   // get state for each vault
   const vaultData = accounts.map( (vaultAccount) => {
-    return account.getUserInfo({address: vaultAccount.address, vault});
+    try{
+      return account.getUserInfo({address: addrFromBox(vaultAccount), vault});
+    }catch(eror){
+      return{error}
+    }
+    
   });
   const resolvedVaultData = await Promise.all(vaultData);
+  const totalVaultDebt = resolvedVaultData.reduce((prev, next)=> prev + next.vaultDebt, 0);
+  const microUnits = 1000000
+  console.log({tvd: totalVaultDebt / microUnits});
   return resolvedVaultData;
 })();
