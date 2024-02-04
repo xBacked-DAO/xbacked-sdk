@@ -125,12 +125,14 @@ export const VAULTS = {
     algo: {
       vaultId: 1012903350,
       liquidatorDiscount: 0.05,
+      deprecated: true,
     },
     gAlgo: {
       vaultId: 1065042555,
       liquidatorDiscount: 0.1,
       assetId: 793124631,
       assetDecimals: 6,
+      deprecated: true,
     },
     meldGold: {
       vaultId: 1119611603,
@@ -138,6 +140,7 @@ export const VAULTS = {
       assetId: 246516580,
       assetDecimals: 6,
       z_p_f_vault_asa: true,
+      deprecated: true,
     },
     silver$: {
       vaultId: 1120776512,
@@ -152,6 +155,7 @@ export const VAULTS = {
       assetId: 386192725,
       assetDecimals: 8,
       large_cp_vault_asa: true,
+      deprecated: true,
     },
     goEth: {
       vaultId: 1127031775,
@@ -159,6 +163,7 @@ export const VAULTS = {
       assetId: 386195940,
       assetDecimals: 8,
       large_cp_vault_asa: true,
+      deprecated: true,
     },
 
     newAlgo: {
