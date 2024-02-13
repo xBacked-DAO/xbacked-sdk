@@ -41,6 +41,8 @@ dotenv.config();
     }
     
   });
+  const vaultAddresses = accounts.map( (vaultAccount) => addrFromBox(vaultAccount));
+  console.log(vaultAddresses);
   const resolvedVaultData = await Promise.all(vaultData);
   const totalVaultDebt = resolvedVaultData.reduce((prev, next)=> prev + next.vaultDebt, 0);
   const microUnits = 1000000

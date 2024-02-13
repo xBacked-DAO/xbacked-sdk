@@ -41,10 +41,11 @@
     "@jest/globals": "^27.4.6",
     "@types/await-timeout": "^0.3.1",
     "@types/jest": "^27.4.0",
+    "@types/jsdom": "^16.2.13",
     "@types/node": "^16.11.9",
     "eslint": "^8.4.1",
     "eslint-config-google": "^0.14.0",
-    "jest": "27.3.1",
+    "jest": "^27.3.1",
     "jest-environment-jsdom": "^27.0.6",
     "lodash": "^4.17.21",
     "prettier": "^2.4.1",
@@ -62,13 +63,11 @@
     "@babel/types": "^7.16.0",
     "@randlabs/myalgo-connect": "^1.1.1",
     "@reach-sh/stdlib": "0.1.13-rc.3",
-    "@types/jsdom": "^16.2.13",
     "@xbacked-dao/xbacked-contracts": "1.1.0",
     "algosdk": "^2.0.0",
     "awesome-typescript-loader": "^5.2.1",
     "aws-sdk": "^2.1226.0",
     "axios": "^0.26.0",
-    "dotenv": "^16.0.0",
-    "jest": "^27.3.1"
+    "dotenv": "^16.0.0"
   }
 }
