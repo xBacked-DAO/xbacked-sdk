@@ -120,6 +120,13 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       vaultId: 586275700,
     },
+    coop: {
+      assetId: 592331972,
+      vaultId: 592332280,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.3,
+      new_asa_vault: true,
+    },
   },
   MainNet: {
     algo: {
@@ -232,6 +239,13 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.1,
+    },
+    coop: {
+      vaultId: 1519754904,
+      assetId: 760037151,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.3
     },
   },
 };

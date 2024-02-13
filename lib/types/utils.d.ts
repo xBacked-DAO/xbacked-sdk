@@ -106,17 +106,26 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             vaultId: number;
         };
+        coop: {
+            assetId: number;
+            vaultId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+        };
     };
     MainNet: {
         algo: {
             vaultId: number;
             liquidatorDiscount: number;
+            deprecated: boolean;
         };
         gAlgo: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
+            deprecated: boolean;
         };
         meldGold: {
             vaultId: number;
@@ -124,6 +133,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             z_p_f_vault_asa: boolean;
+            deprecated: boolean;
         };
         silver$: {
             vaultId: number;
@@ -138,6 +148,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             large_cp_vault_asa: boolean;
+            deprecated: boolean;
         };
         goEth: {
             vaultId: number;
@@ -145,6 +156,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             large_cp_vault_asa: boolean;
+            deprecated: boolean;
         };
         newAlgo: {
             vaultId: number;
@@ -207,6 +219,13 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
         };
         link: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+        };
+        coop: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;
