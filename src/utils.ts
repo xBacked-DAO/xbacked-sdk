@@ -32,7 +32,7 @@ export const VAULTS = {
     },
     silver$: {
       vaultId: 230690513,
-      liquidatorDiscount: 0.01,
+      liquidatorDiscount: 0.1,
       assetId: 230686227,
       assetDecimals: 6,
       z_p_f_vault_asa: true,
@@ -61,6 +61,7 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       assetId: 159613406,
       assetDecimals: 6,
+      new_asa_vault: true,
     },
     newMeldGold: {
       vaultId: 481066526,
@@ -71,7 +72,7 @@ export const VAULTS = {
     },
     newSilver$: {
       vaultId: 481069084,
-      liquidatorDiscount: 0.01,
+      liquidatorDiscount: 0.1,
       assetId: 230686227,
       assetDecimals: 6,
       new_asa_vault: true,
@@ -97,17 +98,48 @@ export const VAULTS = {
       new_asa_vault: true,
       liquidatorDiscount: 0.05,
     },
+    wrappedAvax: {
+      vaultId: 503183655,
+      assetId: 503109996,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+    },
+    mAlgo: {
+      vaultId: 576268296,
+      liquidatorDiscount: 0.1,
+      assetId: 576151225,
+      assetDecimals: 6,
+      new_asa_vault: true,
+    },
+
+    link: {
+      assetId: 586271698,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+      vaultId: 586275700,
+    },
+    coop: {
+      assetId: 592331972,
+      vaultId: 592332280,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.3,
+      new_asa_vault: true,
+    },
   },
   MainNet: {
     algo: {
       vaultId: 1012903350,
       liquidatorDiscount: 0.05,
+      deprecated: true,
     },
     gAlgo: {
       vaultId: 1065042555,
       liquidatorDiscount: 0.1,
       assetId: 793124631,
       assetDecimals: 6,
+      deprecated: true,
     },
     meldGold: {
       vaultId: 1119611603,
@@ -115,6 +147,7 @@ export const VAULTS = {
       assetId: 246516580,
       assetDecimals: 6,
       z_p_f_vault_asa: true,
+      deprecated: true,
     },
     silver$: {
       vaultId: 1120776512,
@@ -129,6 +162,7 @@ export const VAULTS = {
       assetId: 386192725,
       assetDecimals: 8,
       large_cp_vault_asa: true,
+      deprecated: true,
     },
     goEth: {
       vaultId: 1127031775,
@@ -136,6 +170,7 @@ export const VAULTS = {
       assetId: 386195940,
       assetDecimals: 8,
       large_cp_vault_asa: true,
+      deprecated: true,
     },
 
     newAlgo: {
@@ -183,6 +218,34 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.05,
+    },
+    wrappedAvax: {
+      vaultId: 1273568518,
+      assetId: 893309613,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.05,
+    },
+    mAlgo: {
+      vaultId: 1403586486,
+      assetId: 1185173782,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+    },
+    link: {
+      vaultId: 1421760711,
+      assetId: 1200094857,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+    },
+    coop: {
+      vaultId: 1519754904,
+      assetId: 796425061,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.3,
     },
   },
 };
