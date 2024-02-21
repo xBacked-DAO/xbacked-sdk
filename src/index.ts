@@ -1,5 +1,5 @@
 export { Account as Account } from './Account';
-export { VaultClient as VaultClient } from './VaultClient';
+export { VaultsClient as VaultsClient } from './VaultsClient';
 export { StakingClient as StakingClient } from './StakingClient';
 export { Vault as Vault } from './Vault';
 export * from './vaultDiscovery';

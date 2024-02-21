@@ -1,11 +1,11 @@
 import { getOpenVaults, getCreatedVaults, getClosedVaults, getTransactions } from '../vaultDiscovery';
-import VaultClient from '../__mock__/MockVaultClient';
+import VaultsClient from '../__mock__/MockVaultsClient';
 import { Vault } from '../Vault';
 
 jest.setTimeout(200000000);
 
-const vault = new Vault({ id: 1 });
-const account = new VaultClient({});
+const vault = new Vault({name: "algo", network: "MainNet"});
+const account = new VaultsClient({});
 
 account.reachAccount = {};
 account.reachStdLib.getNetworkTime = jest.fn(() => 100);

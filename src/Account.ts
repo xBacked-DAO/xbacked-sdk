@@ -26,14 +26,7 @@ export class Account {
   providerEnv?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
-  /** @property An optional object used to interact with ASA vaults with varying decimals */
-  asaVault?: {
-    decimals: number;
-    z_p_f_vault_asa?: boolean;
-    large_cp_vault_asa?: boolean;
-    new_asa_vault?: boolean
-  };
-  new_algo_vault?: boolean
+
 
   constructor(params: AccountInterface) {
     // console.log(backend);
@@ -44,7 +37,7 @@ export class Account {
     this.providerEnv = params.providerEnv;
     this.reachStdLib = params.reachStdLib || loadStdlib('ALGO');
     this.networkAccount = params.networkAccount;
-    this.asaVault = params.asaVault;
+
     if (params.network) {
       this.network = params.network;
     } else {
@@ -177,4 +170,6 @@ export class Account {
       return balance.toNumber();
     }
   }
+
+
 }

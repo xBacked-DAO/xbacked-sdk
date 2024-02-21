@@ -1,4 +1,4 @@
-const {VaultClient, VAULTS} = require('..');
+const {VaultsClient, VAULTS} = require('..');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -6,7 +6,7 @@ dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
   const VAULT_ID = VAULTS.MainNet.algo.vaultId;
-  const account = new VaultClient({
+  const account = new VaultsClient({
     mnemonic,
     network: 'MainNet',
   });
