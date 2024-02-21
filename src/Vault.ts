@@ -15,8 +15,8 @@ type tmpType = {
 };
 
 
-function isSafeKeyOfQ(s: string): s is keyof typeof VAULTS["MainNet"] {
-  return Object.keys(VAULTS["MainNet"]).includes(s);
+function isSafeKeyOfQ(s: string): s is keyof typeof VAULTS.MainNet {
+  return Object.keys(VAULTS.MainNet).includes(s);
 }
 /**
  * The Parameters returned from the staate of a contract
@@ -34,7 +34,7 @@ export class Vault {
     if (isSafeKeyOfQ(params.name)) {
       this.id = VAULTS[params.network][params.name].vaultId;
       
-        const asaVault = VAULTS[params.network][params.name]?.new_asa_vault == false ? undefined: {
+        const asaVault = VAULTS[params.network][params.name]?.new_asa_vault === false ? undefined: {
           decimals:
             VAULTS[params.network][params.name].assetDecimals === undefined
               ? 6
@@ -54,9 +54,9 @@ export class Vault {
       } else {
         this.backend = vaultAsa;
       }
-      this.asaVault = { ...asaVault, decimals: asaVault?.decimals == undefined ? 6 : asaVault?.decimals };
+      this.asaVault = { ...asaVault, decimals: asaVault?.decimals === undefined ? 6 : asaVault?.decimals };
     } else {
-      if (params.name  != "newAlgo") {
+      if (params.name  !== "newAlgo") {
         this.backend = vaultBackend;
       } else {
         this.backend = new_algo_vault;
