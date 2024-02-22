@@ -89,15 +89,8 @@ export interface UserVaultReturnParams extends ReachUserVault {
  */
 export interface VaultParameters {
     /**  @property Unique identifier for the contract */
-    id: number;
-    acc?: any;
-    asaVault?: {
-        decimals: number;
-        z_p_f_vault_asa?: boolean;
-        large_cp_vault_asa?: boolean;
-        new_asa_vault?: boolean;
-    };
-    new_algo_vault?: boolean;
+    name: string;
+    network: 'MainNet' | 'TestNet';
 }
 /**
  * Valid contract states

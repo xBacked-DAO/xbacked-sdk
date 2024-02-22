@@ -1,8 +1,10 @@
 import { Account } from './Account';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
-declare type tmpType = {
-    name: string;
-    network: "MainNet" | "TestNet";
+declare type AsaVault = {
+    decimals: number;
+    z_p_f_vault_asa?: boolean;
+    large_cp_vault_asa?: boolean;
+    new_asa_vault?: boolean;
 };
 /**
  * The Parameters returned from the staate of a contract
@@ -14,8 +16,8 @@ export declare class Vault {
     /** @property Unique identifier for the contract */
     readonly id: number | undefined;
     backend: any;
-    asaVault?: VaultParameters['asaVault'];
-    constructor(params: tmpType);
+    asaVault?: AsaVault;
+    constructor(params: VaultParameters);
     /**
      * Used to get the state of the contract
      * @param params Contains key account of type [[Account]] that will be used to read state from the contract
