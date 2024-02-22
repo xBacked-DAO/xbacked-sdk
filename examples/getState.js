@@ -11,7 +11,7 @@ dotenv.config();
     mnemonic,
     network: 'MainNet'
   });
-  const vault = new Vault({name: "oldAlgo", network: account.network});
+  const vault = new Vault({name: "algo", network: account.network});
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(
