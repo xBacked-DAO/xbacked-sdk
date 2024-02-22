@@ -12,7 +12,7 @@ dotenv.config();
     network: 'MainNet'
   });
   console.log({VAULT_ID})
-  const vault = new Vault({name : "newAlgo", network: "MainNet"});
+  const vault = new Vault({name : "algo", network: "MainNet"});
   const reach = loadStdlib('ALGO');
   const token = {'X-API-Key': INDEXER_TOKEN};
   const indexer = new reach.algosdk.Indexer(
