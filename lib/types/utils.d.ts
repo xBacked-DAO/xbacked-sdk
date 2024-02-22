@@ -1,5 +1,12 @@
 export declare const VAULTS: {
     TestNet: {
+        oldAlgo: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            new_algo_vault: boolean;
+            new_asa_vault: boolean;
+            assetDecimals: undefined;
+        };
         algo: {
             vaultId: number;
             liquidatorDiscount: number;
@@ -7,42 +14,35 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
             assetDecimals: undefined;
         };
-        newAlgo: {
-            vaultId: number;
-            liquidatorDiscount: number;
-            new_algo_vault: boolean;
-            new_asa_vault: boolean;
-            assetDecimals: undefined;
-        };
-        newGAlgo: {
+        gAlgo: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
         };
-        newMeldGold: {
+        meldGold: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
         };
-        newSilver$: {
+        silver$: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
         };
-        newGoBtc: {
+        goBtc: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
         };
-        newGoEth: {
+        goEth: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
@@ -86,49 +86,49 @@ export declare const VAULTS: {
         };
     };
     MainNet: {
-        algo: {
+        oldAlgo: {
             vaultId: number;
             liquidatorDiscount: number;
             deprecated: boolean;
             new_asa_vault: boolean;
             assetDecimals: undefined;
         };
-        newAlgo: {
+        algo: {
             vaultId: number;
             liquidatorDiscount: number;
             new_algo_vault: boolean;
             new_asa_vault: boolean;
             assetDecimals: undefined;
         };
-        newGAlgo: {
+        gAlgo: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
         };
-        newMeldGold: {
+        meldGold: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
         };
-        newSilver$: {
+        silver$: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
         };
-        newGoBtc: {
+        goBtc: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
         };
-        newGoEth: {
+        goEth: {
             vaultId: number;
             liquidatorDiscount: number;
             assetId: number;

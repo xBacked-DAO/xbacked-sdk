@@ -56,7 +56,7 @@ export class Vault {
       }
       this.asaVault = { ...asaVault, decimals: asaVault?.decimals === undefined ? 6 : asaVault?.decimals };
     } else {
-      if (params.name  !== "newAlgo") {
+      if (params.name  === "oldAlgo") {
         this.backend = vaultBackend;
       } else {
         this.backend = new_algo_vault;

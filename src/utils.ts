@@ -12,7 +12,7 @@ const MINIMUM_COLLATERAL_RATIO = 1.2;
 
 export const VAULTS = {
   TestNet: {
-    algo: {
+    oldAlgo: {
       vaultId: 152242747,
       liquidatorDiscount: 0.045,
       new_algo_vault: true,
@@ -20,42 +20,42 @@ export const VAULTS = {
       assetDecimals: undefined,
     },
     // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
-    newAlgo: {
+    algo: {
       vaultId: 481069338,
       liquidatorDiscount: 0.05,
       new_algo_vault: true,
       new_asa_vault: false,
       assetDecimals: undefined,
     },
-    newGAlgo: {
+    gAlgo: {
       vaultId: 481065403,
       liquidatorDiscount: 0.1,
       assetId: 159613406,
       assetDecimals: 6,
       new_asa_vault: true,
     },
-    newMeldGold: {
+    meldGold: {
       vaultId: 481066526,
       liquidatorDiscount: 0.1,
       assetId: 228836101,
       assetDecimals: 6,
       new_asa_vault: true,
     },
-    newSilver$: {
+    silver$: {
       vaultId: 481069084,
       liquidatorDiscount: 0.1,
       assetId: 230686227,
       assetDecimals: 6,
       new_asa_vault: true,
     },
-    newGoBtc: {
+    goBtc: {
       vaultId: 481065574,
       liquidatorDiscount: 0.05,
       assetId: 239570832,
       assetDecimals: 8,
       new_asa_vault: true,
     },
-    newGoEth: {
+    goEth: {
       vaultId: 481065791,
       liquidatorDiscount: 0.05,
       assetId: 239571365,
@@ -100,49 +100,49 @@ export const VAULTS = {
     },
   },
   MainNet: {
-    algo: {
+    oldAlgo: {
       vaultId: 1012903350,
       liquidatorDiscount: 0.05,
       deprecated: true,
       new_asa_vault: false,
       assetDecimals: undefined,
     },
-    newAlgo: {
+    algo: {
       vaultId: 1256063618,
       liquidatorDiscount: 0.05,
       new_algo_vault: true,
       new_asa_vault: false,
       assetDecimals: undefined,
     },
-    newGAlgo: {
+    gAlgo: {
       vaultId: 1256065446,
       liquidatorDiscount: 0.1,
       assetId: 793124631,
       assetDecimals: 6,
       new_asa_vault: true,
     },
-    newMeldGold: {
+    meldGold: {
       vaultId: 1256066865,
       liquidatorDiscount: 0.05,
       assetId: 246516580,
       assetDecimals: 6,
       new_asa_vault: true,
     },
-    newSilver$: {
+    silver$: {
       vaultId: 1256070920,
       liquidatorDiscount: 0.05,
       assetId: 246519683,
       assetDecimals: 6,
       new_asa_vault: true,
     },
-    newGoBtc: {
+    goBtc: {
       vaultId: 1256072093,
       liquidatorDiscount: 0.05,
       assetId: 386192725,
       assetDecimals: 8,
       new_asa_vault: true,
     },
-    newGoEth: {
+    goEth: {
       vaultId: 1256073191,
       liquidatorDiscount: 0.05,
       assetId: 386195940,
