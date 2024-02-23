@@ -21,7 +21,7 @@ const vault = new Vault({ name: "algo", network: acc.network });
 // global vault state
 const vaultState = await acc.getVaultState({ vault });
 
-const price = convertFromMicroUnits(vaultState.collateralPrice)
+const price = convertFromMicroUnits(vaultState.coldState.collateralPrice);
 await acc.createVault({
   collateral: 100,
   mintAmount: 50,

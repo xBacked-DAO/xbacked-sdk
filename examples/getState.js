@@ -9,9 +9,9 @@ dotenv.config();
   console.log(VAULT_ID);
   const account = new VaultsClient({
     mnemonic,
-    network: 'MainNet'
+    network: 'TestNet'
   });
-  const vault = new Vault({name: "algo", network: account.network});
+  const vault = new Vault({name: "goEth", network: account.network});
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(
