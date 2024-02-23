@@ -1,4 +1,4 @@
-import VaultClient from '../__mock__/MockVaultClient';
+import VaultsClient from '../__mock__/MockVaultsClient';
 import { Vault } from '../Vault';
 import { calculateInterestAccrued } from '../utils';
 jest.setTimeout(200000000);
@@ -12,7 +12,7 @@ const MINT_AMOUNT = 2;
 const COLLATERAL_PRICE = 4;
 const MINIMUM_PRICE = 1;
 const MAXIMUM_PRICE = 1;
-const account = new VaultClient({
+const account = new VaultsClient({
   mnemonic:
     'lens sell urban area teach cash material nephew trumpet square myself group limb sun view sunny update fabric twist repair oval salon kitchen above inch',
 });
@@ -106,7 +106,7 @@ it('Get vault Info', async () => {
       daoAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
     },
   };
-  const vaultState = await account.getVaultState({ vault: new Vault({ id: 10 }) });
+  const vaultState = await account.getVaultState({ vault: new Vault({ name: "algo", network: "MainNet"}) });
   expect(JSON.stringify(vaultState)).toEqual(JSON.stringify(expectedVaultState));
 });
 
@@ -121,7 +121,7 @@ it('Get user info', async () => {
     lastAccruedInterestTime: 10000,
     vaultFound: true,
   };
-  const userInfo = await account.getUserInfo({ address: ' ', vault: new Vault({ id: VAULT_ID }) });
+  const userInfo = await account.getUserInfo({ address: ' ', vault: new Vault({ name: 'algo', network: 'MainNet' }) });
   const interestAccrued = calculateInterestAccrued(
     networkSecs,
     originalValue.lastAccruedInterestTime,
@@ -134,13 +134,16 @@ it('Get user info', async () => {
 });
 
 it('Oracle update price', async function () {
-  const isPriceUpdated = await account.updatePrice({ price: COLLATERAL_PRICE, vault: new Vault({ id: VAULT_ID }) });
+  const isPriceUpdated = await account.updatePrice({
+    price: COLLATERAL_PRICE,
+    vault: new Vault({ name: 'algo', network: 'MainNet' }),
+  });
   expect(isPriceUpdated).toBe(true);
 });
 
 it('Liquidator Liquidate Vault', async function () {
   const isLiquidated = await account.liquidateVault({
-    vault: new Vault({ id: VAULT_ID }),
+    vault: new Vault({ name: 'algo', network: 'MainNet' }),
     address: '',
     debtAmount: 10,
     dripInterest: false,
@@ -153,7 +156,7 @@ it('Liquidator Liquidate Vault', async function () {
 it('Minter returns vault debt', async function () {
   const isVaultDebtReturned = await account.returnVaultDebt({
     amount: MINT_AMOUNT,
-    vault: new Vault({ id: VAULT_ID }),
+    vault: new Vault({  name: "algo", network: "MainNet" }),
     close: false,
     address: await account.getAddress(),
   });
@@ -163,7 +166,7 @@ it('Minter returns vault debt', async function () {
 it('Minter withdraws collateral', async function () {
   const isCollateralWithdrawn = await account.withdrawCollateral({
     amount: MINT_AMOUNT,
-    vault: new Vault({ id: VAULT_ID }),
+    vault: new Vault({  name: "algo", network: "MainNet" }),
     minimumPrice: MINIMUM_PRICE,
     maximumPrice: MAXIMUM_PRICE,
   });
@@ -172,7 +175,7 @@ it('Minter withdraws collateral', async function () {
 
 it('Minter deposit collateral', async function () {
   const isCollateralDeposited = await account.depositCollateral({
-    vault: new Vault({ id: VAULT_ID }),
+    vault: new Vault({  name: "algo", network: "MainNet" }),
     amount: 1000,
   });
   expect(isCollateralDeposited).toBe(true);
@@ -180,7 +183,7 @@ it('Minter deposit collateral', async function () {
 
 it('Minter mints token', async function () {
   const isTokenMinted = await account.mintToken({
-    vault: new Vault({ id: VAULT_ID }),
+    vault: new Vault({  name: "algo", network: "MainNet" }),
     amount: 500,
     minimumPrice: MINIMUM_PRICE,
     maximumPrice: MAXIMUM_PRICE,
@@ -190,7 +193,7 @@ it('Minter mints token', async function () {
 
 it('Minter creates vault', async function () {
   const isVaultCreated = await account.createVault({
-    vault: new Vault({ id: VAULT_ID }),
+    vault: new Vault({  name: "algo", network: "MainNet" }),
     collateral: 1000,
     mintAmount: 500,
     minimumPrice: MINIMUM_PRICE,
@@ -201,7 +204,7 @@ it('Minter creates vault', async function () {
 
 it('Liquidator drips interest', async function () {
   const dripInterest = await account.dripInterest({
-    vault: new Vault({ id: VAULT_ID }),
+    vault: new Vault({  name: "algo", network: "MainNet" }),
     address: '',
   });
   expect(dripInterest).toBe(true);
@@ -219,7 +222,7 @@ it('Admin set properties', async function () {
       minimumDebtAmount: 10,
       maximumCollateralValue: 10000,
     },
-    vault: new Vault({ id: VAULT_ID }),
+    vault: new Vault({  name: "algo", network: "MainNet" }),
   });
   expect(res).toBe(true);
 });

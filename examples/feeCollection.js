@@ -1,4 +1,4 @@
-const {getAllAccounts, VaultClient, Vault, VAULTS, addrFromBox} = require('..');
+const {getAllAccounts, VaultsClient, Vault, VAULTS, addrFromBox} = require('..');
 const {ask} = require('@reach-sh/stdlib');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -6,18 +6,11 @@ dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
   const VAULT_ID = VAULTS.MainNet.mAlgo.vaultId;
-  const account = new VaultClient({
+  const account = new VaultsClient({
     mnemonic,
-    network: 'MainNet',
-    asaVault: {
-      decimals: 6,
-      new_asa_vault: true
-    }
+    network: 'MainNet'
 });
-  const vault = new Vault({id: VAULT_ID,   asaVault: {
-    decimals: 6,
-    new_asa_vault: true
-  }});
+  const vault = new Vault({name: "algo", network: "MainNet"});
   console.log(await account.getAddress())
   while (true) {
     const action = await ask.ask(
@@ -46,21 +39,14 @@ dotenv.config();
 
           (async () => {
             const mnemonic = process.env.MNEMONIC;
-            const VAULT_ID = VAULTS.MainNet.mAlgo.vaultId;
+            const VAULT_ID = VAULTS.MainNet.algo.vaultId;
             const INDEXER_TOKEN = process.env.INDEXER_TOKEN;
-            const account =  new VaultClient({
+            const account =  new VaultsClient({
               mnemonic,
               network: 'MainNet',
-              asaVault: {
-                decimals: 6,
-                new_asa_vault: true
-              }
           });
             console.log({VAULT_ID})
-            const vault = new Vault({id: VAULT_ID,  asaVault: {
-              decimals: 6,
-              new_asa_vault: true
-            }});
+            const vault = new Vault({name: "algo", network: "MainNet"});
             const reach = loadStdlib('ALGO');
             const token = {'X-API-Key': INDEXER_TOKEN};
             const indexer = new reach.algosdk.Indexer(

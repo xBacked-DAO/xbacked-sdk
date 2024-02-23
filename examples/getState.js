@@ -1,18 +1,17 @@
 /* eslint-disable no-unused-vars */
 const {ask} = require('@reach-sh/stdlib');
-const {VaultClient, Vault, VAULTS} = require('..');
+const {VaultsClient, Vault, VAULTS} = require('..');
 const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.newAlgo.vaultId;
+  const VAULT_ID = VAULTS.MainNet.algo.vaultId;
   console.log(VAULT_ID);
-  const account = new VaultClient({
+  const account = new VaultsClient({
     mnemonic,
-    network: 'MainNet',
-    new_algo_vault: true,
+    network: 'TestNet'
   });
-  const vault = new Vault({id: VAULT_ID, new_algo_vault: true});
+  const vault = new Vault({name: "goEth", network: account.network});
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(

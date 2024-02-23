@@ -36,7 +36,7 @@ const timeout = 5 * 60 * 1000;
     await account.optIntoToken(TOKEN_ID);
 
     account.fundFromFaucet();
-    const vault = new Vault({id: VAULT_ID});
+    const vault = new Vault({name: "algo", network: "TestNet"});
 
     console.log(`Getting transactions history starting from round ${startRound}...`);
     let liquidations = 0, txns = 0;

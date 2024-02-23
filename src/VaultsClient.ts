@@ -1,38 +1,13 @@
 // @ts-ignore
-import {
-  vault as vaultBackend,
-  vaultAsa,
-  z_p_f_vaultAsa,
-  large_cp_vault_asa,
-  new_algo_vault,
-  new_asa_vault,
-} from '@xbacked-dao/xbacked-contracts';
 import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';
 import { Account } from './Account';
 import { AccountInterface, UserVaultReturnParams, VaultReturnParams, AdminProperties } from './interfaces';
 
-export class VaultClient extends Account {
+export class VaultsClient extends Account {
   backend: any;
   constructor(params: AccountInterface) {
     super(params);
-    if (params?.asaVault?.decimals) {
-      if (params?.asaVault?.z_p_f_vault_asa) {
-        this.backend = z_p_f_vaultAsa;
-      } else if (params?.asaVault?.large_cp_vault_asa) {
-        this.backend = large_cp_vault_asa;
-      } else if (params?.asaVault?.new_asa_vault) {
-        this.backend = new_asa_vault;
-      } else {
-        this.backend = vaultAsa;
-      }
-    } else {
-      if (!params.new_algo_vault) {
-        this.backend = vaultBackend;
-      } else {
-        this.backend = new_algo_vault;
-      }
-    }
   }
 
   /**
@@ -50,7 +25,7 @@ export class VaultClient extends Account {
     maximumPrice: number;
   }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.Liquidator;
     if (params.dripInterest) {
       await this.dripInterest({ vault: params.vault, address: params.address });
@@ -79,7 +54,7 @@ export class VaultClient extends Account {
     maximumPrice: number;
   }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.Liquidator;
     if (params.dripInterest) {
       await this.dripInterest({ vault: params.vault, address: params.address });
@@ -109,7 +84,7 @@ export class VaultClient extends Account {
     targetVault: string;
   }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
     const res = await put.redeemVault({
       amountToRedeem: convertToMicroUnits(params.amountToRedeem),
@@ -129,7 +104,7 @@ export class VaultClient extends Account {
    */
   async proposeVaultForRedemption(params: { address: string; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.VaultRedeemer;
     const res = await put.proposeVault(params.address);
     return res;
@@ -142,7 +117,7 @@ export class VaultClient extends Account {
    */
   async updatePrice(params: { price: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.Oracle;
     const res = await put.updatePrice(convertToMicroUnits(params.price));
     return res;
@@ -162,7 +137,7 @@ export class VaultClient extends Account {
     maximumPrice: number;
   }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.mintToken({
       newVaultDebt: convertToMicroUnits(params.amount),
@@ -179,10 +154,10 @@ export class VaultClient extends Account {
    */
   async depositCollateral(params: { amount: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.depositCollateral(
-      convertToMicroUnits(params.amount, this.asaVault ? this.asaVault.decimals : undefined),
+      convertToMicroUnits(params.amount, params.vault.asaVault ? params.vault.asaVault.decimals : undefined),
     );
     return res;
   }
@@ -201,10 +176,10 @@ export class VaultClient extends Account {
     maximumPrice: number;
   }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.withdrawCollateral({
-      collateralToWithdraw: convertToMicroUnits(params.amount, this.asaVault ? this.asaVault.decimals : undefined),
+      collateralToWithdraw: convertToMicroUnits(params.amount, params.vault.asaVault ? params.vault.asaVault.decimals : undefined),
       minPrice: convertToMicroUnits(params.minimumPrice),
       maxPrice: convertToMicroUnits(params.maximumPrice),
     });
@@ -219,7 +194,7 @@ export class VaultClient extends Account {
    */
   async returnVaultDebt(params: { amount: number; vault: Vault; close?: boolean; address: string }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.returnVaultDebt({
       amountToReturn: params.close ? 0 : convertToMicroUnits(params.amount),
@@ -255,10 +230,10 @@ export class VaultClient extends Account {
     maximumPrice: number;
   }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.createVault({
-      initialCollateral: convertToMicroUnits(params.collateral, this.asaVault ? this.asaVault.decimals : undefined),
+      initialCollateral: convertToMicroUnits(params.collateral, params.vault.asaVault ? params.vault.asaVault.decimals : undefined),
       initialVaultDebt: convertToMicroUnits(params.mintAmount),
       minPrice: convertToMicroUnits(params.minimumPrice),
       maxPrice: convertToMicroUnits(params.maximumPrice),
@@ -273,7 +248,7 @@ export class VaultClient extends Account {
    */
   async collectFees(params: { vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.FeeCollector;
     const res = await put.collectFees();
     return res;
@@ -286,7 +261,7 @@ export class VaultClient extends Account {
    */
   async dripInterest(params: { address: string; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.FeeCollector;
     const res = await put.dripInterest(params.address);
     return res;
@@ -322,7 +297,7 @@ export class VaultClient extends Account {
    */
   async subscribeToEvents(params: {
     /** @property a uint that uniquely identifies the contract */
-    vaultId: number;
+    vault: Vault;
     /** @property callback that is called when a vault is created, it is called with the address that created the vault as well as its user vault state */
     createCallback: (address: string, state: UserVaultReturnParams) => void;
     /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */
@@ -330,7 +305,7 @@ export class VaultClient extends Account {
     updatePriceCallback: (address: string, newPrice: number) => void;
   }): Promise<void> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vaultId);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const announcer = ctc.e.Announcer;
     if (params.createCallback !== undefined) {
       await announcer.vaultCreated.seekNow();
@@ -360,7 +335,7 @@ export class VaultClient extends Account {
    */
   async replenishSupply(params: { supplyAmt: number; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.AdminAPI;
     const res = await put.replenishSupply(convertToMicroUnits(params.supplyAmt));
     return res;
@@ -373,7 +348,7 @@ export class VaultClient extends Account {
    */
   async setAdminProperties(params: { adminProperties: AdminProperties; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.AdminAPI;
     params.adminProperties.minimumDebtAmount = convertToMicroUnits(params.adminProperties.minimumDebtAmount);
     params.adminProperties.maximumCollateralValue = convertToMicroUnits(params.adminProperties.maximumCollateralValue);
@@ -388,7 +363,7 @@ export class VaultClient extends Account {
    */
   async updateAdminAddress(params: { address: string; vault: Vault }): Promise<boolean> {
     await this.initialiseReachAccount();
-    const ctc = this.reachAccount.contract(this.backend, params.vault.id);
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.AdminAPI;
     const res = await put.updateAdminAddress(params.address);
     return res;

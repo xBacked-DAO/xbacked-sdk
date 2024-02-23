@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
-const {VaultClient, VAULTS} = require('..');
+const {VaultsClient, VAULTS} = require('..');
 const dotenv = require('dotenv');
 const {vault: backend} = require('@xbacked-dao/xbacked-contracts');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = 8;
-  const account = new VaultClient({
+  const VAULT_ID = VAULTS.MainNet.algo;
+  const account = new VaultsClient({
     mnemonic,
     network: 'LocalHost',
   });

@@ -1,5 +1,11 @@
 import { Account } from './Account';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
+declare type AsaVault = {
+    decimals: number;
+    z_p_f_vault_asa?: boolean;
+    large_cp_vault_asa?: boolean;
+    new_asa_vault?: boolean;
+};
 /**
  * The Parameters returned from the staate of a contract
  */
@@ -10,6 +16,7 @@ export declare class Vault {
     /** @property Unique identifier for the contract */
     readonly id: number | undefined;
     backend: any;
+    asaVault?: AsaVault;
     constructor(params: VaultParameters);
     /**
      * Used to get the state of the contract
@@ -35,3 +42,4 @@ export declare class Vault {
      */
     static parseUserInfo(vaultState: any): ReachUserVault;
 }
+export {};

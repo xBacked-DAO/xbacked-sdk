@@ -169,7 +169,7 @@ export declare class VaultsClient extends Account {
      */
     subscribeToEvents(params: {
         /** @property a uint that uniquely identifies the contract */
-        vaultId: number;
+        vault: Vault;
         /** @property callback that is called when a vault is created, it is called with the address that created the vault as well as its user vault state */
         createCallback: (address: string, state: UserVaultReturnParams) => void;
         /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */

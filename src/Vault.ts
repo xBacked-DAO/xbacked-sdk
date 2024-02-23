@@ -8,6 +8,18 @@ import {
   new_asa_vault,
 } from '@xbacked-dao/xbacked-contracts';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
+import { VAULTS } from './utils';
+
+
+function isSafeKeyOfQ(s: string): s is keyof typeof VAULTS.MainNet {
+  return Object.keys(VAULTS.MainNet).includes(s);
+}
+type AsaVault = {
+    decimals: number;
+    z_p_f_vault_asa?: boolean;
+    large_cp_vault_asa?: boolean;
+    new_asa_vault?: boolean;
+}
 /**
  * The Parameters returned from the staate of a contract
  */
@@ -18,26 +30,44 @@ export class Vault {
   /** @property Unique identifier for the contract */
   readonly id: number | undefined;
   backend: any;
+  asaVault?: AsaVault;
   constructor(params: VaultParameters) {
-    this.id = params.id;
-    if (params?.asaVault?.decimals) {
-      if(params?.asaVault?.z_p_f_vault_asa){
-        this.backend = z_p_f_vaultAsa;
-      }else if(params?.asaVault?.large_cp_vault_asa){
-        this.backend = large_cp_vault_asa;
-      } else if (params?.asaVault?.new_asa_vault) { 
-        this.backend = new_asa_vault
-      }
-      else{
-        this.backend = vaultAsa;
+    if (isSafeKeyOfQ(params.name)) {
+      this.id = VAULTS[params.network][params.name].vaultId;
+
+      const asaVault =
+        VAULTS[params.network][params.name]?.new_asa_vault === false
+          ? undefined
+          : {
+              decimals:
+                VAULTS[params.network][params.name].assetDecimals === undefined
+                  ? 6
+                  : VAULTS[params.network][params.name].assetDecimals,
+              z_p_f_vault_asa: false,
+              large_cp_vault_asa: false,
+              new_asa_vault: VAULTS[params.network][params.name]?.new_asa_vault,
+            };
+
+      if (asaVault) {
+        if (asaVault?.z_p_f_vault_asa) {
+          this.backend = z_p_f_vaultAsa;
+        } else if (asaVault?.large_cp_vault_asa) {
+          this.backend = large_cp_vault_asa;
+        } else if (asaVault?.new_asa_vault) {
+          this.backend = new_asa_vault;
+        } else {
+          this.backend = vaultAsa;
+        }
+        this.asaVault = { ...asaVault, decimals: asaVault?.decimals === undefined ? 6 : asaVault?.decimals };
+      } else {
+        if (params.name === 'oldAlgo') {
+          this.backend = vaultBackend;
+        } else {
+          this.backend = new_algo_vault;
+        }
       }
     } else {
-      if (!params.new_algo_vault) {
-        this.backend = vaultBackend;
-      } else { 
-        this.backend = new_algo_vault
-      }
-      
+      throw Error('Wrong param for name');
     }
   }
   /**

@@ -1,4 +1,4 @@
-const {VaultClient, Vault, VAULTS} = require('..');
+const {VaultsClient, Vault, VAULTS} = require('..');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -7,11 +7,11 @@ dotenv.config();
   const VAULT_ID = process.env.VAULT_ID ? process.env.VAULT_ID :
   VAULTS.TestNet.algo.vaultId;
   const liquidationAddress = process.env.ADDRESS_FOR_LIQUIDATION;
-  const account = new VaultClient({
+  const account = new VaultsClient({
     mnemonic,
     network: 'TestNet',
   });
-  const vault = new Vault({id: VAULT_ID});
+  const vault = new Vault({name: "algo", network: "TestNet"});
   try {
     const isVaultLiquidated = await account.liquidateVault({
       address: liquidationAddress,

@@ -21,14 +21,6 @@ export declare class Account {
     providerEnv?: any;
     /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
     networkAccount?: any;
-    /** @property An optional object used to interact with ASA vaults with varying decimals */
-    asaVault?: {
-        decimals: number;
-        z_p_f_vault_asa?: boolean;
-        large_cp_vault_asa?: boolean;
-        new_asa_vault?: boolean;
-    };
-    new_algo_vault?: boolean;
     constructor(params: AccountInterface);
     /**
      * Initialises the reachAccount property

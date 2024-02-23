@@ -1,5 +1,5 @@
-import { VaultClient } from '../VaultClient';
-class MockVaultClient extends VaultClient {
+import { VaultsClient } from '../VaultsClient';
+class MockVaultsClient extends VaultsClient {
   async initialiseReachAccount(): Promise<void> {
     const bigNumberMock = jest.fn((val) => {
       return {
@@ -98,4 +98,4 @@ class MockVaultClient extends VaultClient {
     });
   }
 }
-export default MockVaultClient;
+export default MockVaultsClient;

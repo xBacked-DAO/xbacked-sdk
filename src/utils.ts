@@ -12,79 +12,50 @@ const MINIMUM_COLLATERAL_RATIO = 1.2;
 
 export const VAULTS = {
   TestNet: {
-    // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
-    algo: {
+    oldAlgo: {
       vaultId: 152242747,
       liquidatorDiscount: 0.045,
+      new_algo_vault: true,
+      new_asa_vault: false,
+      assetDecimals: undefined,
     },
-    gAlgo: {
-      vaultId: 159615312,
-      liquidatorDiscount: 0.1,
-      assetId: 159613406,
-      assetDecimals: 6,
-    },
-    meldGold: {
-      vaultId: 228836290,
-      liquidatorDiscount: 0.1,
-      assetId: 228836101,
-      assetDecimals: 6,
-      z_p_f_vault_asa: true,
-    },
-    silver$: {
-      vaultId: 230690513,
-      liquidatorDiscount: 0.1,
-      assetId: 230686227,
-      assetDecimals: 6,
-      z_p_f_vault_asa: true,
-    },
-    goBtc: {
-      vaultId: 240036244,
-      liquidatorDiscount: 0.05,
-      assetId: 239570832,
-      assetDecimals: 8,
-      large_cp_vault_asa: true,
-    },
-    goEth: {
-      vaultId: 240034480,
-      liquidatorDiscount: 0.05,
-      assetId: 239571365,
-      assetDecimals: 8,
-      large_cp_vault_asa: true,
-    },
-    newAlgo: {
+    // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
+    algo: {
       vaultId: 481069338,
       liquidatorDiscount: 0.05,
       new_algo_vault: true,
+      new_asa_vault: false,
+      assetDecimals: undefined,
     },
-    newGAlgo: {
+    gAlgo: {
       vaultId: 481065403,
       liquidatorDiscount: 0.1,
       assetId: 159613406,
       assetDecimals: 6,
       new_asa_vault: true,
     },
-    newMeldGold: {
+    meldGold: {
       vaultId: 481066526,
       liquidatorDiscount: 0.1,
       assetId: 228836101,
       assetDecimals: 6,
       new_asa_vault: true,
     },
-    newSilver$: {
+    silver$: {
       vaultId: 481069084,
       liquidatorDiscount: 0.1,
       assetId: 230686227,
       assetDecimals: 6,
       new_asa_vault: true,
     },
-    newGoBtc: {
+    goBtc: {
       vaultId: 481065574,
       liquidatorDiscount: 0.05,
       assetId: 239570832,
       assetDecimals: 8,
       new_asa_vault: true,
     },
-    newGoEth: {
+    goEth: {
       vaultId: 481065791,
       liquidatorDiscount: 0.05,
       assetId: 239571365,
@@ -129,6 +100,95 @@ export const VAULTS = {
     },
   },
   MainNet: {
+    oldAlgo: {
+      vaultId: 1012903350,
+      liquidatorDiscount: 0.05,
+      deprecated: true,
+      new_asa_vault: false,
+      assetDecimals: undefined,
+    },
+    algo: {
+      vaultId: 1256063618,
+      liquidatorDiscount: 0.05,
+      new_algo_vault: true,
+      new_asa_vault: false,
+      assetDecimals: undefined,
+    },
+    gAlgo: {
+      vaultId: 1256065446,
+      liquidatorDiscount: 0.1,
+      assetId: 793124631,
+      assetDecimals: 6,
+      new_asa_vault: true,
+    },
+    meldGold: {
+      vaultId: 1256066865,
+      liquidatorDiscount: 0.05,
+      assetId: 246516580,
+      assetDecimals: 6,
+      new_asa_vault: true,
+    },
+    silver$: {
+      vaultId: 1256070920,
+      liquidatorDiscount: 0.05,
+      assetId: 246519683,
+      assetDecimals: 6,
+      new_asa_vault: true,
+    },
+    goBtc: {
+      vaultId: 1256072093,
+      liquidatorDiscount: 0.05,
+      assetId: 386192725,
+      assetDecimals: 8,
+      new_asa_vault: true,
+    },
+    goEth: {
+      vaultId: 1256073191,
+      liquidatorDiscount: 0.05,
+      assetId: 386195940,
+      assetDecimals: 8,
+      new_asa_vault: true,
+    },
+    wrappedSol: {
+      vaultId: 1265849839,
+      assetId: 887648583,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.05,
+    },
+    wrappedAvax: {
+      vaultId: 1273568518,
+      assetId: 893309613,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.05,
+    },
+    mAlgo: {
+      vaultId: 1403586486,
+      assetId: 1185173782,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+    },
+    link: {
+      vaultId: 1421760711,
+      assetId: 1200094857,
+      assetDecimals: 8,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+    },
+    coop: {
+      vaultId: 1519754904,
+      assetId: 796425061,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.3,
+    },
+  },
+};
+
+export const deprecatedVaults = {
+  MainNet: {
     algo: {
       vaultId: 1012903350,
       liquidatorDiscount: 0.05,
@@ -172,80 +232,45 @@ export const VAULTS = {
       large_cp_vault_asa: true,
       deprecated: true,
     },
-
-    newAlgo: {
-      vaultId: 1256063618,
-      liquidatorDiscount: 0.05,
-      new_algo_vault: true,
+  },
+  TestNet: {
+    algo: {
+      vaultId: 152242747,
+      liquidatorDiscount: 0.045,
     },
-    newGAlgo: {
-      vaultId: 1256065446,
+    gAlgo: {
+      vaultId: 159615312,
       liquidatorDiscount: 0.1,
-      assetId: 793124631,
+      assetId: 159613406,
       assetDecimals: 6,
     },
-    newMeldGold: {
-      vaultId: 1256066865,
-      liquidatorDiscount: 0.05,
-      assetId: 246516580,
-      assetDecimals: 6,
-      new_asa_vault: true,
-    },
-    newSilver$: {
-      vaultId: 1256070920,
-      liquidatorDiscount: 0.05,
-      assetId: 246519683,
-      assetDecimals: 6,
-      new_asa_vault: true,
-    },
-    newGoBtc: {
-      vaultId: 1256072093,
-      liquidatorDiscount: 0.05,
-      assetId: 386192725,
-      assetDecimals: 8,
-      new_asa_vault: true,
-    },
-    newGoEth: {
-      vaultId: 1256073191,
-      liquidatorDiscount: 0.05,
-      assetId: 386195940,
-      assetDecimals: 8,
-      new_asa_vault: true,
-    },
-    wrappedSol: {
-      vaultId: 1265849839,
-      assetId: 887648583,
-      assetDecimals: 8,
-      new_asa_vault: true,
-      liquidatorDiscount: 0.05,
-    },
-    wrappedAvax: {
-      vaultId: 1273568518,
-      assetId: 893309613,
-      assetDecimals: 8,
-      new_asa_vault: true,
-      liquidatorDiscount: 0.05,
-    },
-    mAlgo: {
-      vaultId: 1403586486,
-      assetId: 1185173782,
-      assetDecimals: 6,
-      new_asa_vault: true,
+    meldGold: {
+      vaultId: 228836290,
       liquidatorDiscount: 0.1,
-    },
-    link: {
-      vaultId: 1421760711,
-      assetId: 1200094857,
-      assetDecimals: 8,
-      new_asa_vault: true,
-      liquidatorDiscount: 0.1,
-    },
-    coop: {
-      vaultId: 1519754904,
-      assetId: 796425061,
+      assetId: 228836101,
       assetDecimals: 6,
-      new_asa_vault: true,
-      liquidatorDiscount: 0.3,
+      z_p_f_vault_asa: true,
+    },
+    silver$: {
+      vaultId: 230690513,
+      liquidatorDiscount: 0.1,
+      assetId: 230686227,
+      assetDecimals: 6,
+      z_p_f_vault_asa: true,
+    },
+    goBtc: {
+      vaultId: 240036244,
+      liquidatorDiscount: 0.05,
+      assetId: 239570832,
+      assetDecimals: 8,
+      large_cp_vault_asa: true,
+    },
+    goEth: {
+      vaultId: 240034480,
+      liquidatorDiscount: 0.05,
+      assetId: 239571365,
+      assetDecimals: 8,
+      large_cp_vault_asa: true,
     },
   },
 };

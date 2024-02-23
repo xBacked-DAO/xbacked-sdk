@@ -22,13 +22,6 @@ export interface AccountInterface {
   reachStdLib?: any;
   /** @property An optional instance of an account from the reach standard library. Used to reconnect via a frontend */
   networkAccount?: any;
-  asaVault?: {
-    decimals: number;
-    z_p_f_vault_asa?: boolean;
-    large_cp_vault_asa?: boolean;
-    new_asa_vault?: boolean;
-  };
-  new_algo_vault?: boolean
 }
 
 export interface StakeGlobalView {
@@ -51,7 +44,6 @@ export interface StakeLocalView {
   lastClaim: number;
   found: boolean;
 }
-
 export interface VaultReturnParams {
   LIQUIDATION_COLLATERAL_RATIO: number;
   MINIMUM_COLLATERAL_RATIO: number;
@@ -80,6 +72,7 @@ export interface VaultReturnParams {
   };
 }
 
+
 export interface ReachUserVault {
   /** @property The amount of collateral in a vault */
   collateral: number;
@@ -97,20 +90,14 @@ export interface UserVaultReturnParams extends ReachUserVault {
   /** @property Indicator that signifies that a vault exists for a particular address */
   vaultFound: boolean;
 }
+
 /**
  * parameters used to instantiate the Contract constructor
  */
 export interface VaultParameters {
   /**  @property Unique identifier for the contract */
-  id: number;
-  acc?: any;
-  asaVault?: {
-    decimals: number;
-    z_p_f_vault_asa?: boolean;
-    large_cp_vault_asa?: boolean;
-    new_asa_vault?: boolean;
-  };
-  new_algo_vault?: boolean;
+  name: string;
+  network: 'MainNet' | 'TestNet';
 }
 
 /**
