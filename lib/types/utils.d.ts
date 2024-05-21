@@ -84,6 +84,13 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_asa_vault: boolean;
         };
+        chips: {
+            assetId: number;
+            vaultId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+        };
     };
     MainNet: {
         oldAlgo: {
@@ -164,6 +171,13 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
         };
         coop: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+        };
+        chips: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;

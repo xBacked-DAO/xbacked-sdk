@@ -5,12 +5,13 @@ dotenv.config();
 
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.mAlgo.vaultId;
+
   const account = new VaultsClient({
     mnemonic,
     network: 'MainNet'
 });
   const vault = new Vault({name: "algo", network: "MainNet"});
+  const VAULT_ID = vault.id;
   console.log(await account.getAddress())
   while (true) {
     const action = await ask.ask(
@@ -39,14 +40,12 @@ dotenv.config();
 
           (async () => {
             const mnemonic = process.env.MNEMONIC;
-            const VAULT_ID = VAULTS.MainNet.algo.vaultId;
             const INDEXER_TOKEN = process.env.INDEXER_TOKEN;
             const account =  new VaultsClient({
               mnemonic,
               network: 'MainNet',
           });
             console.log({VAULT_ID})
-            const vault = new Vault({name: "algo", network: "MainNet"});
             const reach = loadStdlib('ALGO');
             const token = {'X-API-Key': INDEXER_TOKEN};
             const indexer = new reach.algosdk.Indexer(

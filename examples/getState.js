@@ -5,13 +5,14 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.algo.vaultId;
-  console.log(VAULT_ID);
+ 
   const account = new VaultsClient({
     mnemonic,
-    network: 'TestNet'
+    network: 'MainNet'
   });
-  const vault = new Vault({name: "goEth", network: account.network});
+  const vault = new Vault({name: "silver$", network: account.network});
+  const VAULT_ID = vault.id; 
+  console.log(VAULT_ID);
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(
