@@ -419,7 +419,11 @@ export const getAllAccounts = async (
   } else if (accounts.length > 0 && !nextToken) {
     return Promise.resolve(accounts);
   }
+
   const initialVaults = await indexer.searchForApplicationBoxes(applicationId).do();
+    if (initialVaults.length == 0 && accounts.length == 0) {
+      return Promise.resolve(initialVaults)
+    }
   return getAllAccounts(applicationId, indexer, initialVaults.boxes, initialVaults['next-token']);
 };
 
