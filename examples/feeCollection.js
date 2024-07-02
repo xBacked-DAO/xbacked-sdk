@@ -5,20 +5,20 @@ dotenv.config();
 
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.mAlgo.vaultId;
+  const VAULT_ID = VAULTS.MainNet.newSilver$.vaultId;
   const account = new VaultClient({
     mnemonic,
     network: 'MainNet',
     asaVault: {
       decimals: 6,
-      new_asa_vault: true
-    }
-});
-  const vault = new Vault({id: VAULT_ID,   asaVault: {
+      new_asa_vault: true,
+    },
+  });
+  const vault = new Vault({id: VAULT_ID, asaVault: {
     decimals: 6,
-    new_asa_vault: true
+    new_asa_vault: true,
   }});
-  console.log(await account.getAddress())
+  console.log(await account.getAddress());
   while (true) {
     const action = await ask.ask(
         `
@@ -32,7 +32,7 @@ dotenv.config();
       switch (action) {
         // distribute collateral fees to xUSD stakers and DAO
         // Receive 0.5% of the accured fees
-        
+
         case 1:
           const isFeeCollected = await account.collectFees({vault});
           console.log(isFeeCollected);
@@ -46,20 +46,20 @@ dotenv.config();
 
           (async () => {
             const mnemonic = process.env.MNEMONIC;
-            const VAULT_ID = VAULTS.MainNet.mAlgo.vaultId;
+            const VAULT_ID = VAULTS.MainNet.newSilver$.vaultId;
             const INDEXER_TOKEN = process.env.INDEXER_TOKEN;
-            const account =  new VaultClient({
+            const account = new VaultClient({
               mnemonic,
               network: 'MainNet',
               asaVault: {
                 decimals: 6,
-                new_asa_vault: true
-              }
-          });
-            console.log({VAULT_ID})
-            const vault = new Vault({id: VAULT_ID,  asaVault: {
+                new_asa_vault: true,
+              },
+            });
+            console.log({VAULT_ID});
+            const vault = new Vault({id: VAULT_ID, asaVault: {
               decimals: 6,
-              new_asa_vault: true
+              new_asa_vault: true,
             }});
             const reach = loadStdlib('ALGO');
             const token = {'X-API-Key': INDEXER_TOKEN};
@@ -81,19 +81,18 @@ dotenv.config();
             console.log({accounts});
             // get state for each vault
             const vaultData = accounts.map( async (vaultAccount) => {
-              await account.dripInterest({address: addrFromBox(vaultAccount), vault})
-              try{
+              await account.dripInterest({address: addrFromBox(vaultAccount), vault});
+              try {
                 return account.getUserInfo({address: addrFromBox(vaultAccount), vault});
-              }catch(eror){
-                return{error}
+              } catch (eror) {
+                return {error};
               }
-              
             });
             const vaultAddresses = accounts.map( (vaultAccount) => addrFromBox(vaultAccount));
             console.log(vaultAddresses);
             const resolvedVaultData = await Promise.all(vaultData);
             const totalVaultDebt = resolvedVaultData.reduce((prev, next)=> prev + next.vaultDebt, 0);
-            const microUnits = 1000000
+            const microUnits = 1000000;
             console.log({tvd: totalVaultDebt / microUnits});
             return resolvedVaultData;
           })();

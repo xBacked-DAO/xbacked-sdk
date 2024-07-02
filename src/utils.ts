@@ -390,15 +390,15 @@ export const getAllAccounts = async (
 ): Promise<any[]> => {
   if (accounts.length > 0 && nextToken) {
     const retrievedVaults = await indexer.searchForApplicationBoxes(applicationId).nextToken(nextToken).do();
-    const updatedAccounts = accounts.concat(retrievedVaults.accounts);
+    const updatedAccounts = accounts.concat(retrievedVaults.boxes);
     return getAllAccounts(applicationId, indexer, updatedAccounts, retrievedVaults['next-token']);
     // eslint-disable-next-line
   } else if (accounts.length > 0 && !nextToken) {
     return Promise.resolve(accounts);
   }
   const initialVaults = await indexer.searchForApplicationBoxes(applicationId).do();
-  if(initialVaults.length == 0 && accounts.length == 0){
-    return Promise.resolve(initialVaults);
+  if (initialVaults.boxes.length === 0 && accounts.length === 0) {
+    return Promise.resolve(initialVaults.boxes);
   }
   return getAllAccounts(applicationId, indexer, initialVaults.boxes, initialVaults['next-token']);
 };
