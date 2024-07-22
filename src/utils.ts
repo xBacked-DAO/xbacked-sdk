@@ -127,13 +127,20 @@ export const VAULTS = {
       liquidatorDiscount: 0.3,
       new_asa_vault: true,
     },
-    chips:{
+    chips: {
       assetId: 645025802,
       vaultId: 645031001,
       assetDecimals: 1,
       liquidatorDiscount: 0.2,
-      new_asa_vault: true
-    }
+      new_asa_vault: true,
+    },
+    lfty0320: {
+      vaultId: 704391197,
+      assetId: 704390569,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_asa_vault: true,
+    },
   },
   MainNet: {
     algo: {
@@ -255,14 +262,13 @@ export const VAULTS = {
       liquidatorDiscount: 0.3,
     },
 
-    chips:{
+    chips: {
       vaultId: 1776094572,
       assetId: 388592191,
       assetDecimals: 1,
       new_asa_vault: true,
-      liquidatorDiscount: 0.2
-    }
-
+      liquidatorDiscount: 0.2,
+    },
   },
 };
 

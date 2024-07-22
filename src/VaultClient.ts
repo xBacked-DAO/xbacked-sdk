@@ -16,7 +16,7 @@ export class VaultClient extends Account {
   backend: any;
   constructor(params: AccountInterface) {
     super(params);
-    if (params?.asaVault?.decimals) {
+    if (params?.asaVault?.decimals || params?.asaVault?.decimals === 0) {
       if (params?.asaVault?.z_p_f_vault_asa) {
         this.backend = z_p_f_vaultAsa;
       } else if (params?.asaVault?.large_cp_vault_asa) {

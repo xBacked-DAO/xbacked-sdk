@@ -20,24 +20,22 @@ export class Vault {
   backend: any;
   constructor(params: VaultParameters) {
     this.id = params.id;
-    if (params?.asaVault?.decimals) {
-      if(params?.asaVault?.z_p_f_vault_asa){
+    if (params?.asaVault?.decimals || params?.asaVault?.decimals === 0) {
+      if (params?.asaVault?.z_p_f_vault_asa) {
         this.backend = z_p_f_vaultAsa;
-      }else if(params?.asaVault?.large_cp_vault_asa){
+      } else if (params?.asaVault?.large_cp_vault_asa) {
         this.backend = large_cp_vault_asa;
-      } else if (params?.asaVault?.new_asa_vault) { 
-        this.backend = new_asa_vault
-      }
-      else{
+      } else if (params?.asaVault?.new_asa_vault) {
+        this.backend = new_asa_vault;
+      } else {
         this.backend = vaultAsa;
       }
     } else {
       if (!params.new_algo_vault) {
         this.backend = vaultBackend;
-      } else { 
-        this.backend = new_algo_vault
+      } else {
+        this.backend = new_algo_vault;
       }
-      
     }
   }
   /**
