@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-const { ask } = require('@reach-sh/stdlib');
-const { VaultsClient, Vault, VAULTS } = require('..');
+const {ask} = require('@reach-sh/stdlib');
+const {VaultsClient, Vault, VAULTS} = require('..');
 const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
@@ -10,19 +10,19 @@ dotenv.config();
     mnemonic,
     network: 'TestNet',
   });
-  const vault = new Vault({ name: 'goBtc', network: account.network });
+  const vault = new Vault({name: 'eurs', network: account.network});
 
   const VAULT_ID = vault.id;
   console.log(VAULT_ID);
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(
-      `
+        `
   Do you want to:2
   1. get user info
   2. get vault state
   `,
-      parseInt,
+        parseInt,
     );
     switch (action) {
       case 1:
@@ -33,7 +33,7 @@ dotenv.config();
         console.log(userInfo);
         break;
       case 2:
-        const vaultState = await account.getVaultState({ vault });
+        const vaultState = await account.getVaultState({vault});
         console.log(vaultState);
         break;
     }

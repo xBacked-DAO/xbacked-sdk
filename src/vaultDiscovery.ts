@@ -1,6 +1,7 @@
 import { Account } from './Account';
 import { Vault } from './Vault';
-import { vault as vaultBackend, vaultAsa } from '@xbacked-dao/xbacked-contracts';
+import { new_algo_vault as vaultBackend  ,
+  new_asa_vault as vaultAsa } from '@xbacked-dao/xbacked-contracts';
 import VaultCreatedEvent from './VaultEvents/VaultCreatedEvent';
 import VaultClosedEvent from './VaultEvents/VaultClosedEvent';
 import VaultTransactionEvent from './VaultEvents/VaultTransactionEvent';

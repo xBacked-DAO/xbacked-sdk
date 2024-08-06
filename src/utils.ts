@@ -105,6 +105,13 @@ export const VAULTS = {
       liquidatorDiscount: 0.2,
       new_asa_vault: true,
     },
+    eurs: {
+      assetId: 711381347,
+      vaultId: 711389709,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.05,
+      new_asa_vault: true,
+    },
   },
   MainNet: {
     oldAlgo: {
@@ -197,6 +204,13 @@ export const VAULTS = {
       assetDecimals: 1,
       new_asa_vault: true,
       liquidatorDiscount: 0.2,
+    },
+    eurs: {
+      assetId: 227855942,
+      vaultId: 2213720271,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.05,
+      new_asa_vault: true,
     },
   },
 };
@@ -421,7 +435,7 @@ export const getAllAccounts = async (
   }
 
   const initialVaults = await indexer.searchForApplicationBoxes(applicationId).do();
-    if (initialVaults.length == 0 && accounts.length == 0) {
+    if (initialVaults.length === 0 && accounts.length === 0) {
       return Promise.resolve(initialVaults)
     }
   return getAllAccounts(applicationId, indexer, initialVaults.boxes, initialVaults['next-token']);
