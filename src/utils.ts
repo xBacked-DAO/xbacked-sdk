@@ -435,7 +435,7 @@ export const getAllAccounts = async (
   }
 
   const initialVaults = await indexer.searchForApplicationBoxes(applicationId).do();
-    if (initialVaults.length == 0 && accounts.length == 0) {
+    if (initialVaults.length === 0 && accounts.length === 0) {
       return Promise.resolve(initialVaults)
     }
   return getAllAccounts(applicationId, indexer, initialVaults.boxes, initialVaults['next-token']);
