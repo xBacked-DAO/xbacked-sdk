@@ -243,7 +243,7 @@ export class VaultsClient extends Account {
         });
         const resolvedVaultData = await Promise.all(vaultData);
         const totalVaultDebt = resolvedVaultData.reduce((prev, next) => prev + ((next as any).error ? 0: (next as any).vaultDebt), 0);
-        const totalVaultsGotten = resolvedVaultData.filter((el)=> (el as any).error == undefined).length
+        const totalVaultsGotten = resolvedVaultData.filter((el)=> (el as any).error === undefined).length
         const totalSystemCr = (totalValueLocked / totalVaultDebt) * 1000000;
 
         return {
@@ -255,7 +255,7 @@ export class VaultsClient extends Account {
           totalNumberOfVaults: totalVaultsGotten,
           stableSupplyRemaining: debtBalance,
           totalVaultDebt,
-          isDeprecated: globalState.coldState.contractState == 1
+          isDeprecated: globalState.coldState.contractState === 1
         };
      }else {
       throw Error("not a valid vault")
