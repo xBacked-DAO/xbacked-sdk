@@ -1,8 +1,9 @@
 // @ts-ignore
 import { Vault } from './Vault';
-import { convertToMicroUnits, calculateInterestAccrued } from './utils';
+import { convertToMicroUnits, calculateInterestAccrued, VAULTS, getAllAccounts, addrFromBox } from './utils';
 import { Account } from './Account';
-import { AccountInterface, UserVaultReturnParams, VaultReturnParams, AdminProperties } from './interfaces';
+import { AccountInterface, UserVaultReturnParams, VaultReturnParams, AdminProperties, VaultAnalytics } from './interfaces';
+import algosdk, { Indexer } from 'algosdk';
 
 export class VaultsClient extends Account {
   backend: any;
@@ -212,6 +213,53 @@ export class VaultsClient extends Account {
   async getVaultState(params: { vault: Vault }): Promise<VaultReturnParams> {
     await this.initialiseReachAccount();
     return await params.vault.getState({ account: this });
+  }
+
+  async getVaultAnalytics (params: {vault: Vault, indexer: Indexer, stbl: number}): Promise<VaultAnalytics>{
+     await this.initialiseReachAccount();
+     const globalState = await params.vault.getState({ account: this });
+     const {accruedFees, collateralPrice } = globalState.coldState;
+     const { accruedInterest } = globalState.hotState;
+     if(Object.keys(VAULTS[this.network as "MainNet"|"TestNet"]).includes(params.vault.name)){
+       const vaultDetails = (VAULTS[this.network as 'MainNet' | 'TestNet'] as any)[params.vault.name];
+        const collateralAssetId = (vaultDetails as any).assetId ? (vaultDetails as any).assetId: 0;
+        const vaultAddress = algosdk.getApplicationAddress(vaultDetails.vaultId);
+        const collateralBalance = await  this.getOtherBalance({tokenId: collateralAssetId, address: vaultAddress});
+        const debtBalance = await  this.getOtherBalance({tokenId: params.stbl, address: vaultAddress});
+        const totalValueLocked = (collateralBalance * collateralPrice)/ (10 ** ((vaultDetails as any).assetDecimals || 6));
+        const accounts = await getAllAccounts(
+            // application ID
+            vaultDetails.vaultId,
+            params.indexer,
+            [],
+            ""
+          );
+        const vaultData = accounts.map((vaultAccount) => {
+          try {
+            return this.getUserInfo({ address: addrFromBox(vaultAccount), vault: params.vault });
+          } catch (error) {
+            return { error };
+          }
+        });
+        const resolvedVaultData = await Promise.all(vaultData);
+        const totalVaultDebt = resolvedVaultData.reduce((prev, next) => prev + ((next as any).error ? 0: (next as any).vaultDebt), 0);
+        const totalVaultsGotten = resolvedVaultData.filter((el)=> (el as any).error == undefined).length
+        const totalSystemCr = (totalValueLocked / totalVaultDebt) * 1000000;
+
+        return {
+          totalValueLocked,
+          totalSystemCr,
+          accruedFees,
+          accruedInterest,
+          collateralPrice,
+          totalNumberOfVaults: totalVaultsGotten,
+          stableSupplyRemaining: debtBalance,
+          totalVaultDebt,
+          isDeprecated: globalState.coldState.contractState == 1
+        };
+     }else {
+      throw Error("not a valid vault")
+     }
   }
 
   /**

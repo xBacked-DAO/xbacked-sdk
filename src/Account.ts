@@ -171,5 +171,20 @@ export class Account {
     }
   }
 
-
+  /**
+   *
+   * @param params An object with key tokenId that indicates the ASA id whose balance this function must return, this key's value should be set to zero for the native token balance
+   * @returns The balance of the specified tokenId
+   */
+  async getOtherBalance(params: { tokenId: number, address: string }): Promise<number> {
+    // reach.formatCurrency(await reach.balanceOf(account), 4)
+    await this.initialiseReachAccount();
+    if (this.reachAccount && params.tokenId !== 0 && params.tokenId !== null) {
+      const balance = await this.reachStdLib.balanceOf(params.address, params.tokenId);
+      return balance.toNumber();
+    } else {
+      const balance = await this.reachStdLib.balanceOf(params.address);
+      return balance.toNumber();
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import { Vault } from './Vault';
 import { Account } from './Account';
-import { AccountInterface, UserVaultReturnParams, VaultReturnParams, AdminProperties } from './interfaces';
+import { AccountInterface, UserVaultReturnParams, VaultReturnParams, AdminProperties, VaultAnalytics } from './interfaces';
+import { Indexer } from 'algosdk';
 export declare class VaultsClient extends Account {
     backend: any;
     constructor(params: AccountInterface);
@@ -122,6 +123,11 @@ export declare class VaultsClient extends Account {
     getVaultState(params: {
         vault: Vault;
     }): Promise<VaultReturnParams>;
+    getVaultAnalytics(params: {
+        vault: Vault;
+        indexer: Indexer;
+        stbl: number;
+    }): Promise<VaultAnalytics>;
     /**
      * Used to create a vault in the contract
      * @param params Contains keys collateral that indicates the amount of collateral that will be used to create the vault,
