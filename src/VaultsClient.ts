@@ -215,7 +215,7 @@ export class VaultsClient extends Account {
     return await params.vault.getState({ account: this });
   }
 
-  async getVaultAnalytics (params: {vault: Vault, indexer: Indexer, stbl: number}): Promise<VaultAnalytics>{
+  async getVaultAnalytics (params: {vault: Vault, indexer: any, stbl: number}): Promise<VaultAnalytics>{
      await this.initialiseReachAccount();
      const globalState = await params.vault.getState({ account: this });
      const {accruedFees, collateralPrice } = globalState.coldState;
@@ -255,7 +255,8 @@ export class VaultsClient extends Account {
           totalNumberOfVaults: totalVaultsGotten,
           stableSupplyRemaining: debtBalance,
           totalVaultDebt,
-          isDeprecated: globalState.coldState.contractState === 1
+          isDeprecated: globalState.coldState.contractState === 1,
+          
         };
      }else {
       throw Error("not a valid vault")

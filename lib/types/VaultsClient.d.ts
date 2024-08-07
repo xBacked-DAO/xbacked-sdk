@@ -1,7 +1,6 @@
 import { Vault } from './Vault';
 import { Account } from './Account';
 import { AccountInterface, UserVaultReturnParams, VaultReturnParams, AdminProperties, VaultAnalytics } from './interfaces';
-import { Indexer } from 'algosdk';
 export declare class VaultsClient extends Account {
     backend: any;
     constructor(params: AccountInterface);
@@ -125,7 +124,7 @@ export declare class VaultsClient extends Account {
     }): Promise<VaultReturnParams>;
     getVaultAnalytics(params: {
         vault: Vault;
-        indexer: Indexer;
+        indexer: any;
         stbl: number;
     }): Promise<VaultAnalytics>;
     /**
