@@ -234,16 +234,16 @@ export class VaultsClient extends Account {
             [],
             ""
           );
-        const vaultData = accounts.map((vaultAccount) => {
-          try {
-            return this.getUserInfo({ address: addrFromBox(vaultAccount), vault: params.vault });
-          } catch (error) {
-            return { error };
-          }
-        });
-        const resolvedVaultData = await Promise.all(vaultData);
-        const totalVaultDebt = resolvedVaultData.reduce((prev, next) => prev + ((next as any).error ? 0: (next as any).vaultDebt), 0);
-        const totalVaultsGotten = resolvedVaultData.filter((el)=> (el as any).error === undefined).length
+        // const vaultData = accounts.map((vaultAccount) => {
+        //   try {
+        //     return this.getUserInfo({ address: addrFromBox(vaultAccount), vault: params.vault });
+        //   } catch (error) {
+        //     return { error };
+        //   }
+        // });
+        // const resolvedVaultData = await Promise.all(vaultData);
+        const totalVaultDebt = globalState.hotState.totalVaultDebt;
+        const totalVaultsGotten = accounts.length;
         const totalSystemCr = (totalValueLocked / totalVaultDebt) * 1000000;
 
         return {
