@@ -71,4 +71,13 @@ export declare class Account {
     getBalance(params: {
         tokenId: number;
     }): Promise<number>;
+    /**
+     *
+     * @param params An object with key tokenId that indicates the ASA id whose balance this function must return, this key's value should be set to zero for the native token balance
+     * @returns The balance of the specified tokenId
+     */
+    getOtherBalance(params: {
+        tokenId: number;
+        address: string;
+    }): Promise<number>;
 }

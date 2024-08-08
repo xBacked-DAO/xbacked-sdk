@@ -31,10 +31,11 @@ export class Vault {
   readonly id: number | undefined;
   backend: any;
   asaVault?: AsaVault;
+  name: string;
   constructor(params: VaultParameters) {
     if (isSafeKeyOfQ(params.name)) {
       this.id = VAULTS[params.network][params.name].vaultId;
-
+      this.name = params.name;
       const asaVault =
         VAULTS[params.network][params.name]?.new_asa_vault === false
           ? undefined

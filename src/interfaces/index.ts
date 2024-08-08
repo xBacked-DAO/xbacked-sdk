@@ -44,6 +44,17 @@ export interface StakeLocalView {
   lastClaim: number;
   found: boolean;
 }
+export interface VaultAnalytics {
+  totalValueLocked: number,
+  totalVaultDebt: number,
+  totalSystemCr: number,
+  totalNumberOfVaults: number,
+  accruedFees: number,
+  accruedInterest: number,
+  stableSupplyRemaining: number,
+  collateralPrice: number,
+  isDeprecated: boolean
+}
 export interface VaultReturnParams {
   LIQUIDATION_COLLATERAL_RATIO: number;
   MINIMUM_COLLATERAL_RATIO: number;

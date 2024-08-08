@@ -17,6 +17,7 @@ export declare class Vault {
     readonly id: number | undefined;
     backend: any;
     asaVault?: AsaVault;
+    name: string;
     constructor(params: VaultParameters);
     /**
      * Used to get the state of the contract
