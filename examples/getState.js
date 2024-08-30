@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const {ask} = require('@reach-sh/stdlib');
+const {ask, loadStdlib} = require('@reach-sh/stdlib');
 const {VaultsClient, Vault, VAULTS} = require('..');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -8,9 +8,9 @@ dotenv.config();
 
   const account = new VaultsClient({
     mnemonic,
-    network: 'TestNet',
+    network: 'MainNet',
   });
-  const vault = new Vault({name: 'eurs', network: account.network});
+  const vault = new Vault({name: 'gAlgo', network: account.network});
 
   const VAULT_ID = vault.id;
   console.log(VAULT_ID);
@@ -35,6 +35,20 @@ dotenv.config();
       case 2:
         const vaultState = await account.getVaultState({vault});
         console.log(vaultState);
+        break;
+      case 3:
+        const reach = loadStdlib('ALGO');
+        const indexer = new reach.algosdk.Indexer(
+            // indexer key
+            {'X-API-Key': ''},
+            // indexer url
+            'https://mainnet-idx.algonode.cloud',
+            // indexer port
+            '',
+        );
+        const vaultAnalytics = await account.getVaultAnalytics({vault,
+          stbl: 760037151, indexer});
+        console.log(vaultAnalytics);
         break;
     }
   }
