@@ -148,6 +148,13 @@ export const VAULTS = {
       liquidatorDiscount: 0.05,
       new_asa_vault: true,
     },
+    finite: {
+      vaultId: 2270204323,
+      assetId: 400593267,
+      assetDecimals: 8,
+      liquidatorDiscount: 0.2,
+      new_asa_vault: true,
+    },
   },
   MainNet: {
     algo: {
@@ -281,6 +288,13 @@ export const VAULTS = {
       vaultId: 2213720271,
       assetDecimals: 6,
       liquidatorDiscount: 0.05,
+      new_asa_vault: true,
+    },
+    finite: {
+      vaultId: 2270204323,
+      assetId: 400593267,
+      assetDecimals: 8,
+      liquidatorDiscount: 0.2,
       new_asa_vault: true,
     },
   },
