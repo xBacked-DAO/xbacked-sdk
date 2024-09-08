@@ -105,6 +105,13 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_asa_vault: boolean;
         };
+        fAlgo: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+        };
     };
     MainNet: {
         oldAlgo: {
@@ -206,6 +213,13 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
         };
         finite: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+        };
+        fAlgo: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;
