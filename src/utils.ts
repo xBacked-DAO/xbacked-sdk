@@ -157,7 +157,7 @@ export const VAULTS = {
     },
     fAlgo: {
       vaultId: 2286490147,
-      assetId: 760037151,
+      assetId: 971381860,
       assetDecimals: 6,
       liquidatorDiscount: 0.1,
       new_asa_vault: true,
@@ -306,7 +306,7 @@ export const VAULTS = {
     },
     fAlgo: {
       vaultId: 2286490147,
-      assetId: 760037151,
+      assetId: 971381860,
       assetDecimals: 6,
       liquidatorDiscount: 0.1,
       new_asa_vault: true,
