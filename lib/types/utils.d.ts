@@ -6,6 +6,7 @@ export declare const VAULTS: {
             new_algo_vault: boolean;
             new_asa_vault: boolean;
             assetDecimals: undefined;
+            new_sdc_vault: boolean;
         };
         algo: {
             vaultId: number;
@@ -13,6 +14,7 @@ export declare const VAULTS: {
             new_algo_vault: boolean;
             new_asa_vault: boolean;
             assetDecimals: undefined;
+            new_sdc_vault: boolean;
         };
         gAlgo: {
             vaultId: number;
@@ -20,6 +22,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         meldGold: {
             vaultId: number;
@@ -27,6 +30,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         silver$: {
             vaultId: number;
@@ -34,6 +38,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         goBtc: {
             vaultId: number;
@@ -41,6 +46,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         goEth: {
             vaultId: number;
@@ -48,6 +54,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         wrappedSol: {
             vaultId: number;
@@ -55,6 +62,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
+            new_sdc_vault: boolean;
         };
         wrappedAvax: {
             vaultId: number;
@@ -62,6 +70,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
+            new_sdc_vault: boolean;
         };
         mAlgo: {
             vaultId: number;
@@ -69,6 +78,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         link: {
             assetId: number;
@@ -76,6 +86,7 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
             liquidatorDiscount: number;
             vaultId: number;
+            new_sdc_vault: boolean;
         };
         coop: {
             assetId: number;
@@ -83,6 +94,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             liquidatorDiscount: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         chips: {
             assetId: number;
@@ -90,6 +102,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             liquidatorDiscount: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         eurs: {
             assetId: number;
@@ -97,6 +110,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             liquidatorDiscount: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         finite: {
             vaultId: number;
@@ -104,12 +118,22 @@ export declare const VAULTS: {
             assetDecimals: number;
             liquidatorDiscount: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         fAlgo: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;
             liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
+        lfty0314: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
             new_asa_vault: boolean;
         };
     };
@@ -120,6 +144,7 @@ export declare const VAULTS: {
             deprecated: boolean;
             new_asa_vault: boolean;
             assetDecimals: undefined;
+            new_sdc_vault: boolean;
         };
         algo: {
             vaultId: number;
@@ -127,6 +152,7 @@ export declare const VAULTS: {
             new_algo_vault: boolean;
             new_asa_vault: boolean;
             assetDecimals: undefined;
+            new_sdc_vault: boolean;
         };
         gAlgo: {
             vaultId: number;
@@ -134,6 +160,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         meldGold: {
             vaultId: number;
@@ -141,6 +168,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         silver$: {
             vaultId: number;
@@ -148,6 +176,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         goBtc: {
             vaultId: number;
@@ -155,6 +184,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         goEth: {
             vaultId: number;
@@ -162,6 +192,7 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         wrappedSol: {
             vaultId: number;
@@ -169,6 +200,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
+            new_sdc_vault: boolean;
         };
         wrappedAvax: {
             vaultId: number;
@@ -176,6 +208,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
+            new_sdc_vault: boolean;
         };
         mAlgo: {
             vaultId: number;
@@ -183,6 +216,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
+            new_sdc_vault: boolean;
         };
         link: {
             vaultId: number;
@@ -190,6 +224,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
+            new_sdc_vault: boolean;
         };
         coop: {
             vaultId: number;
@@ -197,6 +232,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
+            new_sdc_vault: boolean;
         };
         chips: {
             vaultId: number;
@@ -204,6 +240,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
+            new_sdc_vault: boolean;
         };
         eurs: {
             assetId: number;
@@ -211,6 +248,7 @@ export declare const VAULTS: {
             assetDecimals: number;
             liquidatorDiscount: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         finite: {
             vaultId: number;
@@ -218,12 +256,22 @@ export declare const VAULTS: {
             assetDecimals: number;
             liquidatorDiscount: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
         fAlgo: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;
             liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
+        lfty0314: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
             new_asa_vault: boolean;
         };
     };

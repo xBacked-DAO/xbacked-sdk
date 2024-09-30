@@ -18,6 +18,7 @@ export const VAULTS = {
       new_algo_vault: true,
       new_asa_vault: false,
       assetDecimals: undefined,
+      new_sdc_vault: false,
     },
     // default decimals are 6 -> which scales to 1e6 (1e6 microAlgos = 1 Algo)
     algo: {
@@ -26,6 +27,7 @@ export const VAULTS = {
       new_algo_vault: true,
       new_asa_vault: false,
       assetDecimals: undefined,
+      new_sdc_vault: false,
     },
     gAlgo: {
       vaultId: 481065403,
@@ -33,6 +35,7 @@ export const VAULTS = {
       assetId: 159613406,
       assetDecimals: 6,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     meldGold: {
       vaultId: 481066526,
@@ -40,6 +43,7 @@ export const VAULTS = {
       assetId: 228836101,
       assetDecimals: 6,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     silver$: {
       vaultId: 481069084,
@@ -47,6 +51,7 @@ export const VAULTS = {
       assetId: 230686227,
       assetDecimals: 6,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     goBtc: {
       vaultId: 481065574,
@@ -54,6 +59,7 @@ export const VAULTS = {
       assetId: 239570832,
       assetDecimals: 8,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     goEth: {
       vaultId: 481065791,
@@ -61,6 +67,7 @@ export const VAULTS = {
       assetId: 239571365,
       assetDecimals: 8,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     wrappedSol: {
       vaultId: 494111992,
@@ -68,6 +75,7 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.05,
+      new_sdc_vault: false,
     },
     wrappedAvax: {
       vaultId: 503183655,
@@ -75,6 +83,7 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.1,
+      new_sdc_vault: false,
     },
     mAlgo: {
       vaultId: 576268296,
@@ -82,6 +91,7 @@ export const VAULTS = {
       assetId: 576151225,
       assetDecimals: 6,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
 
     link: {
@@ -90,6 +100,7 @@ export const VAULTS = {
       new_asa_vault: true,
       liquidatorDiscount: 0.1,
       vaultId: 586275700,
+      new_sdc_vault: false,
     },
     coop: {
       assetId: 592331972,
@@ -97,6 +108,7 @@ export const VAULTS = {
       assetDecimals: 6,
       liquidatorDiscount: 0.3,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     chips: {
       assetId: 645025802,
@@ -104,6 +116,7 @@ export const VAULTS = {
       assetDecimals: 1,
       liquidatorDiscount: 0.2,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     eurs: {
       assetId: 711381347,
@@ -111,6 +124,7 @@ export const VAULTS = {
       assetDecimals: 6,
       liquidatorDiscount: 0.05,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     finite: {
       vaultId: 0,
@@ -118,6 +132,7 @@ export const VAULTS = {
       assetDecimals: 8,
       liquidatorDiscount: 0.2,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     fAlgo: {
       vaultId: 2286490147,
@@ -125,6 +140,15 @@ export const VAULTS = {
       assetDecimals: 6,
       liquidatorDiscount: 0.1,
       new_asa_vault: true,
+      new_sdc_vault: false,
+    },
+    lfty0314: {
+      vaultId: 723129258,
+      assetId: 723056963,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
     },
   },
   MainNet: {
@@ -134,6 +158,7 @@ export const VAULTS = {
       deprecated: true,
       new_asa_vault: false,
       assetDecimals: undefined,
+      new_sdc_vault: false,
     },
     algo: {
       vaultId: 1256063618,
@@ -141,6 +166,7 @@ export const VAULTS = {
       new_algo_vault: true,
       new_asa_vault: false,
       assetDecimals: undefined,
+      new_sdc_vault: false,
     },
     gAlgo: {
       vaultId: 1256065446,
@@ -148,6 +174,7 @@ export const VAULTS = {
       assetId: 793124631,
       assetDecimals: 6,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     meldGold: {
       vaultId: 1256066865,
@@ -155,6 +182,7 @@ export const VAULTS = {
       assetId: 246516580,
       assetDecimals: 6,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     silver$: {
       vaultId: 1256070920,
@@ -162,6 +190,7 @@ export const VAULTS = {
       assetId: 246519683,
       assetDecimals: 6,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     goBtc: {
       vaultId: 1256072093,
@@ -169,6 +198,7 @@ export const VAULTS = {
       assetId: 386192725,
       assetDecimals: 8,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     goEth: {
       vaultId: 1256073191,
@@ -176,6 +206,7 @@ export const VAULTS = {
       assetId: 386195940,
       assetDecimals: 8,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     wrappedSol: {
       vaultId: 1265849839,
@@ -183,6 +214,7 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.05,
+      new_sdc_vault: false,
     },
     wrappedAvax: {
       vaultId: 1273568518,
@@ -190,6 +222,7 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.05,
+      new_sdc_vault: false,
     },
     mAlgo: {
       vaultId: 1403586486,
@@ -197,6 +230,7 @@ export const VAULTS = {
       assetDecimals: 6,
       new_asa_vault: true,
       liquidatorDiscount: 0.1,
+      new_sdc_vault: false,
     },
     link: {
       vaultId: 1421760711,
@@ -204,6 +238,7 @@ export const VAULTS = {
       assetDecimals: 8,
       new_asa_vault: true,
       liquidatorDiscount: 0.1,
+      new_sdc_vault: false,
     },
     coop: {
       vaultId: 1519754904,
@@ -211,6 +246,7 @@ export const VAULTS = {
       assetDecimals: 6,
       new_asa_vault: true,
       liquidatorDiscount: 0.3,
+      new_sdc_vault: false,
     },
     chips: {
       vaultId: 1776094572,
@@ -218,6 +254,7 @@ export const VAULTS = {
       assetDecimals: 1,
       new_asa_vault: true,
       liquidatorDiscount: 0.2,
+      new_sdc_vault: false,
     },
     eurs: {
       assetId: 227855942,
@@ -225,6 +262,7 @@ export const VAULTS = {
       assetDecimals: 6,
       liquidatorDiscount: 0.05,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     finite: {
       vaultId: 2270204323,
@@ -232,6 +270,7 @@ export const VAULTS = {
       assetDecimals: 8,
       liquidatorDiscount: 0.2,
       new_asa_vault: true,
+      new_sdc_vault: false,
     },
     fAlgo: {
       vaultId: 2286490147,
@@ -239,6 +278,15 @@ export const VAULTS = {
       assetDecimals: 6,
       liquidatorDiscount: 0.1,
       new_asa_vault: true,
+      new_sdc_vault: false,
+    },
+    lfty0314: {
+      vaultId: 2330171553,
+      assetId: 1283150379,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
     },
   },
 };
