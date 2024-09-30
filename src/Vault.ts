@@ -6,6 +6,7 @@ import {
   large_cp_vault_asa,
   new_algo_vault,
   new_asa_vault,
+  new_sdc_vault,
 } from '@xbacked-dao/xbacked-contracts';
 import { VaultReturnParams, ReachUserVault, UserVaultReturnParams, VaultParameters } from './interfaces';
 /**
@@ -27,6 +28,8 @@ export class Vault {
         this.backend = large_cp_vault_asa;
       } else if (params?.asaVault?.new_asa_vault) {
         this.backend = new_asa_vault;
+      }else if(params?.asaVault?.new_sdc_vault){
+       this.backend = new_sdc_vault; 
       } else {
         this.backend = vaultAsa;
       }
@@ -69,6 +72,7 @@ export class Vault {
         minimumDebtAmount: vaultState.coldState.minimumDebtAmount.toNumber(),
         maximumCollateralValue: vaultState.coldState.maximumCollateralValue.toNumber(),
         vaultInterestRate: vaultState.coldState?.vaultInterestRate?.toNumber(),
+        discountRate: vaultState.coldState?.discountRate?.toNumber()
       },
       addresses: {
         govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),

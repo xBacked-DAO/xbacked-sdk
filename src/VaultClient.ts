@@ -6,6 +6,7 @@ import {
   large_cp_vault_asa,
   new_algo_vault,
   new_asa_vault,
+  new_sdc_vault
 } from '@xbacked-dao/xbacked-contracts';
 import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';
@@ -23,6 +24,8 @@ export class VaultClient extends Account {
         this.backend = large_cp_vault_asa;
       } else if (params?.asaVault?.new_asa_vault) {
         this.backend = new_asa_vault;
+      }else if(params?.asaVault?.new_sdc_vault){
+        this.backend = new_sdc_vault
       } else {
         this.backend = vaultAsa;
       }
@@ -298,7 +301,7 @@ export class VaultClient extends Account {
    * @returns the information for the specified vault
    */
 
-  async getUserInfo(params: { address: string; vault: Vault }): Promise<UserVaultReturnParams> {
+  async getUserInfo(params: { address: string; vault: Vault,calcInterest?:boolean }): Promise<UserVaultReturnParams> {
     await this.initialiseReachAccount();
 
     const userVault = await params.vault.getUserInfo({ account: this, address: params.address });
@@ -312,7 +315,10 @@ export class VaultClient extends Account {
       userVault.vaultDebt,
       VAULT_INTEREST_RATE ? VAULT_INTEREST_RATE : 2000000000,
     );
-    userVault.vaultDebt += interestAccrued;
+    if(params.calcInterest){
+      userVault.vaultDebt += interestAccrued;
+    }
+    
     return userVault;
   }
 

@@ -5,15 +5,16 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.fAlgo.vaultId;
+  const VAULT_ID = VAULTS.MainNet.lfty0314.vaultId;
   console.log(VAULT_ID);
   const account = new VaultClient({
     mnemonic,
     network: 'MainNet',
-    asaVault: {decimals: 6, new_asa_vault: true},
+    asaVault: {decimals: 0, new_sdc_vault: true},
   });
   console.log(await account.getAddress());
-  const vault = new Vault({id: VAULT_ID, asaVault: {decimals: 8, new_asa_vault: true}});
+  const vault = new Vault({id: VAULT_ID,
+    asaVault: {decimals: 0, new_sdc_vault: true}});
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(
@@ -26,7 +27,8 @@ dotenv.config();
     );
     switch (action) {
       case 1:
-        const userInfo = await account.getUserInfo({vault, address: await account.getAddress()});
+        const userInfo = await account
+            .getUserInfo({vault, address: await account.getAddress()});
         console.log(userInfo);
         break;
       case 2:

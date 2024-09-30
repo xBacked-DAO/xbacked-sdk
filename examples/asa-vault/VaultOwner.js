@@ -5,11 +5,13 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.newGAlgo.vaultId;
+  const VAULT_ID = VAULTS.TestNet.fLofty.vaultId;
   console.log(VAULT_ID);
   const STABLECOIN = process.env.STABLE_COIN;
   const COLLATERAL_TOKEN = process.env.COLLATERAL_TOKEN;
-  const acc = new VaultClient({mnemonic, network: 'MainNet', asaVault: {decimals: 6, new_asa_vault: true}});
+  const acc = new VaultClient({mnemonic, network: 'TestNet', asaVault: {decimals: 0, new_sdc_vault: true}});
+  const vault = new Vault({id: VAULT_ID,
+    asaVault: {decimals: 0, new_sdc_vault: true}});
   console.log(await acc.getAddress());
   while (true) {
     const todo = await ask.ask(
@@ -33,51 +35,65 @@ dotenv.config();
           break;
         case 2:
           const isVaultCreated = await acc.createVault({
-            collateral: 2.18,
+            collateral: 2,
             mintAmount: 100,
-            vault: new Vault({id: VAULT_ID, asaVault: {decimals: 6}}),
-            minimumPrice: 56.15,
-            maximumPrice: 56.15,
+            vault: new Vault({id: VAULT_ID,
+              asaVault: {decimals: 0, new_sdc_vault: true}}),
+            minimumPrice: 60,
+            maximumPrice: 60,
           });
           console.log(`isVaultCreated: ${isVaultCreated}`);
           break;
         case 3:
           const isTokenMinted = await acc.mintToken({
             amount: 2,
-            vault: new Vault({id: VAULT_ID, asaVault: {decimals: 8}}),
-            minimumPrice: 1,
-            maximumPrice: 1,
+            vault: new Vault({id: VAULT_ID,
+              asaVault: {decimals: 0, new_sdc_vault: true}}),
+            minimumPrice: 60,
+            maximumPrice: 60,
           });
           console.log(`isTokenMinted: ${isTokenMinted}`);
           break;
         case 4:
           const isVaultDebtReturned = await acc.returnVaultDebt({
-            amount: 3.5,
-            vault: new Vault({id: VAULT_ID, asaVault: {decimals: 6}}),
+            amount: 1.5,
+            vault: new Vault({id: VAULT_ID,
+              asaVault: {decimals: 0, new_sdc_vault: true}}),
             close: false,
-            address: 'Y3YTSFL3HC24NDJGMVDMRJXI6YBRT2QVYWCTSYWT4SLNYPBFSVX5JDFDM4',
+            address: await acc.getAddress(),
+            // address: 'Y3YTSFL3HC24NDJGMVDMRJXI6YBRT2QVYWCTSYWT4SLNYPBFSVX5JDFDM4',
           });
           console.log(`isVaultDebtReturned: ${isVaultDebtReturned}`);
           break;
         case 5:
           const isCollateralWithdrawn = await acc.withdrawCollateral({
-            amount: 3,
-            vault: new Vault({id: VAULT_ID, asaVault: {decimals: 8}}),
-            minimumPrice: 1,
-            maximumPrice: 1,
+            amount: 1,
+            vault: new Vault({id: VAULT_ID, asaVault:
+               {decimals: 0, new_sdc_vault: 0}}),
+            minimumPrice: 60,
+            maximumPrice: 60,
           });
           console.log(`isCollateralWithdrawn: ${isCollateralWithdrawn}`);
           break;
         case 6:
           const isCollateralDeposited = await acc.depositCollateral({
-            amount: 3,
-            vault: new Vault({id: VAULT_ID, asaVault: {decimals: 8}}),
+            amount: 1,
+            vault: new Vault({id: VAULT_ID, asaVault: {decimals: 0,
+              new_sdc_vault: true}}),
           });
           console.log(`isCollateralDeposited: ${isCollateralDeposited}`);
           break;
         case 7:
           await acc.optIntoToken(COLLATERALTOKEN);
           console.log('Opted into collateral token');
+          break;
+        case 8: const isPriceUpdated =
+          await acc.updatePrice({price: 39, vault});
+          console.log({isPriceUpdated});
+          break;
+        case 9: const isInterestDripped =
+        await acc.dripInterest({address: await acc.getAddress(), vault});
+          console.log({isInterestDripped});
           break;
       }
     } catch (error) {

@@ -63,7 +63,7 @@
     "@babel/types": "^7.16.0",
     "@randlabs/myalgo-connect": "^1.1.1",
     "@reach-sh/stdlib": "0.1.13-rc.3",
-    "@xbacked-dao/xbacked-contracts": "1.1.0",
+    "@xbacked-dao/xbacked-contracts": "1.5.1",
     "algosdk": "^2.0.0",
     "awesome-typescript-loader": "^5.2.1",
     "aws-sdk": "^2.1226.0",

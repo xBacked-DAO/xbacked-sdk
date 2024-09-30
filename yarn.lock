@@ -1657,13 +1657,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@xbacked-dao/xbacked-contracts@npm:1.1.0"
+"@xbacked-dao/xbacked-contracts@npm:1.5.1":
+  version: 1.5.1
+  resolution: "@xbacked-dao/xbacked-contracts@npm:1.5.1"
   dependencies:
     "@reach-sh/stdlib": 0.1.13-rc.0
     algosdk: ^1.12.0
     await-timeout: ^1.1.1
+    axios: 1.5.0
     bignumber.js: ^9.0.1
     dotenv: ^10.0.0
     es-main: ^1.0.2
@@ -1673,7 +1674,7 @@ __metadata:
     yargs: ^17.3.1
   peerDependencies:
     "@reach-sh/stdlib": 0.1.13-rc.0
-  checksum: 10269cbd45de83bd87639890f9df7c6c093f75272ae4bc32c48d374c1a40abb00c2d648686372ba8c607f6061f51cb343ef2ea12087dc9a4dd4d46d1944ee1f3
+  checksum: 5f6d3b43f8e9283078fc8cc50cee5159945f1a7a30c82873b8d85535c81aae52a13945f426334fa4a0dedfc538711fb144f6549ec7065e9f1537af27c486af44
   languageName: node
   linkType: hard
 
@@ -1689,7 +1690,7 @@ __metadata:
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 1.1.0
+    "@xbacked-dao/xbacked-contracts": 1.5.1
     algosdk: ^2.0.0
     awesome-typescript-loader: ^5.2.1
     aws-sdk: ^2.1226.0
@@ -2126,6 +2127,17 @@ __metadata:
     uuid: 8.0.0
     xml2js: 0.4.19
   checksum: b10be33c933c39c855c36063fb064ecdfc46fcdb4fa0114a934bf4fe0f88947c7800b0f3caee6dfa85759e9bddb7a75068ae5c8805804b5df3a04d9304d704aa
+  languageName: node
+  linkType: hard
+
+"axios@npm:1.5.0":
+  version: 1.5.0
+  resolution: "axios@npm:1.5.0"
+  dependencies:
+    follow-redirects: ^1.15.0
+    form-data: ^4.0.0
+    proxy-from-env: ^1.1.0
+  checksum: e7405a5dbbea97760d0e6cd58fecba311b0401ddb4a8efbc4108f5537da9b3f278bde566deb777935a960beec4fa18e7b8353881f2f465e4f2c0e949fead35be
   languageName: node
   linkType: hard
 
@@ -3787,6 +3799,16 @@ __metadata:
     debug:
       optional: true
   checksum: faa66059b66358ba65c234c2f2a37fcec029dc22775f35d9ad6abac56003268baf41e55f9ee645957b32c7d9f62baf1f0b906e68267276f54ec4b4c597c2b190
+  languageName: node
+  linkType: hard
+
+"follow-redirects@npm:^1.15.0":
+  version: 1.15.9
+  resolution: "follow-redirects@npm:1.15.9"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 859e2bacc7a54506f2bf9aacb10d165df78c8c1b0ceb8023f966621b233717dab56e8d08baadc3ad3b9db58af290413d585c999694b7c146aaf2616340c3d2a6
   languageName: node
   linkType: hard
 
@@ -6395,6 +6417,13 @@ __metadata:
     forwarded: 0.2.0
     ipaddr.js: 1.9.1
   checksum: 29c6990ce9364648255454842f06f8c46fcd124d3e6d7c5066df44662de63cdc0bad032e9bf5a3d653ff72141cc7b6019873d685708ac8210c30458ad99f2b74
+  languageName: node
+  linkType: hard
+
+"proxy-from-env@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: ed7fcc2ba0a33404958e34d95d18638249a68c430e30fcb6c478497d72739ba64ce9810a24f53a7d921d0c065e5b78e3822759800698167256b04659366ca4d4
   languageName: node
   linkType: hard
 

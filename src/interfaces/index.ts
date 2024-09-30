@@ -27,6 +27,7 @@ export interface AccountInterface {
     z_p_f_vault_asa?: boolean;
     large_cp_vault_asa?: boolean;
     new_asa_vault?: boolean;
+    new_sdc_vault?: boolean;
   };
   new_algo_vault?: boolean
 }
@@ -70,6 +71,7 @@ export interface VaultReturnParams {
     minimumDebtAmount: number;
     maximumCollateralValue: number;
     vaultInterestRate?: number;
+    discountRate?: number;
   };
   addresses: {
     govStakersAddress: string;
@@ -109,6 +111,7 @@ export interface VaultParameters {
     z_p_f_vault_asa?: boolean;
     large_cp_vault_asa?: boolean;
     new_asa_vault?: boolean;
+    new_sdc_vault?: boolean;
   };
   new_algo_vault?: boolean;
 }

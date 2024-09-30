@@ -162,6 +162,7 @@ export declare class VaultClient extends Account {
     getUserInfo(params: {
         address: string;
         vault: Vault;
+        calcInterest?: boolean;
     }): Promise<UserVaultReturnParams>;
     /**
      * Subscribes to all vault events and calls the provided callbacks when the event is fired

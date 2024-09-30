@@ -27,32 +27,32 @@ dotenv.config();
 
   await reachConnection.withDisconnect(() =>
     contracts.vault
-      .Admin(contractConnection, {
-        log: async (message) => console.log(`From contract: ${message}`),
-        isInitialized: (contractID) => {
+        .Admin(contractConnection, {
+          log: async (message) => console.log(`From contract: ${message}`),
+          isInitialized: (contractID) => {
           // resolve(contractID);
-          leContract = contractID;
-          reachConnection.disconnect(null);
-          console.log(leContract);
-        },
-        setLiquidatorDiscountRate: () => 4.5 * 10,
-        setStablecoin: () => token.id,
-        setInitialSupply: () => 2000,
-        setLiquidatorDiscountRate: () => 3.5 * 10,
-        constructorParams: () => ({
-          initialTreasuryAddress: account.getAddress(),
-          initialGovStakersAddress: account.getAddress(),
-          initialStabilityPoolAddress: account.getAddress(),
-          oracleAddress: account.getAddress(),
-          LIQUIDATION_COLLATERAL_RATIO: 1100000,
-          VAULT_INTEREST_RATE: 2000000000,
+            leContract = contractID;
+            reachConnection.disconnect(null);
+            console.log(leContract);
+          },
+          setLiquidatorDiscountRate: () => 4.5 * 10,
+          setStablecoin: () => token.id,
+          setInitialSupply: () => 2000,
+          setLiquidatorDiscountRate: () => 3.5 * 10,
+          constructorParams: () => ({
+            initialTreasuryAddress: account.getAddress(),
+            initialGovStakersAddress: account.getAddress(),
+            initialStabilityPoolAddress: account.getAddress(),
+            oracleAddress: account.getAddress(),
+            LIQUIDATION_COLLATERAL_RATIO: 1100000,
+            VAULT_INTEREST_RATE: 2000000000,
+          }),
+        })
+        .catch((e) => {
+          if (e) {
+            console.warn(e);
+          }
         }),
-      })
-      .catch((e) => {
-        if (e) {
-          console.warn(e);
-        }
-      }),
   );
 
   console.log(`Contract; ${leContract}; StableCoin: ${token.id.toNumber()}`);
