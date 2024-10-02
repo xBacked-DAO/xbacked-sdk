@@ -107,6 +107,8 @@ export class Vault {
         minimumDebtAmount: vaultState.coldState.minimumDebtAmount.toNumber(),
         maximumCollateralValue: vaultState.coldState.maximumCollateralValue.toNumber(),
         vaultInterestRate: vaultState.coldState?.vaultInterestRate?.toNumber(),
+        discountRate: vaultState.coldState?.discountRate?.toNumber(),
+        maximumCrForLiquidation: vaultState.coldState?.maximumCrForLiquidation?.toNumber(),
       },
       addresses: {
         govStakersAddress: params.account.reachStdLib.formatAddress(vaultState.addresses.govStakersAddress),

@@ -73,6 +73,8 @@ export interface VaultReturnParams {
     minimumDebtAmount: number;
     maximumCollateralValue: number;
     vaultInterestRate?: number;
+    discountRate?: number;
+    maximumCrForLiquidation?: number
   };
   addresses: {
     govStakersAddress: string;
@@ -137,4 +139,6 @@ export interface AdminProperties {
   minimumDebtAmount: number;
   maximumCollateralValue: number;
   vaultInterestRate?: number;
+  discountRate?: number;
+  maximumCrForLiquidation?: number;
 }
