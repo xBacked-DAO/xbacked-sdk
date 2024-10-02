@@ -334,6 +334,7 @@ export class VaultClient extends Account {
     /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */
     transactionCallback: (address: string, state: UserVaultReturnParams) => void;
     updatePriceCallback: (address: string, newPrice: number) => void;
+    liquidateCallback?: (liquidatorAddress: string, vaultOwner: string, liquidatorPayment: bigint, debtAmount: bigint) => void
   }): Promise<void> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(this.backend, params.vaultId);
@@ -355,6 +356,15 @@ export class VaultClient extends Account {
         const rawVaultState = event.what[2];
         const vaultState: UserVaultReturnParams = { vaultFound: true, ...Vault.parseUserInfo(rawVaultState) };
         params.transactionCallback(address, vaultState);
+      });
+    }
+    if(params.liquidateCallback){
+      announcer.liquidateEvent.monitor((event: any) => {
+        const liquidatorAddress: string = this.reachStdLib.formatAddress(event.what[0]);
+        const vaultOwner: string = this.reachStdLib.formatAddress(event.what[1]);
+        const liquidatorPayment = this.reachStdLib.formatAddress(event.what[2]);
+        const debtAmount = this.reachStdLib.formatAddress(event.what[3]);
+        params.liquidateCallback ?  params.liquidateCallback(liquidatorAddress, vaultOwner, liquidatorPayment, debtAmount): null;
       });
     }
   }

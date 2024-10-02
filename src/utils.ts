@@ -337,7 +337,7 @@ export const VAULTS = {
  */
 export const convertToMicroUnits = (val: number, decimals = 6): number => {
   if (Number.isNaN(val) || !val) throw Error('Invalid input given');
-  return Math.abs(Math.floor(val * 10 ** decimals));
+  return Math.abs(Math.round(val * 10 ** decimals));
 };
 /**
  * Converts number from microunits

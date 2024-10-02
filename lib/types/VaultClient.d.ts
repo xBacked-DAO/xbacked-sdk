@@ -176,6 +176,7 @@ export declare class VaultClient extends Account {
         /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */
         transactionCallback: (address: string, state: UserVaultReturnParams) => void;
         updatePriceCallback: (address: string, newPrice: number) => void;
+        liquidateCallback?: (liquidatorAddress: string, vaultOwner: string, liquidatorPayment: bigint, debtAmount: bigint) => void;
     }): Promise<void>;
     /**
      * Used to relplenish the supply on the treasury address
