@@ -362,8 +362,8 @@ export class VaultClient extends Account {
       announcer.liquidateEvent.monitor((event: any) => {
         const liquidatorAddress: string = this.reachStdLib.formatAddress(event.what[0]);
         const vaultOwner: string = this.reachStdLib.formatAddress(event.what[1]);
-        const liquidatorPayment = this.reachStdLib.formatAddress(event.what[2]);
-        const debtAmount = this.reachStdLib.formatAddress(event.what[3]);
+        const liquidatorPayment = (event.what[2]);
+        const debtAmount = (event.what[3]);
         params.liquidateCallback ?  params.liquidateCallback(liquidatorAddress, vaultOwner, liquidatorPayment, debtAmount): null;
       });
     }

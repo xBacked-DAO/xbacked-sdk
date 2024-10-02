@@ -24,6 +24,7 @@ dotenv.config();
     createCallback: (address, state)=>console.log({address, state}),
     transactionCallback: (address, state)=>console.log({address, state}),
     liquidateCallback: (liquidator, vaultOwner, collateral, debt)=>
-      console.log({liquidator, vaultOwner, collateral, debt}),
+      console.log({liquidator, vaultOwner,
+        collateral: collateral.toNumber(), debt: debt.toNumber()}),
   });
 })();

@@ -28,7 +28,7 @@ dotenv.config();
     switch (action) {
       case 1:
         const userInfo = await account
-            .getUserInfo({vault, address: await account.getAddress()});
+            .getUserInfo({vault, address: '3XBWFSSX2FZ6QQSTI5FGJNYEEGVWSXYUOWWZV3YSW3LAPVHTSKRV6CASFY'});
         console.log(userInfo);
         break;
       case 2:
