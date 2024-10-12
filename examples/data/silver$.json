@@ -112,5 +112,62 @@
             "price": 1006500,
             "vault": "silver$"
         }
+    ],
+    [
+        {
+            "collateral": 150000000,
+            "liquidating": false,
+            "vaultDebt": 102389696.22068684,
+            "lastAccruedInterestTime": 1728714428,
+            "vaultFound": true,
+            "vaultOwner": "HPD6ZADEDED6EIZ6HDGDJG4QQWVSEPUOKOPJD7BFTKUC7YFHHGFVYTW5QQ",
+            "time": "2024-10-12T07:05:14.773Z",
+            "price": 1006500,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 1136600000,
+            "liquidating": false,
+            "vaultDebt": 921677876.2348255,
+            "lastAccruedInterestTime": 1728714428,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-10-12T07:05:14.773Z",
+            "price": 1006500,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 2446050000,
+            "liquidating": false,
+            "vaultDebt": 1504899889.0740688,
+            "lastAccruedInterestTime": 1728714428,
+            "vaultFound": true,
+            "vaultOwner": "YN7WXDQ7NGP53K4AGDCIVL3O2NGZLUN2L7CLIAEJ4UUG2NA7DOBLOJ6Z2M",
+            "time": "2024-10-12T07:05:14.773Z",
+            "price": 1006500,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 31663908231,
+            "liquidating": false,
+            "vaultDebt": 9602823659.719984,
+            "lastAccruedInterestTime": 1728675600,
+            "vaultFound": true,
+            "vaultOwner": "36YH6J2JNTCXMET7O2T62ZTLRJYIPT5GFTTW7Z2RRRN534Q5RQHMHEJV2A",
+            "time": "2024-10-12T07:05:14.773Z",
+            "price": 1006500,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 827402022607,
+            "liquidating": false,
+            "vaultDebt": 65622192791.61419,
+            "lastAccruedInterestTime": 1728714431,
+            "vaultFound": true,
+            "vaultOwner": "7EIISXGOKMFCGWYPCDIPATV6LBWGTSDD2EW6VLI6CEBSTLLWGG22CIRUUA",
+            "time": "2024-10-12T07:05:14.773Z",
+            "price": 1006500,
+            "vault": "silver$"
+        }
     ]
 ]

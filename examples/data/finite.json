@@ -46,5 +46,29 @@
             "price": 3805,
             "vault": "finite"
         }
+    ],
+    [
+        {
+            "collateral": 11236800000000,
+            "liquidating": false,
+            "vaultDebt": 100286961.34700742,
+            "lastAccruedInterestTime": 1728714428,
+            "vaultFound": true,
+            "vaultOwner": "SJAPHK5KMOQWDCOGVJITYDOF6PELRHWFV2Z6GKPQWWGBGX4WGKXPIXXH2M",
+            "time": "2024-10-12T07:05:14.692Z",
+            "price": 3805,
+            "vault": "finite"
+        },
+        {
+            "collateral": 43981700000000,
+            "liquidating": false,
+            "vaultDebt": 502457190.0039551,
+            "lastAccruedInterestTime": 1728675665,
+            "vaultFound": true,
+            "vaultOwner": "YAWPP4H63LCIGP23JDSLNBILP2DJ6MPLELY76SY57EN465J5RMNA2JMMQ4",
+            "time": "2024-10-12T07:05:14.692Z",
+            "price": 3805,
+            "vault": "finite"
+        }
     ]
 ]
