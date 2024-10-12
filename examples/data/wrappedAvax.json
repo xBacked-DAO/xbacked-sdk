@@ -37,5 +37,18 @@
             "price": 28248333,
             "vault": "wrappedAvax"
         }
+    ],
+    [
+        {
+            "collateral": 12955100,
+            "liquidating": false,
+            "vaultDebt": 2094660.4697324492,
+            "lastAccruedInterestTime": 1728714423,
+            "vaultFound": true,
+            "vaultOwner": "RS7TLLQRXKBAQDAVTSZC2ZLMVMLNSCL3FOUOESJJZ5XSKFFL56UI6X33CI",
+            "time": "2024-10-12T19:18:09.209Z",
+            "price": 28952333,
+            "vault": "wrappedAvax"
+        }
     ]
 ]
