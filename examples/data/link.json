@@ -19,5 +19,18 @@
             "price": 11532670,
             "vault": "link"
         }
+    ],
+    [
+        {
+            "collateral": 9011800000,
+            "liquidating": false,
+            "vaultDebt": 600090438.1310948,
+            "lastAccruedInterestTime": 1729016932,
+            "vaultFound": true,
+            "vaultOwner": "N76B6BSRK64HVFNPEFRF53IERREJ6QJSGTAF5WJ5NV27NYDWOZTBLTRZOY",
+            "time": "2024-10-15T18:58:45.383Z",
+            "price": 11344553,
+            "vault": "link"
+        }
     ]
 ]
