@@ -336,5 +336,295 @@
             "price": 121385,
             "vault": "gAlgo"
         }
+    ],
+    [
+        {
+            "collateral": 110001000000,
+            "liquidating": false,
+            "vaultDebt": 6108370925.259839,
+            "lastAccruedInterestTime": 1728815320,
+            "vaultFound": true,
+            "vaultOwner": "AAC2JBF6S6WIFE3SIWKDJ46HOBOXFBGBMMMSJDMIBE25SMBG4H2D2TJ3XY",
+            "time": "2024-10-13T13:39:08.891Z",
+            "price": 120263,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 11000534234,
+            "liquidating": false,
+            "vaultDebt": 375837347.80209106,
+            "lastAccruedInterestTime": 1728815320,
+            "vaultFound": true,
+            "vaultOwner": "CENWL2SRBHZDTIJG7NMQTJA4KGJBCHCP34JWA4OPWYSVHDSUUCEEMYHLLE",
+            "time": "2024-10-13T13:39:08.891Z",
+            "price": 120263,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 50000000000,
+            "liquidating": false,
+            "vaultDebt": 100073304.79275332,
+            "lastAccruedInterestTime": 1728815323,
+            "vaultFound": true,
+            "vaultOwner": "GFVCXHX37WHKR4YXANZSOY2I53PDICOYPDJGMU5LTV4WPZNC4RSIL5XW3Q",
+            "time": "2024-10-13T13:39:08.891Z",
+            "price": 120263,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 179460000000,
+            "liquidating": false,
+            "vaultDebt": 10010170211.848398,
+            "lastAccruedInterestTime": 1728815277,
+            "vaultFound": true,
+            "vaultOwner": "OCNWHLM2ULOE45HJDTXFZXJQHYLJVLPL6GF5RUIDVBK2XAZFSNIHWU6MEU",
+            "time": "2024-10-13T13:39:08.891Z",
+            "price": 120263,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 29910000000,
+            "liquidating": false,
+            "vaultDebt": 1743709212.7621665,
+            "lastAccruedInterestTime": 1728815320,
+            "vaultFound": true,
+            "vaultOwner": "QUILQBARLT5CSQXXUL7QS2J3PTQT32RAVF3U3HKWYOFT45XWF3OB245S6Y",
+            "time": "2024-10-13T13:39:08.891Z",
+            "price": 120263,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 10262513000,
+            "liquidating": false,
+            "vaultDebt": 700621209.0001286,
+            "lastAccruedInterestTime": 1728815323,
+            "vaultFound": true,
+            "vaultOwner": "XKTEIJPWG6HOIWIEZL74ZMOZQZ6TZRV36HQQU2KBYH4YB4OIRWEXQYSHVI",
+            "time": "2024-10-13T13:39:08.891Z",
+            "price": 120263,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 280335300000,
+            "liquidating": false,
+            "vaultDebt": 25000700982.35137,
+            "lastAccruedInterestTime": 1728820733,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-10-13T13:39:08.891Z",
+            "price": 120263,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 39880000000,
+            "liquidating": false,
+            "vaultDebt": 2650962156.3973536,
+            "lastAccruedInterestTime": 1728815320,
+            "vaultFound": true,
+            "vaultOwner": "YAWPP4H63LCIGP23JDSLNBILP2DJ6MPLELY76SY57EN465J5RMNA2JMMQ4",
+            "time": "2024-10-13T13:39:08.891Z",
+            "price": 120263,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 9970000000,
+            "liquidating": false,
+            "vaultDebt": 674659425.042382,
+            "lastAccruedInterestTime": 1728815320,
+            "vaultFound": true,
+            "vaultOwner": "277LYXXFGAUZKQ6DREPJ2W56XX6X4EAPAFUJN3SISOEH5L5QNMSB2UZMBM",
+            "time": "2024-10-13T13:39:08.891Z",
+            "price": 120263,
+            "vault": "gAlgo"
+        }
+    ],
+    [
+        {
+            "collateral": 110001000000,
+            "liquidating": false,
+            "vaultDebt": 6110380534.59664,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "AAC2JBF6S6WIFE3SIWKDJ46HOBOXFBGBMMMSJDMIBE25SMBG4H2D2TJ3XY",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 11000534234,
+            "liquidating": false,
+            "vaultDebt": 271909693.44281256,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "CENWL2SRBHZDTIJG7NMQTJA4KGJBCHCP34JWA4OPWYSVHDSUUCEEMYHLLE",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 31904000000,
+            "liquidating": false,
+            "vaultDebt": 1900306174.3409681,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "CYHBVBUBQROUSREYIGNNHC7CKDNWYYEPG6MFOU3OIXXJEMOKNEAOQ4X7GI",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 2691900000,
+            "liquidating": false,
+            "vaultDebt": 100015449.7503633,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "FN72T2ZCZZKUT6YTHICI5MNFZ4CV4ZXLNAJ4FFXVQEKSALKWWFODDWIW5E",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 50000000000,
+            "liquidating": false,
+            "vaultDebt": 100106225.16414928,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "GFVCXHX37WHKR4YXANZSOY2I53PDICOYPDJGMU5LTV4WPZNC4RSIL5XW3Q",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 2754582000,
+            "liquidating": false,
+            "vaultDebt": 200031829.12634164,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "HK2LW56YMP7D3QI5QWC3DIKDVLFRK4ZVQORIN6QAMGSHLPTKMJJPKQCFJI",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 62466200000,
+            "liquidating": false,
+            "vaultDebt": 5568549048.719756,
+            "lastAccruedInterestTime": 1728966675,
+            "vaultFound": true,
+            "vaultOwner": "KQCO6GGB2P7BJ6IJZOXIYV7FDYA2ACXPZBFGKQIQWE4C23FCVEHJPTQJD4",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 179460000000,
+            "liquidating": false,
+            "vaultDebt": 10013464136.375933,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "OCNWHLM2ULOE45HJDTXFZXJQHYLJVLPL6GF5RUIDVBK2XAZFSNIHWU6MEU",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 219910380000,
+            "liquidating": false,
+            "vaultDebt": 17102383818.594164,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "OTYTLNLXSMX36TTS6TX7WHDBZVEIQN6DMULWWFSM6OYE6PLPB7V4R4CRSI",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 40000637000,
+            "liquidating": false,
+            "vaultDebt": 2400389929.1360917,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "PXMUJV366CPWAJNREPXD4SDFIF4NBRHI5XDYYJPL5W745XLGCJBI63NGDY",
+            "time": "2024-10-15T07:26:06.222Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 70799195900,
+            "liquidating": false,
+            "vaultDebt": 2944338403.9156375,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "QUILQBARLT5CSQXXUL7QS2J3PTQT32RAVF3U3HKWYOFT45XWF3OB245S6Y",
+            "time": "2024-10-15T07:26:06.223Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 10262513000,
+            "liquidating": false,
+            "vaultDebt": 700851705.2020116,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "XKTEIJPWG6HOIWIEZL74ZMOZQZ6TZRV36HQQU2KBYH4YB4OIRWEXQYSHVI",
+            "time": "2024-10-15T07:26:06.223Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 376955100000,
+            "liquidating": false,
+            "vaultDebt": 30751210203.66884,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-10-15T07:26:06.223Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 39880000000,
+            "liquidating": false,
+            "vaultDebt": 2651834307.869369,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "YAWPP4H63LCIGP23JDSLNBILP2DJ6MPLELY76SY57EN465J5RMNA2JMMQ4",
+            "time": "2024-10-15T07:26:06.223Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 9970000000,
+            "liquidating": false,
+            "vaultDebt": 674881383.3312075,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "277LYXXFGAUZKQ6DREPJ2W56XX6X4EAPAFUJN3SISOEH5L5QNMSB2UZMBM",
+            "time": "2024-10-15T07:26:06.223Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 89730000000,
+            "liquidating": false,
+            "vaultDebt": 4000733662.9297013,
+            "lastAccruedInterestTime": 1728966477,
+            "vaultFound": true,
+            "vaultOwner": "3YVHJD55SY46VNJFU7JBWZNUTQMXIGZFMRR272Q22D5LQYJDJOSHFZPZDM",
+            "time": "2024-10-15T07:26:06.223Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        },
+        {
+            "collateral": 29710600000,
+            "liquidating": false,
+            "vaultDebt": 100039347.90944082,
+            "lastAccruedInterestTime": 1728966672,
+            "vaultFound": true,
+            "vaultOwner": "5WTDN7ZUVCNYMJEI7TBN26LWY3VWBXNO7VPFLHFNNVD2UJRUIFJ2XPIJ4A",
+            "time": "2024-10-15T07:26:06.223Z",
+            "price": 125792,
+            "vault": "gAlgo"
+        }
     ]
 ]
