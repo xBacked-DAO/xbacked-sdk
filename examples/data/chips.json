@@ -89,5 +89,70 @@
             "price": 1316,
             "vault": "chips"
         }
+    ],
+    [
+        {
+            "collateral": 1500000000,
+            "liquidating": false,
+            "vaultDebt": 35568491963.2346,
+            "lastAccruedInterestTime": 1729017107,
+            "vaultFound": true,
+            "vaultOwner": "TNVDLA75CTKNFFTZ6ALYH77SEI3GKDXYUVVIDDFZL4VW25DVI3IKHBE3SA",
+            "time": "2024-10-15T23:02:27.543Z",
+            "price": 1278,
+            "vault": "chips"
+        }
+    ],
+    [
+        {
+            "collateral": 1500000000,
+            "liquidating": false,
+            "vaultDebt": 35569053974.80879,
+            "lastAccruedInterestTime": 1729017107,
+            "vaultFound": true,
+            "vaultOwner": "TNVDLA75CTKNFFTZ6ALYH77SEI3GKDXYUVVIDDFZL4VW25DVI3IKHBE3SA",
+            "time": "2024-10-16T05:57:40.015Z",
+            "price": 1282,
+            "vault": "chips"
+        }
+    ],
+    [
+        {
+            "collateral": 1500000000,
+            "liquidating": false,
+            "vaultDebt": 36575068596.77677,
+            "lastAccruedInterestTime": 1729087007,
+            "vaultFound": true,
+            "vaultOwner": "TNVDLA75CTKNFFTZ6ALYH77SEI3GKDXYUVVIDDFZL4VW25DVI3IKHBE3SA",
+            "time": "2024-10-16T21:52:36.380Z",
+            "price": 1269,
+            "vault": "chips"
+        }
+    ],
+    [
+        {
+            "collateral": 1500000000,
+            "liquidating": false,
+            "vaultDebt": 36581765172.28774,
+            "lastAccruedInterestTime": 1729168315,
+            "vaultFound": true,
+            "vaultOwner": "TNVDLA75CTKNFFTZ6ALYH77SEI3GKDXYUVVIDDFZL4VW25DVI3IKHBE3SA",
+            "time": "2024-10-17T21:01:49.413Z",
+            "price": 1110,
+            "vault": "chips"
+        }
+    ],
+    [
+        {
+            "collateral": 1500000000,
+            "liquidating": false,
+            "vaultDebt": 36581766889.05463,
+            "lastAccruedInterestTime": 1729168315,
+            "vaultFound": true,
+            "vaultOwner": "TNVDLA75CTKNFFTZ6ALYH77SEI3GKDXYUVVIDDFZL4VW25DVI3IKHBE3SA",
+            "time": "2024-10-17T21:03:39.432Z",
+            "price": 1110,
+            "vault": "chips"
+        }
     ]
 ]
