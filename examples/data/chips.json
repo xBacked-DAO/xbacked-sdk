@@ -154,5 +154,18 @@
             "price": 1110,
             "vault": "chips"
         }
+    ],
+    [
+        {
+            "collateral": 1500000000,
+            "liquidating": false,
+            "vaultDebt": 36586495043.54889,
+            "lastAccruedInterestTime": 1729212406,
+            "vaultFound": true,
+            "vaultOwner": "TNVDLA75CTKNFFTZ6ALYH77SEI3GKDXYUVVIDDFZL4VW25DVI3IKHBE3SA",
+            "time": "2024-10-18T07:26:11.220Z",
+            "price": 1112,
+            "vault": "chips"
+        }
     ]
 ]

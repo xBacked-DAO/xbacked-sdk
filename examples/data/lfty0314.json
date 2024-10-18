@@ -14,5 +14,18 @@
     [],
     [],
     [],
-    []
+    [],
+    [
+        {
+            "collateral": 2,
+            "liquidating": true,
+            "vaultDebt": 40605652.409992464,
+            "lastAccruedInterestTime": 1729233613,
+            "vaultFound": true,
+            "vaultOwner": "ETCCQVEA6QQDXSZ6AXYPUQNK2NUAGXPQRWYMKW6E2XCSOT2S47YH3OH2DE",
+            "time": "2024-10-18T07:26:11.562Z",
+            "price": 63463350,
+            "vault": "lfty0314"
+        }
+    ]
 ]
