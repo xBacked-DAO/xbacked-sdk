@@ -320,7 +320,7 @@ export const VAULTS = {
       new_asa_vault: true,
     },
     lfty0314: {
-      vaultId: 2330171553,
+      vaultId: 2382404781,
       assetId: 1283150379,
       assetDecimals: 0,
       liquidatorDiscount: 0.1,
