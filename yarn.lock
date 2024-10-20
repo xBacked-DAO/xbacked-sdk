@@ -1657,9 +1657,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xbacked-dao/xbacked-contracts@npm:1.5.1":
-  version: 1.5.1
-  resolution: "@xbacked-dao/xbacked-contracts@npm:1.5.1"
+"@xbacked-dao/xbacked-contracts@npm:1.5.2":
+  version: 1.5.2
+  resolution: "@xbacked-dao/xbacked-contracts@npm:1.5.2"
   dependencies:
     "@reach-sh/stdlib": 0.1.13-rc.0
     algosdk: ^1.12.0
@@ -1674,7 +1674,7 @@ __metadata:
     yargs: ^17.3.1
   peerDependencies:
     "@reach-sh/stdlib": 0.1.13-rc.0
-  checksum: 5f6d3b43f8e9283078fc8cc50cee5159945f1a7a30c82873b8d85535c81aae52a13945f426334fa4a0dedfc538711fb144f6549ec7065e9f1537af27c486af44
+  checksum: c3b53077d0f7645016a000cf4b544aa7441abcfb4bac294777c593d2cc5f1758abecf9484d51563e3b41291812f71c6992c294132e0ec3646201265907c44a36
   languageName: node
   linkType: hard
 
@@ -1690,7 +1690,7 @@ __metadata:
     "@types/jest": ^27.4.0
     "@types/jsdom": ^16.2.13
     "@types/node": ^16.11.9
-    "@xbacked-dao/xbacked-contracts": 1.5.1
+    "@xbacked-dao/xbacked-contracts": 1.5.2
     algosdk: ^2.0.0
     awesome-typescript-loader: ^5.2.1
     aws-sdk: ^2.1226.0
@@ -1870,25 +1870,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"algosdk@npm:^1.12.0":
-  version: 1.23.2
-  resolution: "algosdk@npm:1.23.2"
-  dependencies:
-    algo-msgpack-with-bigint: ^2.1.1
-    buffer: ^6.0.2
-    cross-fetch: ^3.1.5
-    hi-base32: ^0.5.1
-    js-sha256: ^0.9.0
-    js-sha3: ^0.8.0
-    js-sha512: ^0.8.0
-    json-bigint: ^1.0.0
-    tweetnacl: ^1.0.3
-    vlq: ^2.0.4
-  checksum: c0ef0f357001165c545a4db095177300ebc982e891c0a4356997bd550d515e2b50f66c685b2d7402665d3fba42a11add9595936711c9a934f7d24e58a9d1b40b
-  languageName: node
-  linkType: hard
-
-"algosdk@npm:^1.23.2":
+"algosdk@npm:^1.12.0, algosdk@npm:^1.23.2":
   version: 1.24.1
   resolution: "algosdk@npm:1.24.1"
   dependencies:
@@ -2270,10 +2252,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bignumber.js@npm:^9.0.0, bignumber.js@npm:^9.0.1":
+"bignumber.js@npm:^9.0.0":
   version: 9.1.0
   resolution: "bignumber.js@npm:9.1.0"
   checksum: 52ec2bb5a3874d7dc1a1018f28f8f7aff4683515ffd09d6c2d93191343c76567ae0ee32cc45149d53afb2b904bc62ed471a307b35764beea7e9db78e56bef6c6
+  languageName: node
+  linkType: hard
+
+"bignumber.js@npm:^9.0.1":
+  version: 9.1.2
+  resolution: "bignumber.js@npm:9.1.2"
+  checksum: 582c03af77ec9cb0ebd682a373ee6c66475db94a4325f92299621d544aa4bd45cb45fd60001610e94aef8ae98a0905fa538241d9638d4422d57abbeeac6fadaf
   languageName: node
   linkType: hard
 
@@ -3202,9 +3191,9 @@ __metadata:
   linkType: hard
 
 "es-main@npm:^1.0.2":
-  version: 1.2.0
-  resolution: "es-main@npm:1.2.0"
-  checksum: b1feaaa71c0c5b0c494cd7d4f1fdb32fcdc9835b824ca2f61a7fbb899627305d88efef584490c24ebacde79289ac14908823c066176e15a784c49fa924db9b0b
+  version: 1.3.0
+  resolution: "es-main@npm:1.3.0"
+  checksum: 7e9f21106caec29215f440ea6d1a872f40fd03a373aad1054688f5d9b162da9ff6af1e563f5a4eeab0a23a81a0e708296b069a0bbdbf641a8682259cffd0a4cf
   languageName: node
   linkType: hard
 
@@ -6514,14 +6503,14 @@ __metadata:
   linkType: hard
 
 "react-dom@npm:^18.2.0":
-  version: 18.2.0
-  resolution: "react-dom@npm:18.2.0"
+  version: 18.3.1
+  resolution: "react-dom@npm:18.3.1"
   dependencies:
     loose-envify: ^1.1.0
-    scheduler: ^0.23.0
+    scheduler: ^0.23.2
   peerDependencies:
-    react: ^18.2.0
-  checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
+    react: ^18.3.1
+  checksum: 298954ecd8f78288dcaece05e88b570014d8f6dce5db6f66e6ee91448debeb59dcd31561dddb354eee47e6c1bb234669459060deb238ed0213497146e555a0b9
   languageName: node
   linkType: hard
 
@@ -6533,11 +6522,11 @@ __metadata:
   linkType: hard
 
 "react@npm:^18.2.0":
-  version: 18.2.0
-  resolution: "react@npm:18.2.0"
+  version: 18.3.1
+  resolution: "react@npm:18.3.1"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: 88e38092da8839b830cda6feef2e8505dec8ace60579e46aa5490fc3dc9bba0bd50336507dc166f43e3afc1c42939c09fe33b25fae889d6f402721dcd78fca1b
+  checksum: a27bcfa8ff7c15a1e50244ad0d0c1cb2ad4375eeffefd266a64889beea6f6b64c4966c9b37d14ee32d6c9fcd5aa6ba183b6988167ab4d127d13e7cb5b386a376
   languageName: node
   linkType: hard
 
@@ -6778,12 +6767,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.23.0":
-  version: 0.23.0
-  resolution: "scheduler@npm:0.23.0"
+"scheduler@npm:^0.23.2":
+  version: 0.23.2
+  resolution: "scheduler@npm:0.23.2"
   dependencies:
     loose-envify: ^1.1.0
-  checksum: d79192eeaa12abef860c195ea45d37cbf2bbf5f66e3c4dcd16f54a7da53b17788a70d109ee3d3dde1a0fd50e6a8fc171f4300356c5aee4fc0171de526bf35f8a
+  checksum: 3e82d1f419e240ef6219d794ff29c7ee415fbdc19e038f680a10c067108e06284f1847450a210b29bbaf97b9d8a97ced5f624c31c681248ac84c80d56ad5a2c4
   languageName: node
   linkType: hard
 
@@ -8270,8 +8259,8 @@ __metadata:
   linkType: hard
 
 "yargs@npm:^17.3.1":
-  version: 17.6.2
-  resolution: "yargs@npm:17.6.2"
+  version: 17.7.2
+  resolution: "yargs@npm:17.7.2"
   dependencies:
     cliui: ^8.0.1
     escalade: ^3.1.1
@@ -8280,7 +8269,7 @@ __metadata:
     string-width: ^4.2.3
     y18n: ^5.0.5
     yargs-parser: ^21.1.1
-  checksum: 47da1b0d854fa16d45a3ded57b716b013b2179022352a5f7467409da5a04a1eef5b3b3d97a2dfc13e8bbe5f2ffc0afe3bc6a4a72f8254e60f5a4bd7947138643
+  checksum: 73b572e863aa4a8cbef323dd911d79d193b772defd5a51aab0aca2d446655216f5002c42c5306033968193bdbf892a7a4c110b0d77954a7fdf563e653967b56a
   languageName: node
   linkType: hard
 

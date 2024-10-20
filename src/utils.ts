@@ -143,7 +143,9 @@ export const VAULTS = {
       new_sdc_vault: false,
     },
     lfty0314: {
-      vaultId: 723129258,
+      // vaultId: 724068982,
+      // assetId: 282176294,
+      vaultId: 724638429,
       assetId: 723056963,
       assetDecimals: 0,
       liquidatorDiscount: 0.1,
@@ -281,7 +283,7 @@ export const VAULTS = {
       new_sdc_vault: false,
     },
     lfty0314: {
-      vaultId: 2330171553,
+      vaultId: 2382404781,
       assetId: 1283150379,
       assetDecimals: 0,
       liquidatorDiscount: 0.1,

@@ -180,7 +180,10 @@ export class VaultsClient extends Account {
     const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.withdrawCollateral({
-      collateralToWithdraw: convertToMicroUnits(params.amount, params.vault.asaVault ? params.vault.asaVault.decimals : undefined),
+      collateralToWithdraw: convertToMicroUnits(
+        params.amount,
+        params.vault.asaVault ? params.vault.asaVault.decimals : undefined,
+      ),
       minPrice: convertToMicroUnits(params.minimumPrice),
       maxPrice: convertToMicroUnits(params.maximumPrice),
     });
@@ -215,52 +218,51 @@ export class VaultsClient extends Account {
     return await params.vault.getState({ account: this });
   }
 
-  async getVaultAnalytics (params: {vault: Vault, indexer: any, stbl: number}): Promise<VaultAnalytics>{
-     await this.initialiseReachAccount();
-     const globalState = await params.vault.getState({ account: this });
-     const {accruedFees, collateralPrice } = globalState.coldState;
-     const { accruedInterest } = globalState.hotState;
-     if(Object.keys(VAULTS[this.network as "MainNet"|"TestNet"]).includes(params.vault.name)){
-       const vaultDetails = (VAULTS[this.network as 'MainNet' | 'TestNet'] as any)[params.vault.name];
-        const collateralAssetId = (vaultDetails as any).assetId ? (vaultDetails as any).assetId: 0;
-        const vaultAddress = algosdk.getApplicationAddress(vaultDetails.vaultId);
-        const collateralBalance = await  this.getOtherBalance({tokenId: collateralAssetId, address: vaultAddress});
-        const debtBalance = await  this.getOtherBalance({tokenId: params.stbl, address: vaultAddress});
-        const totalValueLocked = (collateralBalance * collateralPrice)/ (10 ** ((vaultDetails as any).assetDecimals || 6));
-        const accounts = await getAllAccounts(
-            // application ID
-            vaultDetails.vaultId,
-            params.indexer,
-            [],
-            ""
-          );
-        // const vaultData = accounts.map((vaultAccount) => {
-        //   try {
-        //     return this.getUserInfo({ address: addrFromBox(vaultAccount), vault: params.vault });
-        //   } catch (error) {
-        //     return { error };
-        //   }
-        // });
-        // const resolvedVaultData = await Promise.all(vaultData);
-        const totalVaultDebt = globalState.hotState.totalVaultDebt;
-        const totalVaultsGotten = accounts.length;
-        const totalSystemCr = (totalValueLocked / totalVaultDebt) * 1000000;
+  async getVaultAnalytics(params: { vault: Vault; indexer: any; stbl: number }): Promise<VaultAnalytics> {
+    await this.initialiseReachAccount();
+    const globalState = await params.vault.getState({ account: this });
+    const { accruedFees, collateralPrice } = globalState.coldState;
+    const { accruedInterest } = globalState.hotState;
+    if (Object.keys(VAULTS[this.network as 'MainNet' | 'TestNet']).includes(params.vault.name)) {
+      const vaultDetails = (VAULTS[this.network as 'MainNet' | 'TestNet'] as any)[params.vault.name];
+      const collateralAssetId = (vaultDetails as any).assetId ? (vaultDetails as any).assetId : 0;
+      const vaultAddress = algosdk.getApplicationAddress(vaultDetails.vaultId);
+      const collateralBalance = await this.getOtherBalance({ tokenId: collateralAssetId, address: vaultAddress });
+      const debtBalance = await this.getOtherBalance({ tokenId: params.stbl, address: vaultAddress });
+      const totalValueLocked = (collateralBalance * collateralPrice) / 10 ** ((vaultDetails as any).assetDecimals || 6);
+      const accounts = await getAllAccounts(
+        // application ID
+        vaultDetails.vaultId,
+        params.indexer,
+        [],
+        '',
+      );
+      // const vaultData = accounts.map((vaultAccount) => {
+      //   try {
+      //     return this.getUserInfo({ address: addrFromBox(vaultAccount), vault: params.vault });
+      //   } catch (error) {
+      //     return { error };
+      //   }
+      // });
+      // const resolvedVaultData = await Promise.all(vaultData);
+      const totalVaultDebt = globalState.hotState.totalVaultDebt;
+      const totalVaultsGotten = accounts.length;
+      const totalSystemCr = (totalValueLocked / totalVaultDebt) * 1000000;
 
-        return {
-          totalValueLocked,
-          totalSystemCr,
-          accruedFees,
-          accruedInterest,
-          collateralPrice,
-          totalNumberOfVaults: totalVaultsGotten,
-          stableSupplyRemaining: debtBalance,
-          totalVaultDebt,
-          isDeprecated: globalState.coldState.contractState === 1,
-          
-        };
-     }else {
-      throw Error("not a valid vault")
-     }
+      return {
+        totalValueLocked,
+        totalSystemCr,
+        accruedFees,
+        accruedInterest,
+        collateralPrice,
+        totalNumberOfVaults: totalVaultsGotten,
+        stableSupplyRemaining: debtBalance,
+        totalVaultDebt,
+        isDeprecated: globalState.coldState.contractState === 1,
+      };
+    } else {
+      throw Error('not a valid vault');
+    }
   }
 
   /**
@@ -282,11 +284,24 @@ export class VaultsClient extends Account {
     const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
     const put = ctc.a.VaultOwner;
     const res = await put.createVault({
-      initialCollateral: convertToMicroUnits(params.collateral, params.vault.asaVault ? params.vault.asaVault.decimals : undefined),
+      initialCollateral: convertToMicroUnits(
+        params.collateral,
+        params.vault.asaVault ? params.vault.asaVault.decimals : undefined,
+      ),
       initialVaultDebt: convertToMicroUnits(params.mintAmount),
       minPrice: convertToMicroUnits(params.minimumPrice),
       maxPrice: convertToMicroUnits(params.maximumPrice),
     });
+    return res;
+  }
+
+  async halt(params: {
+    vault: Vault;
+  }): Promise<boolean> {
+    await this.initialiseReachAccount();
+    const ctc = this.reachAccount.contract(params.vault.backend, params.vault.id);
+    const put = ctc.a.Any;
+    const res = await put.halt();
     return res;
   }
 

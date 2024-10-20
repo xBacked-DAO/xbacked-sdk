@@ -142,6 +142,9 @@ export declare class VaultsClient extends Account {
         minimumPrice: number;
         maximumPrice: number;
     }): Promise<boolean>;
+    halt(params: {
+        vault: Vault;
+    }): Promise<boolean>;
     /**
      * Used by an account to collect fees from the contract
      * @param params Contains key vault which indicates the contract this function should interact with
