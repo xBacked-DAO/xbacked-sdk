@@ -10,7 +10,7 @@ dotenv.config();
   console.log(VAULT_ID);
   const STABLECOIN = process.env.STABLE_COIN;
   const acc = new VaultsClient({mnemonic,
-    network: 'TestNet'});
+    network: 'MainNet'});
   console.log(await acc.getAddress());
   const vaultState = await acc.getVaultState({vault: new Vault({name: 'lfty0314', network: acc.network})});
   const price = convertFromMicroUnits(vaultState.coldState.collateralPrice);
@@ -66,6 +66,11 @@ dotenv.config();
           await acc.updatePrice({price: 22,
             vault: new Vault({name: 'lfty0314', network: acc.network})});
           console.log({isPricecUpdated});
+          break;
+        case 8: const isHalted =
+        await acc.halt({vault:
+           new Vault({name: 'lfty0314', network: acc.network})});
+          console.log({isHalted});
           break;
       }
     } catch (error) {
