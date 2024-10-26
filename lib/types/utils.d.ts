@@ -211,6 +211,7 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             assetId: number;
             assetDecimals: number;
+            new_asa_vault: boolean;
         };
         newMeldGold: {
             vaultId: number;

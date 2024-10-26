@@ -226,6 +226,7 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       assetId: 793124631,
       assetDecimals: 6,
+      new_asa_vault: true,
     },
     newMeldGold: {
       vaultId: 1256066865,
