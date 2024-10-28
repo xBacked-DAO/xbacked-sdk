@@ -1,4 +1,4 @@
-const goBtcVaultData = require('./data/goBtc.json');
+const goBtcVaultData = require('./data/algo.json');
 
 
 // console.log({goBtcVaultData});
@@ -30,5 +30,5 @@ Object.entries(newStructure).map(([a, b])=>{
 });
 
 console.log({finalStructure});
-console.log(finalStructure['2024-10-20']);
+// console.log(finalStructure['2024-10-20']);
 // console.log(newStructure);
