@@ -1,4 +1,4 @@
-const goBtcVaultData = require('./data/algo.json');
+const goBtcVaultData = require('./data/mAlgo.json');
 
 
 // console.log({goBtcVaultData});
