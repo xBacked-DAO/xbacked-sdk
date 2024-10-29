@@ -55,7 +55,7 @@ function writeToJson(filePath, data) {
       '',
   );
 
-  Object.entries({'oldAlgo': VAULTS['MainNet']['oldAlgo']})
+  Object.entries({'wrappedSol': VAULTS['MainNet']['wrappedSol']})
       .forEach(async ([name, rawData]) =>{
         console.log({name});
         const vault = new Vault({name, network: 'MainNet'});
