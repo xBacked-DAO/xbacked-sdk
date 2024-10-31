@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.newGAlgo.vaultId;
+  const VAULT_ID = VAULTS.MainNet.xAlgo.vaultId;
   console.log(VAULT_ID);
   const account = new VaultClient({
     mnemonic,
