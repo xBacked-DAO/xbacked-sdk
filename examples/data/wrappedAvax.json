@@ -568,5 +568,29 @@
             "price": 25925333,
             "vault": "wrappedAvax"
         }
+    ],
+    [
+        {
+            "collateral": 542200000,
+            "liquidating": false,
+            "vaultDebt": 100407957.03216211,
+            "lastAccruedInterestTime": 1730467924,
+            "vaultFound": true,
+            "vaultOwner": "HKNPDBLHR7GO3DVJSNGPZ4EKGW3RYFLK3OLDZCPA57LKNIKIC5CYA6YSLM",
+            "time": "2024-11-01T21:52:27.173Z",
+            "price": 24561667,
+            "vault": "wrappedAvax"
+        },
+        {
+            "collateral": 12955100,
+            "liquidating": false,
+            "vaultDebt": 2103631.9706493607,
+            "lastAccruedInterestTime": 1730467990,
+            "vaultFound": true,
+            "vaultOwner": "RS7TLLQRXKBAQDAVTSZC2ZLMVMLNSCL3FOUOESJJZ5XSKFFL56UI6X33CI",
+            "time": "2024-11-01T21:52:27.173Z",
+            "price": 24561667,
+            "vault": "wrappedAvax"
+        }
     ]
 ]

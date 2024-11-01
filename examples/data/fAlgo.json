@@ -384,5 +384,18 @@
             "price": 130710,
             "vault": "fAlgo"
         }
+    ],
+    [
+        {
+            "collateral": 14024884700,
+            "liquidating": false,
+            "vaultDebt": 1002153997.0104517,
+            "lastAccruedInterestTime": 1730467864,
+            "vaultFound": true,
+            "vaultOwner": "HKNPDBLHR7GO3DVJSNGPZ4EKGW3RYFLK3OLDZCPA57LKNIKIC5CYA6YSLM",
+            "time": "2024-11-01T21:46:04.363Z",
+            "price": 125113,
+            "vault": "fAlgo"
+        }
     ]
 ]
