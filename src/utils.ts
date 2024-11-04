@@ -143,12 +143,22 @@ export const VAULTS = {
       new_sdc_vault: false,
     },
     lfty0314: {
-      vaultId: 723129258,
+      // vaultId: 724068982,
+      // assetId: 282176294,
+      vaultId: 724638429,
       assetId: 723056963,
       assetDecimals: 0,
       liquidatorDiscount: 0.1,
       new_sdc_vault: true,
       new_asa_vault: false,
+    },
+    xAlgo: {
+      vaultId: 2423920940,
+      assetId: 1134696561,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.1,
+      new_asa_vault: true,
+      new_sdc_vault: false,
     },
   },
   MainNet: {
@@ -287,6 +297,14 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       new_sdc_vault: true,
       new_asa_vault: false,
+    },
+    xAlgo: {
+      vaultId: 2423920940,
+      assetId: 1134696561,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.1,
+      new_asa_vault: true,
+      new_sdc_vault: false,
     },
   },
 };
