@@ -54,7 +54,7 @@ function writeToJson(filePath, data) {
       // indexer port
       '',
   );
-  const vaultName = 'wrappedAvax';
+  const vaultName = 'algo';
   Object.entries({[vaultName]: VAULTS['MainNet'][vaultName]})
       .forEach(async ([name, rawData]) =>{
         console.log({name});

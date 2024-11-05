@@ -334,5 +334,40 @@
             "price": 63136850,
             "vault": "lfty0314"
         }
+    ],
+    [
+        {
+            "collateral": 3,
+            "liquidating": false,
+            "vaultDebt": 100062539.66241406,
+            "lastAccruedInterestTime": 1730821433,
+            "vaultFound": true,
+            "vaultOwner": "EBRNVRERSK5TQIP3R4JPAFAKXKO2LVGFGEB5GJSFSKCKZSHNF2LNJD7XMI",
+            "time": "2024-11-05T20:37:46.275Z",
+            "price": 62892950,
+            "vault": "lfty0314"
+        },
+        {
+            "collateral": 5,
+            "liquidating": false,
+            "vaultDebt": 100313074.97041853,
+            "lastAccruedInterestTime": 1730821205,
+            "vaultFound": true,
+            "vaultOwner": "HKNPDBLHR7GO3DVJSNGPZ4EKGW3RYFLK3OLDZCPA57LKNIKIC5CYA6YSLM",
+            "time": "2024-11-05T20:37:46.276Z",
+            "price": 62892950,
+            "vault": "lfty0314"
+        },
+        {
+            "collateral": 8,
+            "liquidating": false,
+            "vaultDebt": 250762306.93647617,
+            "lastAccruedInterestTime": 1730821433,
+            "vaultFound": true,
+            "vaultOwner": "N7I2XFVRFNOSTMSWP4NPFRE3PW7MXO7WEI5SVDRK6GS7O7Y3O6VF3SCSSU",
+            "time": "2024-11-05T20:37:46.276Z",
+            "price": 62892950,
+            "vault": "lfty0314"
+        }
     ]
 ]
