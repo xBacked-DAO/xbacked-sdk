@@ -1024,5 +1024,62 @@
             "price": 2431404888,
             "vault": "goEth"
         }
+    ],
+    [
+        {
+            "collateral": 100040000,
+            "liquidating": false,
+            "vaultDebt": 1687210703.0516384,
+            "lastAccruedInterestTime": 1730871895,
+            "vaultFound": true,
+            "vaultOwner": "N76B6BSRK64HVFNPEFRF53IERREJ6QJSGTAF5WJ5NV27NYDWOZTBLTRZOY",
+            "time": "2024-11-06T11:08:00.424Z",
+            "price": 2622490437,
+            "vault": "goEth"
+        },
+        {
+            "collateral": 1195400000,
+            "liquidating": false,
+            "vaultDebt": 19777405975.64985,
+            "lastAccruedInterestTime": 1730871895,
+            "vaultFound": true,
+            "vaultOwner": "Q2ZOKV42FKP4BGFOMKML5DC6XU6WF3UKC2RCICQL6UVUO5WKH5XTKHMVNY",
+            "time": "2024-11-06T11:08:00.424Z",
+            "price": 2622490437,
+            "vault": "goEth"
+        },
+        {
+            "collateral": 17660000,
+            "liquidating": false,
+            "vaultDebt": 309194696.96164894,
+            "lastAccruedInterestTime": 1730871895,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-11-06T11:08:00.425Z",
+            "price": 2622490437,
+            "vault": "goEth"
+        },
+        {
+            "collateral": 5400000,
+            "liquidating": false,
+            "vaultDebt": 100048499.90631765,
+            "lastAccruedInterestTime": 1730871895,
+            "vaultFound": true,
+            "vaultOwner": "3HYCKD7HGPMS67B7ADFHJ2STUZX6VSS25M3W7YLPDKRCTDC62YGGIHZSR4",
+            "time": "2024-11-06T11:08:00.425Z",
+            "price": 2622490437,
+            "vault": "goEth"
+        },
+        {
+            "collateral": 500000000,
+            "liquidating": false,
+            "vaultDebt": 4958249131.931996,
+            "lastAccruedInterestTime": 1730871738,
+            "vaultFound": true,
+            "vaultOwner": "7BA3TBGWH2J6SX2RXGR4J2WBPJ52EGLTRNZSTZ6WEFHT4WTDVIG4PF67MI",
+            "time": "2024-11-06T11:08:00.425Z",
+            "price": 2622490437,
+            "vault": "goEth"
+        }
     ]
 ]

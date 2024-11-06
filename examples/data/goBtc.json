@@ -3036,5 +3036,117 @@
             "price": 69502169949,
             "vault": "goBtc"
         }
+    ],
+    [
+        {
+            "collateral": 2870000,
+            "liquidating": false,
+            "vaultDebt": 700859066.8421385,
+            "lastAccruedInterestTime": 1730871892,
+            "vaultFound": true,
+            "vaultOwner": "AENCK6AVVGCOQM6XGSGTSMZXVHV34QDAHH7RDH226GLD55U34BLT6YP5L4",
+            "time": "2024-11-06T11:07:44.833Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        },
+        {
+            "collateral": 1712331,
+            "liquidating": false,
+            "vaultDebt": 394868957.4093896,
+            "lastAccruedInterestTime": 1730871892,
+            "vaultFound": true,
+            "vaultOwner": "CUDTMJUK3JRVRWXTFCILI4CARDWPLSFAODYBEWKITQ5GRZYLNEXUOML7XM",
+            "time": "2024-11-06T11:07:44.833Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        },
+        {
+            "collateral": 21749999,
+            "liquidating": false,
+            "vaultDebt": 3979177125.667767,
+            "lastAccruedInterestTime": 1730871892,
+            "vaultFound": true,
+            "vaultOwner": "CYBYNHUREXXKIJHSYIQAKVJ3BDMNCEPWYMA3VBEEBKYLEAUL5635SHR7JE",
+            "time": "2024-11-06T11:07:44.833Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        },
+        {
+            "collateral": 329000,
+            "liquidating": false,
+            "vaultDebt": 150743161.34506324,
+            "lastAccruedInterestTime": 1730871732,
+            "vaultFound": true,
+            "vaultOwner": "HKNPDBLHR7GO3DVJSNGPZ4EKGW3RYFLK3OLDZCPA57LKNIKIC5CYA6YSLM",
+            "time": "2024-11-06T11:07:44.833Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        },
+        {
+            "collateral": 30300000,
+            "liquidating": false,
+            "vaultDebt": 14493043853.349155,
+            "lastAccruedInterestTime": 1730871892,
+            "vaultFound": true,
+            "vaultOwner": "JNQERB2XW2ZULWULOJ4AAJXXDZNFKZJOXFPQDCOYJCLP6B6IAOHDW4CE3Q",
+            "time": "2024-11-06T11:07:44.834Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        },
+        {
+            "collateral": 10000000,
+            "liquidating": false,
+            "vaultDebt": 4019485759.9046884,
+            "lastAccruedInterestTime": 1730871892,
+            "vaultFound": true,
+            "vaultOwner": "N76B6BSRK64HVFNPEFRF53IERREJ6QJSGTAF5WJ5NV27NYDWOZTBLTRZOY",
+            "time": "2024-11-06T11:07:44.834Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        },
+        {
+            "collateral": 9104722,
+            "liquidating": false,
+            "vaultDebt": 1709791186.7083316,
+            "lastAccruedInterestTime": 1730871892,
+            "vaultFound": true,
+            "vaultOwner": "P3DDLOVHTCF7YWTO5JVSDDEIBPFBUV6HX3RDMYUISJBEWLZFORB3WKYUBQ",
+            "time": "2024-11-06T11:07:44.834Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        },
+        {
+            "collateral": 8460509,
+            "liquidating": false,
+            "vaultDebt": 1138593982.9080567,
+            "lastAccruedInterestTime": 1730871892,
+            "vaultFound": true,
+            "vaultOwner": "2YNMNHBUF7ZMT4RULXMY2U7WJYBYKCMX4NM2S6OBQBPVB42BWSXYXMQ7OU",
+            "time": "2024-11-06T11:07:44.834Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        },
+        {
+            "collateral": 336499,
+            "liquidating": false,
+            "vaultDebt": 157007286.0111499,
+            "lastAccruedInterestTime": 1730871892,
+            "vaultFound": true,
+            "vaultOwner": "3HYCKD7HGPMS67B7ADFHJ2STUZX6VSS25M3W7YLPDKRCTDC62YGGIHZSR4",
+            "time": "2024-11-06T11:07:44.834Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        },
+        {
+            "collateral": 1510000,
+            "liquidating": false,
+            "vaultDebt": 351370041.976275,
+            "lastAccruedInterestTime": 1730871892,
+            "vaultFound": true,
+            "vaultOwner": "3Y2FXKHQVGLIWZ5VD35C2G4YKXQ7D5VVU43KUBA5I2KMQPVXUXVCMKIXAI",
+            "time": "2024-11-06T11:07:44.835Z",
+            "price": 73751367909,
+            "vault": "goBtc"
+        }
     ]
 ]
