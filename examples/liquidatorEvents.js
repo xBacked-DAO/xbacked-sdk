@@ -1,6 +1,6 @@
 
 /*
-  This example script yields all the liquidation events that occured in the
+  This example script yields all the liquidation events that occurred in the
   current vault version.
 
   Usage example:
