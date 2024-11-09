@@ -163,6 +163,14 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_asa_vault: boolean;
         };
+        lfty0305: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
     };
     MainNet: {
         algo: {
@@ -324,6 +332,14 @@ export declare const VAULTS: {
             assetId: number;
             assetDecimals: number;
             liquidatorDiscount: number;
+            new_asa_vault: boolean;
+        };
+        lfty0305: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
             new_asa_vault: boolean;
         };
     };
