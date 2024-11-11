@@ -252,5 +252,40 @@
             "price": 147212,
             "vault": "xAlgo"
         }
+    ],
+    [
+        {
+            "collateral": 2750000000,
+            "liquidating": false,
+            "vaultDebt": 150304855.95930836,
+            "lastAccruedInterestTime": 1731326065,
+            "vaultFound": true,
+            "vaultOwner": "ESG4BC32W6V2P2U2RDTPA4ITEDYRAC4TVNDAH5NUFJMIG5SUH4HVUH4ZNQ",
+            "time": "2024-11-11T18:07:29.571Z",
+            "price": 169191,
+            "vault": "xAlgo"
+        },
+        {
+            "collateral": 1895686800,
+            "liquidating": false,
+            "vaultDebt": 140291295.79138044,
+            "lastAccruedInterestTime": 1731326065,
+            "vaultFound": true,
+            "vaultOwner": "FGA6EM3ZLL7HSLGETOIR6FOHXTZL5O7ZIG3G5AB6HTQUYUXVLGGV6ETEUA",
+            "time": "2024-11-11T18:07:29.571Z",
+            "price": 169191,
+            "vault": "xAlgo"
+        },
+        {
+            "collateral": 3516183200,
+            "liquidating": false,
+            "vaultDebt": 225434537.33464,
+            "lastAccruedInterestTime": 1731326025,
+            "vaultFound": true,
+            "vaultOwner": "75HHOQBYAE64VMOEIFMOISOANYYZMU4NUPIKGOWQDAOUEPIZW7LT43F5A4",
+            "time": "2024-11-11T18:07:29.572Z",
+            "price": 169191,
+            "vault": "xAlgo"
+        }
     ]
 ]
