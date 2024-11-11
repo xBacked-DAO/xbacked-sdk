@@ -153,12 +153,20 @@ export const VAULTS = {
       new_asa_vault: false,
     },
     xAlgo: {
-      vaultId: 2423920940,
-      assetId: 1134696561,
+      vaultId: 0,
+      assetId: 0,
       assetDecimals: 6,
       liquidatorDiscount: 0.1,
       new_asa_vault: true,
       new_sdc_vault: false,
+    },
+    lfty0305: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
     },
   },
   MainNet: {
@@ -305,6 +313,14 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       new_asa_vault: true,
       new_sdc_vault: false,
+    },
+    lfty0305: {
+      vaultId: 2470490520,
+      assetId: 1718202069,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
     },
   },
 };
