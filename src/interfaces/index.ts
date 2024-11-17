@@ -29,7 +29,7 @@ export interface AccountInterface {
     new_asa_vault?: boolean;
     new_sdc_vault?: boolean;
   };
-  new_algo_vault?: boolean
+  new_algo_vault?: boolean;
 }
 
 export interface StakeGlobalView {

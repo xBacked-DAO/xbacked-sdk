@@ -185,6 +185,13 @@ export const VAULTS = {
       new_sdc_vault: true,
       new_asa_vault: false,
     },
+    compx: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.15,
+      new_asa_vault: true,
+    },
   },
   MainNet: {
     algo: {
@@ -357,6 +364,13 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       new_sdc_vault: true,
       new_asa_vault: false,
+    },
+    compx: {
+      vaultId: 2507754965,
+      assetId: 1732165149,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.15,
+      new_asa_vault: true,
     },
   },
 };

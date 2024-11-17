@@ -5,16 +5,16 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.lfty0305.vaultId;
+  const VAULT_ID = VAULTS.MainNet.compx.vaultId;
   console.log(VAULT_ID);
   const account = new VaultClient({
     mnemonic,
     network: 'MainNet',
-    asaVault: {decimals: 0, new_sdc_vault: true, new_asa_vault: false},
+    asaVault: {decimals: 6, new_sdc_vault: false, new_asa_vault: true},
   });
   console.log(await account.getAddress());
   const vault = new Vault({id: VAULT_ID,
-    asaVault: {decimals: 0, new_sdc_vault: true, new_asa_vault: false}});
+    asaVault: {decimals: 0, new_sdc_vault: false, new_asa_vault: true}});
   // eslint-disable-next-line max-len
   while (true) {
     const action = await ask.ask(

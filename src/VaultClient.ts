@@ -6,7 +6,7 @@ import {
   large_cp_vault_asa,
   new_algo_vault,
   new_asa_vault,
-  new_sdc_vault
+  new_sdc_vault,
 } from '@xbacked-dao/xbacked-contracts';
 import { Vault } from './Vault';
 import { convertToMicroUnits, calculateInterestAccrued } from './utils';
@@ -24,8 +24,8 @@ export class VaultClient extends Account {
         this.backend = large_cp_vault_asa;
       } else if (params?.asaVault?.new_asa_vault) {
         this.backend = new_asa_vault;
-      }else if(params?.asaVault?.new_sdc_vault){
-        this.backend = new_sdc_vault
+      } else if (params?.asaVault?.new_sdc_vault) {
+        this.backend = new_sdc_vault;
       } else {
         this.backend = vaultAsa;
       }
@@ -301,7 +301,7 @@ export class VaultClient extends Account {
    * @returns the information for the specified vault
    */
 
-  async getUserInfo(params: { address: string; vault: Vault,calcInterest?:boolean }): Promise<UserVaultReturnParams> {
+  async getUserInfo(params: { address: string; vault: Vault; calcInterest?: boolean }): Promise<UserVaultReturnParams> {
     await this.initialiseReachAccount();
 
     const userVault = await params.vault.getUserInfo({ account: this, address: params.address });
@@ -315,10 +315,10 @@ export class VaultClient extends Account {
       userVault.vaultDebt,
       VAULT_INTEREST_RATE ? VAULT_INTEREST_RATE : 2000000000,
     );
-    if(params.calcInterest){
+    if (params.calcInterest) {
       userVault.vaultDebt += interestAccrued;
     }
-    
+
     return userVault;
   }
 
@@ -334,7 +334,12 @@ export class VaultClient extends Account {
     /** @property callback that is called when a transaction is made in any vault in the contract, it is called  with the address that made the transaction as well as its uservault state  */
     transactionCallback: (address: string, state: UserVaultReturnParams) => void;
     updatePriceCallback: (address: string, newPrice: number) => void;
-    liquidateCallback?: (liquidatorAddress: string, vaultOwner: string, liquidatorPayment: bigint, debtAmount: bigint) => void
+    liquidateCallback?: (
+      liquidatorAddress: string,
+      vaultOwner: string,
+      liquidatorPayment: bigint,
+      debtAmount: bigint,
+    ) => void;
   }): Promise<void> {
     await this.initialiseReachAccount();
     const ctc = this.reachAccount.contract(this.backend, params.vaultId);
@@ -358,16 +363,15 @@ export class VaultClient extends Account {
         params.transactionCallback(address, vaultState);
       });
     }
-    if(params.liquidateCallback){
+    if (params.liquidateCallback) {
       announcer.liquidateEvent.monitor((event: any) => {
         const liquidatorAddress: string = this.reachStdLib.formatAddress(event.what[0]);
         const vaultOwner: string = this.reachStdLib.formatAddress(event.what[1]);
-        const liquidatorPayment = (event.what[2]);
-        const debtAmount = (event.what[3]);
-        if(params.liquidateCallback){
-            params.liquidateCallback(liquidatorAddress, vaultOwner, liquidatorPayment, debtAmount)
+        const liquidatorPayment = event.what[2];
+        const debtAmount = event.what[3];
+        if (params.liquidateCallback) {
+          params.liquidateCallback(liquidatorAddress, vaultOwner, liquidatorPayment, debtAmount);
         }
-         
       });
     }
   }
