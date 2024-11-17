@@ -168,6 +168,14 @@ export const VAULTS = {
       new_sdc_vault: true,
       new_asa_vault: false,
     },
+    compx: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.15,
+      new_asa_vault: true,
+      new_sdc_vault: false,
+    },
   },
   MainNet: {
     oldAlgo: {
@@ -321,6 +329,14 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       new_sdc_vault: true,
       new_asa_vault: false,
+    },
+    compx: {
+      vaultId: 2507754965,
+      assetId: 1732165149,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.15,
+      new_asa_vault: true,
+      new_sdc_vault: false,
     },
   },
 };
@@ -545,9 +561,9 @@ export const getAllAccounts = async (
   }
 
   const initialVaults = await indexer.searchForApplicationBoxes(applicationId).do();
-    if (initialVaults.boxes.length === 0 && accounts.length === 0) {
-      return Promise.resolve(initialVaults.boxes);
-    }
+  if (initialVaults.boxes.length === 0 && accounts.length === 0) {
+    return Promise.resolve(initialVaults.boxes);
+  }
   return getAllAccounts(applicationId, indexer, initialVaults.boxes, initialVaults['next-token']);
 };
 

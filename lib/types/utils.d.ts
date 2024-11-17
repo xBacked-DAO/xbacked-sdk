@@ -152,6 +152,14 @@ export declare const VAULTS: {
             new_sdc_vault: boolean;
             new_asa_vault: boolean;
         };
+        compx: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
     };
     MainNet: {
         oldAlgo: {
@@ -305,6 +313,14 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
             new_asa_vault: boolean;
+        };
+        compx: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
         };
     };
 };

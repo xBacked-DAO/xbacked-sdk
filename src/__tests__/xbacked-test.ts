@@ -106,7 +106,7 @@ it('Get vault Info', async () => {
       daoAddress: 'CKFJQPYSGJBRDZ7YKJSOTWJOLUBM7HGIPY6MFLQTBFLHHPIOAX3VEZQP44',
     },
   };
-  const vaultState = await account.getVaultState({ vault: new Vault({ name: "algo", network: "MainNet"}) });
+  const vaultState = await account.getVaultState({ vault: new Vault({ name: 'algo', network: 'MainNet' }) });
   expect(JSON.stringify(vaultState)).toEqual(JSON.stringify(expectedVaultState));
 });
 
@@ -156,7 +156,7 @@ it('Liquidator Liquidate Vault', async function () {
 it('Minter returns vault debt', async function () {
   const isVaultDebtReturned = await account.returnVaultDebt({
     amount: MINT_AMOUNT,
-    vault: new Vault({  name: "algo", network: "MainNet" }),
+    vault: new Vault({ name: 'algo', network: 'MainNet' }),
     close: false,
     address: await account.getAddress(),
   });
@@ -166,7 +166,7 @@ it('Minter returns vault debt', async function () {
 it('Minter withdraws collateral', async function () {
   const isCollateralWithdrawn = await account.withdrawCollateral({
     amount: MINT_AMOUNT,
-    vault: new Vault({  name: "algo", network: "MainNet" }),
+    vault: new Vault({ name: 'algo', network: 'MainNet' }),
     minimumPrice: MINIMUM_PRICE,
     maximumPrice: MAXIMUM_PRICE,
   });
@@ -175,7 +175,7 @@ it('Minter withdraws collateral', async function () {
 
 it('Minter deposit collateral', async function () {
   const isCollateralDeposited = await account.depositCollateral({
-    vault: new Vault({  name: "algo", network: "MainNet" }),
+    vault: new Vault({ name: 'algo', network: 'MainNet' }),
     amount: 1000,
   });
   expect(isCollateralDeposited).toBe(true);
@@ -183,7 +183,7 @@ it('Minter deposit collateral', async function () {
 
 it('Minter mints token', async function () {
   const isTokenMinted = await account.mintToken({
-    vault: new Vault({  name: "algo", network: "MainNet" }),
+    vault: new Vault({ name: 'algo', network: 'MainNet' }),
     amount: 500,
     minimumPrice: MINIMUM_PRICE,
     maximumPrice: MAXIMUM_PRICE,
@@ -193,7 +193,7 @@ it('Minter mints token', async function () {
 
 it('Minter creates vault', async function () {
   const isVaultCreated = await account.createVault({
-    vault: new Vault({  name: "algo", network: "MainNet" }),
+    vault: new Vault({ name: 'algo', network: 'MainNet' }),
     collateral: 1000,
     mintAmount: 500,
     minimumPrice: MINIMUM_PRICE,
@@ -204,7 +204,7 @@ it('Minter creates vault', async function () {
 
 it('Liquidator drips interest', async function () {
   const dripInterest = await account.dripInterest({
-    vault: new Vault({  name: "algo", network: "MainNet" }),
+    vault: new Vault({ name: 'algo', network: 'MainNet' }),
     address: '',
   });
   expect(dripInterest).toBe(true);
@@ -222,7 +222,7 @@ it('Admin set properties', async function () {
       minimumDebtAmount: 10,
       maximumCollateralValue: 10000,
     },
-    vault: new Vault({  name: "algo", network: "MainNet" }),
+    vault: new Vault({ name: 'algo', network: 'MainNet' }),
   });
   expect(res).toBe(true);
 });
