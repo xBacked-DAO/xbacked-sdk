@@ -684,5 +684,75 @@
             "price": 67320200,
             "vault": "lfty0314"
         }
+    ],
+    [
+        {
+            "collateral": 5,
+            "liquidating": false,
+            "vaultDebt": 200652590.98112348,
+            "lastAccruedInterestTime": 1732032904,
+            "vaultFound": true,
+            "vaultOwner": "EBRNVRERSK5TQIP3R4JPAFAKXKO2LVGFGEB5GJSFSKCKZSHNF2LNJD7XMI",
+            "time": "2024-11-19T23:14:15.811Z",
+            "price": 67532450,
+            "vault": "lfty0314"
+        },
+        {
+            "collateral": 5,
+            "liquidating": false,
+            "vaultDebt": 150132180.10369903,
+            "lastAccruedInterestTime": 1732033116,
+            "vaultFound": true,
+            "vaultOwner": "HKNPDBLHR7GO3DVJSNGPZ4EKGW3RYFLK3OLDZCPA57LKNIKIC5CYA6YSLM",
+            "time": "2024-11-19T23:14:15.811Z",
+            "price": 67532450,
+            "vault": "lfty0314"
+        },
+        {
+            "collateral": 10,
+            "liquidating": false,
+            "vaultDebt": 396756671.3263083,
+            "lastAccruedInterestTime": 1732033119,
+            "vaultFound": true,
+            "vaultOwner": "N7I2XFVRFNOSTMSWP4NPFRE3PW7MXO7WEI5SVDRK6GS7O7Y3O6VF3SCSSU",
+            "time": "2024-11-19T23:14:15.812Z",
+            "price": 67532450,
+            "vault": "lfty0314"
+        }
+    ],
+    [
+        {
+            "collateral": 5,
+            "liquidating": false,
+            "vaultDebt": 200827228.52542114,
+            "lastAccruedInterestTime": 1732285426,
+            "vaultFound": true,
+            "vaultOwner": "EBRNVRERSK5TQIP3R4JPAFAKXKO2LVGFGEB5GJSFSKCKZSHNF2LNJD7XMI",
+            "time": "2024-11-22T23:00:07.763Z",
+            "price": 69410650,
+            "vault": "lfty0314"
+        },
+        {
+            "collateral": 5,
+            "liquidating": false,
+            "vaultDebt": 150262666.27034584,
+            "lastAccruedInterestTime": 1732285204,
+            "vaultFound": true,
+            "vaultOwner": "HKNPDBLHR7GO3DVJSNGPZ4EKGW3RYFLK3OLDZCPA57LKNIKIC5CYA6YSLM",
+            "time": "2024-11-22T23:00:07.764Z",
+            "price": 69410650,
+            "vault": "lfty0314"
+        },
+        {
+            "collateral": 10,
+            "liquidating": false,
+            "vaultDebt": 397101771.8516272,
+            "lastAccruedInterestTime": 1732285429,
+            "vaultFound": true,
+            "vaultOwner": "N7I2XFVRFNOSTMSWP4NPFRE3PW7MXO7WEI5SVDRK6GS7O7Y3O6VF3SCSSU",
+            "time": "2024-11-22T23:00:07.764Z",
+            "price": 69410650,
+            "vault": "lfty0314"
+        }
     ]
 ]

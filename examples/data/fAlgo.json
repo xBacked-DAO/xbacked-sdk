@@ -652,5 +652,64 @@
             "price": 239987,
             "vault": "fAlgo"
         }
+    ],
+    [
+        {
+            "collateral": 14024884700,
+            "liquidating": false,
+            "vaultDebt": 1164594554.1827013,
+            "lastAccruedInterestTime": 1732033113,
+            "vaultFound": true,
+            "vaultOwner": "HKNPDBLHR7GO3DVJSNGPZ4EKGW3RYFLK3OLDZCPA57LKNIKIC5CYA6YSLM",
+            "time": "2024-11-19T23:06:35.613Z",
+            "price": 247374,
+            "vault": "fAlgo"
+        },
+        {
+            "collateral": 1309694400,
+            "liquidating": false,
+            "vaultDebt": 150105755.55663973,
+            "lastAccruedInterestTime": 1732032964,
+            "vaultFound": true,
+            "vaultOwner": "NSDCSF3TUY3GHEZMUHAUNXRZIR5Z33TNHAIFBFGSBM3XANQNAC4TCPECBA",
+            "time": "2024-11-19T23:06:35.613Z",
+            "price": 247374,
+            "vault": "fAlgo"
+        },
+        {
+            "collateral": 15296152700,
+            "liquidating": false,
+            "vaultDebt": 2152330577.6591516,
+            "lastAccruedInterestTime": 1732033113,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-11-19T23:06:35.613Z",
+            "price": 247374,
+            "vault": "fAlgo"
+        }
+    ],
+    [
+        {
+            "collateral": 14024884700,
+            "liquidating": false,
+            "vaultDebt": 1165607913.4421058,
+            "lastAccruedInterestTime": 1732285426,
+            "vaultFound": true,
+            "vaultOwner": "HKNPDBLHR7GO3DVJSNGPZ4EKGW3RYFLK3OLDZCPA57LKNIKIC5CYA6YSLM",
+            "time": "2024-11-22T23:00:57.046Z",
+            "price": 282421,
+            "vault": "fAlgo"
+        },
+        {
+            "collateral": 1309694400,
+            "liquidating": false,
+            "vaultDebt": 210067975.44816935,
+            "lastAccruedInterestTime": 1732285261,
+            "vaultFound": true,
+            "vaultOwner": "NSDCSF3TUY3GHEZMUHAUNXRZIR5Z33TNHAIFBFGSBM3XANQNAC4TCPECBA",
+            "time": "2024-11-22T23:00:57.047Z",
+            "price": 282421,
+            "vault": "fAlgo"
+        }
     ]
 ]

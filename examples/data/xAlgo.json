@@ -427,5 +427,64 @@
             "price": 240622,
             "vault": "xAlgo"
         }
+    ],
+    [
+        {
+            "collateral": 2750000000,
+            "liquidating": false,
+            "vaultDebt": 150602194.4416609,
+            "lastAccruedInterestTime": 1732032822,
+            "vaultFound": true,
+            "vaultOwner": "ESG4BC32W6V2P2U2RDTPA4ITEDYRAC4TVNDAH5NUFJMIG5SUH4HVUH4ZNQ",
+            "time": "2024-11-19T23:15:16.224Z",
+            "price": 252647,
+            "vault": "xAlgo"
+        },
+        {
+            "collateral": 1895686800,
+            "liquidating": false,
+            "vaultDebt": 240615673.2656187,
+            "lastAccruedInterestTime": 1732033116,
+            "vaultFound": true,
+            "vaultOwner": "FGA6EM3ZLL7HSLGETOIR6FOHXTZL5O7ZIG3G5AB6HTQUYUXVLGGV6ETEUA",
+            "time": "2024-11-19T23:15:16.225Z",
+            "price": 252647,
+            "vault": "xAlgo"
+        },
+        {
+            "collateral": 3441183200,
+            "liquidating": false,
+            "vaultDebt": 225880674.68483105,
+            "lastAccruedInterestTime": 1732033116,
+            "vaultFound": true,
+            "vaultOwner": "75HHOQBYAE64VMOEIFMOISOANYYZMU4NUPIKGOWQDAOUEPIZW7LT43F5A4",
+            "time": "2024-11-19T23:15:16.225Z",
+            "price": 252647,
+            "vault": "xAlgo"
+        }
+    ],
+    [
+        {
+            "collateral": 2750000000,
+            "liquidating": false,
+            "vaultDebt": 150733302.523334,
+            "lastAccruedInterestTime": 1732285423,
+            "vaultFound": true,
+            "vaultOwner": "ESG4BC32W6V2P2U2RDTPA4ITEDYRAC4TVNDAH5NUFJMIG5SUH4HVUH4ZNQ",
+            "time": "2024-11-22T22:58:43.291Z",
+            "price": 277859,
+            "vault": "xAlgo"
+        },
+        {
+            "collateral": 2991183200,
+            "liquidating": false,
+            "vaultDebt": 226096006.09355104,
+            "lastAccruedInterestTime": 1732306730,
+            "vaultFound": true,
+            "vaultOwner": "75HHOQBYAE64VMOEIFMOISOANYYZMU4NUPIKGOWQDAOUEPIZW7LT43F5A4",
+            "time": "2024-11-22T22:58:43.291Z",
+            "price": 277859,
+            "vault": "xAlgo"
+        }
     ]
 ]
