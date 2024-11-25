@@ -178,6 +178,13 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_asa_vault: boolean;
         };
+        ora: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+        };
     };
     MainNet: {
         algo: {
@@ -350,6 +357,13 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
         };
         compx: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+        };
+        ora: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;

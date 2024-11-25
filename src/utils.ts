@@ -192,6 +192,13 @@ export const VAULTS = {
       liquidatorDiscount: 0.15,
       new_asa_vault: true,
     },
+    ora: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 8,
+      liquidatorDiscount: 0.15,
+      new_asa_vault: true,
+    },
   },
   MainNet: {
     algo: {
@@ -369,6 +376,13 @@ export const VAULTS = {
       vaultId: 2507754965,
       assetId: 1732165149,
       assetDecimals: 6,
+      liquidatorDiscount: 0.15,
+      new_asa_vault: true,
+    },
+    ora: {
+      vaultId: 2537481274,
+      assetId: 1284444444,
+      assetDecimals: 8,
       liquidatorDiscount: 0.15,
       new_asa_vault: true,
     },
