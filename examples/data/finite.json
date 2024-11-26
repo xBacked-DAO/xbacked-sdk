@@ -1303,5 +1303,62 @@
             "price": 8127,
             "vault": "finite"
         }
+    ],
+    [
+        {
+            "collateral": 30000000000000,
+            "liquidating": false,
+            "vaultDebt": 120024164.39011247,
+            "lastAccruedInterestTime": 1732606937,
+            "vaultFound": true,
+            "vaultOwner": "OPTGBLHKTP7LV2WLD22PSOBCVXBKCBLWVGDHKZ34T4YPK3DOMMCNGGQXLY",
+            "time": "2024-11-26T21:04:56.422Z",
+            "price": 8053,
+            "vault": "finite"
+        },
+        {
+            "collateral": 11236800000000,
+            "liquidating": false,
+            "vaultDebt": 101350669.90909843,
+            "lastAccruedInterestTime": 1732606847,
+            "vaultFound": true,
+            "vaultOwner": "SJAPHK5KMOQWDCOGVJITYDOF6PELRHWFV2Z6GKPQWWGBGX4WGKXPIXXH2M",
+            "time": "2024-11-26T21:04:56.422Z",
+            "price": 8053,
+            "vault": "finite"
+        },
+        {
+            "collateral": 13654500000000,
+            "liquidating": false,
+            "vaultDebt": 102020751.78216292,
+            "lastAccruedInterestTime": 1732606937,
+            "vaultFound": true,
+            "vaultOwner": "VDJDVYEIXFJZWP4ITQFYK7X6VMHQSPQA4UFHKVDNRFZ4FCPXXLUZOULLTM",
+            "time": "2024-11-26T21:04:56.422Z",
+            "price": 8053,
+            "vault": "finite"
+        },
+        {
+            "collateral": 4494932690000,
+            "liquidating": false,
+            "vaultDebt": 130106946.30585034,
+            "lastAccruedInterestTime": 1732606940,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-11-26T21:04:56.422Z",
+            "price": 8053,
+            "vault": "finite"
+        },
+        {
+            "collateral": 43981700000000,
+            "liquidating": false,
+            "vaultDebt": 808639392.3123962,
+            "lastAccruedInterestTime": 1732606940,
+            "vaultFound": true,
+            "vaultOwner": "YAWPP4H63LCIGP23JDSLNBILP2DJ6MPLELY76SY57EN465J5RMNA2JMMQ4",
+            "time": "2024-11-26T21:04:56.422Z",
+            "price": 8053,
+            "vault": "finite"
+        }
     ]
 ]
