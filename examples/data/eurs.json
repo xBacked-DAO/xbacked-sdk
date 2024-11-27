@@ -1754,5 +1754,62 @@
             "price": 1077152,
             "vault": "eurs"
         }
+    ],
+    [
+        {
+            "collateral": 128000000,
+            "liquidating": false,
+            "vaultDebt": 106762388.5970248,
+            "lastAccruedInterestTime": 1732657408,
+            "vaultFound": true,
+            "vaultOwner": "HPD6ZADEDED6EIZ6HDGDJG4QQWVSEPUOKOPJD7BFTKUC7YFHHGFVYTW5QQ",
+            "time": "2024-11-27T05:48:22.500Z",
+            "price": 1093259,
+            "vault": "eurs"
+        },
+        {
+            "collateral": 2269000000,
+            "liquidating": false,
+            "vaultDebt": 1854318929.2288857,
+            "lastAccruedInterestTime": 1732657141,
+            "vaultFound": true,
+            "vaultOwner": "N76B6BSRK64HVFNPEFRF53IERREJ6QJSGTAF5WJ5NV27NYDWOZTBLTRZOY",
+            "time": "2024-11-27T05:48:22.501Z",
+            "price": 1093259,
+            "vault": "eurs"
+        },
+        {
+            "collateral": 482566500,
+            "liquidating": false,
+            "vaultDebt": 414163152.6543912,
+            "lastAccruedInterestTime": 1732657408,
+            "vaultFound": true,
+            "vaultOwner": "ULB6T4UV5QEMM2PLYVBIK6NWBZWUMSBSRGOKSRX2ZE3EAOIGNMCLRXLPEE",
+            "time": "2024-11-27T05:48:22.501Z",
+            "price": 1093259,
+            "vault": "eurs"
+        },
+        {
+            "collateral": 771515300,
+            "liquidating": false,
+            "vaultDebt": 660823855.1537962,
+            "lastAccruedInterestTime": 1732657408,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-11-27T05:48:22.501Z",
+            "price": 1093259,
+            "vault": "eurs"
+        },
+        {
+            "collateral": 385000000,
+            "liquidating": false,
+            "vaultDebt": 327932505.8354928,
+            "lastAccruedInterestTime": 1732657408,
+            "vaultFound": true,
+            "vaultOwner": "3HYCKD7HGPMS67B7ADFHJ2STUZX6VSS25M3W7YLPDKRCTDC62YGGIHZSR4",
+            "time": "2024-11-27T05:48:22.501Z",
+            "price": 1093259,
+            "vault": "eurs"
+        }
     ]
 ]
