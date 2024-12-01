@@ -845,5 +845,77 @@
             "price": 3260,
             "vault": "chips"
         }
+    ],
+    [
+        {
+            "collateral": 9160354,
+            "liquidating": false,
+            "vaultDebt": 252181210.18226355,
+            "lastAccruedInterestTime": 1732808807,
+            "vaultFound": true,
+            "vaultOwner": "KVHKS66CSESLGSG4L2L6CYJEL62MXFSGY3NBG3XQ5FUTLAZIVLEURLGQEY",
+            "time": "2024-11-28T23:52:04.797Z",
+            "price": 3550,
+            "vault": "chips"
+        },
+        {
+            "collateral": 2700000000,
+            "liquidating": false,
+            "vaultDebt": 53820351769.600586,
+            "lastAccruedInterestTime": 1732809034,
+            "vaultFound": true,
+            "vaultOwner": "TNVDLA75CTKNFFTZ6ALYH77SEI3GKDXYUVVIDDFZL4VW25DVI3IKHBE3SA",
+            "time": "2024-11-28T23:52:04.798Z",
+            "price": 3550,
+            "vault": "chips"
+        }
+    ],
+    [
+        {
+            "collateral": 9160354,
+            "liquidating": false,
+            "vaultDebt": 252345537.28752646,
+            "lastAccruedInterestTime": 1732960660,
+            "vaultFound": true,
+            "vaultOwner": "KVHKS66CSESLGSG4L2L6CYJEL62MXFSGY3NBG3XQ5FUTLAZIVLEURLGQEY",
+            "time": "2024-11-30T16:53:40.895Z",
+            "price": 4580,
+            "vault": "chips"
+        },
+        {
+            "collateral": 2700000000,
+            "liquidating": false,
+            "vaultDebt": 53662592120.800064,
+            "lastAccruedInterestTime": 1732960607,
+            "vaultFound": true,
+            "vaultOwner": "TNVDLA75CTKNFFTZ6ALYH77SEI3GKDXYUVVIDDFZL4VW25DVI3IKHBE3SA",
+            "time": "2024-11-30T16:53:40.895Z",
+            "price": 4580,
+            "vault": "chips"
+        }
+    ],
+    [
+        {
+            "collateral": 9160354,
+            "liquidating": false,
+            "vaultDebt": 252394919.4350092,
+            "lastAccruedInterestTime": 1733011118,
+            "vaultFound": true,
+            "vaultOwner": "KVHKS66CSESLGSG4L2L6CYJEL62MXFSGY3NBG3XQ5FUTLAZIVLEURLGQEY",
+            "time": "2024-12-01T09:05:23.726Z",
+            "price": 4676,
+            "vault": "chips"
+        },
+        {
+            "collateral": 2700000000,
+            "liquidating": false,
+            "vaultDebt": 53673083634.368164,
+            "lastAccruedInterestTime": 1733011006,
+            "vaultFound": true,
+            "vaultOwner": "TNVDLA75CTKNFFTZ6ALYH77SEI3GKDXYUVVIDDFZL4VW25DVI3IKHBE3SA",
+            "time": "2024-12-01T09:05:23.727Z",
+            "price": 4676,
+            "vault": "chips"
+        }
     ]
 ]
