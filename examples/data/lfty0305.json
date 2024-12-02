@@ -167,5 +167,18 @@
             "price": 58240050,
             "vault": "lfty0305"
         }
+    ],
+    [
+        {
+            "collateral": 340,
+            "liquidating": false,
+            "vaultDebt": 9956690681.363733,
+            "lastAccruedInterestTime": 1733112035,
+            "vaultFound": true,
+            "vaultOwner": "3AVDNQPPS3AZE6XTPFIFQTLMOQ3Y7L4A6TQHZ3JYQRNLER4CFOCRAM3UKY",
+            "time": "2024-12-02T06:13:56.177Z",
+            "price": 57730900,
+            "vault": "lfty0305"
+        }
     ]
 ]

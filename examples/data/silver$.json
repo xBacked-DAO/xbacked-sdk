@@ -2398,5 +2398,40 @@
             "price": 984700,
             "vault": "silver$"
         }
+    ],
+    [
+        {
+            "collateral": 150000000,
+            "liquidating": false,
+            "vaultDebt": 103678156.44818382,
+            "lastAccruedInterestTime": 1733112049,
+            "vaultFound": true,
+            "vaultOwner": "HPD6ZADEDED6EIZ6HDGDJG4QQWVSEPUOKOPJD7BFTKUC7YFHHGFVYTW5QQ",
+            "time": "2024-12-02T06:14:47.674Z",
+            "price": 984700,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 6663908231,
+            "liquidating": false,
+            "vaultDebt": 855457921.0222422,
+            "lastAccruedInterestTime": 1733061602,
+            "vaultFound": true,
+            "vaultOwner": "36YH6J2JNTCXMET7O2T62ZTLRJYIPT5GFTTW7Z2RRRN534Q5RQHMHEJV2A",
+            "time": "2024-12-02T06:14:47.674Z",
+            "price": 984700,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 827402022607,
+            "liquidating": false,
+            "vaultDebt": 1933293359.45997,
+            "lastAccruedInterestTime": 1733112047,
+            "vaultFound": true,
+            "vaultOwner": "7EIISXGOKMFCGWYPCDIPATV6LBWGTSDD2EW6VLI6CEBSTLLWGG22CIRUUA",
+            "time": "2024-12-02T06:14:47.675Z",
+            "price": 984700,
+            "vault": "silver$"
+        }
     ]
 ]
