@@ -10,7 +10,7 @@ dotenv.config();
     mnemonic,
     network: 'MainNet',
   });
-  const vault = new Vault({name: 'compx', network: account.network});
+  const vault = new Vault({name: 'akita', network: account.network});
 
   const VAULT_ID = vault.id;
   console.log(VAULT_ID);

@@ -184,6 +184,14 @@ export const VAULTS = {
       new_asa_vault: true,
       new_sdc_vault: false,
     },
+    akita: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.2,
+      new_asa_vault: true,
+      new_sdc_vault: false,
+    },
   },
   MainNet: {
     oldAlgo: {
@@ -351,6 +359,14 @@ export const VAULTS = {
       assetId: 1284444444,
       assetDecimals: 8,
       liquidatorDiscount: 0.15,
+      new_asa_vault: true,
+      new_sdc_vault: false,
+    },
+    akita: {
+      vaultId: 2558726173,
+      assetId: 523683256,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.2,
       new_asa_vault: true,
       new_sdc_vault: false,
     },
