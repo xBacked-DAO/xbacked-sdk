@@ -2468,5 +2468,75 @@
             "price": 984700,
             "vault": "silver$"
         }
+    ],
+    [
+        {
+            "collateral": 150000000,
+            "liquidating": false,
+            "vaultDebt": 103746602.85828803,
+            "lastAccruedInterestTime": 1733298818,
+            "vaultFound": true,
+            "vaultOwner": "HPD6ZADEDED6EIZ6HDGDJG4QQWVSEPUOKOPJD7BFTKUC7YFHHGFVYTW5QQ",
+            "time": "2024-12-04T16:11:53.830Z",
+            "price": 984700,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 6663908231,
+            "liquidating": false,
+            "vaultDebt": 856116941.1652992,
+            "lastAccruedInterestTime": 1733288738,
+            "vaultFound": true,
+            "vaultOwner": "36YH6J2JNTCXMET7O2T62ZTLRJYIPT5GFTTW7Z2RRRN534Q5RQHMHEJV2A",
+            "time": "2024-12-04T16:11:53.830Z",
+            "price": 984700,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 827402022607,
+            "liquidating": false,
+            "vaultDebt": 1934566225.5231717,
+            "lastAccruedInterestTime": 1733298816,
+            "vaultFound": true,
+            "vaultOwner": "7EIISXGOKMFCGWYPCDIPATV6LBWGTSDD2EW6VLI6CEBSTLLWGG22CIRUUA",
+            "time": "2024-12-04T16:11:53.830Z",
+            "price": 984700,
+            "vault": "silver$"
+        }
+    ],
+    [
+        {
+            "collateral": 150000000,
+            "liquidating": false,
+            "vaultDebt": 103788994.9085332,
+            "lastAccruedInterestTime": 1733399761,
+            "vaultFound": true,
+            "vaultOwner": "HPD6ZADEDED6EIZ6HDGDJG4QQWVSEPUOKOPJD7BFTKUC7YFHHGFVYTW5QQ",
+            "time": "2024-12-05T18:04:41.139Z",
+            "price": 984700,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 6663908231,
+            "liquidating": false,
+            "vaultDebt": 856506390.7127744,
+            "lastAccruedInterestTime": 1733399761,
+            "vaultFound": true,
+            "vaultOwner": "36YH6J2JNTCXMET7O2T62ZTLRJYIPT5GFTTW7Z2RRRN534Q5RQHMHEJV2A",
+            "time": "2024-12-05T18:04:41.139Z",
+            "price": 984700,
+            "vault": "silver$"
+        },
+        {
+            "collateral": 827402022607,
+            "liquidating": false,
+            "vaultDebt": 1935307519.4495907,
+            "lastAccruedInterestTime": 1733389675,
+            "vaultFound": true,
+            "vaultOwner": "7EIISXGOKMFCGWYPCDIPATV6LBWGTSDD2EW6VLI6CEBSTLLWGG22CIRUUA",
+            "time": "2024-12-05T18:04:41.140Z",
+            "price": 984700,
+            "vault": "silver$"
+        }
     ]
 ]

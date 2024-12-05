@@ -1658,5 +1658,53 @@
             "price": 12258,
             "vault": "finite"
         }
+    ],
+    [
+        {
+            "collateral": 4494932690000,
+            "liquidating": false,
+            "vaultDebt": 130447288.67573881,
+            "lastAccruedInterestTime": 1733298636,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-12-04T16:10:11.190Z",
+            "price": 11527,
+            "vault": "finite"
+        },
+        {
+            "collateral": 43981700000000,
+            "liquidating": false,
+            "vaultDebt": 810755401.5502232,
+            "lastAccruedInterestTime": 1733298821,
+            "vaultFound": true,
+            "vaultOwner": "YAWPP4H63LCIGP23JDSLNBILP2DJ6MPLELY76SY57EN465J5RMNA2JMMQ4",
+            "time": "2024-12-04T16:10:11.191Z",
+            "price": 11527,
+            "vault": "finite"
+        }
+    ],
+    [
+        {
+            "collateral": 4494932690000,
+            "liquidating": false,
+            "vaultDebt": 130501894.28071256,
+            "lastAccruedInterestTime": 1733399738,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-12-05T18:02:13.278Z",
+            "price": 11122,
+            "vault": "finite"
+        },
+        {
+            "collateral": 43981700000000,
+            "liquidating": false,
+            "vaultDebt": 811094333.6497517,
+            "lastAccruedInterestTime": 1733399755,
+            "vaultFound": true,
+            "vaultOwner": "YAWPP4H63LCIGP23JDSLNBILP2DJ6MPLELY76SY57EN465J5RMNA2JMMQ4",
+            "time": "2024-12-05T18:02:13.279Z",
+            "price": 11122,
+            "vault": "finite"
+        }
     ]
 ]
