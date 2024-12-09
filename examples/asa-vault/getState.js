@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.akita.vaultId;
+  const VAULT_ID = VAULTS.MainNet.pepe.vaultId;
   console.log(VAULT_ID);
   const account = new VaultClient({
     mnemonic,
