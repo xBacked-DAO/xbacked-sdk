@@ -192,6 +192,13 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_asa_vault: boolean;
         };
+        pepe: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+        };
     };
     MainNet: {
         algo: {
@@ -378,6 +385,13 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
         };
         akita: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+        };
+        pepe: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;
