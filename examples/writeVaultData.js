@@ -5,7 +5,10 @@ const fs = require('fs');
 const dotenv = require('dotenv');
 dotenv.config();
 
-
+// eslint-disable-next-line require-jsdoc
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 // eslint-disable-next-line require-jsdoc
 function readOrCreateJson(filePath) {
   try {
@@ -55,7 +58,9 @@ function writeToJson(filePath, data) {
       '',
   );
 
-  Object.entries(VAULTS['MainNet']).forEach(async ([name, rawData]) =>{
+  Object.entries(VAULTS['MainNet']).forEach(async ([name, rawData], index) =>{
+    console.log({index});
+    await delay(index * 5000);
     console.log({name});
     const vault = new Vault({name, network: 'MainNet'});
     const accounts = await getAllAccounts(
