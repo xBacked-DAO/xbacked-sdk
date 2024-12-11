@@ -176,6 +176,14 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
             new_sdc_vault: boolean;
         };
+        pepe: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
     };
     MainNet: {
         oldAlgo: {
@@ -347,6 +355,14 @@ export declare const VAULTS: {
             new_sdc_vault: boolean;
         };
         akita: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
+        pepe: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;
