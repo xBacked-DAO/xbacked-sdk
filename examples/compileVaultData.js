@@ -30,5 +30,5 @@ Object.entries(newStructure).map(([a, b])=>{
 });
 
 console.log({finalStructure});
-// console.log(finalStructure['2024-10-20']);
+console.log(finalStructure['2024-10-20']);
 // console.log(newStructure);
