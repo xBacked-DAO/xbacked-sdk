@@ -88,5 +88,18 @@
             "price": 2589,
             "vault": "compx"
         }
+    ],
+    [
+        {
+            "collateral": 179862318000000,
+            "liquidating": false,
+            "vaultDebt": 100130936411.41312,
+            "lastAccruedInterestTime": 1734212699,
+            "vaultFound": true,
+            "vaultOwner": "HPD6ZADEDED6EIZ6HDGDJG4QQWVSEPUOKOPJD7BFTKUC7YFHHGFVYTW5QQ",
+            "time": "2024-12-15T10:39:53.519Z",
+            "price": 2589,
+            "vault": "compx"
+        }
     ]
 ]
