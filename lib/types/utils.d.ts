@@ -199,6 +199,13 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_asa_vault: boolean;
         };
+        defly: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+        };
     };
     MainNet: {
         algo: {
@@ -397,6 +404,13 @@ export declare const VAULTS: {
             assetDecimals: number;
             liquidatorDiscount: number;
             new_asa_vault: boolean;
+        };
+        defly: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
         };
     };
 };

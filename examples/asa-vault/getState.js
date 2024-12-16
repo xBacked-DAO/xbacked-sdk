@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-  const VAULT_ID = VAULTS.MainNet.pepe.vaultId;
+  const VAULT_ID = VAULTS.MainNet.defly.vaultId;
   console.log(VAULT_ID);
   const account = new VaultClient({
     mnemonic,
@@ -28,7 +28,7 @@ dotenv.config();
     switch (action) {
       case 1:
         const userInfo = await account
-            .getUserInfo({vault, address: '3XBWFSSX2FZ6QQSTI5FGJNYEEGVWSXYUOWWZV3YSW3LAPVHTSKRV6CASFY'});
+            .getUserInfo({vault, address: ''});
         console.log(userInfo);
         break;
       case 2:
