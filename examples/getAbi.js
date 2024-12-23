@@ -8,7 +8,7 @@ dotenv.config();
   const VAULT_ID = VAULTS.MainNet.algo;
   const account = new VaultsClient({
     mnemonic,
-    network: 'LocalHost',
+    network: 'MainNet',
   });
   const abi = await account.getContractAbi({contractId: VAULT_ID, backend});
   console.log(abi);

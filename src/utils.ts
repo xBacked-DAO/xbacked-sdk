@@ -169,8 +169,8 @@ export const VAULTS = {
       new_asa_vault: false,
     },
     compx: {
-      vaultId: 2507754965,
-      assetId: 1732165149,
+      vaultId: 0,
+      assetId: 0,
       assetDecimals: 6,
       liquidatorDiscount: 0.15,
       new_asa_vault: true,
@@ -182,6 +182,30 @@ export const VAULTS = {
       assetDecimals: 8,
       liquidatorDiscount: 0.15,
       new_asa_vault: true,
+      new_sdc_vault: false,
+    },
+    akita: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.2,
+      new_asa_vault: true,
+      new_sdc_vault: false,
+    },
+    pepe: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 4,
+      liquidatorDiscount: 0.2,
+      new_asa_vault: true,
+      new_sdc_vault: false,
+    },
+    defly: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.3,
       new_sdc_vault: false,
     },
   },
@@ -352,6 +376,30 @@ export const VAULTS = {
       assetDecimals: 8,
       liquidatorDiscount: 0.15,
       new_asa_vault: true,
+      new_sdc_vault: false,
+    },
+    akita: {
+      vaultId: 2558726173,
+      assetId: 523683256,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.2,
+      new_asa_vault: true,
+      new_sdc_vault: false,
+    },
+    pepe: {
+      vaultId: 2584022835,
+      assetId: 1096015467,
+      assetDecimals: 4,
+      liquidatorDiscount: 0.2,
+      new_asa_vault: true,
+      new_sdc_vault: false,
+    },
+    defly: {
+      vaultId: 2606853130,
+      assetId: 470842789,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.3,
       new_sdc_vault: false,
     },
   },
@@ -577,9 +625,9 @@ export const getAllAccounts = async (
   }
 
   const initialVaults = await indexer.searchForApplicationBoxes(applicationId).do();
-    if (initialVaults.boxes.length === 0 && accounts.length === 0) {
-      return Promise.resolve(initialVaults.boxes);
-    }
+  if (initialVaults.boxes.length === 0 && accounts.length === 0) {
+    return Promise.resolve(initialVaults.boxes);
+  }
   return getAllAccounts(applicationId, indexer, initialVaults.boxes, initialVaults['next-token']);
 };
 

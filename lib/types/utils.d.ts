@@ -168,6 +168,30 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
             new_sdc_vault: boolean;
         };
+        akita: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
+        pepe: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
+        defly: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
     };
     MainNet: {
         oldAlgo: {
@@ -336,6 +360,30 @@ export declare const VAULTS: {
             assetDecimals: number;
             liquidatorDiscount: number;
             new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
+        akita: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
+        pepe: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_asa_vault: boolean;
+            new_sdc_vault: boolean;
+        };
+        defly: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
             new_sdc_vault: boolean;
         };
     };

@@ -4,7 +4,7 @@ import { Vault } from '../Vault';
 
 jest.setTimeout(200000000);
 
-const vault = new Vault({name: "algo", network: "MainNet"});
+const vault = new Vault({ name: 'algo', network: 'MainNet' });
 const account = new VaultsClient({});
 
 account.reachAccount = {};

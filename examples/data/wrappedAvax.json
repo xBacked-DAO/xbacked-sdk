@@ -1480,5 +1480,96 @@
             "price": 49313333,
             "vault": "wrappedAvax"
         }
+    ],
+    [
+        {
+            "collateral": 12955100,
+            "liquidating": false,
+            "vaultDebt": 2133122.7261581356,
+            "lastAccruedInterestTime": 1734359522,
+            "vaultFound": true,
+            "vaultOwner": "RS7TLLQRXKBAQDAVTSZC2ZLMVMLNSCL3FOUOESJJZ5XSKFFL56UI6X33CI",
+            "time": "2024-12-16T16:56:30.825Z",
+            "price": 49361667,
+            "vault": "wrappedAvax"
+        }
+    ],
+    [
+        {
+            "collateral": 12955100,
+            "liquidating": false,
+            "vaultDebt": 2133676.6057381835,
+            "lastAccruedInterestTime": 1734409924,
+            "vaultFound": true,
+            "vaultOwner": "RS7TLLQRXKBAQDAVTSZC2ZLMVMLNSCL3FOUOESJJZ5XSKFFL56UI6X33CI",
+            "time": "2024-12-17T09:35:12.223Z",
+            "price": 49978333,
+            "vault": "wrappedAvax"
+        }
+    ],
+    [
+        {
+            "collateral": 12955100,
+            "liquidating": false,
+            "vaultDebt": 2134143.1053194217,
+            "lastAccruedInterestTime": 1734460324,
+            "vaultFound": true,
+            "vaultOwner": "RS7TLLQRXKBAQDAVTSZC2ZLMVMLNSCL3FOUOESJJZ5XSKFFL56UI6X33CI",
+            "time": "2024-12-17T21:01:09.855Z",
+            "price": 48983000,
+            "vault": "wrappedAvax"
+        }
+    ],
+    [
+        {
+            "collateral": 12955100,
+            "liquidating": false,
+            "vaultDebt": 2134668.138610515,
+            "lastAccruedInterestTime": 1734510723,
+            "vaultFound": true,
+            "vaultOwner": "RS7TLLQRXKBAQDAVTSZC2ZLMVMLNSCL3FOUOESJJZ5XSKFFL56UI6X33CI",
+            "time": "2024-12-18T20:27:53.353Z",
+            "price": 46551333,
+            "vault": "wrappedAvax"
+        }
+    ],
+    [
+        {
+            "collateral": 12955100,
+            "liquidating": false,
+            "vaultDebt": 2134729.332659113,
+            "lastAccruedInterestTime": 1734510723,
+            "vaultFound": true,
+            "vaultOwner": "RS7TLLQRXKBAQDAVTSZC2ZLMVMLNSCL3FOUOESJJZ5XSKFFL56UI6X33CI",
+            "time": "2024-12-19T09:01:15.871Z",
+            "price": 46551333,
+            "vault": "wrappedAvax"
+        }
+    ],
+    [
+        {
+            "collateral": 12955100,
+            "liquidating": false,
+            "vaultDebt": 2138404.435673511,
+            "lastAccruedInterestTime": 1734859200,
+            "vaultFound": true,
+            "vaultOwner": "RS7TLLQRXKBAQDAVTSZC2ZLMVMLNSCL3FOUOESJJZ5XSKFFL56UI6X33CI",
+            "time": "2024-12-22T09:49:59.258Z",
+            "price": 38368249,
+            "vault": "wrappedAvax"
+        }
+    ],
+    [
+        {
+            "collateral": 12955100,
+            "liquidating": false,
+            "vaultDebt": 2138518.7956982777,
+            "lastAccruedInterestTime": 1734859200,
+            "vaultFound": true,
+            "vaultOwner": "RS7TLLQRXKBAQDAVTSZC2ZLMVMLNSCL3FOUOESJJZ5XSKFFL56UI6X33CI",
+            "time": "2024-12-23T09:15:23.651Z",
+            "price": 37235250,
+            "vault": "wrappedAvax"
+        }
     ]
 ]

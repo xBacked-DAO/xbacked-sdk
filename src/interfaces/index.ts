@@ -45,15 +45,15 @@ export interface StakeLocalView {
   found: boolean;
 }
 export interface VaultAnalytics {
-  totalValueLocked: number,
-  totalVaultDebt: number,
-  totalSystemCr: number,
-  totalNumberOfVaults: number,
-  accruedFees: number,
-  accruedInterest: number,
-  stableSupplyRemaining: number,
-  collateralPrice: number,
-  isDeprecated: boolean
+  totalValueLocked: number;
+  totalVaultDebt: number;
+  totalSystemCr: number;
+  totalNumberOfVaults: number;
+  accruedFees: number;
+  accruedInterest: number;
+  stableSupplyRemaining: number;
+  collateralPrice: number;
+  isDeprecated: boolean;
 }
 export interface VaultReturnParams {
   LIQUIDATION_COLLATERAL_RATIO: number;
@@ -74,7 +74,7 @@ export interface VaultReturnParams {
     maximumCollateralValue: number;
     vaultInterestRate?: number;
     discountRate?: number;
-    maximumCrForLiquidation?: number
+    maximumCrForLiquidation?: number;
   };
   addresses: {
     govStakersAddress: string;
@@ -84,7 +84,6 @@ export interface VaultReturnParams {
     daoAddress: string;
   };
 }
-
 
 export interface ReachUserVault {
   /** @property The amount of collateral in a vault */

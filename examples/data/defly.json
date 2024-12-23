@@ -1,0 +1,45 @@
+[
+    [],
+    [],
+    [],
+    [],
+    [
+        {
+            "collateral": 1749180000000,
+            "liquidating": false,
+            "vaultDebt": 565088601.489553,
+            "lastAccruedInterestTime": 1734584273,
+            "vaultFound": true,
+            "vaultOwner": "5KLKIITS6IAUBTZXOCJS4JQM4AIBNVSWKG7VFURUTWNOCSLH5GWQIS4QWY",
+            "time": "2024-12-19T09:02:30.891Z",
+            "price": 1349,
+            "vault": "defly"
+        }
+    ],
+    [
+        {
+            "collateral": 1749180000000,
+            "liquidating": false,
+            "vaultDebt": 565876621.8200419,
+            "lastAccruedInterestTime": 1734859237,
+            "vaultFound": true,
+            "vaultOwner": "5KLKIITS6IAUBTZXOCJS4JQM4AIBNVSWKG7VFURUTWNOCSLH5GWQIS4QWY",
+            "time": "2024-12-22T09:51:13.911Z",
+            "price": 1122,
+            "vault": "defly"
+        }
+    ],
+    [
+        {
+            "collateral": 1749180000000,
+            "liquidating": false,
+            "vaultDebt": 565906884.4129771,
+            "lastAccruedInterestTime": 1734859237,
+            "vaultFound": true,
+            "vaultOwner": "5KLKIITS6IAUBTZXOCJS4JQM4AIBNVSWKG7VFURUTWNOCSLH5GWQIS4QWY",
+            "time": "2024-12-23T09:16:38.680Z",
+            "price": 1215,
+            "vault": "defly"
+        }
+    ]
+]

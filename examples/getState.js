@@ -5,7 +5,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 (async () => {
   const mnemonic = process.env.MNEMONIC;
-
+  console.log(Object.entries(VAULTS['MainNet']).length);
+  console.log();
   const account = new VaultsClient({
     mnemonic,
     network: 'MainNet',
@@ -18,7 +19,7 @@ dotenv.config();
   while (true) {
     const action = await ask.ask(
         `
-  Do you want to:2
+  Do you want to:
   1. get user info
   2. get vault state
   `,
@@ -28,7 +29,7 @@ dotenv.config();
       case 1:
         const userInfo = await account.getUserInfo({
           vault,
-          address: 'KCVW6CW2ZZGHDF7I4MIF32O4NE66LKCCX46GDC7SDFOFZWEWRXPOEBU4EA',
+          address: 'EBRNVRERSK5TQIP3R4JPAFAKXKO2LVGFGEB5GJSFSKCKZSHNF2LNJD7XMI',
         });
         console.log(userInfo);
         break;
@@ -50,6 +51,14 @@ dotenv.config();
           stbl: 760037151, indexer});
         console.log(vaultAnalytics);
         break;
+      case 4:
+        const allPrices ={};
+        Object.entries(VAULTS['MainNet']).forEach(async ([name, data], index)=>{
+          const vault = new Vault({name, network: account.network});
+          const vaultState = await account.getVaultState({vault});
+          allPrices[name] = vaultState.coldState.collateralPrice / 1000000;
+          console.log(allPrices);
+        });
     }
   }
 })();

@@ -53,7 +53,7 @@ function writeToJson(filePath, data) {
       // indexer key
       token,
       // indexer url
-      '	https://mainnet-idx.algonode.cloud',
+      'https://mainnet-idx.algonode.cloud',
       // indexer port
       '',
   );
