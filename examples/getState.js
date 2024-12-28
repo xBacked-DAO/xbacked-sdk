@@ -11,7 +11,7 @@ dotenv.config();
     mnemonic,
     network: 'MainNet',
   });
-  const vault = new Vault({name: 'lfty0314', network: account.network});
+  const vault = new Vault({name: 'gora', network: account.network});
 
   const VAULT_ID = vault.id;
   console.log(VAULT_ID);

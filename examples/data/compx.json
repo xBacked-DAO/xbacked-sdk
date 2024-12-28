@@ -192,5 +192,31 @@
             "price": 2933,
             "vault": "compx"
         }
+    ],
+    [
+        {
+            "collateral": 179862318000000,
+            "liquidating": false,
+            "vaultDebt": 100701140777.64577,
+            "lastAccruedInterestTime": 1735326440,
+            "vaultFound": true,
+            "vaultOwner": "HPD6ZADEDED6EIZ6HDGDJG4QQWVSEPUOKOPJD7BFTKUC7YFHHGFVYTW5QQ",
+            "time": "2024-12-27T21:09:59.360Z",
+            "price": 2872,
+            "vault": "compx"
+        }
+    ],
+    [
+        {
+            "collateral": 179862318000000,
+            "liquidating": false,
+            "vaultDebt": 100706946269.23608,
+            "lastAccruedInterestTime": 1735333205,
+            "vaultFound": true,
+            "vaultOwner": "HPD6ZADEDED6EIZ6HDGDJG4QQWVSEPUOKOPJD7BFTKUC7YFHHGFVYTW5QQ",
+            "time": "2024-12-28T09:07:56.632Z",
+            "price": 2869,
+            "vault": "compx"
+        }
     ]
 ]

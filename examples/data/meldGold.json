@@ -3301,5 +3301,75 @@
             "price": 88490485,
             "vault": "meldGold"
         }
+    ],
+    [
+        {
+            "collateral": 2807100,
+            "liquidating": false,
+            "vaultDebt": 147848887.25707406,
+            "lastAccruedInterestTime": 1735326877,
+            "vaultFound": true,
+            "vaultOwner": "CUINNC4I3SMSQOJWWOBXYMVGA65OASCCV7FJ2GS6YJW2D3DHI2SHXOLGPM",
+            "time": "2024-12-27T21:08:39.107Z",
+            "price": 87621934,
+            "vault": "meldGold"
+        },
+        {
+            "collateral": 39782574,
+            "liquidating": false,
+            "vaultDebt": 1340020557.5967705,
+            "lastAccruedInterestTime": 1735326864,
+            "vaultFound": true,
+            "vaultOwner": "36YH6J2JNTCXMET7O2T62ZTLRJYIPT5GFTTW7Z2RRRN534Q5RQHMHEJV2A",
+            "time": "2024-12-27T21:08:39.107Z",
+            "price": 87621934,
+            "vault": "meldGold"
+        },
+        {
+            "collateral": 7950000000,
+            "liquidating": false,
+            "vaultDebt": 8436956029.138759,
+            "lastAccruedInterestTime": 1735326438,
+            "vaultFound": true,
+            "vaultOwner": "7EIISXGOKMFCGWYPCDIPATV6LBWGTSDD2EW6VLI6CEBSTLLWGG22CIRUUA",
+            "time": "2024-12-27T21:08:39.108Z",
+            "price": 87621934,
+            "vault": "meldGold"
+        }
+    ],
+    [
+        {
+            "collateral": 2807100,
+            "liquidating": false,
+            "vaultDebt": 147857718.8711836,
+            "lastAccruedInterestTime": 1735334106,
+            "vaultFound": true,
+            "vaultOwner": "CUINNC4I3SMSQOJWWOBXYMVGA65OASCCV7FJ2GS6YJW2D3DHI2SHXOLGPM",
+            "time": "2024-12-28T09:06:36.274Z",
+            "price": 87904421,
+            "vault": "meldGold"
+        },
+        {
+            "collateral": 39782574,
+            "liquidating": false,
+            "vaultDebt": 1340094856.1464868,
+            "lastAccruedInterestTime": 1735333137,
+            "vaultFound": true,
+            "vaultOwner": "36YH6J2JNTCXMET7O2T62ZTLRJYIPT5GFTTW7Z2RRRN534Q5RQHMHEJV2A",
+            "time": "2024-12-28T09:06:36.274Z",
+            "price": 87904421,
+            "vault": "meldGold"
+        },
+        {
+            "collateral": 7950000000,
+            "liquidating": false,
+            "vaultDebt": 8437476483.239913,
+            "lastAccruedInterestTime": 1735334103,
+            "vaultFound": true,
+            "vaultOwner": "7EIISXGOKMFCGWYPCDIPATV6LBWGTSDD2EW6VLI6CEBSTLLWGG22CIRUUA",
+            "time": "2024-12-28T09:06:36.274Z",
+            "price": 87904421,
+            "vault": "meldGold"
+        }
     ]
 ]

@@ -199,5 +199,75 @@
             "price": 2705,
             "vault": "akita"
         }
+    ],
+    [
+        {
+            "collateral": 168000000000,
+            "liquidating": false,
+            "vaultDebt": 101067289.13227677,
+            "lastAccruedInterestTime": 1735326440,
+            "vaultFound": true,
+            "vaultOwner": "V7KSTRVR3QXCZ3H27IPTDWLQJZHOO56OBDZAXFRHJTRVIWWGIH7TBS2OAQ",
+            "time": "2024-12-27T21:10:08.858Z",
+            "price": 2290,
+            "vault": "akita"
+        },
+        {
+            "collateral": 5305932321000,
+            "liquidating": false,
+            "vaultDebt": 1987080648.737574,
+            "lastAccruedInterestTime": 1735326866,
+            "vaultFound": true,
+            "vaultOwner": "XHXFY3AGJI3EGXRLD5V53YIBPZ57G3O5ZHV3F3LDQ45HNRR5YAVOY6ZKHY",
+            "time": "2024-12-27T21:10:08.858Z",
+            "price": 2290,
+            "vault": "akita"
+        },
+        {
+            "collateral": 143652000000,
+            "liquidating": false,
+            "vaultDebt": 100106032.89830917,
+            "lastAccruedInterestTime": 1735326877,
+            "vaultFound": true,
+            "vaultOwner": "5KLKIITS6IAUBTZXOCJS4JQM4AIBNVSWKG7VFURUTWNOCSLH5GWQIS4QWY",
+            "time": "2024-12-27T21:10:08.858Z",
+            "price": 2290,
+            "vault": "akita"
+        }
+    ],
+    [
+        {
+            "collateral": 168000000000,
+            "liquidating": false,
+            "vaultDebt": 101073524.07698071,
+            "lastAccruedInterestTime": 1735334106,
+            "vaultFound": true,
+            "vaultOwner": "V7KSTRVR3QXCZ3H27IPTDWLQJZHOO56OBDZAXFRHJTRVIWWGIH7TBS2OAQ",
+            "time": "2024-12-28T09:08:06.450Z",
+            "price": 2296,
+            "vault": "akita"
+        },
+        {
+            "collateral": 5305932321000,
+            "liquidating": false,
+            "vaultDebt": 1987199416.56242,
+            "lastAccruedInterestTime": 1735334103,
+            "vaultFound": true,
+            "vaultOwner": "XHXFY3AGJI3EGXRLD5V53YIBPZ57G3O5ZHV3F3LDQ45HNRR5YAVOY6ZKHY",
+            "time": "2024-12-28T09:08:06.450Z",
+            "price": 2296,
+            "vault": "akita"
+        },
+        {
+            "collateral": 143652000000,
+            "liquidating": false,
+            "vaultDebt": 100111612.48410322,
+            "lastAccruedInterestTime": 1735333216,
+            "vaultFound": true,
+            "vaultOwner": "5KLKIITS6IAUBTZXOCJS4JQM4AIBNVSWKG7VFURUTWNOCSLH5GWQIS4QWY",
+            "time": "2024-12-28T09:08:06.450Z",
+            "price": 2296,
+            "vault": "akita"
+        }
     ]
 ]

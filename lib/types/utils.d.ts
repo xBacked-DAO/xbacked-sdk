@@ -192,6 +192,14 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
         };
+        gora: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
     };
     MainNet: {
         oldAlgo: {
@@ -379,6 +387,14 @@ export declare const VAULTS: {
             new_sdc_vault: boolean;
         };
         defly: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
+        gora: {
             vaultId: number;
             assetId: number;
             assetDecimals: number;
