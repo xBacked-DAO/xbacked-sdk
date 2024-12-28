@@ -220,6 +220,13 @@ export const VAULTS = {
       new_asa_vault: true,
       liquidatorDiscount: 0.3,
     },
+    gora: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 9,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.3,
+    },
   },
   MainNet: {
     algo: {
@@ -425,6 +432,13 @@ export const VAULTS = {
       vaultId: 2606853130,
       assetId: 470842789,
       assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.3,
+    },
+    gora: {
+      vaultId: 2629560528,
+      assetId: 1138500612,
+      assetDecimals: 9,
       new_asa_vault: true,
       liquidatorDiscount: 0.3,
     },
