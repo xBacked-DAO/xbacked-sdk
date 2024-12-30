@@ -1729,5 +1729,62 @@
             "price": 274802,
             "vault": "ora"
         }
+    ],
+    [
+        {
+            "collateral": 660000000000,
+            "liquidating": false,
+            "vaultDebt": 304728066.55068594,
+            "lastAccruedInterestTime": 1735539751,
+            "vaultFound": true,
+            "vaultOwner": "KQCO6GGB2P7BJ6IJZOXIYV7FDYA2ACXPZBFGKQIQWE4C23FCVEHJPTQJD4",
+            "time": "2024-12-30T08:51:27.638Z",
+            "price": 273686,
+            "vault": "ora"
+        },
+        {
+            "collateral": 2271100000000,
+            "liquidating": false,
+            "vaultDebt": 677178023.8574611,
+            "lastAccruedInterestTime": 1735431598,
+            "vaultFound": true,
+            "vaultOwner": "MAG5MF2FAMGDYKRHYX7ODKWEF5XMKWU5VAZPBLXK6X3WUL654PWUYIBLOE",
+            "time": "2024-12-30T08:51:27.638Z",
+            "price": 273686,
+            "vault": "ora"
+        },
+        {
+            "collateral": 15500000000000,
+            "liquidating": false,
+            "vaultDebt": 14881690022.241129,
+            "lastAccruedInterestTime": 1735447358,
+            "vaultFound": true,
+            "vaultOwner": "NMTNPMTPPTW22YLO6IRA2RODATBTLLUO4QZPC2BDM6KQOB55TVGHEOOHCQ",
+            "time": "2024-12-30T08:51:27.638Z",
+            "price": 273686,
+            "vault": "ora"
+        },
+        {
+            "collateral": 141601100000,
+            "liquidating": false,
+            "vaultDebt": 175684914.70588705,
+            "lastAccruedInterestTime": 1735431598,
+            "vaultFound": true,
+            "vaultOwner": "ULB6T4UV5QEMM2PLYVBIK6NWBZWUMSBSRGOKSRX2ZE3EAOIGNMCLRXLPEE",
+            "time": "2024-12-30T08:51:27.638Z",
+            "price": 273686,
+            "vault": "ora"
+        },
+        {
+            "collateral": 841900000000,
+            "liquidating": false,
+            "vaultDebt": 303979366.6426771,
+            "lastAccruedInterestTime": 1735431598,
+            "vaultFound": true,
+            "vaultOwner": "X4BW3S3SH2IU734GXYKSJEJQN7IBQV3T2DJENDXDJ4PAMN52TWQBKU3OIA",
+            "time": "2024-12-30T08:51:27.638Z",
+            "price": 273686,
+            "vault": "ora"
+        }
     ]
 ]

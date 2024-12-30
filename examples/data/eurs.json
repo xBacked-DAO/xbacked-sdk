@@ -2199,5 +2199,18 @@
             "price": 1050409,
             "vault": "eurs"
         }
+    ],
+    [
+        {
+            "collateral": 128000000,
+            "liquidating": false,
+            "vaultDebt": 108184089.77750708,
+            "lastAccruedInterestTime": 1735431125,
+            "vaultFound": true,
+            "vaultOwner": "HPD6ZADEDED6EIZ6HDGDJG4QQWVSEPUOKOPJD7BFTKUC7YFHHGFVYTW5QQ",
+            "time": "2024-12-30T08:50:52.152Z",
+            "price": 1045399,
+            "vault": "eurs"
+        }
     ]
 ]

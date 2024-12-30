@@ -67,5 +67,18 @@
             "price": 1135,
             "vault": "defly"
         }
+    ],
+    [
+        {
+            "collateral": 1749180000000,
+            "liquidating": false,
+            "vaultDebt": 562641726.5215334,
+            "lastAccruedInterestTime": 1735431169,
+            "vaultFound": true,
+            "vaultOwner": "5KLKIITS6IAUBTZXOCJS4JQM4AIBNVSWKG7VFURUTWNOCSLH5GWQIS4QWY",
+            "time": "2024-12-30T08:51:42.241Z",
+            "price": 1119,
+            "vault": "defly"
+        }
     ]
 ]
