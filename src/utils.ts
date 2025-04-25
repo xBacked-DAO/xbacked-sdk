@@ -240,6 +240,14 @@ export const VAULTS = {
       liquidatorDiscount: 0,
       new_sdc_vault: false,
     },
+    lfty0419: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
   },
   MainNet: {
     oldAlgo: {
@@ -465,6 +473,14 @@ export const VAULTS = {
       new_asa_vault: true,
       liquidatorDiscount: 0.05,
       new_sdc_vault: false,
+    },
+    lfty0419: {
+      vaultId: 2952861029,
+      assetId: 2688844808,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
     },
   },
 };
