@@ -232,6 +232,38 @@ export declare const VAULTS: {
             new_sdc_vault: boolean;
             new_asa_vault: boolean;
         };
+        monkoALGO: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
+        alphaALGO: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
+        oraALGO: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
+        coopALGO: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
     };
     MainNet: {
         oldAlgo: {
@@ -465,6 +497,38 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
             new_asa_vault: boolean;
+        };
+        monkoALGO: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
+        alphaALGO: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
+        oraALGO: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
+        coopALGO: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
         };
     };
 };
