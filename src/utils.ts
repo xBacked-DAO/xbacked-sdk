@@ -1,6 +1,7 @@
 // @ts-ignore
 import { vault as vaultBackend, stabilityPool } from '@xbacked-dao/xbacked-contracts';
 import { decodeAddress, encodeAddress } from 'algosdk';
+import { deprecate } from 'node:util';
 
 const AMOUNT_OF_SECONDS_IN_YEAR = 31536000;
 const INTEREST_RATE_DENOMINATOR = 100000000000;
@@ -107,22 +108,6 @@ export const VAULTS = {
       vaultId: 592332280,
       assetDecimals: 6,
       liquidatorDiscount: 0.3,
-      new_asa_vault: true,
-      new_sdc_vault: false,
-    },
-    chips: {
-      assetId: 645025802,
-      vaultId: 645031001,
-      assetDecimals: 1,
-      liquidatorDiscount: 0.2,
-      new_asa_vault: true,
-      new_sdc_vault: false,
-    },
-    eurs: {
-      assetId: 711381347,
-      vaultId: 711389709,
-      assetDecimals: 6,
-      liquidatorDiscount: 0.05,
       new_asa_vault: true,
       new_sdc_vault: false,
     },
@@ -280,6 +265,46 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       new_sdc_vault: false,
     },
+     lfty0432: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty0411: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty0433: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty0443: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty413: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
   },
   MainNet: {
     oldAlgo: {
@@ -376,22 +401,6 @@ export const VAULTS = {
       assetDecimals: 6,
       new_asa_vault: true,
       liquidatorDiscount: 0.3,
-      new_sdc_vault: false,
-    },
-    chips: {
-      vaultId: 1776094572,
-      assetId: 388592191,
-      assetDecimals: 1,
-      new_asa_vault: true,
-      liquidatorDiscount: 0.2,
-      new_sdc_vault: false,
-    },
-    eurs: {
-      assetId: 227855942,
-      vaultId: 2213720271,
-      assetDecimals: 6,
-      liquidatorDiscount: 0.05,
-      new_asa_vault: true,
       new_sdc_vault: false,
     },
     finite: {
@@ -546,6 +555,46 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       new_sdc_vault: false,
     },
+    lfty0432: {
+      vaultId: 3111066470,
+      assetId: 2669995238,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty0411: {
+      vaultId: 3111072906,
+      assetId: 1909383343,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty0433: {
+      vaultId: 3111075533,
+      assetId: 2589142195,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty0443: {
+      vaultId: 3111077776,
+      assetId: 2688848184,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty413: {
+      vaultId: 3111080275,
+      assetId: 2158057006,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
   },
 };
 
@@ -592,6 +641,21 @@ export const deprecatedVaults = {
       assetId: 386195940,
       assetDecimals: 8,
       large_cp_vault_asa: true,
+      deprecated: true,
+    },
+    chips: {
+      vaultId: 645031001,
+      liquidatorDiscount: 0.05,
+      assetId: 388592191,
+      assetDecimals: 6,
+      large_cp_vault_asa: true,
+      deprecated: true,
+    },
+    eurs: {
+      assetId: 227855942,
+      vaultId: 2213720271,
+      assetDecimals: 6,
+      liquidatorDiscount: 0.05,
       deprecated: true,
     },
   },
