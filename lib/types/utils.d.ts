@@ -96,22 +96,6 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
             new_sdc_vault: boolean;
         };
-        chips: {
-            assetId: number;
-            vaultId: number;
-            assetDecimals: number;
-            liquidatorDiscount: number;
-            new_asa_vault: boolean;
-            new_sdc_vault: boolean;
-        };
-        eurs: {
-            assetId: number;
-            vaultId: number;
-            assetDecimals: number;
-            liquidatorDiscount: number;
-            new_asa_vault: boolean;
-            new_sdc_vault: boolean;
-        };
         finite: {
             vaultId: number;
             assetId: number;
@@ -263,6 +247,46 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
+        };
+        lfty0432: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty0411: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty0433: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty0443: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty413: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
         };
     };
     MainNet: {
@@ -362,22 +386,6 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
         };
-        chips: {
-            vaultId: number;
-            assetId: number;
-            assetDecimals: number;
-            new_asa_vault: boolean;
-            liquidatorDiscount: number;
-            new_sdc_vault: boolean;
-        };
-        eurs: {
-            assetId: number;
-            vaultId: number;
-            assetDecimals: number;
-            liquidatorDiscount: number;
-            new_asa_vault: boolean;
-            new_sdc_vault: boolean;
-        };
         finite: {
             vaultId: number;
             assetId: number;
@@ -530,6 +538,46 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
         };
+        lfty0432: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty0411: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty0433: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty0443: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty413: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
     };
 };
 export declare const deprecatedVaults: {
@@ -575,6 +623,21 @@ export declare const deprecatedVaults: {
             assetId: number;
             assetDecimals: number;
             large_cp_vault_asa: boolean;
+            deprecated: boolean;
+        };
+        chips: {
+            vaultId: number;
+            liquidatorDiscount: number;
+            assetId: number;
+            assetDecimals: number;
+            large_cp_vault_asa: boolean;
+            deprecated: boolean;
+        };
+        eurs: {
+            assetId: number;
+            vaultId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
             deprecated: boolean;
         };
     };
