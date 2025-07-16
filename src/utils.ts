@@ -297,6 +297,14 @@ export const VAULTS = {
       new_sdc_vault: true,
       new_asa_vault: false,
     },
+    pow: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: false,
+    }
 
   },
   MainNet: {
@@ -549,7 +557,7 @@ export const VAULTS = {
       new_sdc_vault: false,
     },
     lfty0432: {
-      vaultId: 3111066470,
+      vaultId: 3111963052,
       assetId: 2669995238,
       assetDecimals: 0,
       liquidatorDiscount: 0.1,
@@ -557,7 +565,7 @@ export const VAULTS = {
       new_asa_vault: false,
     },
     lfty0411: {
-      vaultId: 3111072906,
+      vaultId: 3111965339,
       assetId: 1909383343,
       assetDecimals: 0,
       liquidatorDiscount: 0.1,
@@ -565,7 +573,7 @@ export const VAULTS = {
       new_asa_vault: false,
     },
     lfty0433: {
-      vaultId: 3111075533,
+      vaultId: 3111966764,
       assetId: 2589142195,
       assetDecimals: 0,
       liquidatorDiscount: 0.1,
@@ -573,13 +581,21 @@ export const VAULTS = {
       new_asa_vault: false,
     },
     lfty0443: {
-      vaultId: 3111077776,
+      vaultId: 3111968276,
       assetId: 2688848184,
       assetDecimals: 0,
       liquidatorDiscount: 0.1,
       new_sdc_vault: true,
       new_asa_vault: false,
     },
+    pow: {
+      vaultId: 3121140699,
+      assetId: 2994233666,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.05,
+      new_sdc_vault: false,
+    }
   },
 };
 
