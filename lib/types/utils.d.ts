@@ -83,6 +83,7 @@ export declare const VAULTS: {
         link: {
             assetId: number;
             assetDecimals: number;
+            deprecated: boolean;
             new_asa_vault: boolean;
             liquidatorDiscount: number;
             vaultId: number;
@@ -638,6 +639,13 @@ export declare const deprecatedVaults: {
             vaultId: number;
             assetDecimals: number;
             liquidatorDiscount: number;
+            deprecated: boolean;
+        };
+        link: {
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            vaultId: number;
             deprecated: boolean;
         };
     };

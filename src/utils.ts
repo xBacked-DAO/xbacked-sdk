@@ -98,6 +98,7 @@ export const VAULTS = {
     link: {
       assetId: 586271698,
       assetDecimals: 8,
+      deprecated: true,
       new_asa_vault: true,
       liquidatorDiscount: 0.1,
       vaultId: 586275700,
@@ -657,6 +658,13 @@ export const deprecatedVaults = {
       vaultId: 2213720271,
       assetDecimals: 6,
       liquidatorDiscount: 0.05,
+      deprecated: true,
+    },
+    link: {
+      assetId: 586271698,
+      assetDecimals: 8,
+      liquidatorDiscount: 0.1,
+      vaultId: 586275700,
       deprecated: true,
     },
   },
