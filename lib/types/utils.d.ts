@@ -249,6 +249,14 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
         };
+        lfty413: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
         lfty0432: {
             vaultId: number;
             assetId: number;
@@ -288,6 +296,30 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
+        };
+        xnft: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
+        lfty0452: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty0454: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
         };
     };
     MainNet: {
@@ -539,6 +571,14 @@ export declare const VAULTS: {
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
         };
+        lfty413: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
         lfty0432: {
             vaultId: number;
             assetId: number;
@@ -578,6 +618,30 @@ export declare const VAULTS: {
             new_asa_vault: boolean;
             liquidatorDiscount: number;
             new_sdc_vault: boolean;
+        };
+        xnft: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            new_asa_vault: boolean;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+        };
+        lfty0452: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
+        };
+        lfty0454: {
+            vaultId: number;
+            assetId: number;
+            assetDecimals: number;
+            liquidatorDiscount: number;
+            new_sdc_vault: boolean;
+            new_asa_vault: boolean;
         };
     };
 };

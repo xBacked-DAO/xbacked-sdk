@@ -266,7 +266,15 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       new_sdc_vault: false,
     },
-     lfty0432: {
+    lfty413: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty0432: {
       vaultId: 0,
       assetId: 0,
       assetDecimals: 0,
@@ -305,8 +313,31 @@ export const VAULTS = {
       new_asa_vault: true,
       liquidatorDiscount: 0.1,
       new_sdc_vault: false,
-    }
-
+    },
+    xnft: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: false,
+    },
+    lfty0452: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty0454: {
+      vaultId: 0,
+      assetId: 0,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
   },
   MainNet: {
     oldAlgo: {
@@ -557,6 +588,14 @@ export const VAULTS = {
       liquidatorDiscount: 0.1,
       new_sdc_vault: false,
     },
+    lfty413: {
+      vaultId: 3111080275,
+      assetId: 2158057006,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
     lfty0432: {
       vaultId: 3111963052,
       assetId: 2669995238,
@@ -596,7 +635,31 @@ export const VAULTS = {
       new_asa_vault: true,
       liquidatorDiscount: 0.05,
       new_sdc_vault: false,
-    }
+    },
+    xnft: {
+      vaultId: 3168632901,
+      assetId: 1164556102,
+      assetDecimals: 6,
+      new_asa_vault: true,
+      liquidatorDiscount: 0.15,
+      new_sdc_vault: false,
+    },
+    lfty0452: {
+      vaultId: 3168663879,
+      assetId: 2831851250,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
+    lfty0454: {
+      vaultId: 3168674716,
+      assetId: 2781388570,
+      assetDecimals: 0,
+      liquidatorDiscount: 0.1,
+      new_sdc_vault: true,
+      new_asa_vault: false,
+    },
   },
 };
 
